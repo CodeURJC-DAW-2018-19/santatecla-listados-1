@@ -50,7 +50,7 @@
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="../mmaterial-dashboard-html-v2.1.1/assets/js/plugins/nouislider.min.js"></script>
     <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-    <script src="../mhttps://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="mhttps://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Library for adding dinamically elements -->
     <script src="../mmaterial-dashboard-html-v2.1.1/assets/js/plugins/arrive.min.js"></script>
     <!--  Google Maps Plugin    -->
@@ -68,7 +68,7 @@
 </head>
 <body>
 <!-- Modal Add Concept-->
-<div class="modal fade" id="AddConceptModal" tabindex="10" role="dialog" aria-labelledby="AddConceptModal" aria-hidden="true">
+<div class="modal" id="AddConceptModal" tabindex="-1" role="dialog" aria-labelledby="AddConceptModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -193,13 +193,12 @@
         </nav>
         <!-- End Navbar -->
 
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <form class="form-inline col-md-12">
-                            <div class="input-group no-border">
+                            <div class="input-group no-border col-md-8">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                                     <i class="material-icons">search</i>
@@ -211,125 +210,126 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <div class="card" id="cardTemary">
-                            <div class="card-header card-header-primary">
-                                <h4 class="card-title">Temario</h4>
-                                <p class="card-category">Asignatura</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card" id="Lesson1">
-                                            <div class="card-header card-header-rose" data-header-animation="true">
-                                                <h4 class="card-title">Tema 1</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="card-actions">
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" data-toggle="modal" data-target="#AddConceptModal"
-                                                            title="Añadir concepto">
-                                                        <i class="material-icons">note_add</i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar tema">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="card-category">Concepto 1</p>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar concepto">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" id="Lesson1">
+                                    <div class="card-header card-header-rose" data-header-animation="true">
+                                        <h4 class="card-title">Tema 1</h4>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="card" id="Lesson2">
-                                            <div class="card-header card-header-rose" data-header-animation="true">
-                                                <h4 class="card-title">Tema 2</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="card-actions">
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" data-toggle="modal" data-target="#AddConceptModal"
-                                                            title="Añadir concepto">
-                                                        <i class="material-icons">note_add</i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar tema">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="card-category">Concepto 1</p>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar concepto">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                    <div class="card-body">
+                                        <div class="card-actions">
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" data-toggle="modal" href="#AddConceptModal"
+                                                    data-target="AddConceptModal"
+                                                    title="Añadir concepto">
+                                                <i class="material-icons">note_add</i>
+                                            </button>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar tema">
+                                                <i class="material-icons">delete</i>
+                                            </button>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card" id="Lesson3">
-                                            <div class="card-header card-header-rose" data-header-animation="true">
-                                                <h4 class="card-title">Tema 3</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="card-actions">
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" data-toggle="modal" data-target="#AddConceptModal"
-                                                            title="Añadir concepto">
-                                                        <i class="material-icons">note_add</i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar tema">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="card-category">Concepto 1</p>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar concepto">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card" id="Lesson4">
-                                            <div class="card-header card-header-rose" data-header-animation="true">
-                                                <h4 class="card-title">Tema 4</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="card-actions">
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" data-toggle="modal" data-target="#AddConceptModal"
-                                                            title="Añadir concepto">
-                                                        <i class="material-icons">note_add</i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar tema">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                                <div class="row">
-                                                    <p class="card-category">Concepto 1</p>
-                                                    <button type="button" class="btn btn-info btn-link" rel="tooltip"
-                                                            data-placement="bottom" title="Eliminar concepto">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                        <div class="row">
+                                            <p class="card-category">Concepto 1</p>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar concepto">
+                                                <i class="material-icons">delete</i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="card" id="Lesson2">
+                                    <div class="card-header card-header-rose" data-header-animation="true">
+                                        <h4 class="card-title">Tema 2</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-actions">
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" data-toggle="modal"
+                                                    data-target="#AddConceptModal"
+                                                    title="Añadir concepto">
+                                                <i class="material-icons">note_add</i>
+                                            </button>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar tema">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <p class="card-category">Concepto 1</p>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar concepto">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card" id="Lesson3">
+                                    <div class="card-header card-header-rose" data-header-animation="true">
+                                        <h4 class="card-title">Tema 3</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-actions">
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" data-toggle="modal"
+                                                    data-target="#AddConceptModal"
+                                                    title="Añadir concepto">
+                                                <i class="material-icons">note_add</i>
+                                            </button>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar tema">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <p class="card-category">Concepto 1</p>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar concepto">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card" id="Lesson4">
+                                    <div class="card-header card-header-rose" data-header-animation="true">
+                                        <h4 class="card-title">Tema 4</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-actions">
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" data-toggle="modal"
+                                                    data-target="#AddConceptModal"
+                                                    title="Añadir concepto">
+                                                <i class="material-icons">note_add</i>
+                                            </button>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar tema">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <p class="card-category">Concepto 1</p>
+                                            <button type="button" class="btn btn-info btn-link" rel="tooltip"
+                                                    data-placement="bottom" title="Eliminar concepto">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-4">

@@ -67,6 +67,53 @@
     <title>Vista de inicio</title>
 </head>
 <body>
+<script type="text/javascript">
+    // based on prepared DOM, initialize echarts instance
+    var myChart = echarts.init(document.getElementById('chartModalBody'));
+
+    // specify chart configuration item and data
+    var option = {
+        title: {
+            text: 'ECharts entry example'
+        },
+        tooltip: {},
+        legend: {
+            data:['Sales']
+        },
+        xAxis: {
+            data: ["shirt","cardign","chiffon shirt","pants","heels","socks"]
+        },
+        yAxis: {},
+        series: [{
+            name: 'Sales',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+
+    // use configuration item and data specified to show chart
+    myChart.setOption(option);
+</script>
+<!-- Modal Add Concept-->
+<div class="modal" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" chartModal>Diagramas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body" id="chartModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary"   data-dismiss="modal" >Guardar nuevo concepto</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal Add Concept-->
 <div class="modal" id="AddConceptModal" tabindex="-1" role="dialog" aria-labelledby="AddConceptModal">
     <div class="modal-dialog" role="document">
@@ -204,7 +251,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <form class="form-inline col-md-12">
+                        <form class="form col-md-12">
                             <div class="input-group no-border col-md-8">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -227,7 +274,7 @@
                                         <div class="card-actions">
                                             <button type="button" class="btn btn-info btn-link" rel="tooltip"
                                                     data-placement="bottom" data-toggle="modal" href="#AddConceptModal"
-                                                    data-target="AddConceptModal"
+                                                    data-target="#AddConceptModal"
                                                     title="Añadir concepto">
                                                 <i class="material-icons">note_add</i>
                                             </button>
@@ -333,55 +380,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons"></i>
+                        <div class="row align-content-center">
+                            <button type="submit" class="btn btn-rose btn-round btn-just-icon red" style="margin-left: 47%">
+                                <i class="material-icons">add</i>
                             </button>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#AddConceptModal">
+                        <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#chartModal">
                             Diagramas <i class="material-icons">signal_cellular_alt</i>
                         </button>
                     </div>
 
                 </div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <nav class="float-left">
-                            <ul>
-                                <li>
-                                    <a href="https://www.creative-tim.com">
-                                        Creative Tim
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://creative-tim.com/presentation">
-                                        About Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://blog.creative-tim.com">
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.creative-tim.com/license">
-                                        Licenses
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="copyright float-right">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            , made with <i class="material-icons">favorite</i> by
-                            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
     </div>

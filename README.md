@@ -12,6 +12,7 @@ AULA VIRTUAL - MOODDLE
 | Ana Álvarez Ortiz| a.alvarezo.2016@alumnos.urjc.es   | ana11alvarez   |
 | Aitana Cerezo Camino  | a.cerezoc.2016@alumnos.urjc.es|Aitanaceca    |
 | Sandra Cañadas Gómez | s.canadas.2016@alumnos.urjc.es    |   sandra1012     |
+| Ernesto Baltasar Nve Obono | eb.nve@alumnos.urjc.es    |   nveobono     |
 
 ### Auxiliary tools
 #### TRELLO
@@ -35,8 +36,31 @@ AULA VIRTUAL - MOODDLE
 ## PHASE 1
 ### Screenshots
 Se incluirán capturas de pantalla de cada una de las páginas principales que hayan sido maquetadas. Se acompañarán con una breve descripción en cada una de ellas (un párrafo como mucho).
+
+### Login
+![login](https://user-images.githubusercontent.com/43374601/52182518-44be2800-27fe-11e9-9876-d42bac583179.png)
+
+### Teacher Started View
+![started view teacher](https://user-images.githubusercontent.com/43374601/52182539-72a36c80-27fe-11e9-922e-db741b836e94.jpeg)
+
+### Student / Visitor Started View
+![started view student - visitor](https://user-images.githubusercontent.com/43374601/52182537-6d462200-27fe-11e9-8669-13907833dc9a.jpeg)
+
+### Teacher Concept View
+![concept teacher](https://user-images.githubusercontent.com/43374601/52182541-76cf8a00-27fe-11e9-8787-7a096d00e4ce.png)
+![concept teacher 2](https://user-images.githubusercontent.com/43374601/52182542-7a631100-27fe-11e9-8198-3d5305f27f13.png)
+
+### Student / Visitor Concept View
+![concept student](https://user-images.githubusercontent.com/43374601/52182546-7cc56b00-27fe-11e9-9dbd-a3468ad1c9f1.png)
+
+### Questions 
+![questions](https://user-images.githubusercontent.com/43374601/52182549-7fc05b80-27fe-11e9-9697-4bb71a6574d5.png)
+
 ## Navigation diagrams
 Para mostrar la navegación se creará un diagrama en el que se indicará desde qué página se puede navegar hasta otras páginas. Para ello, las páginas del diagrama pueden ser capturas de pantalla en miniatura de las maquetaciones que se hayan realizado.
+
+
+
 ## Bibliography
 1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)
 2. [Demo](https://demos.creative-tim.com/material-dashboard/examples/dashboard.html)

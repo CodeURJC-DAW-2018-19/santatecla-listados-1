@@ -17,7 +17,7 @@ AULA VIRTUAL - MOODDLE
 ### Auxiliary tools
 #### TRELLO
 * To organize the tasks and assign them we have used the trello tool:
- [Trello grupo 10](https://trello.com/b/kwE4oDnN/grupo10-daw).
+ [Trello grupo 9](https://trello.com/b/kwE4oDnN/grupo10-daw).
 * For the development of the application we have used 
 
 
@@ -59,7 +59,7 @@ Se incluirán capturas de pantalla de cada una de las páginas principales que
 ## Navigation diagrams
 Para mostrar la navegación se creará un diagrama en el que se indicará desde qué página se puede navegar hasta otras páginas. Para ello, las páginas del diagrama pueden ser capturas de pantalla en miniatura de las maquetaciones que se hayan realizado.
 
-
+![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52182443-987c4180-27fd-11e9-88c2-d7ceab0f55ea.jpeg)
 
 ## Bibliography
 1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)

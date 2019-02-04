@@ -35,31 +35,35 @@ AULA VIRTUAL - MOODDLE
 
 ## PHASE 1
 ### Screenshots
-Se incluirán capturas de pantalla de cada una de las páginas principales que hayan sido maquetadas. Se acompañarán con una breve descripción en cada una de ellas (un párrafo como mucho).
 
-### Login
-![login](https://user-images.githubusercontent.com/43374601/52182518-44be2800-27fe-11e9-9876-d42bac583179.png)
+Login: It is a view, where the user's login is required. There are three login options: through Facebook, twitter or Google, by using email and password or in guest / visitor mode. Depending on the type of user, it takes us to the corresponding main view type.
 
-### Teacher Started View
-![started view teacher](https://user-images.githubusercontent.com/43374601/52182539-72a36c80-27fe-11e9-922e-db741b836e94.jpeg)
+![login](https://user-images.githubusercontent.com/43374601/52230735-7398d480-28b8-11e9-8590-f9adfdcc4a20.png)
 
-### Student / Visitor Started View
-![started view student - visitor](https://user-images.githubusercontent.com/43374601/52182537-6d462200-27fe-11e9-8669-13907833dc9a.jpeg)
+Teacher Started View: In this view, the topics and concepts appear, and the option to delete or add them, which only appear if you have logged in as a teacher. There is also a button to see a diagram with progress, another to return to start and another to close the session. We also add the option to search, to access a topic or concept faster.
 
-### Teacher Concept View
+![started view teacher](https://user-images.githubusercontent.com/43374601/52230739-74316b00-28b8-11e9-88d6-fd4172591725.jpeg)
+
+Student / Visitor Started View: In this view, we only have the reading mode of the topics and concepts because the session has been logged as a student or visitor. In the started view of the student or visitor mode, we also find the start button, the diagrams button, the log out button and the search option.
+
+![started view student](https://user-images.githubusercontent.com/43374601/52230738-74316b00-28b8-11e9-973d-a311afc0213f.jpeg)
+
+Teacher Concept View: In this view we have two tables, one with already corrected items, where the correct or incorrect option is already checked and there is also the option to delete. In the second table we have uncorrected answers where there are two options per answer to mark if it is correct or incorrect. Below the first table, we have a button to add items, where a pop up appears. And in the upper right corner we have the option of log out.
+
 ![concept teacher](https://user-images.githubusercontent.com/43374601/52182541-76cf8a00-27fe-11e9-8787-7a096d00e4ce.png)
 ![concept teacher 2](https://user-images.githubusercontent.com/43374601/52182542-7a631100-27fe-11e9-8198-3d5305f27f13.png)
 
-### Student / Visitor Concept View
+Student / Visitor Concept View: In this view we have a table with two parts: corrected questions and questions to be corrected. The corrected questions appear with a tick or with a cross depending on whether the question is correct or not. Below is an icon of a sum, to add an item, and the button of diagrams, where we have used a modal to have a pop up where we can see the progress once we have data. Finally, in the upper right corner, we have the option of log out.
+
 ![concept student](https://user-images.githubusercontent.com/43374601/52182546-7cc56b00-27fe-11e9-9dbd-a3468ad1c9f1.png)
 
-### Questions 
+Questions: It is a view to add questions, where in each type of question there is a generate button to create the dialogue of the question of that type.
+
 ![questions](https://user-images.githubusercontent.com/43374601/52182549-7fc05b80-27fe-11e9-9697-4bb71a6574d5.png)
 
 ## Navigation diagrams
-Para mostrar la navegación se creará un diagrama en el que se indicará desde qué página se puede navegar hasta otras páginas. Para ello, las páginas del diagrama pueden ser capturas de pantalla en miniatura de las maquetaciones que se hayan realizado.
 
-![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52182443-987c4180-27fd-11e9-88c2-d7ceab0f55ea.jpeg)
+![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52230742-772c5b80-28b8-11e9-94e1-6429b913092a.jpeg)
 
 ## Bibliography
 1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)

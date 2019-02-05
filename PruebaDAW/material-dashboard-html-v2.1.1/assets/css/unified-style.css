@@ -4,12 +4,12 @@
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back,
-.btn.btn-primary,
+.btn-primary,
 .form-check .form-check-label .circle .check{
     background: #ad9df5;
 }
 
-.btn:not(:disabled):not(.disabled){
+.btn-primary:not(:disabled):not(.disabled){
     background: #ad9df5;
 }
 

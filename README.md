@@ -18,7 +18,8 @@ AULA VIRTUAL - MOODDLE
 #### TRELLO
 * To organize the tasks and assign them we have used the trello tool:
  [Trello grupo 9](https://trello.com/b/kwE4oDnN/grupo10-daw).
-* For the development of the application we have used 
+* For the development of the application we have used : WEBSTROM
+* The requirements document: https://docs.google.com/document/d/1eq-zIDgxicw_UoEpP-LEa3dN-9cM59FqMHtBGM7VUPw/edit?usp=sharing
 
 
 ### Bibliography
@@ -66,40 +67,40 @@ Questions: It is a view to add questions, where in each type of question there i
 ![diagrama de navegacion](https://user-images.githubusercontent.com/43374601/52230742-772c5b80-28b8-11e9-94e1-6429b913092a.jpeg)
 
 ## Bibliography
-1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)
+1. [Página principal]( https://www.creative-tim.com/product/material-dashboard)
 2. [Demo](https://demos.creative-tim.com/material-dashboard/examples/dashboard.html)
 3. [Repositorio GitHub para descargar](https://github.com/creativetimofficial/material-dashboard)
-4. [Documentación:](https://demos.creative-tim.com/material-dashboard/docs/2.1/components/breadcrumb.html)
+4. [Documentación:](https://demos.creative-tim.com/material-dashboard/docs/2.1/components/breadcrumb.html)
 5. [Echarts](https://ecomfe.github.io/echarts-doc/public/en/index.html)
 
 ## PHASE 2
 ### Navigation diagrams
-Se actualizarán las capturas de pantalla de las páginas principales de la aplicación. En caso de que haya cambiado la navegación, se deberá actualizar el diagrama de navegación.
+Se actualizarán las capturas de pantalla de las páginas principales de la aplicación. En caso de que haya cambiado la navegación, se deberá actualizar el diagrama de navegación.
 ### Development environment
-Se indicarán cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación.
+Se indicarán cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación.
 ### Entity diagram
-Se incluirá un diagrama con las entidades de la base de datos, sus campos y las relaciones entre ellas. Se usará un diagrama de las clases Java, no un diagrama entidad-relación de base de datos
+Se incluirá un diagrama con las entidades de la base de datos, sus campos y las relaciones entre ellas. Se usará un diagrama de las clases Java, no un diagrama entidad-relación de base de datos
 ###Class diagram and templates
- Se creará un diagrama de clases de la aplicación. No se incluirán ni atributos ni métodos en las clases. Se mostrarán las relaciones entre las clases (asociación, composición o herencia) y se diferenciará claramente qué clases son @Controller, @Service, Repository u otro tipo de clases. Para ello se puede usar un código de colores, una distribución de las clases por partes u otro mecanismo. En este diagrama también se incluirán los ficheros que contienen los templates y se indicará con qué @Controller se relacionan.
+ Se creará un diagrama de clases de la aplicación. No se incluirán ni atributos ni métodos en las clases. Se mostrarán las relaciones entre las clases (asociación, composición o herencia) y se diferenciará claramente qué clases son @Controller, @Service, Repository u otro tipo de clases. Para ello se puede usar un código de colores, una distribución de las clases por partes u otro mecanismo. En este diagrama también se incluirán los ficheros que contienen los templates y se indicará con qué @Controller se relacionan.
 ### Bibliography
 
 ## PHASE 3
 ### API REST Documentation
- La documentación pública de cada uno de los endpoints de la API REST. Por cada tipo de recurso se deberá indicar el formato de la URL, las operaciones soportadas, el formato de la información de entrada y de salida, los códigos de estado, etc. Para los formatos de entrada (en el body) y salida se usarán ejemplos de los datos de las peticiones en JSON.
+ La documentación pública de cada uno de los endpoints de la API REST. Por cada tipo de recurso se deberá indicar el formato de la URL, las operaciones soportadas, el formato de la información de entrada y de salida, los códigos de estado, etc. Para los formatos de entrada (en el body) y salida se usarán ejemplos de los datos de las peticiones en JSON.
 ### Class diagram updates
-Se actualizará el diagrama de clases y templates incluyendo las nuevas clases @RestController. Se prestará especial atención a que los servicios compartidos entre los @Controller y los @RestController aparezcan correctamente reflejados en el diagrama.
+Se actualizará el diagrama de clases y templates incluyendo las nuevas clases @RestController. Se prestará especial atención a que los servicios compartidos entre los @Controller y los @RestController aparezcan correctamente reflejados en el diagrama.
 
 ### Dockerized application execution instructions
-Instrucciones de ejecución usando el docker-compose.yml.
+Instrucciones de ejecución usando el docker-compose.yml.
 
 ### Preparation of development environment
-Se indicarán cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación dockerizada.
+Se indicarán cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación dockerizada.
 
 ### Bibliography
 
 ## PHASE 4
 ### Preparation of development environment
- Se añadirá a las instrucciones cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación SPA con Angular.
+ Se añadirá a las instrucciones cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación SPA con Angular.
 ### Class diagram and templates
- Reflejará las clases y templates del código Angular. El diagrama deberá diferenciar claramente qué elementos son componentes y cómo se relacionan entre sí (relaciones padre-hijo). También se deberán incluir los servicios y el resto de clases auxiliares.
+ Reflejará las clases y templates del código Angular. El diagrama deberá diferenciar claramente qué elementos son componentes y cómo se relacionan entre sí (relaciones padre-hijo). También se deberán incluir los servicios y el resto de clases auxiliares.
 ### Bibliography

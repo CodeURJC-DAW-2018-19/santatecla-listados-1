@@ -9,11 +9,10 @@
                 </button>
             </div>
             <div class="modal-body" id="chartModalBody">
-
+                <div id="main" style="width: 500px;height:400px;"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar nuevo concepto</button>
             </div>
         </div>
     </div>
@@ -188,13 +187,33 @@
                 </button>
             </div>
         </div>
+
     </div>
 </div>
-<script>
-    $("#concepto1").on("click", moveToConcepto())
+<script type="text/javascript">
+    // based on prepared DOM, initialize echarts instance
+    var myChart = echarts.init(document.getElementById('main'));
 
-    function moveToConcepto() {
-        console.log('hola');
-        $('.main-panel').load('TeacherConceptView.html');
-    }
+    // specify chart configuration item and data
+    var option = {
+        title: {
+            text: ' % RESPUESTAS'
+        },
+        tooltip: {},
+        legend: {
+            data:['Sales']
+        },
+        xAxis: {
+            data: ["Correctas","Incorrectas","Sin responder"]
+        },
+        yAxis: {},
+        series: [{
+            name: 'Sales',
+            type: 'bar',
+            data: [5, 20, 36]
+        }]
+    };
+
+    // use configuration item and data specified to show chart
+    myChart.setOption(option);
 </script>

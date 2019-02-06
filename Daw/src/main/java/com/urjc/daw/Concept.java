@@ -9,8 +9,9 @@ public class Concept {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idConcept;
 
-
-    private Integer idLesson;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "ID_LESSON")
+    private Lesson idLesson;
 
     @Column
     private String title;
@@ -19,7 +20,8 @@ public class Concept {
     @Column
     private TreeMap<Integer, Item> itemTreeMap;
 
-    public Concept(String title) {
+    public Concept(Lesson idLesson, String title) {
+        this.idLesson = idLesson;
         this.title = title;
     }
 }

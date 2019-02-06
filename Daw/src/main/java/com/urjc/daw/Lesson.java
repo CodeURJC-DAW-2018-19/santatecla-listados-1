@@ -8,16 +8,18 @@ import java.util.TreeMap;
 @Entity
 public class Lesson {
     @Id
+    @Column(name="ID_LESSON")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idLesson;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_USER")
     private User idUser;
 
-    @Column
+    @Column(name = "NAME")
     private String lessonName;
 
-    @Column
+    @Column(name="NUMBER_OF_CONCEPTS")
     private String conceptNumber;
 
     private TreeMap<Integer, Concept> conceptTreeMap;

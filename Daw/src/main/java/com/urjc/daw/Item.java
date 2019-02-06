@@ -8,11 +8,14 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idItem;
 
-    private Integer idConcept;
+    @ManyToOne(cascade = CascadeType.ALL)
+   @JoinColumn
+    private Concept idConcept;
+
     @Column
     private Boolean correct;
 
-    public Item(Boolean correct) {
-        this.correct = correct;
+    public Item(Concept idConcept) {
+        this.idConcept = idConcept;
     }
 }

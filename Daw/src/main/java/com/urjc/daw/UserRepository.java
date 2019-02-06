@@ -1,6 +1,6 @@
-package Model;
+package com.urjc.daw;
 
-import Model.User;
+import com.urjc.daw.User;
 import org.springframework.data.repository.CrudRepository;
 
 

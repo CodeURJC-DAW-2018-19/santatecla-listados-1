@@ -5,20 +5,15 @@ import javax.persistence.*;
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
     @Id
-    @Column(name = "ID_USER")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idUser;
-
-    @Column(name = "NAME")
+    @Column
     private String name;
-
-    @Column(name="PASSWORD")
+    @Column
     private String password;
-
-    @Column(name = "EMAIL")
+    @Column
     private String email;
-
-    @Column(name="ROLE")
+    @Column
     private String userType;
 
     public Integer getId() {

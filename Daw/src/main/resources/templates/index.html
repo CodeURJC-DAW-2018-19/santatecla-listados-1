@@ -71,14 +71,14 @@
 
 
 
-<form method='get' action='/add'>
+<!--<form method='get' action='/add'>
     First name: <input type="text" name="name"><br>
     Email: <input type="text" name="email"><br>
     <input type='submit' value='Enviar'>
-</form>
+</form>-->
 
 
-<!--<div class="modal-dialog modal-login" role="document">
+<div class="modal-dialog modal-login" role="document">
     <div class="modal-content">
         <div class="card card-signup card-plain">
                 <div class="card-header card-header-primary text-center">
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form class="form" method="" action="">
+                <form class="form" method='get' action="/add">
                     <p class="description text-center"><strong><ins> Or with your username </ins></strong></p>
                     <div class="card-body">
                         <div class="form-group bmd-form-group">
@@ -105,7 +105,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="material-icons">email</i></div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Email...">
+                                <input type="text" class="form-control" name="email" placeholder="Email...">
                             </div>
                         </div>
 
@@ -121,7 +121,8 @@
                 </form>
             </div>
             <div class="modal-footer justify-content-center">
-                <a href="#pablo" class="btn btn-success"> Login </a>
+                <!--<a href="#pablo" class="btn btn-success"> Login </a>-->
+                <input type='submit' value='Enviar'>
             </div>
             <div align="right">
                 <a href="#pablo" class="btn btn-default"> Guest Mode </a>

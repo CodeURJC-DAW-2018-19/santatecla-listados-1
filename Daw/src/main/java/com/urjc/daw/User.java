@@ -1,8 +1,13 @@
 package com.urjc.daw;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+
 import javax.persistence.*;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity// This tells Hibernate to make a table out of this class
+@Component
+@SessionScope
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +20,7 @@ public class User {
     private String email;
     @Column
     private String userType;
+
 
     public Integer getId() {
         return idUser;

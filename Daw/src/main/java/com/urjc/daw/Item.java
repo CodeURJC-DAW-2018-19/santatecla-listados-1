@@ -9,7 +9,7 @@ public class Item {
     private Integer idItem;
 
     @ManyToOne(cascade = CascadeType.ALL)
-   @JoinColumn
+   @JoinColumn(name="ID_CONCEPT")
     private Concept idConcept;
 
     @Column

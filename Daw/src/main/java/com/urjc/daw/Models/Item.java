@@ -10,14 +10,17 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idItem;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="ID_CONCEPT")
+    @OneToOne(cascade = CascadeType.ALL)
     private Concept idConcept;
 
     @Column
     private Boolean correct;
 
-    public Item(Concept idConcept) {
+    @Column
+    private String info;
+
+    public Item(Concept idConcept, String info) {
+        this.info=info;
         this.idConcept = idConcept;
     }
 }

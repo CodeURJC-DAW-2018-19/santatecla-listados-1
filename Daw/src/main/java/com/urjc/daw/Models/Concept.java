@@ -10,7 +10,6 @@ public class Concept {
     private Integer idConcept;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "ID_LESSON")
     private Lesson idLesson;
 
     @Column

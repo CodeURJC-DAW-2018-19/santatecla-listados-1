@@ -1,5 +1,6 @@
 package com.urjc.daw;
 
+import com.urjc.daw.Models.Concept;
 import com.urjc.daw.Repository.ConceptRepository;
 import com.urjc.daw.Repository.ItemRepository;
 import com.urjc.daw.Repository.LessonRepository;

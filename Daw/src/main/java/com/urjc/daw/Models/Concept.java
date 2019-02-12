@@ -1,4 +1,4 @@
-package com.urjc.daw;
+package com.urjc.daw.Models;
 
 import javax.persistence.*;
 import java.util.TreeMap;

@@ -1,4 +1,6 @@
-package com.urjc.daw;
+package com.urjc.daw.Models;
+
+import com.urjc.daw.Models.Concept;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
-package com.urjc.daw;
+package com.urjc.daw.Models;
 
-import com.urjc.daw.Concept;
+import com.urjc.daw.Models.User.User;
 
 import javax.persistence.*;
 import java.util.TreeMap;
@@ -13,7 +13,6 @@ public class Lesson {
     private Integer idLesson;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_USER")
     private User idUser;
 
     @Column(name = "NAME")

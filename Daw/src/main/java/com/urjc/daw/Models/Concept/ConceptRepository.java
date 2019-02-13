@@ -1,7 +1,6 @@
 package com.urjc.daw.Models.Concept;
 
 import com.urjc.daw.Models.Concept.Concept;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,7 +11,4 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ConceptRepository extends JpaRepository<Concept, Integer> {
 
-    Concept findUserById(Long id);
-
-    Concept findAllByTittle(String tittle);
 }

@@ -4,7 +4,6 @@ import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Lessons.Lesson;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.TreeMap;
 
 
@@ -15,22 +14,16 @@ public class Concept {
     private Integer idConcept;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @NotEmpty
     private Lesson idLesson;
 
     @Column
-    @NotEmpty
     private String title;
 
     @Column
-    @NotEmpty
     private Integer conceptNumber;
 
     @Column
-    @NotEmpty
     private TreeMap<Integer, Item> itemTreeMap;
-
-    private String photo;
 
     public Concept(Lesson idLesson, String title, Integer conceptNumber) {
         this.idLesson = idLesson;
@@ -46,7 +39,10 @@ public class Concept {
         this.idConcept = idConcept;
     }
 
-    public int getIdLesson() { return idLesson.getIdLesson(); }
+    public int getIdLesson() {
+        return idLesson.getIdLesson();
+    }
+
 
     public String getTitle() {
         return title;
@@ -68,14 +64,9 @@ public class Concept {
         return itemTreeMap;
     }
 
-    public void setPhoto(String photo){
-        this.photo = photo;
-    }
-
-    public String getPhoto(){
-        return photo;
-    }
 //endregion
 
-    //public void addItem(Item item){ itemTreeMap.put(item.getIdConcept(),item); }
+    public void addItem(Item item){
+        itemTreeMap.put(item.getIdConcept(),item);
+    }
 }

@@ -15,4 +15,9 @@ public class MainController {
     public String showPrueba(Model model){
         return "MainPage";
     }
+
+    @GetMapping(path = "/TeacherConcept")
+    public String showConceptTeacher(Model model){
+        return "ConceptView/TeacherConcept_View";
+    }
 }

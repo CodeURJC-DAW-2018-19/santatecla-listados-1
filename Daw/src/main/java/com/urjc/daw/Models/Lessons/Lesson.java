@@ -13,20 +13,55 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idLesson;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User idUser;
-
     @Column(name = "NAME")
     private String lessonName;
 
     @Column(name="NUMBER_OF_CONCEPTS")
-    private String conceptNumber;
+    private int conceptNumber;
 
     private TreeMap<Integer, Concept> conceptTreeMap;
 
-    public Lesson(User idUser, String lessonName, String conceptNumber) {
-        this.idUser = idUser;
+    public Lesson( String lessonName, int conceptNumber) {
         this.lessonName = lessonName;
         this.conceptNumber = conceptNumber;
+    }
+
+    //region ---------GETTER & SETTER-------------
+    public Integer getIdLesson() {
+        return idLesson;
+    }
+
+    public void setIdLesson(Integer idLesson) {
+        this.idLesson = idLesson;
+    }
+
+    public String getLessonName() {
+        return lessonName;
+    }
+
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
+    }
+
+    public int getConceptNumber() {
+        return conceptNumber;
+    }
+
+    public void setConceptNumber(int conceptNumber) {
+        this.conceptNumber = conceptNumber;
+    }
+
+    public TreeMap<Integer, Concept> getConceptTreeMap() {
+        return conceptTreeMap;
+    }
+
+    public void setConceptTreeMap(TreeMap<Integer, Concept> conceptTreeMap) {
+        this.conceptTreeMap = conceptTreeMap;
+    }
+    //endregion
+
+    public void addConcept(Concept concept){
+        conceptTreeMap.put(concept.getIdConcept(),concept);
+        setConceptNumber(conceptNumber+1);
     }
 }

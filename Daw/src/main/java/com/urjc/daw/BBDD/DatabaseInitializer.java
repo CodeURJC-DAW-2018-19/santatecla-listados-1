@@ -1,5 +1,7 @@
 package com.urjc.daw.BBDD;
 
+import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.Concept.ConceptRepository;
@@ -28,10 +30,8 @@ public class DatabaseInitializer {
 
 	@PostConstruct
 	public void init() {
-		User javier = new User("Javier Garzás","12345","j.garzas@urjc.es","Profesor");
+
 		User mg = new User("Micael Gallego","12345","m.gallego@urjc.es","Profesor");
-		User chema = new User("Chemita Alosnso","12345","c.alonso@urjc.es","Profesor");
-		User bilGates= new User("Bil Gates","12345","b.gates@urjc.es","Profesor");
 
 		userRepository.save(new User("Ana Álvarez","12345","a.alvarezo.2016@alumnos.urjc.es","Estudiante"));
 		userRepository.save(new User("Héctor Mediero","12345","h.mediero.2016@alumnos.urjc.es","Estudiante"));
@@ -41,11 +41,26 @@ public class DatabaseInitializer {
 
 		userRepository.save(new User("Rauldilla Fernandez","12345","r.fdez.2016@alumnos.urjc.es","Visitante"));
 
-		lessonRepository.save(new Lesson(javier,"TEMA 1","0"));
-		lessonRepository.save(new Lesson(chema,"TEMA 1","0"));
-		lessonRepository.save(new Lesson(mg,"TEMA 1","0"));
-		lessonRepository.save(new Lesson(bilGates,"TEMA 1","0"));
 
+		Lesson lesson1=new Lesson("TEMA 1",0);
+		Lesson lesson2 = new Lesson("TEMA 1",0);
+		Lesson lesson3 = new Lesson("TEMA 1",0);
+		Lesson lesson4 = new Lesson("TEMA 1",0);
+
+		lessonRepository.save(lesson1);
+		lessonRepository.save(lesson2);
+		lessonRepository.save(lesson3);
+		lessonRepository.save(lesson4);
+
+		Concept concept1 = new Concept(lesson1,"Concepto1",1);
+		Concept concept2 = new Concept(lesson1,"Concepto2",2);
+		Concept concept3 = new Concept(lesson1,"Concepto2",3);
+		Concept concept4 = new Concept(lesson2,"Concepto4",4);
+
+		Item item1 = new Item(concept1,"Pregunta 1");
+		Item item2 = new Item(concept1,"Pregunta 2");
+		Item item3 = new Item(concept1,"Pregunta 3");
+		Item item4 = new Item(concept1,"Pregunta 4");
 
 	}
 

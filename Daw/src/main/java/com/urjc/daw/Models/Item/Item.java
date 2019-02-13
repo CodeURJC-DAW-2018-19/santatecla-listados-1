@@ -24,4 +24,34 @@ public class Item {
         this.info=info;
         this.idConcept = idConcept;
     }
+    //region ---------GETTER & SETTER-------------
+    public Integer getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(Integer idItem) {
+        this.idItem = idItem;
+    }
+
+    public int getIdConcept() {
+        return idConcept.getIdConcept();
+    }
+
+
+    public Boolean getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(Boolean correct) {
+        this.correct = correct;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+    //endregion
 }

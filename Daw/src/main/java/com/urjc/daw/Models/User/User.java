@@ -69,4 +69,5 @@ public class User {
         this.email = email;
         this.userType = userType;
     }
+
 }

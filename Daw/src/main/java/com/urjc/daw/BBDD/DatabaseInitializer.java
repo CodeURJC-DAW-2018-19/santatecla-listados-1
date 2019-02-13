@@ -43,9 +43,9 @@ public class DatabaseInitializer {
 
 
 		Lesson lesson1=new Lesson("TEMA 1",0);
-		Lesson lesson2 = new Lesson("TEMA 1",0);
-		Lesson lesson3 = new Lesson("TEMA 1",0);
-		Lesson lesson4 = new Lesson("TEMA 1",0);
+		Lesson lesson2 = new Lesson("TEMA 2",0);
+		Lesson lesson3 = new Lesson("TEMA 3",0);
+		Lesson lesson4 = new Lesson("TEMA 4",0);
 
 		lessonRepository.save(lesson1);
 		lessonRepository.save(lesson2);

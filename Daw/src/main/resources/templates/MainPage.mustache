@@ -95,10 +95,14 @@
         <div class="row">
             <ul class="items">
                 {{#lessons}}
-                    <li>
-                        <a href="/lessons/{{id}}">{{title}}</a>
-                        {{title}}
-                    </li>
+                        <div class="row">
+                            <i class="material-icons">arrow_right</i>
+                            <p>{{title}}</p>
+                            <pre style='display:inline'>&#09;</pre>
+                            <pre style='display:inline'>&#09;</pre>
+                            <pre style='display:inline'>&#09;</pre>
+                            <i class="material-icons">delete</i>
+                        </div>
                 {{/lessons}}
             </ul>
         </div>

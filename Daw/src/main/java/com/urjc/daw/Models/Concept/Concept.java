@@ -1,4 +1,7 @@
-package com.urjc.daw.Models;
+package com.urjc.daw.Models.Concept;
+
+import com.urjc.daw.Models.Item.Item;
+import com.urjc.daw.Models.Lessons.Lesson;
 
 import javax.persistence.*;
 import java.util.TreeMap;
@@ -19,8 +22,8 @@ public class Concept {
     @Column
     private TreeMap<Integer, Item> itemTreeMap;
 
-    public Concept(Lesson idLesson, String title) {
-        this.idLesson = idLesson;
+    public Concept(String title, Integer conceptNumber) {
         this.title = title;
+        this.conceptNumber = conceptNumber;
     }
 }

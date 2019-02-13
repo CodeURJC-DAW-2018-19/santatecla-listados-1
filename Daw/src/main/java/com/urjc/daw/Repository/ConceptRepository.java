@@ -1,6 +1,6 @@
 package com.urjc.daw.Repository;
 
-import com.urjc.daw.Models.Concept;
+import com.urjc.daw.Models.Concept.Concept;
 import org.springframework.data.repository.CrudRepository;
 
 

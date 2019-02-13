@@ -1,12 +1,12 @@
 package com.urjc.daw.Models.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
 
 @Entity// This tells Hibernate to make a table out of this class
-@Component
 @SessionScope
 public class User {
     @Id
@@ -63,4 +63,10 @@ public class User {
         this.userType = userType;
     }
 
+    public User(String name, String password, String email, String userType) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.userType = userType;
+    }
 }

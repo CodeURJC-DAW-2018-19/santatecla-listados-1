@@ -1,11 +1,12 @@
-package com.urjc.daw.Models;
+package com.urjc.daw.Models.Item;
 
-import com.urjc.daw.Models.Concept;
+import com.urjc.daw.Models.Concept.Concept;
 
 import javax.persistence.*;
 
 @Entity
 public class Item {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idItem;

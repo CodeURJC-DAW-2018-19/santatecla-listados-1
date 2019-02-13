@@ -1,6 +1,6 @@
-package com.urjc.daw.Repository;
+package com.urjc.daw.Models.Lessons;
 
-import com.urjc.daw.Models.Item.Item;
+import com.urjc.daw.Models.Lessons.Lesson;
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface ItemRepository extends CrudRepository<Item, Integer> {
+public interface LessonRepository extends CrudRepository<Lesson, Integer> {
 
 }

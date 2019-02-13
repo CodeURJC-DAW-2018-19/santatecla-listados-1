@@ -1,4 +1,4 @@
-package com.urjc.daw.Controller;
+package com.urjc.daw.ViewsControllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.urjc.daw.Repository;
+package com.urjc.daw.Models.User;
 
-import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.Models.User.User;
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface LessonRepository extends CrudRepository<Lesson, Integer> {
-
+public interface UserRepository extends CrudRepository<User, Integer> {
+    User findByName(String name);
 }

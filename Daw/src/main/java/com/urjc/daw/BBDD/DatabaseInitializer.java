@@ -1,11 +1,11 @@
-package com.urjc.daw;
+package com.urjc.daw.BBDD;
 
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.User.User;
-import com.urjc.daw.Repository.ConceptRepository;
-import com.urjc.daw.Repository.ItemRepository;
-import com.urjc.daw.Repository.LessonRepository;
-import com.urjc.daw.Repository.UserRepository;
+import com.urjc.daw.Models.Concept.ConceptRepository;
+import com.urjc.daw.Models.Item.ItemRepository;
+import com.urjc.daw.Models.Lessons.LessonRepository;
+import com.urjc.daw.Models.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

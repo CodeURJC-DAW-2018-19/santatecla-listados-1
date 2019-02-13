@@ -30,6 +30,8 @@ public class Concept {
         this.title = title;
         this.conceptNumber = conceptNumber;
     }
+
+    public Concept(){}
 //region ---------GETTER & SETTER-------------
     public Integer getIdConcept() {
         return idConcept;

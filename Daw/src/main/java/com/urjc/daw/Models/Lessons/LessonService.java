@@ -15,7 +15,11 @@ public class LessonService {
     @Autowired
     private LessonRepository repository;
 
-    public List<Lesson> findAllLessons(){
+    public List<Lesson> findAll(){
         return repository.findAll();
+    }
+
+    public Optional<Lesson> findOne(Integer id) {
+        return repository.findById(id);
     }
 }

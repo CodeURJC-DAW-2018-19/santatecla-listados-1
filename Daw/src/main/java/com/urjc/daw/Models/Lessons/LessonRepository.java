@@ -14,5 +14,4 @@ import java.util.TreeMap;
 
 public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 
-    ArrayList<Lesson> findLessonByIdUser (Integer idUser);
 }

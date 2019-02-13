@@ -52,15 +52,24 @@ public class DatabaseInitializer {
 		lessonRepository.save(lesson3);
 		lessonRepository.save(lesson4);
 
-		Concept concept1 = new Concept(lesson1,"Concepto1",1);
-		Concept concept2 = new Concept(lesson1,"Concepto2",2);
-		Concept concept3 = new Concept(lesson1,"Concepto2",3);
-		Concept concept4 = new Concept(lesson2,"Concepto4",4);
+		//Concept concept2 = new Concept(lesson1,"Concepto2",2);
+		//Concept concept3 = new Concept(lesson1,"Concepto3",3);
+//		Concept concept4 = new Concept(lesson2,"Concepto4",4);
 
-		Item item1 = new Item(concept1,"Pregunta 1");
-		Item item2 = new Item(concept1,"Pregunta 2");
-		Item item3 = new Item(concept1,"Pregunta 3");
-		Item item4 = new Item(concept1,"Pregunta 4");
+		conceptRepository.save(new Concept(new Lesson("TEMA 1",0),"Concepto1",1));
+//		conceptRepository.save(concept2);
+//		conceptRepository.save(concept3);
+//		conceptRepository.save(concept4);
+
+		Item item1 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 1");
+//		Item item2 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 2");
+//		Item item3 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 3");
+//		Item item4 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 4");
+
+		itemRepository.save(item1);
+//		itemRepository.save(item2);
+//		itemRepository.save(item3);
+//		itemRepository.save(item4);
 
 	}
 

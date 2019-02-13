@@ -24,6 +24,10 @@ public class Item {
         this.info=info;
         this.idConcept = idConcept;
     }
+
+    public Item(){}
+
+
     //region ---------GETTER & SETTER-------------
     public Integer getIdItem() {
         return idItem;

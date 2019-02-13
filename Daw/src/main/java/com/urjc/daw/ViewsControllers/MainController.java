@@ -1,5 +1,7 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.urjc.daw.Models.Item.ItemRepository;
+import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class MainController {
 
     @Autowired
     LessonService lessonService;
+
+    @Autowired
+    ItemService itemService;
 
     @GetMapping(path = "/")
     public String showIndex(Model model){
@@ -40,6 +45,7 @@ public class MainController {
 
     @GetMapping(path = "/TeacherConcept")
     public String showConceptTeacher(Model model){
-        return "ConceptView/TeacherConcept_View";
+        model.addAttribute("items",itemService.findAll());
+        return "ConceptView/ConceptTeacher/TeacherConcept_View";
     }
 }

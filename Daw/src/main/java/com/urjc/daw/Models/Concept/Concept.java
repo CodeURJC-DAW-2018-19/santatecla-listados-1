@@ -6,6 +6,7 @@ import com.urjc.daw.Models.Lessons.Lesson;
 import javax.persistence.*;
 import java.util.TreeMap;
 
+
 @Entity
 public class Concept {
     @Id
@@ -17,8 +18,10 @@ public class Concept {
 
     @Column
     private String title;
+
     @Column
     private Integer conceptNumber;
+
     @Column
     private TreeMap<Integer, Item> itemTreeMap;
 

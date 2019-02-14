@@ -35,19 +35,12 @@ public class MainController {
         return "MainPage";
     }
 
-    @GetMapping("/lessons/{id}")
-    public String showBook(Model model, @PathVariable Long id) {
 
-        Optional<Lesson> lesson = lessonService.findOne(id);
-        if (lesson.isPresent()) {
-            model.addAttribute("lesson", lesson.get());
-        }
 
-        return "MainPage";
-    }
-
-    @GetMapping(path = "/TeacherConcept/{idItem}")
+    @GetMapping(path = "/TeacherConcept")
     public String showConceptTeacher(Model model) {
+        model.addAttribute("itemsCorrect",itemService.findItemByState(true));
+        model.addAttribute("itemsIncorrect",itemService.findItemByState(false));
         return "ConceptView/ConceptTeacher/TeacherConcept_View";
 
     }

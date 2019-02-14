@@ -52,9 +52,9 @@ public class DatabaseInitializer {
 
 
 
-		Item item1 = new Item("Pregunta 1");
-		Item item3 = new Item("Pregunta 3");
-		Item item4 = new Item("Pregunta 4");
+		Item item1 = new Item("Pregunta 1",true);
+		Item item3 = new Item("Pregunta 3",true);
+		Item item4 = new Item("Pregunta 4",false);
 
 
 		lesson1.addConcept(concept2);

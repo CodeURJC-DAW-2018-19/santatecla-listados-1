@@ -23,8 +23,9 @@ public class Item {
 
 
 /**             Constructor             **/
-    public Item( String info) {
+    public Item( String info,boolean state) {
         this.info = info;
+        this.state = state;
     }
 
     public Item(){}

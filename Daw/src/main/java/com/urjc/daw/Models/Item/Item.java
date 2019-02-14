@@ -14,6 +14,7 @@ public class Item {
     @ManyToOne(cascade = CascadeType.ALL)
     private Concept idConcept;
 
+
     @Column
     private Boolean state;
 

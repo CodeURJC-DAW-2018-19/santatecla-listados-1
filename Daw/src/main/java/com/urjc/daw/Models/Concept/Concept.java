@@ -2,6 +2,7 @@ package com.urjc.daw.Models.Concept;
 
 import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.Models.Question.Question;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -24,9 +25,11 @@ public class Concept {
     @Column
     private Integer conceptNumber;
 
-    @Column
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Item> itemSet;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Question> setQuestion;
 
 /**********************************/
 
@@ -36,6 +39,7 @@ public class Concept {
         this.title = title;
         this.conceptNumber = conceptNumber;
         this.itemSet=new HashSet<>();
+        this.setQuestion=new HashSet<>();
     }
 
     public Concept(){}
@@ -80,10 +84,20 @@ public class Concept {
         this.idLesson = idLesson;
     }
 
-/**************************************************************/
+    public Set<Item> getItemSet() {
+        return itemSet;
+    }
+
+    public Set<Question> getSetQuestion() {
+        return setQuestion;
+    }
+
+    /**************************************************************/
 
     public void addItem(Item item){
         itemSet.add(item);
     }
+
+    public void addQuestion(Question question){ setQuestion.add(question); }
 
 }

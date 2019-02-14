@@ -11,6 +11,13 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!--custom css-->
     <link rel="stylesheet" href="../../static/css/error404.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,17 +39,16 @@
         </div>
     </nav>
 
-    <div class="text-wrapper">
-        <div class="title" data-content="404">
-            404
-        </div>
-    
-        <div class="subtitle">
-            Oops, the page you're looking for doesn't exist.
-        </div>
-    
-        <div class="buttons">
-            <a class="button" href="https://www.aulavirtual.urjc.es">Go to homepage</a>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <img src="../../static/img/sad.png">
+            <div class="title" data-content="404">
+                <h1>404 Page not found</h1>
+            </div>
+            <div class="subtitle">
+                <p>Oops, the page you're looking for doesn't exist.</p>
+            </div>
+            <a href="https://www.aulavirtual.urjc.es" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> to homepage</a>
         </div>
     </div>
 </body>

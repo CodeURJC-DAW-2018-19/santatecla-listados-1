@@ -19,7 +19,7 @@ public class LessonService {
         return repository.findAll();
     }
 
-    public Optional<Lesson> findOne(Integer id) {
+    public Optional<Lesson> findOne(Long id) {
         return repository.findById(id);
     }
 }

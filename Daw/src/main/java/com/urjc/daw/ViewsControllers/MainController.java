@@ -36,7 +36,7 @@ public class MainController {
     }
 
     @GetMapping("/lessons/{id}")
-    public String showBook(Model model, @PathVariable Integer id) {
+    public String showBook(Model model, @PathVariable Long id) {
 
         Optional<Lesson> lesson = lessonService.findOne(id);
         if (lesson.isPresent()) {

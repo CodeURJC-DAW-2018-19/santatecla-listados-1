@@ -1,31 +1,44 @@
 package com.urjc.daw.Models.Lessons;
 
 import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Item.Item;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Lesson {
+
+/**             Atributos           **/
     @Id
     @Column(name="ID_LESSON")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
     @Column(name = "NAME")
     private String title;
 
-    @Column(name="NUMBER_OF_CONCEPTS")
-    private int conceptNumber;
 
-    public Lesson(String title, int conceptNumber) {
-        this.title = title;
-        this.conceptNumber = conceptNumber;
-    }
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Concept> conceptSet;
+/******************************************/
+
+
+/**         CONTRUCTOR              **/
     public Lesson(){}
 
-    //region ---------GETTER & SETTER-------------
-    public Integer getIdLesson() {
+    public Lesson(String title) {
+        this.title = title;
+        conceptSet=new HashSet<>();
+    }
+    /******************************************/
+
+
+
+/**             GETTER & SETTER             **/
+    public long getIdLesson() {
         return id;
     }
 
@@ -41,19 +54,11 @@ public class Lesson {
         this.title = title;
     }
 
-    public int getConceptNumber() {
-        return conceptNumber;
-    }
-
-    public void setConceptNumber(int conceptNumber) {
-        this.conceptNumber = conceptNumber;
-    }
+/******************************************/
 
 
-    //endregion
 
     public void addConcept(Concept concept){
-        //conceptTreeMap.put(concept.getIdConcept(),concept);
-        setConceptNumber(conceptNumber+1);
+        conceptSet.add(concept);
     }
 }

@@ -18,7 +18,7 @@ public class ItemService {
         return repository.findAll();
     }
 
-    public Optional<Item> findOne(Integer idItem) {
+    public Optional<Item> findOne(Long idItem) {
         return repository.findById(idItem);
     }
 

@@ -6,12 +6,12 @@ import javax.persistence.*;
 
 @Entity
 public class Item {
-
+/**             Atributos               **/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idItem;
+    private long idItem;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Concept idConcept;
 
     @Column
@@ -19,25 +19,29 @@ public class Item {
 
     @Column
     private String info;
+/*****************************************/
 
-    public Item(Concept idConcept, String info) {
-        this.info=info;
-        this.idConcept = idConcept;
+
+/**             Constructor             **/
+    public Item( String info) {
+        this.info = info;
     }
 
     public Item(){}
+/*************************************/
 
 
-    //region ---------GETTER & SETTER-------------
-    public Integer getIdItem() {
+
+/**             GETTER & SETTER             **/
+    public long getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(Integer idItem) {
+    public void setIdItem(long idItem) {
         this.idItem = idItem;
     }
 
-    public int getIdConcept() {
+    public long getIdConcept() {
         return idConcept.getIdConcept();
     }
 
@@ -57,6 +61,13 @@ public class Item {
     public void setInfo(String info) {
         this.info = info;
     }
-    //endregion
+
+    public void setIdConcept(Concept idConcept) {
+        this.idConcept = idConcept;
+    }
+
+/*************************************/
+
+
 
 }

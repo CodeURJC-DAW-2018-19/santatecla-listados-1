@@ -12,6 +12,6 @@ import java.util.TreeMap;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface LessonRepository extends JpaRepository<Lesson, Integer> {
+public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
 }

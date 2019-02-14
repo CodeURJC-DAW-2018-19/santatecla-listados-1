@@ -4,14 +4,16 @@ import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Lessons.Lesson;
 
 import javax.persistence.*;
-import java.util.TreeMap;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 public class Concept {
+/**             Atributos           **/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idConcept;
+    private long idConcept;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Lesson idLesson;
@@ -23,25 +25,33 @@ public class Concept {
     private Integer conceptNumber;
 
     @Column
-    private TreeMap<Integer, Item> itemTreeMap;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Item> itemSet;
 
-    public Concept(Lesson idLesson, String title, Integer conceptNumber) {
-        this.idLesson = idLesson;
+/**********************************/
+
+
+/**         Constructores       **/
+    public Concept( String title, Integer conceptNumber) {
         this.title = title;
         this.conceptNumber = conceptNumber;
+        this.itemSet=new HashSet<>();
     }
 
     public Concept(){}
-//region ---------GETTER & SETTER-------------
-    public Integer getIdConcept() {
+/**********************************/
+
+
+/********************   GETTER & SETTER ***********************/
+    public long getIdConcept() {
         return idConcept;
     }
 
-    public void setIdConcept(Integer idConcept) {
+    public void setIdConcept(long idConcept) {
         this.idConcept = idConcept;
     }
 
-    public int getIdLesson() {
+    public long getIdLesson() {
         return idLesson.getIdLesson();
     }
 
@@ -62,13 +72,18 @@ public class Concept {
         this.conceptNumber = conceptNumber;
     }
 
-    public TreeMap<Integer, Item> getItemTreeMap() {
-        return itemTreeMap;
+    public Set getItemTreeMap() {
+        return itemSet;
     }
 
-//endregion
+    public void setIdLesson(Lesson idLesson) {
+        this.idLesson = idLesson;
+    }
+
+/**************************************************************/
 
     public void addItem(Item item){
-        itemTreeMap.put(item.getIdConcept(),item);
+        itemSet.add(item);
     }
+
 }

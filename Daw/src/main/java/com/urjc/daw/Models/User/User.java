@@ -1,7 +1,5 @@
 package com.urjc.daw.Models.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
@@ -11,7 +9,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idUser;
+    private long idUser;
     @Column
     private String name;
     @Column
@@ -22,7 +20,7 @@ public class User {
     private String userType;
 
 
-    public Integer getId() {
+    public long getId() {
         return idUser;
     }
 

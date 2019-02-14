@@ -15,7 +15,7 @@ public class Item {
     private Concept idConcept;
 
     @Column
-    private Boolean correct;
+    private Boolean state;
 
     @Column
     private String info;
@@ -42,12 +42,12 @@ public class Item {
     }
 
 
-    public Boolean getCorrect() {
-        return correct;
+    public Boolean getState() {
+        return state;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+    public void setState(Boolean state) {
+        this.state = state;
     }
 
     public String getInfo() {
@@ -58,4 +58,5 @@ public class Item {
         this.info = info;
     }
     //endregion
+
 }

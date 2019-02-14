@@ -18,7 +18,13 @@ public class ItemService {
         return repository.findAll();
     }
 
-    public Optional<Item> findOne(Integer id) {
-        return repository.findById(id);
+    public Optional<Item> findOne(Integer idItem) {
+        return repository.findById(idItem);
     }
+
+    public List<Item> findItemByState(boolean state){ return repository.findItemByState(state); }
+
+
+
+
 }

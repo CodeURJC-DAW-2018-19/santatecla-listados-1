@@ -62,11 +62,13 @@ public class DatabaseInitializer {
 //		conceptRepository.save(concept4);
 
 		Item item1 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 1");
+		Item item2 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto2",2),"Pregunta 2");
 //		Item item2 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 2");
 //		Item item3 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 3");
 //		Item item4 = new Item(new Concept(new Lesson("TEMA 1",0),"Concepto1",1),"Pregunta 4");
 
 		itemRepository.save(item1);
+		itemRepository.save(item2);
 //		itemRepository.save(item2);
 //		itemRepository.save(item3);
 //		itemRepository.save(item4);

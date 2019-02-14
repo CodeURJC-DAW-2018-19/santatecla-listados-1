@@ -1,5 +1,7 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
+import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
@@ -21,13 +23,14 @@ public class MainController {
     @Autowired
     ItemService itemService;
 
+
     @GetMapping(path = "/")
-    public String showIndex(Model model){
+    public String showIndex(Model model) {
         return "index";
     }
 
     @GetMapping(path = "/mainPage")
-    public String showMainPage(Model model){
+    public String showMainPage(Model model) {
         model.addAttribute("lessons", lessonService.findAll());
         return "MainPage";
     }
@@ -36,16 +39,16 @@ public class MainController {
     public String showBook(Model model, @PathVariable Integer id) {
 
         Optional<Lesson> lesson = lessonService.findOne(id);
-        if(lesson.isPresent()) {
+        if (lesson.isPresent()) {
             model.addAttribute("lesson", lesson.get());
         }
 
         return "MainPage";
     }
 
-    @GetMapping(path = "/TeacherConcept")
-    public String showConceptTeacher(Model model){
-        model.addAttribute("items",itemService.findAll());
+    @GetMapping(path = "/TeacherConcept/{idItem}")
+    public String showConceptTeacher(Model model) {
         return "ConceptView/ConceptTeacher/TeacherConcept_View";
+
     }
 }

@@ -31,13 +31,13 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() {
 
-		User mg = new User("Micael Gallego","12345","m.gallego@urjc.es","Profesor");
+		User mg = new User("Micael Gallego","12345","m.gallego@urjc.es","TEACHER");
 
-		userRepository.save(new User("Ana Álvarez","12345","a.alvarezo.2016@alumnos.urjc.es","Estudiante"));
-		userRepository.save(new User("Héctor Mediero","12345","h.mediero.2016@alumnos.urjc.es","Estudiante"));
-		userRepository.save(new User("Aitana Cerezo","12345","a.cerezo.2016@alumnos.urjc.es","Estudiante"));
-		userRepository.save(new User("Sandra Cañadas","12345","s.canadas.2016@alumnos.urjc.es","Estudiante"));
-		userRepository.save(new User("Ernesto Baltasar","12345","e.baltasar.2016@alumnos.urjc.es","Estudiante"));
+		userRepository.save(new User("Ana Álvarez","12345","a.alvarezo.2016@alumnos.urjc.es","ROLE_STUDENT"));
+		userRepository.save(new User("Héctor Mediero","12345","h.mediero.2016@alumnos.urjc.es","ROLE_STUDENT"));
+		userRepository.save(new User("aitana","aitana","a.cerezo.2016@alumnos.urjc.es","ROLE_STUDENT"));
+		userRepository.save(new User("Sandra Cañadas","12345","s.canadas.2016@alumnos.urjc.es","ROLE_STUDENT"));
+		userRepository.save(new User("Ernesto Baltasar","12345","e.baltasar.2016@alumnos.urjc.es","ROLE_STUDENT"));
 
 		userRepository.save(new User("Rauldilla Fernandez","12345","r.fdez.2016@alumnos.urjc.es","Visitante"));
 

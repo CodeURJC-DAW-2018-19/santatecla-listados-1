@@ -1,24 +1,24 @@
 package com.urjc.daw.ViewsControllers;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
-import com.urjc.daw.Models.Item.Item;
-import com.urjc.daw.Models.Item.ItemRepository;
+import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemService;
-import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
 
     @Autowired
     LessonService lessonService;
+
+    @Autowired
+    ConceptService conceptService;
 
     @Autowired
     ItemService itemService;
@@ -35,13 +35,22 @@ public class MainController {
         return "MainPage";
     }
 
+    @GetMapping("/deleteLessons/{id}")
+    public String deleteLessons(@PathVariable long id) {
+        lessonService.deleteLessonById(id);
+        return "MainPage";
+    }
 
+    @GetMapping("/deleteConcept/{id}")
+    public String deleteConcept(@PathVariable long id) {
+        conceptService.deleteLessonById(id);
+        return "MainPage";
+    }
 
     @GetMapping(path = "/TeacherConcept")
     public String showConceptTeacher(Model model) {
-        model.addAttribute("itemsCorrect",itemService.findItemByState(true));
-        model.addAttribute("itemsIncorrect",itemService.findItemByState(false));
+        model.addAttribute("itemsCorrect", itemService.findItemByState(true));
+        model.addAttribute("itemsIncorrect", itemService.findItemByState(false));
         return "ConceptView/ConceptTeacher/TeacherConcept_View";
-
     }
 }

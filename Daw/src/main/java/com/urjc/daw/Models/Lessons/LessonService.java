@@ -15,6 +15,8 @@ public class LessonService {
     @Autowired
     private LessonRepository repository;
 
+    public void deleteLessonById(Long id){repository.deleteById(id);}
+
     public List<Lesson> findAll(){
         return repository.findAll();
     }

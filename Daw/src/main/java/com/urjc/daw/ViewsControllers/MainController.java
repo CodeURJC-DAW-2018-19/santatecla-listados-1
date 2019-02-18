@@ -1,6 +1,9 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemService;
+import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +12,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
 
     @Autowired
     LessonService lessonService;
+
+    @Autowired
+    ConceptService conceptService;
 
     @Autowired
     ItemService itemService;
@@ -34,13 +43,28 @@ public class MainController {
         return "MainPage";
     }
 
+    @GetMapping("/deleteLessons/{id}")
+    public String deleteLessons(Model model,@PathVariable long id) {
+        lessonService.deleteLessonById(id);
+        return "MainPage";
+    }
 
+    @GetMapping("/deleteConcept/{id}")
+    public String deleteConcept(Model model,@PathVariable long id) {
+        conceptService.deleteConceptById(id);
+        return "MainPage";
+    }
+
+    @RequestMapping("/saveLesson")
+    public String saveLesson(Model model, Lesson lesson) {
+        lessonService.addLesson(lesson);
+        return "MainPage";
+    }
 
     @RequestMapping(path = "/TeacherConcept")
     public String showConceptTeacher(Model model) {
-        model.addAttribute("itemsCorrect",itemService.findItemByState(true));
-        model.addAttribute("itemsIncorrect",itemService.findItemByState(false));
+        model.addAttribute("itemsCorrect", itemService.findItemByState(true));
+        model.addAttribute("itemsIncorrect", itemService.findItemByState(false));
         return "ConceptView/ConceptTeacher/TeacherConcept_View";
-
     }
 }

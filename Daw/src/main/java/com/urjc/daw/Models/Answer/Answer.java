@@ -17,10 +17,10 @@ public class Answer {
     @Column
     private String info;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User idUser;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Question idQuestion;
 
 /**         CONSTRUCTOR         **/

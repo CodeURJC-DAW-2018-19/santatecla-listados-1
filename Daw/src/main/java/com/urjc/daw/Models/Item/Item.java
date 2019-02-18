@@ -11,7 +11,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idItem;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Concept idConcept;
 
 

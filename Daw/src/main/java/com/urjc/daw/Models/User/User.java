@@ -1,6 +1,7 @@
 package com.urjc.daw.Models.User;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
@@ -64,7 +65,8 @@ public class User {
 
     public User(String name, String password, String email, String userType) {
         this.name = name;
-        this.password = new BCryptPasswordEncoder().encode(password);
+        //this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;
         this.email = email;
         this.userType = userType;
     }

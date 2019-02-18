@@ -15,11 +15,16 @@ public class LessonService {
     @Autowired
     private LessonRepository repository;
 
+    public void deleteLessonById(Long id){repository.deleteById(id);}
+
     public List<Lesson> findAll(){
         return repository.findAll();
     }
 
     public Optional<Lesson> findOne(Long id) {
         return repository.findById(id);
+    }
+    public void addLesson(Lesson lesson){
+        repository.save(lesson);
     }
 }

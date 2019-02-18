@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/StudentConceptView").hasAnyRole("STUDENT");
 
 
-        http.csrf().disable();
+
 
     }
 

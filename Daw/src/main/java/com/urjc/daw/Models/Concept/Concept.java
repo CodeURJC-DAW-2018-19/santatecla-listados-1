@@ -16,7 +16,7 @@ public class Concept {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idConcept;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Lesson idLesson;
 
     @Column

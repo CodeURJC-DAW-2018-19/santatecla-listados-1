@@ -24,7 +24,7 @@ public class Question {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Answer> setAnswer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Concept idConcept;
 
 

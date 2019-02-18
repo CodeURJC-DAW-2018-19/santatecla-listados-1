@@ -9,7 +9,7 @@ public class ConceptService{
     @Autowired
     private ConceptRepository repository;
 
-    public void deleteLessonById(long id) {
+    public void deleteConceptById(long id) {
         repository.deleteById(id);
     }
 }

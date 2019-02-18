@@ -36,14 +36,14 @@ public class MainController {
     }
 
     @GetMapping("/deleteLessons/{id}")
-    public String deleteLessons(@PathVariable long id) {
+    public String deleteLessons(Model model,@PathVariable long id) {
         lessonService.deleteLessonById(id);
         return "MainPage";
     }
 
     @GetMapping("/deleteConcept/{id}")
-    public String deleteConcept(@PathVariable long id) {
-        conceptService.deleteLessonById(id);
+    public String deleteConcept(Model model,@PathVariable long id) {
+        conceptService.deleteConceptById(id);
         return "MainPage";
     }
 

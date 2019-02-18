@@ -30,18 +30,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                          <i class="material-icons">create</i>
-                      </span>
+                <form action="/saveLesson" method="post">
+                    <div class="form-group">
+                        {{#lesson}}<input type="hidden" name="id" value="{{id}}" class="form-control"/>{{/lesson}}
+                        <label for="title">Nombre del tema</label>
+                        <input type="text" id="title" name="title"
+                               {{#lesson}}value="{{title}}"{{/lesson}} class="form-control"/>
                     </div>
-                    <input type="text" class="form-control" placeholder="Nombre del concepto">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar nuevo tema</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
             </div>
         </div>
     </div>
@@ -102,19 +99,22 @@
                                    aria-controls="{{title}}-{{id}}">
                                     {{title}}
                                     <i class="material-icons" style="float: left">keyboard_arrow_down</i>
-                                        <a class="material-icons" href="/deleteLesson/{{id}}" style="float: right">delete</a>
+                                    <a class="material-icons" href="/deleteLesson/{{id}}"
+                                       style="float: right">delete</a>
                                 </a>
                             </h4>
                         </div>
 
-                        <div id="{{title}}-{{id}}" class="collapse show" role="tabpanel" aria-labelledby="{{title}}-{{id}}"
+                        <div id="{{title}}-{{id}}" class="collapse show" role="tabpanel"
+                             aria-labelledby="{{title}}-{{id}}"
                              data-parent="#accordion">
                             <div class="card-body">
                                 <ul class="list-group col-md-12">
                                     {{#conceptSet}}
                                         <div class="row">
                                             <li class="list-group-item col-md-8">{{title}}</li>
-                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}" style="cursor: pointer">delete</a>
+                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}"
+                                               style="cursor: pointer">delete</a>
                                         </div>
                                     {{/conceptSet}}
                                 </ul>

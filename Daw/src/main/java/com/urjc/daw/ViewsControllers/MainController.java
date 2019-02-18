@@ -3,12 +3,14 @@ package com.urjc.daw.ViewsControllers;
 import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemService;
+import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -44,6 +46,12 @@ public class MainController {
     @GetMapping("/deleteConcept/{id}")
     public String deleteConcept(Model model,@PathVariable long id) {
         conceptService.deleteConceptById(id);
+        return "MainPage";
+    }
+
+    @RequestMapping("/saveLesson")
+    public String saveLesson(Model model, Lesson lesson) {
+        lessonService.addLesson(lesson);
         return "MainPage";
     }
 

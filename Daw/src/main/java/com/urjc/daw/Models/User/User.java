@@ -2,10 +2,13 @@ package com.urjc.daw.Models.User;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.urjc.daw.Models.Answer.Answer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity// This tells Hibernate to make a table out of this class
 @SessionScope
@@ -21,6 +24,8 @@ public class User {
     private String email;
     @Column
     private String userType;
+    @ManyToOne
+    private Answer idAnswer;
 
 
     public long getId() {
@@ -73,5 +78,9 @@ public class User {
     }
 
     public User(){}
+
+    public void addAnswer(Answer answer){
+        this.idAnswer = idAnswer;
+    }
 
 }

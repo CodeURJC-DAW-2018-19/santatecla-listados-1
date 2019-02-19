@@ -43,14 +43,20 @@ public class DatabaseInitializer {
 	public void init() {
 
 		User mg = new User("Micael Gallego","12345","m.gallego@urjc.es","TEACHER");
+        User aa = new User("Ana Álvarez","12345","a.alvarezo.2016@alumnos.urjc.es","ROLE_STUDENT");
+        User hm = new User("Héctor Mediero","12345","h.mediero.2016@alumnos.urjc.es","ROLE_STUDENT");
+        User ac = new User("aitana","aitana","a.cerezo.2016@alumnos.urjc.es","ROLE_STUDENT");
+		User sc = new User("Sandra Cañadas","12345","s.canadas.2016@alumnos.urjc.es","ROLE_STUDENT");
+        User eb = new User("Ernesto Baltasar","12345","e.baltasar.2016@alumnos.urjc.es","ROLE_STUDENT");
+		User rf = new User("Rauldilla Fernandez","12345","r.fdez.2016@alumnos.urjc.es","Visitante");
 
-		userRepository.save(new User("Ana Álvarez","12345","a.alvarezo.2016@alumnos.urjc.es","ROLE_STUDENT"));
-		userRepository.save(new User("Héctor Mediero","12345","h.mediero.2016@alumnos.urjc.es","ROLE_STUDENT"));
-		userRepository.save(new User("aitana","aitana","a.cerezo.2016@alumnos.urjc.es","ROLE_STUDENT"));
-		userRepository.save(new User("Sandra Cañadas","12345","s.canadas.2016@alumnos.urjc.es","ROLE_STUDENT"));
-		userRepository.save(new User("Ernesto Baltasar","12345","e.baltasar.2016@alumnos.urjc.es","ROLE_STUDENT"));
-
-		userRepository.save(new User("Rauldilla Fernandez","12345","r.fdez.2016@alumnos.urjc.es","Visitante"));
+        userRepository.save(mg);
+        userRepository.save(aa);
+        userRepository.save(hm);
+        userRepository.save(ac);
+        userRepository.save(sc);
+        userRepository.save(eb);
+        userRepository.save(rf);
 
 
 		Lesson lesson1=new Lesson("TEMA 1");
@@ -104,10 +110,33 @@ public class DatabaseInitializer {
 
 		Question question1 = new Question(1,"¿De que color es la cascara del platano");
 
-		answerRepository.save(answer1);
-		answerRepository.save(answer2);
+        hm.addAnswer(answer1);
+        aa.addAnswer(answer2);
+
+        answer1.setIdUser(hm);
+        answer2.setIdUser(aa);
+
+		question1.addAnswer(answer1);
+		question1.addAnswer(answer2);
+
+        question1.setConcept(concept2);
+
+        concept2.addQuestion(question1);
+
+		answer1.setQuestion(question1);
+		answer2.setQuestion(question1);
+
+        userRepository.save(hm);
+        userRepository.save(aa);
+
 
 		questionRepository.save(question1);
+
+		conceptRepository.save(concept2);
+
+        answerRepository.save(answer1);
+        answerRepository.save(answer2);
+
 
 
 	}

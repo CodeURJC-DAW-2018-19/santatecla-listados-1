@@ -4,6 +4,7 @@ import com.urjc.daw.Models.Answer.Answer;
 import com.urjc.daw.Models.Concept.Concept;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -34,6 +35,7 @@ public class Question {
     public Question(int type, String info){
         this.info=info;
         this.type=type;
+        this.setAnswer=new HashSet<>();
 
     }
 

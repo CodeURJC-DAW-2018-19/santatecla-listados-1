@@ -20,7 +20,7 @@
 </div>
 
 <!-- Modal Add Lessons-->
-{{#admin}}
+
 <div class="modal" id="AddLessonModal" tabindex="-1" role="dialog" aria-labelledby="AddLessonModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -39,12 +39,12 @@
                                {{#lesson}}value="{{title}}"{{/lesson}} class="form-control"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                 </form>
             </div>
         </div>
     </div>
 </div>
-{{/admin}}
 
 <!-- Modal Add Concept-->
 <div class="modal" id="AddConceptModal" tabindex="-1" role="dialog" aria-labelledby="AddConceptModal">
@@ -101,8 +101,7 @@
                                    aria-controls="{{title}}-{{id}}">
                                     {{title}}
                                     <i class="material-icons" style="float: left">keyboard_arrow_down</i>
-                                    <a class="material-icons" href="/deleteLesson/{{id}}"
-                                       style="float: right">delete</a>
+                                    <a class="material-icons" href="/deleteLesson/{{id}}" style="float: right">delete</a>
                                 </a>
                             </h4>
                         </div>
@@ -115,8 +114,7 @@
                                     {{#conceptSet}}
                                         <div class="row">
                                             <li class="list-group-item col-md-8">{{title}}</li>
-                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}"
-                                               style="cursor: pointer">delete</a>
+                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}" style="cursor: pointer">delete</a>
                                         </div>
                                     {{/conceptSet}}
                                 </ul>

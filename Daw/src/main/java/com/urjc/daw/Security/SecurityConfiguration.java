@@ -20,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //         PUBLIC VIEWS         //
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/sign_in").permitAll();
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("name");
         http.formLogin().passwordParameter("password");

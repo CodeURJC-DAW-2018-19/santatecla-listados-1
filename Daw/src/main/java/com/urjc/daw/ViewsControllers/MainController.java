@@ -1,20 +1,17 @@
 package com.urjc.daw.ViewsControllers;
 
-import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
+import com.urjc.daw.Models.User.User;
+import com.urjc.daw.Models.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -28,12 +25,32 @@ public class MainController {
     @Autowired
     ItemService itemService;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     @RequestMapping(path = "/")
     public String login(Model model) {
         return "login";
     }
 
+    @RequestMapping(path = "/sign_in")
+    public String signin(Model model){
+        return "sign_in";
+    }
+
+    @PostMapping(path = "/add")
+    public @ResponseBody
+    String add (Model model,User user) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        if(user.getName()==null || user.getpassword()==null || user.getUserType()==null){
+            return "sign_in";
+        }else{
+            userRepository.save(user);
+            return "login";
+        }
+    }
 
 
     @RequestMapping(path = "/MainPage")
@@ -65,6 +82,6 @@ public class MainController {
     public String showConceptTeacher(Model model) {
         model.addAttribute("itemsCorrect", itemService.findItemByState(true));
         model.addAttribute("itemsIncorrect", itemService.findItemByState(false));
-        return "ConceptView/ConceptTeacher/TeacherConcept_View";
+        return "ConceptView/TeacherConcept_View";
     }
 }

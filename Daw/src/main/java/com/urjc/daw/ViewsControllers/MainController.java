@@ -22,12 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @Autowired
-    LessonService lessonService;
-
-    @Autowired
-    ConceptService conceptService;
-
-    @Autowired
     ItemService itemService;
 
     @Autowired
@@ -38,7 +32,6 @@ public class MainController {
 
     @Autowired
     AnswerService answerService;
-
 
 
     @RequestMapping(path = "/")
@@ -63,32 +56,6 @@ public class MainController {
             userRepository.save(user);
             return "login";
         }
-    }
-
-
-    @RequestMapping(path = "/MainPage")
-    public String showMainPage(Model model, HttpServletRequest request) {
-        model.addAttribute("lessons", lessonService.findAll());
-        model.addAttribute("admin",request.isUserInRole("STUDENT"));
-        return "MainPage";
-    }
-
-    @GetMapping("/deleteLessons/{id}")
-    public String deleteLessons(Model model,@PathVariable long id) {
-        lessonService.deleteLessonById(id);
-        return "MainPage";
-    }
-
-    @GetMapping("/deleteConcept/{id}")
-    public String deleteConcept(Model model,@PathVariable long id) {
-        conceptService.deleteConceptById(id);
-        return "MainPage";
-    }
-
-    @PostMapping("/saveLesson")
-    public String saveLesson(Model model, Lesson lesson) {
-        lessonService.addLesson(lesson);
-        return "MainPage";
     }
 
     @RequestMapping(path = "/TeacherConcept")

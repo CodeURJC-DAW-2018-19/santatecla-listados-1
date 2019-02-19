@@ -14,7 +14,6 @@ public class Item {
     @ManyToOne
     private Concept idConcept;
 
-
     @Column
     private Boolean state;
 

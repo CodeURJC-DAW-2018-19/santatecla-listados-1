@@ -31,6 +31,9 @@ public class Concept {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Question> setQuestion;
 
+    @Column
+    private String picture;
+
 /**********************************/
 
 
@@ -43,6 +46,14 @@ public class Concept {
     }
 
     public Concept(){}
+
+    public Concept(String title, Integer conceptNumber, String pictures){
+        this.title = title;
+        this.conceptNumber = conceptNumber;
+        this.itemSet=new HashSet<>();
+        this.setQuestion=new HashSet<>();
+        this.picture = pictures;
+    }
 /**********************************/
 
 
@@ -90,6 +101,14 @@ public class Concept {
 
     public Set<Question> getSetQuestion() {
         return setQuestion;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     /**************************************************************/

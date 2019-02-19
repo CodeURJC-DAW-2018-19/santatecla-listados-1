@@ -1,8 +1,13 @@
 package com.urjc.daw.BBDD;
 
+import com.urjc.daw.Models.Answer.AnswerRepository;
+import com.urjc.daw.Models.Answer.Answer;
+import com.urjc.daw.Models.Answer.AnswerService;
 import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.Models.Question.Question;
+import com.urjc.daw.Models.Question.QuestionRepository;
 import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Item.ItemRepository;
@@ -27,6 +32,12 @@ public class DatabaseInitializer {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private AnswerRepository answerRepository;
+
+	@Autowired
+	private QuestionRepository questionRepository;
 
 	@PostConstruct
 	public void init() {
@@ -86,6 +97,18 @@ public class DatabaseInitializer {
 		itemRepository.save(item1);
 		itemRepository.save(item3);
 		itemRepository.save(item4);
+
+		Answer answer1 = new Answer("Rojo");
+		Answer answer2 = new Answer("Amarillo");
+
+		Question question1 = new Question(1,"¿De que color es la cascara del platano");
+
+		answerRepository.save(answer1);
+		answerRepository.save(answer2);
+
+		questionRepository.save(question1);
+
+
 	}
 
 

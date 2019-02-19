@@ -1,7 +1,9 @@
 package com.urjc.daw.ViewsControllers;
 
 import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
+import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Lessons.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 @Controller
 public class ConceptController {
     @Autowired
     ConceptService conceptService;
+
+    @Autowired
+    ConceptRepository conceptRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     @GetMapping("/deleteConcept/{id}")
     public String deleteConcept(Model model, @PathVariable long id) {
@@ -46,5 +55,14 @@ public class ConceptController {
         }
         conceptService.addConcept(concept);
         return "redirect:/MainPage";
+    }
+
+    @GetMapping("/TeacherConcept_View/{idConcept}")
+    public String showConcept(Model model, @PathVariable long idConcept){
+        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
+        if(concept.isPresent()) {
+            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
+        }
+        return "ConceptView/TeacherConcept_View";
     }
 }

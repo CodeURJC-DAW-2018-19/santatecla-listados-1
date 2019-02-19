@@ -49,20 +49,19 @@ public class MainController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         if(user.getName()==null || user.getpassword()==null){
-            return "sign_in";
+            return "redirect:/sign_in";
         }else{
             user.setUserType("ROLE_STUDENT");
             userRepository.save(user);
-            return "login";
+            return "redirect:/login";
         }
     }
 
-    @RequestMapping(path = "/TeacherConcept")
+   /* @RequestMapping(path = "/TeacherConcept")
     public String showConceptTeacher(Model model) {
-        model.addAttribute("itemsCorrect", itemService.findItemByState(true));
-        model.addAttribute("itemsIncorrect", itemService.findItemByState(false));
+        model.addAttribute("items", itemService.findAll());
         return "ConceptView/TeacherConcept_View";
-    }
+    }*/
 
     @RequestMapping(path = "/StudentConcept")
     public String showStudentConcept(Model model) {

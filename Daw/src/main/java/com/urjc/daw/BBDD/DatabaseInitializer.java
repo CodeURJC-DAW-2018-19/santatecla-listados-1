@@ -42,7 +42,7 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() {
 
-		User mg = new User("Micael Gallego","12345","m.gallego@urjc.es","TEACHER");
+		User mg = new User("micael","micael","m.gallego@urjc.es","ROLE_TEACHER");
         User aa = new User("Ana Álvarez","12345","a.alvarezo.2016@alumnos.urjc.es","ROLE_STUDENT");
         User hm = new User("Héctor Mediero","12345","h.mediero.2016@alumnos.urjc.es","ROLE_STUDENT");
         User ac = new User("aitana","aitana","a.cerezo.2016@alumnos.urjc.es","ROLE_STUDENT");

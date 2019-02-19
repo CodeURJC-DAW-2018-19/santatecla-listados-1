@@ -27,7 +27,7 @@ public class LessonController {
         return "MainPage";
     }
 
-    @RequestMapping("/lessonSearch")
+    @PostMapping("/lessonSearch")
     public String indexSearch(Model model, @RequestParam("searchText") String searchText){
         List<Lesson> searchLessons = lessonService.searchLessons(searchText);
         model.addAttribute("lessons", searchLessons);

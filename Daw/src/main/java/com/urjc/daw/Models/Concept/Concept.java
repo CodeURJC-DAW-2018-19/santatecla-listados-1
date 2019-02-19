@@ -47,6 +47,19 @@ public class Concept {
 
     public Concept(){}
 
+    public Concept(Lesson idLesson, String title) {
+        this.idLesson = idLesson;
+        this.title = title;
+        this.itemSet=new HashSet<>();
+        this.setQuestion=new HashSet<>();
+    }
+
+    public Concept(String title) {
+        this.title = title;
+        this.itemSet=new HashSet<>();
+        this.setQuestion=new HashSet<>();
+    }
+
     public Concept(String title, Integer conceptNumber, String pictures){
         this.title = title;
         this.conceptNumber = conceptNumber;

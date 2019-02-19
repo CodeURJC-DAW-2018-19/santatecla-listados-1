@@ -24,7 +24,12 @@ public class LessonService {
     public Optional<Lesson> findOne(Long id) {
         return repository.findById(id);
     }
+
     public void addLesson(Lesson lesson){
         repository.save(lesson);
+    }
+
+    public List<Lesson> searchLessons(String name){
+        return repository.searchByName(name);
     }
 }

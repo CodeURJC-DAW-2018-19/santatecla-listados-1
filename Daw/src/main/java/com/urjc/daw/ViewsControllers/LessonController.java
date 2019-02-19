@@ -2,15 +2,15 @@ package com.urjc.daw.ViewsControllers;
 
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
+import com.urjc.daw.Models.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class LessonController {
@@ -19,10 +19,18 @@ public class LessonController {
     LessonService lessonService;
 
 
+
     @RequestMapping(path = "/MainPage")
     public String showMainPage(Model model, HttpServletRequest request) {
         model.addAttribute("lessons", lessonService.findAll());
         model.addAttribute("admin",request.isUserInRole("STUDENT"));
+        return "MainPage";
+    }
+
+    @RequestMapping("/lessonSearch")
+    public String indexSearch(Model model, @RequestParam("searchText") String searchText){
+        List<Lesson> searchLessons = lessonService.searchLessons(searchText);
+        model.addAttribute("lessons", searchLessons);
         return "MainPage";
     }
 

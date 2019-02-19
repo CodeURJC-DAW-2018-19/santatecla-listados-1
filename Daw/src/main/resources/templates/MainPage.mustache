@@ -38,7 +38,7 @@
                         <input type="text" id="title" name="title"
                                {{#lesson}}value="{{title}}"{{/lesson}} class="form-control"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Guardar tema</button>
                     <input type="hidden" name="_csrf" value="{{token}}"/>
                 </form>
             </div>
@@ -57,18 +57,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                          <i class="material-icons">create</i>
-                      </span>
+                <form action="/saveConcept" method="post">
+                    <div class="form-group">
+                        {{#concept}}<input type="hidden" name="idConcept" value="{{idConcept}}" class="form-control"/>{{/concept}}
+                        <label for="title">Nombre del tema</label>
+                        <input type="text" id="title" name="title"
+                               {{#concept}}value="{{title}}"{{/concept}} class="form-control"/>
                     </div>
-                    <input type="text" class="form-control" placeholder="Nombre del concepto">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar nuevo concepto</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar concepto</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -80,10 +81,10 @@
         <!-- Row con la barra de busqueda -->
         <div class="row">
             <div class="col-md-10">
-                <form class="form col-md-12">
+                <form class="form col-md-12" action="/lessonSearch" method="post" id="searchForm">
                     <div class="input-group no-border col-md-12">
-                        <input type="text" value="" class="form-control" placeholder="Buscar...">
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <input type="text" value="" class="form-control" id="searchInput" name="searchText" placeholder="Buscar...">
+                        <button type="submit" id="searchButton" class="btn btn-white btn-round btn-just-icon">
                             <i class="material-icons">search</i>
                             <div class="ripple-container"></div>
                         </button>
@@ -101,7 +102,8 @@
                                    aria-controls="{{title}}-{{id}}">
                                     {{title}}
                                     <i class="material-icons" style="float: left">keyboard_arrow_down</i>
-                                    <a class="material-icons" href="/deleteLessons/{{id}}" style="float: right">delete</a>
+                                    <a class="material-icons" href="/deleteLessons/{{id}}"
+                                       style="float: right">delete</a>
                                 </a>
                             </h4>
                         </div>
@@ -114,9 +116,13 @@
                                     {{#conceptSet}}
                                         <div class="row">
                                             <li class="list-group-item col-md-8">{{title}}</li>
-                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}" style="cursor: pointer">delete</a>
+                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}"
+                                               style="cursor: pointer">delete</a>
                                         </div>
                                     {{/conceptSet}}
+                                    <a class="material-icons" style="cursor: pointer" data-toggle="modal"
+                                       href="#AddConceptModal"
+                                       data-target="#AddConceptModal">add_circle_outline</a>
                                 </ul>
                             </div>
                         </div>
@@ -126,8 +132,8 @@
         </div>
         <div class="row">
             <div class="col-md-10">
-                <i class="material-icons" style="cursor: pointer" data-toggle="modal" href="#AddLessonModal"
-                   data-target="#AddLessonModal">add_circle_outline</i>
+                <a class="material-icons" style="cursor: pointer" data-toggle="modal" href="#AddLessonModal"
+                   data-target="#AddLessonModal">add_circle_outline</a>
             </div>
             <div class="col-md-2 border-dark badge-white align-content-md-end">
                 <button type="button" class="btn btn-default align-self-md-end" data-toggle="modal"

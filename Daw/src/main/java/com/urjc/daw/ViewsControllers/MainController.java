@@ -45,8 +45,7 @@ public class MainController {
     }
 
     @PostMapping(path = "/add")
-    public @ResponseBody
-    String add (Model model,User user) {
+    public @ResponseBody String add (Model model,User user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         if(user.getName()==null || user.getpassword()==null){

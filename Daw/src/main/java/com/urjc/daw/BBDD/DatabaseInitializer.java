@@ -66,7 +66,6 @@ public class DatabaseInitializer {
 		Concept concept2 = new Concept("Concepto2",2);
 		Concept concept3 = new Concept("Concepto3",3);
 		Concept concept4 = new Concept("Concepto4",4);
-		Concept concept5 = new Concept("Concepto5", 5, "");
 
 
 

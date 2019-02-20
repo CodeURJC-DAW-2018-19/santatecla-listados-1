@@ -75,6 +75,7 @@ public class ConceptController {
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         if(concept.isPresent()) {
             model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
+            model.addAttribute("questions",questionRepository.findByidConcept(concept.get()));
         }
         return "ConceptView/TeacherConcept_View";
     }

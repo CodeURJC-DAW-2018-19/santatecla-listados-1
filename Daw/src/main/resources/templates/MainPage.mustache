@@ -113,7 +113,11 @@
                                         {{#conceptSet}}
                                             {{#setQuestion}}
                                                 {{#setAnswer}}
-                                                    <p>{{info}}</p>
+                                                    <form>
+                                                        <input type="hidden" name="idConcept" value="{{idAnswer}}" class="form-control"/>
+                                                        {{contadorPreguntas}}
+                                                    </form>
+
                                                 {{/setAnswer}}
                                             {{/setQuestion}}
                                         {{/conceptSet}}
@@ -129,9 +133,16 @@
                                 <ul class="list-group col-md-12">
                                     {{#conceptSet}}
                                         <div class="row">
-                                            <li class="list-group-item col-md-8"><a href="/TeacherConcept_View/{{idConcept}}"> {{title}}</a></li>
-                                            <a class="material-icons" href="/deleteConcept/{{idConcept}}"
-                                               style="cursor: pointer">delete</a>
+                                            <li class="list-group-item col-md-8">
+                                                {{#admin}}
+                                                    <a href="/TeacherConcept_View/{{idConcept}}"> {{title}}</a>
+                                                    <a class="material-icons" href="/deleteConcept/{{idConcept}}"
+                                                       style="cursor: pointer">delete</a>
+                                                {{/admin}}
+                                                {{#student}}
+                                                    <a href="/StudentConceptView/{{idUser}}/{{idConcept}}"> {{title}}</a>
+                                                {{/student}}
+                                            </li>
                                         </div>
                                     {{/conceptSet}}
                                     {{#admin}}
@@ -139,9 +150,6 @@
                                        href="#AddConceptModal"
                                        data-target="#AddConceptModal">add_circle_outline</a>
                                     {{/admin}}
-                                    {{#student}}
-                                        <h1>HOLA STUDENT</h1>
-                                    {{/student}}
                                 </ul>
                             </div>
                         </div>

@@ -2,6 +2,7 @@ package com.urjc.daw.Models.Lessons;
 
 import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Item.Item;
+import com.urjc.daw.Models.Question.Question;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -56,7 +57,44 @@ public class Lesson {
 
 /******************************************/
 
+    public int getAnswerCorrectOfConcepts(){
+        int dev=0;
+        for (Concept concept : conceptSet) {
+            for (Question question:concept.getSetQuestion()) {
+                dev+=question.getAnswerCorrect();
+            }
+        }
+        return dev;
+    }
 
+    public int getAnswerIncorrectOfConcepts(){
+        int dev=0;
+        for (Concept concept : conceptSet) {
+            for (Question question:concept.getSetQuestion()) {
+                dev+=question.getAnswerIncorrect();
+            }
+        }
+        return dev;
+    }
+
+    public int getAnswerPendingOfConcepts(){
+        int dev=0;
+        for (Concept concept : conceptSet) {
+            for (Question question:concept.getSetQuestion()) {
+                dev+=question.getAnswerPending();
+            }
+        }
+        return dev;
+    }
+    public int getSizeOfAnswerPendingOfConcepts() {
+        int dev = 0;
+        for (Concept concept : conceptSet) {
+            for (Question question : concept.getSetQuestion()) {
+                dev += question.getSizeQuestions();
+            }
+        }
+        return dev;
+    }
 
     public void addConcept(Concept concept){
         conceptSet.add(concept);

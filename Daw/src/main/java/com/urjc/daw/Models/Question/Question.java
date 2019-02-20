@@ -26,6 +26,9 @@ public class Question {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Answer> setAnswer;
 
+    @Column
+    private int [] arrayRespuestas={0,0,0};
+
     @ManyToOne
     private Concept idConcept;
 
@@ -42,7 +45,7 @@ public class Question {
         this.type=type;
         this.setAnswer=new HashSet<>();
         this.setItem= new HashSet<>();
-
+        metrics();
     }
 
 
@@ -88,10 +91,48 @@ public class Question {
         this.idConcept = idConcept;
     }
 
+    public int getAnswerCorrect(){
+        return arrayRespuestas[0];
+    }
+    public int getAnswerIncorrect(){
+        return arrayRespuestas[1];
+    }
+    public int getAnswerPending(){
+        return arrayRespuestas[2];
+    }
 
+    public int getSizeQuestions(){
+        return setAnswer.size();
+    }
     public void addAnswer(Answer answer){
         this.setAnswer.add(answer);
+        if(answer.getState().equals("right")){
+            arrayRespuestas[0]++;
+        }else if(answer.getState().equals("wrong")){
+            arrayRespuestas[1]++;
+        }else{
+            arrayRespuestas[2]++;
+        }
     }
 
     public void addItem(Item item){this.setItem.add(item);}
+
+    private void metrics(){
+        int rigth=0;
+        int wrong=0;
+        int pending=0;
+
+        for (Answer ans:setAnswer) {
+            if(ans.getState().equals("right")){
+                rigth++;
+            }else if(ans.getState().equals("wrong")){
+                wrong++;
+            }else{
+                pending++;
+            }
+        }
+        arrayRespuestas[0]=rigth;
+        arrayRespuestas[1]=wrong;
+        arrayRespuestas[2]=pending;
+    }
 }

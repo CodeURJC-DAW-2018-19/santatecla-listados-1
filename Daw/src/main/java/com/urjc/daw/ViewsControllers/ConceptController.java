@@ -73,15 +73,5 @@ public class ConceptController {
 
 
 
-    @GetMapping("/StudentConcept/{idUser}/{idConcept}")
-    public String showStudent(Model model, @PathVariable long idConcept, @PathVariable long idUser){
-        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
-        Optional<User> user = userRepository.findByIdUser(idUser);
-        if(concept.isPresent()) {
-            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
-            model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
-            model.addAttribute("question", questionRepository.findAll());
-        }
-        return "ConceptView/StudentConceptView";
-    }
+
 }

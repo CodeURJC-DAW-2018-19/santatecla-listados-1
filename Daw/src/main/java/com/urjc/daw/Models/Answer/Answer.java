@@ -32,6 +32,7 @@ public class Answer {
 
     public Answer(String info){
         this.correct=false;
+        this.state="pending";
         this.info=info;
     }
 
@@ -75,7 +76,15 @@ public class Answer {
         return idQuestion.getInfo()+ ':' + info ;
     }
 
-    public void corregir(){
-        this.correct=true;
+    public void corregir() {
+        this.correct = true;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

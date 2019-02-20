@@ -1,5 +1,6 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.urjc.daw.Models.Answer.AnswerRepository;
 import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
@@ -56,6 +57,10 @@ public class MainController {
     @Autowired
     QuestionRepository questionRepository;
 
+    @Autowired
+    AnswerRepository answerRepository;
+
+
     @ModelAttribute
     public void addUserToModel(Model model) {
         boolean logged = userComponent.getLoggedUser() != null;
@@ -72,9 +77,21 @@ public class MainController {
             }
             model.addAttribute("admin",teacher);
             model.addAttribute("student",student);
+            model.addAttribute("idUser", userComponent.getLoggedUser().getId());
         }
     }
 
+    @GetMapping("/StudentConceptView/{idConcept}")
+    public String showStudent(Model model, @PathVariable long idConcept){
+        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
+        Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
+        if(concept.isPresent()) {
+            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
+            model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
+            model.addAttribute("question", questionRepository.findAll());
+        }
+        return "ConceptView/StudentConceptView";
+    }
 
     @RequestMapping(path = "/")
     public String login(Model model) {

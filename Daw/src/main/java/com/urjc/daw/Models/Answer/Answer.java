@@ -17,6 +17,9 @@ public class Answer {
     @Column
     private String info;
 
+    @Column
+    private String state;
+
     @ManyToOne
     private User idUser;
 

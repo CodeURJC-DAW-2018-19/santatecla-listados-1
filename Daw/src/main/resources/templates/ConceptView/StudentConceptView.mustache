@@ -24,7 +24,7 @@
                                         <th></th>
                                         </thead>
                                         <tbody>
-                                        {{#items}}
+
 
                                                 {{#answer}}
                                         <tr>
@@ -37,9 +37,9 @@
                                                 <h5>{{info}}</h5>
                                             </td>
 
-                                            <td>
+                                            <td>{{#items}}
                                                 {{state}}
-                                            </td>
+                                            </td> {{/items}}
 
                                                 <td></td>
 
@@ -52,7 +52,7 @@
                                             </td>
                                                 {{/answer}}
 
-                                        {{/items}}
+
                                         </tr>
 
                                         <!--tr>

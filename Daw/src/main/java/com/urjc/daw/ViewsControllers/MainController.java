@@ -1,10 +1,15 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.urjc.daw.Models.Answer.AnswerRepository;
+import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
+import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonRepository;
 import com.urjc.daw.Models.Lessons.LessonService;
+import com.urjc.daw.Models.Question.QuestionRepository;
 import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.User.UserComponent;
 import com.urjc.daw.Models.User.UserRepository;
@@ -19,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -41,6 +48,19 @@ public class MainController {
     @Autowired
     LessonService lessonService;
 
+    @Autowired
+    ConceptRepository conceptRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
+    AnswerRepository answerRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
+
+
     @ModelAttribute
     public void addUserToModel(Model model) {
         boolean logged = userComponent.getLoggedUser() != null;
@@ -61,6 +81,17 @@ public class MainController {
         }
     }
 
+    @GetMapping("/StudentConceptView/{idConcept}")
+    public String showStudent(Model model, @PathVariable long idConcept){
+        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
+        Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
+        if(concept.isPresent()) {
+            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
+            model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
+            model.addAttribute("question", questionRepository.findAll());
+        }
+        return "ConceptView/StudentConceptView";
+    }
 
     @RequestMapping(path = "/")
     public String login(Model model) {

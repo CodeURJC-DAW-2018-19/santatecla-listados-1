@@ -90,7 +90,7 @@ public class MainController {
     public String showConceptTeacher(Model model) {
         model.addAttribute("items", itemService.findAll());
         return "ConceptView/TeacherConcept_View";
-    }*/
+    }
 
     @RequestMapping(path = "/StudentConcept")
     public String showStudentConcept(Model model) {
@@ -98,7 +98,7 @@ public class MainController {
         model.addAttribute("answer", answerService.findAll());
         model.addAttribute("items", itemService.findAll());
         return "ConceptView/StudentConceptView";
-    }
+    }*/
 
 
     @RequestMapping(path = "/MainPage")

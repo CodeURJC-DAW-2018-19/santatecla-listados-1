@@ -104,10 +104,10 @@ public class DatabaseInitializer {
 		itemRepository.save(item3);
 		itemRepository.save(item4);
 
-		Answer answer1 = new Answer("Rojo");
-		Answer answer2 = new Answer("Amarillo");
+		Answer answer1 = new Answer("Respuesta");
+		Answer answer2 = new Answer("Respuesta");
 
-		Question question1 = new Question(1,"¿De que color es la cascara del platano");
+		Question question1 = new Question(1,"Pregunta 1");
 
         hm.addAnswer(answer1);
         aa.addAnswer(answer2);

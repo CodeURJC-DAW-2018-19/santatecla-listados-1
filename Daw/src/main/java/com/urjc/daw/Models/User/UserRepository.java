@@ -4,6 +4,7 @@ import com.urjc.daw.Models.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
 
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
@@ -11,4 +12,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByName(String name);
+
+    Optional<User> findByIdUser(long idUser);
 }

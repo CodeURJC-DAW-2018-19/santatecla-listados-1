@@ -5,7 +5,7 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h2 class="card-title">CONCEPTO 2</h2>
+                                <h2 class="card-title">Concepto</h2>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -16,108 +16,84 @@
                                         </th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
+
                                         <th>
                                             PREGUNTAS POR CORREGIR
                                         </th>
                                         <th></th>
                                         </thead>
                                         <tbody>
+                                        {{#items}}
+
+                                                {{#answer}}
                                         <tr>
+                                            <td> {{#question}}
+                                                <h5>{{info}}</h5>
+                                            </td> {{/question}}
+
+
                                             <td>
                                                 <h5>{{info}}</h5>
                                             </td>
-                                            <td>
 
-                                            </td>
                                             <td>
-
-                                                <i class="material-icons">check</i>
+                                                {{state}}
                                             </td>
+
+                                                <td></td>
+
+                                            <td> {{#question}}
+                                                <h5>{{info}}</h5>
+                                            </td> {{/question}}
+
                                             <td>
-
+                                                <h5>{{info}}</h5>
                                             </td>
-                                            <td>
+                                                {{/answer}}
 
-                                            </td>
+                                        {{/items}}
                                         </tr>
+
                                         <!--tr>
-                                            <td>
-                                                PREGUNTA 2:
-                                            </td>
-                                            <td>
-                                                RESPUESTA ABIERTA 2
-                                            </td>
-                                            <td>
-                                                <i class="material-icons">close</i>
-                                            </td>
-                                            <td>
-                                                PREGUNTA 8:
-                                            </td>
-                                            <td>
-                                                RESPUESTA ABIERTA 8
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                PREGUNTA 3:
-                                            </td>
-                                            <td>
-                                                RESPUESTA CERRADA 3
-                                            </td>
-                                            <td>
-                                                <i class="material-icons">check</i>
-                                            </td>
-                                            <td>
-                                                PREGUNTA 9:
-                                            </td>
-                                            <td>
-                                                RESPUESTA ABIERTA 9
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                PREGUNTA 4:
-                                            </td>
-                                            <td>
-                                                RESPUESTA ABIERTA 4
-                                            </td>
-                                            <td>
-                                                <i class="material-icons">check</i>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                PREGUNTA 5:
-                                            </td>
-                                            <td>
-                                                RESPUESTA CERRADA 5
-                                            </td>
-                                            <td>
-                                                <i class="material-icons">check</i>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                PREGUNTA 6:
-                                            </td>
-                                            <td>
-                                                RESPUESTA CERRADA 6
-                                            </td>
-                                            <td>
-                                                <i class="material-icons">close</i>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
+                                            <i class="material-icons">close</i>
+
+                                            <i class="material-icons">check</i>
+
                                         </tr-->
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="row">
+                            <div class="content">
+                                <button type="button" class="material-icons" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    add_circle_outline
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-body">
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                                </button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <button type="submit" class="btn btn-primary" style="margin-left: 39%" data-toggle="modal" data-target="#exampleModal">
                             Diagramas <i class="material-icons">signal_cellular_alt</i>
                         </button>

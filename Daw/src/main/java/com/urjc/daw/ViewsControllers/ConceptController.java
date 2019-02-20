@@ -4,6 +4,10 @@ import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemRepository;
+import com.urjc.daw.Models.Question.QuestionRepository;
+import com.urjc.daw.Models.Answer.AnswerRepository;
+import com.urjc.daw.Models.User.User;
+import com.urjc.daw.Models.User.UserRepository;
 import com.urjc.daw.Models.Lessons.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +35,15 @@ public class ConceptController {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
+
+    @Autowired
+    AnswerRepository answerRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/deleteConcept/{id}")
     public String deleteConcept(Model model, @PathVariable long id) {
@@ -64,5 +77,18 @@ public class ConceptController {
             model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
         }
         return "ConceptView/TeacherConcept_View";
+    }
+
+
+    @GetMapping("/StudentConcept/{idUser}/{idConcept}")
+    public String showStudent(Model model, @PathVariable long idConcept, @PathVariable long idUser){
+        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
+        Optional<User> user = userRepository.findByIdUser(idUser);
+        if(concept.isPresent()) {
+            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
+            model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
+            model.addAttribute("question", questionRepository.findAll());
+        }
+        return "ConceptView/StudentConceptView";
     }
 }

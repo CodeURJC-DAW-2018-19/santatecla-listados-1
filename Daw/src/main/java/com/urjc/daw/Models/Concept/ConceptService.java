@@ -10,6 +10,7 @@ public class ConceptService{
     @Autowired
     private ConceptRepository repository;
 
+
     public void addConcept(Concept concept){
         repository.save(concept);
     }

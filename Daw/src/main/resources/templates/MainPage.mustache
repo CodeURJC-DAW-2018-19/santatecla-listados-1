@@ -110,9 +110,13 @@
                                        style="float: right">delete</a>
                                     {{/admin}}
                                     {{#student}}
-                                        {{#questions}}
-                                            <p>{{}}</p>
-                                        {{/questions}}
+                                        {{#conceptSet}}
+                                            {{#setQuestion}}
+                                                {{#setAnswer}}
+                                                    <p>{{info}}</p>
+                                                {{/setAnswer}}
+                                            {{/setQuestion}}
+                                        {{/conceptSet}}
                                     {{/student}}
                                 </a>
                             </h4>

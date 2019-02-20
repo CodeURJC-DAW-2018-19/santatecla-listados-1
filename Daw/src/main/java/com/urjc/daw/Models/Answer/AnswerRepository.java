@@ -9,6 +9,4 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     List<Answer> findByidQuestion(long idQuestion);
 
     Object findAnswerByIdUser(User user);
-    
-    int countAnswerByStateContains(String correct);
 }

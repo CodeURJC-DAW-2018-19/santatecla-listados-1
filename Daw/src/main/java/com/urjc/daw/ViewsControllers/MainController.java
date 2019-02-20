@@ -57,6 +57,7 @@ public class MainController {
             }
             model.addAttribute("admin",teacher);
             model.addAttribute("student",student);
+            model.addAttribute("idUser", userComponent.getLoggedUser().getId());
         }
     }
 

@@ -3,8 +3,10 @@ package com.urjc.daw.ViewsControllers;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.Models.Lessons.LessonRepository;
 import com.urjc.daw.Models.Lessons.LessonService;
 import com.urjc.daw.Models.User.User;
+import com.urjc.daw.Models.User.UserComponent;
 import com.urjc.daw.Models.User.UserRepository;
 import com.urjc.daw.Models.Question.QuestionService;
 import com.urjc.daw.Models.Answer.AnswerService;
@@ -33,6 +35,31 @@ public class MainController {
     @Autowired
     AnswerService answerService;
 
+    @Autowired
+    UserComponent userComponent;
+
+    @Autowired
+    LessonService lessonService;
+
+    @ModelAttribute
+    public void addUserToModel(Model model) {
+        boolean logged = userComponent.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+        if(logged) {
+            boolean teacher;
+            boolean student;
+            if(userComponent.getLoggedUser().getUserType().equals("ROLE_STUDENT")){
+                student=true;
+                teacher=false;
+            }else{
+                student=false;
+                teacher=true;
+            }
+            model.addAttribute("admin",teacher);
+            model.addAttribute("student",student);
+        }
+    }
+
 
     @RequestMapping(path = "/")
     public String login(Model model) {
@@ -43,6 +70,8 @@ public class MainController {
     public String signin(Model model){
         return "sign_in";
     }
+
+
 
     @PostMapping(path = "/add")
     public @ResponseBody String add (Model model,User user) {
@@ -69,5 +98,13 @@ public class MainController {
         model.addAttribute("answer", answerService.findAll());
         model.addAttribute("items", itemService.findAll());
         return "ConceptView/StudentConceptView";
+    }
+
+
+    @RequestMapping(path = "/MainPage")
+    public String showMainPage(Model model, HttpServletRequest request) {
+        model.addAttribute("lessons", lessonService.findAll());
+
+        return "MainPage";
     }
 }

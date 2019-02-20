@@ -20,12 +20,7 @@ public class LessonController {
 
 
 
-    @RequestMapping(path = "/MainPage")
-    public String showMainPage(Model model, HttpServletRequest request) {
-        model.addAttribute("lessons", lessonService.findAll());
-        model.addAttribute("admin",request.isUserInRole("STUDENT"));
-        return "MainPage";
-    }
+
 
     @PostMapping("/lessonSearch")
     public String indexSearch(Model model, @RequestParam("searchText") String searchText){

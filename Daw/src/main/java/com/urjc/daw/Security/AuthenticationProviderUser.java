@@ -1,6 +1,7 @@
 package com.urjc.daw.Security;
 
 import com.urjc.daw.Models.User.User;
+import com.urjc.daw.Models.User.UserComponent;
 import com.urjc.daw.Models.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,6 +24,9 @@ public class AuthenticationProviderUser implements AuthenticationProvider {
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    UserComponent userComponent;
+
     @Override
     public Authentication authenticate (Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
@@ -37,6 +41,8 @@ public class AuthenticationProviderUser implements AuthenticationProvider {
         if(!new BCryptPasswordEncoder().matches(password, user.getpassword())){
             throw new BadCredentialsException("Wrong password");
         }
+
+        userComponent.setLoggedUser(user);
 
         List<GrantedAuthority> rol = new ArrayList<>();
         rol.add(new SimpleGrantedAuthority(user.getUserType()));

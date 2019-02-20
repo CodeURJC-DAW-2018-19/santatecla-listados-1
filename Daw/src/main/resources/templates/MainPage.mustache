@@ -1,5 +1,6 @@
 {{>header}}
 <!-- Modal Diagram-->
+{{#admin}}
 <div class="modal" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -146,6 +147,10 @@
 
     </div>
 </div>
+{{/admin}}
+{{#student}}
+    <h1>HOLA STUDENT</h1>
+{{/student}}
 
 <script type="text/javascript">
     // based on prepared DOM, initialize echarts instance
@@ -174,5 +179,6 @@
     // use configuration item and data specified to show chart
     myChart.setOption(option);
 </script>
+
 
 {{>footer}}

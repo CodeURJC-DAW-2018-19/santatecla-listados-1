@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity// This tells Hibernate to make a table out of this class
-@SessionScope
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

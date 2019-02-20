@@ -1,8 +1,11 @@
 package com.urjc.daw.Models.Item;
 
 import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Question.Question;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Item {
@@ -17,6 +20,9 @@ public class Item {
     @Column
     private Boolean state;
 
+    @ManyToMany
+    private Set<Question> setQuestion;
+
     @Column
     private String info;
 /*****************************************/
@@ -26,6 +32,7 @@ public class Item {
     public Item( String info,boolean state) {
         this.info = info;
         this.state = state;
+        this.setQuestion = new HashSet<>();
     }
 
     public Item(){}
@@ -68,6 +75,8 @@ public class Item {
     }
 
 /*************************************/
+
+    public void addQuestion(Question question){this.setQuestion.add(question);}
 
 
 

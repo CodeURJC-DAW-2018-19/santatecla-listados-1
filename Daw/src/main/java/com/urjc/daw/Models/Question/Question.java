@@ -2,6 +2,7 @@ package com.urjc.daw.Models.Question;
 
 import com.urjc.daw.Models.Answer.Answer;
 import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Item.Item;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,6 +29,10 @@ public class Question {
     @ManyToOne
     private Concept idConcept;
 
+    @ManyToMany
+    private Set<Item> setItem;
+
+
 
 /**         CONSTRUCTOR         **/
     public Question(){}
@@ -36,6 +41,7 @@ public class Question {
         this.info=info;
         this.type=type;
         this.setAnswer=new HashSet<>();
+        this.setItem= new HashSet<>();
 
     }
 
@@ -86,4 +92,6 @@ public class Question {
     public void addAnswer(Answer answer){
         this.setAnswer.add(answer);
     }
+
+    public void addItem(Item item){this.setItem.add(item);}
 }

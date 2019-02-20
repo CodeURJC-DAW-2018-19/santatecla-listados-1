@@ -1,10 +1,14 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
+import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonRepository;
 import com.urjc.daw.Models.Lessons.LessonService;
+import com.urjc.daw.Models.Question.QuestionRepository;
 import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.User.UserComponent;
 import com.urjc.daw.Models.User.UserRepository;
@@ -19,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -40,6 +46,15 @@ public class MainController {
 
     @Autowired
     LessonService lessonService;
+
+    @Autowired
+    ConceptRepository conceptRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
 
     @ModelAttribute
     public void addUserToModel(Model model) {
@@ -86,20 +101,15 @@ public class MainController {
         }
     }
 
-   /* @RequestMapping(path = "/TeacherConcept")
-    public String showConceptTeacher(Model model) {
-        model.addAttribute("items", itemService.findAll());
+    @GetMapping("/TeacherConcept_View/{idConcept}")
+    public String showConcept(Model model, @PathVariable long idConcept){
+        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
+        if(concept.isPresent()) {
+            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
+            model.addAttribute("questions",questionRepository.findByidConcept(concept.get()));
+        }
         return "ConceptView/TeacherConcept_View";
     }
-
-    @RequestMapping(path = "/StudentConcept")
-    public String showStudentConcept(Model model) {
-        model.addAttribute("question", questionService.findAll());
-        model.addAttribute("answer", answerService.findAll());
-        model.addAttribute("items", itemService.findAll());
-        return "ConceptView/StudentConceptView";
-    }*/
-
 
     @RequestMapping(path = "/MainPage")
     public String showMainPage(Model model, HttpServletRequest request) {

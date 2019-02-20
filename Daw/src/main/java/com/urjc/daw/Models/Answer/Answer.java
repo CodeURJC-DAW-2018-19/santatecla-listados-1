@@ -26,9 +26,12 @@ public class Answer {
     @ManyToOne
     private Question idQuestion;
 
+    @Column
+    private boolean correct;
 /**         CONSTRUCTOR         **/
 
     public Answer(String info){
+        this.correct=false;
         this.info=info;
     }
 
@@ -65,5 +68,14 @@ public class Answer {
 
     public void setQuestion(Question idQuestion) {
         this.idQuestion = idQuestion;
+    }
+
+    @Override
+    public String toString() {
+        return idQuestion.getInfo()+ ':' + info ;
+    }
+
+    public void corregir(){
+        this.correct=true;
     }
 }

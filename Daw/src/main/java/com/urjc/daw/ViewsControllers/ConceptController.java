@@ -70,15 +70,7 @@ public class ConceptController {
         return "redirect:/MainPage";
     }
 
-    @GetMapping("/TeacherConcept_View/{idConcept}")
-    public String showConcept(Model model, @PathVariable long idConcept){
-        Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
-        if(concept.isPresent()) {
-            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
-            model.addAttribute("questions",questionRepository.findByidConcept(concept.get()));
-        }
-        return "ConceptView/TeacherConcept_View";
-    }
+
 
 
     @GetMapping("/StudentConcept/{idUser}/{idConcept}")

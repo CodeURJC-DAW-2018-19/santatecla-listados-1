@@ -29,6 +29,7 @@ public class Answer {
 /**         CONSTRUCTOR         **/
 
     public Answer(String info){
+        this.state="pending";
         this.info=info;
     }
 
@@ -65,5 +66,13 @@ public class Answer {
 
     public void setQuestion(Question idQuestion) {
         this.idQuestion = idQuestion;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

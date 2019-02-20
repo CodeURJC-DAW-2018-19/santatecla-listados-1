@@ -120,6 +120,10 @@ public class Concept {
         return picture;
     }
 
+    public void setSetQuestion(Set<Question> setQuestion) {
+        this.setQuestion = setQuestion;
+    }
+
     public void setPicture(String picture) {
         this.picture = picture;
     }

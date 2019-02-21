@@ -52,7 +52,7 @@ public class ConceptController {
     }
 
     @PostMapping("/saveConcept")
-    public String saveLesson(Model model, Concept concept, @RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
+    public String saveConcept(Model model, Concept concept, @RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
         if(!multipartFile.isEmpty()){
             Path derectorioRecursos = Paths.get("src//main//resources//static//uploads");
             String rootPath = derectorioRecursos.toFile().getAbsolutePath();

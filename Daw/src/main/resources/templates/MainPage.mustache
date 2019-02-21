@@ -58,7 +58,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/saveConcept" method="post">
+                    <form action="/saveConcept" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             {{#concept}}<input type="hidden" name="idConcept" value="{{idConcept}}"
                                                class="form-control"/>{{/concept}}

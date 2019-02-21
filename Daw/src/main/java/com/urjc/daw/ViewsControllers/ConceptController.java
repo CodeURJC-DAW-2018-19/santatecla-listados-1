@@ -71,7 +71,10 @@ public class ConceptController {
                 e.printStackTrace();
             }
         }
+
         Lesson lesson= lessonService.findOne(id).get();
+        concept.setIdLesson(lesson);
+        conceptService.addConcept(concept);
         lesson.addConcept(concept);
         lessonService.addLesson(lesson);
         return "redirect:/MainPage";

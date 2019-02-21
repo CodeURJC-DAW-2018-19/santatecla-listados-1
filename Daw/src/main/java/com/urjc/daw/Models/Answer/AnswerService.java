@@ -2,6 +2,8 @@ package com.urjc.daw.Models.Answer;
 
 import com.urjc.daw.Models.Question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,8 @@ public class AnswerService {
     @Autowired
     private AnswerRepository repository;
 
-    public List<Answer> findAll(){
-        return repository.findAll();
+    public Page<Answer> findAll(Pageable page){
+        return repository.findAll(page);
     }
 
     public Optional<Answer> findOne(Long idItem) {

@@ -2,6 +2,8 @@ package com.urjc.daw.Models.Lessons;
 
 import com.urjc.daw.Models.Concept.Concept;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,8 +19,8 @@ public class LessonService {
 
     public void deleteLessonById(Long id){repository.deleteById(id);}
 
-    public List<Lesson> findAll(){
-        return repository.findAll();
+    public Page<Lesson> findAll(Pageable page){
+        return repository.findAll(page);
     }
 
     public Optional<Lesson> findOne(Long id) {

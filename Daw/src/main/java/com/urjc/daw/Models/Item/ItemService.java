@@ -1,8 +1,8 @@
 package com.urjc.daw.Models.Item;
 
-import com.urjc.daw.Models.Lessons.Lesson;
-import com.urjc.daw.Models.Lessons.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +14,8 @@ public class ItemService {
     @Autowired
     private ItemRepository repository;
 
-    public List<Item> findAll(){
-        return repository.findAll();
+    public Page<Item> findAll(Pageable page){
+        return repository.findAll(page);
     }
 
     public Optional<Item> findOne(Long idItem) {

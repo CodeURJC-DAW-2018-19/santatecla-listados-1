@@ -16,6 +16,8 @@ import com.urjc.daw.Models.User.UserRepository;
 import com.urjc.daw.Models.Question.QuestionService;
 import com.urjc.daw.Models.Answer.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +61,9 @@ public class MainController {
 
     @Autowired
     AnswerRepository answerRepository;
+
+    @Autowired
+    ConceptService conceptService;
 
 
     @ModelAttribute
@@ -130,9 +135,11 @@ public class MainController {
     }
 
     @RequestMapping(path = "/MainPage")
-    public String showMainPage(Model model, HttpServletRequest request) {
-        model.addAttribute("lessons", lessonService.findAll());
-
+    public String showMainPage(Model model, @PageableDefault (value = 5, page = 0)Pageable page) {
+        model.addAttribute("lessons", lessonService.findAll(page));
+        model.addAttribute("concepts", conceptService.findAll(page));
+        model.addAttribute("answers", answerService.findAll(page));
+        model.addAttribute("questions", questionService.findAll(page));
         return "MainPage";
     }
 }

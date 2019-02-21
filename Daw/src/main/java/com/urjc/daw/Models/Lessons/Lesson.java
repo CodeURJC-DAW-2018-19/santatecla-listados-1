@@ -20,10 +20,9 @@ public class Lesson {
     @Column(name = "NAME")
     private String title;
 
-
-
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Concept> conceptSet;
+
 /******************************************/
 
 

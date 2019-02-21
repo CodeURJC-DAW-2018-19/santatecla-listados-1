@@ -1,9 +1,11 @@
 package com.urjc.daw.ViewsControllers;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemRepository;
+import com.urjc.daw.Models.Lessons.LessonService;
 import com.urjc.daw.Models.Question.QuestionRepository;
 import com.urjc.daw.Models.Answer.AnswerRepository;
 import com.urjc.daw.Models.User.User;
@@ -34,6 +36,9 @@ public class ConceptController {
     ConceptRepository conceptRepository;
 
     @Autowired
+    LessonService lessonService;
+
+    @Autowired
     ItemRepository itemRepository;
 
     @Autowired
@@ -51,8 +56,8 @@ public class ConceptController {
         return "redirect:/MainPage";
     }
 
-    @PostMapping("/saveConcept")
-    public String saveConcept(Model model, Concept concept, @RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
+    @PostMapping("/saveConcept/{id}")
+    public String saveConcept(Model model, Concept concept, @PathVariable long id,@RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
         if(!multipartFile.isEmpty()){
             Path derectorioRecursos = Paths.get("src//main//resources//static//uploads");
             String rootPath = derectorioRecursos.toFile().getAbsolutePath();
@@ -66,7 +71,9 @@ public class ConceptController {
                 e.printStackTrace();
             }
         }
-        conceptService.addConcept(concept);
+        Lesson lesson= lessonService.findOne(id).get();
+        lesson.addConcept(concept);
+        lessonService.addLesson(lesson);
         return "redirect:/MainPage";
     }
 

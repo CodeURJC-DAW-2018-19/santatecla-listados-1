@@ -63,15 +63,15 @@ public class DatabaseInitializer {
 		Lesson lesson2 = new Lesson("TEMA 2");
 
 
-		Concept concept2 = new Concept("Concepto2",2);
-		Concept concept3 = new Concept("Concepto3",3);
-		Concept concept4 = new Concept("Concepto4",4);
+		Concept concept2 = new Concept("Concepto2: Las disciplinas del software",2);
+		Concept concept3 = new Concept("Concepto3: Los patrones de diseño creacionales",3);
+		Concept concept4 = new Concept("Concepto4: Las disciplinas del software",4);
 
 
 
-		Item item1 = new Item("Pregunta 1",true);
-		Item item3 = new Item("Pregunta 3",true);
-		Item item4 = new Item("Pregunta 4",false);
+		Item item1 = new Item("Requisitos",true);
+		Item item3 = new Item("Prototype",true);
+		Item item4 = new Item("Compresión",false);
 
 
 		lesson1.addConcept(concept2);
@@ -107,7 +107,7 @@ public class DatabaseInitializer {
 		Answer answer1 = new Answer("Respuesta");
 		Answer answer2 = new Answer("Respuesta");
 
-		Question question1 = new Question(1,"Pregunta 1");
+		Question question1 = new Question(1,"¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
 
         hm.addAnswer(answer1);
         aa.addAnswer(answer2);

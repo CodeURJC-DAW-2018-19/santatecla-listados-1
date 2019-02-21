@@ -89,6 +89,7 @@ public class MainController {
             model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
             model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
             model.addAttribute("question", questionRepository.findAll());
+            model.addAttribute("pending", answerRepository.findByState("pending"));
         }
         return "ConceptView/StudentConceptView";
     }

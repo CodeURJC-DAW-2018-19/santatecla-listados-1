@@ -13,4 +13,6 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     Optional<Question> findByIdQuestion(Long aLong);
 
     Object findAnswerByIdUser(User user);
+
+    List<Answer> findByState (String state);
 }

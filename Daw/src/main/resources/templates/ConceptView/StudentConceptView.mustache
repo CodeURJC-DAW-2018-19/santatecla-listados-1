@@ -12,14 +12,14 @@
                                     <table class="table">
                                         <thead class=" text-primary">
                                         <th>
-                                            PREGUNTAS CORREGIDAS
+                                            CORRECTED QUESTIONS
                                         </th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
 
                                         <th>
-                                            PREGUNTAS POR CORREGIR
+                                            PENDING ANSWERS
                                         </th>
                                         <th></th>
                                         </thead>
@@ -38,19 +38,31 @@
                                             </td>
 
                                             <td>{{#items}}
-                                                {{state}}
+                                            {{#state}}
+                                                <i class="material-icons">check</i>
+                                            {{/state}}
+                                            {{^state}}
+                                                    <i class="material-icons">close</i>
+                                            {{/state}}
+
+
                                             </td> {{/items}}
-
+                                                {{/answer}}
                                                 <td></td>
+                                        {{#questions}}
 
-                                            <td> {{#question}}
-                                                <h5>{{info}}</h5>
-                                            </td> {{/question}}
-
+                                                {{^correct}}
                                             <td>
                                                 <h5>{{info}}</h5>
                                             </td>
-                                                {{/answer}}
+                                                {{/correct}}
+
+
+
+                                            <td> {{#setAnswer}}
+                                                <h5>{{info}}</h5>
+                                            </td>{{/setAnswer}}
+                                        {{/questions}}
 
 
                                         </tr>

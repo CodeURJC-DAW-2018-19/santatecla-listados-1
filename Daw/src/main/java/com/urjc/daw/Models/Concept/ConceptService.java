@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ConceptService{
 
@@ -21,5 +23,9 @@ public class ConceptService{
 
     public Page<Concept> findAll(Pageable page){
         return repository.findAll(page);
+    }
+
+    public Optional<Concept> findByOneId(Long id) {
+        return repository.findById(id);
     }
 }

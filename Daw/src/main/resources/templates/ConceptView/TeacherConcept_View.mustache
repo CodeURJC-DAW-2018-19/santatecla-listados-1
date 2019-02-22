@@ -6,6 +6,15 @@
             <div class="col-md-8">
                 <!-- FIRST CARD: ITEMS-->
                 <div class="card">
+                    <div class="card">
+                    {{#concept}}
+                            {{#idConcept}}
+                                {{#picture}}
+                                    <img src='/uploads/{{concept.picture}}' class="card-img-top"/>
+                                {{/picture}}
+                            {{/idConcept}}
+                    {{/concept}}
+                    </div>
                     <div class="card-header card-header-primary ">
                         <h4 class="card-title">URL</h4>
                         <p class="card-category">

@@ -1,6 +1,5 @@
 package com.urjc.daw.ViewsControllers;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
@@ -79,9 +78,4 @@ public class ConceptController {
         lessonService.addLesson(lesson);
         return "redirect:/MainPage";
     }
-
-
-
-
-
 }

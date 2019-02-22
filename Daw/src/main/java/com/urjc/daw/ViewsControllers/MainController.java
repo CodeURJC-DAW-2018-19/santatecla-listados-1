@@ -149,6 +149,13 @@ public class MainController {
         return "ConceptView/TeacherConcept_View";
     }
 
+    @GetMapping("addnewQuestion/{idQuestion}")
+    public String showQuestion(Model model, @PathVariable long idQuestion){
+        Question question = questionRepository.findByidQuestion(idQuestion);
+        model.addAttribute("question", question);
+        return "addnewQuestion";
+    }
+
     @RequestMapping(path = "/MainPage")
     public String showMainPage(Model model, @PageableDefault (value = 5, page = 0)Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;

@@ -1,5 +1,6 @@
 package com.urjc.daw.Models.Question;
 
+import com.urjc.daw.Models.Concept.Concept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,5 +20,12 @@ public class QuestionService {
 
     public Optional<Question> findOne(Long idItem) {
         return repository.findById(idItem);
+    }
+
+    public void addQuestion(Question question){
+        repository.save(question);
+    }
+    public void deleteQuestionById(long id) {
+        repository.deleteById(id);
     }
 }

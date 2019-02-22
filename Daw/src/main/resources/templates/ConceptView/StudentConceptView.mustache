@@ -12,32 +12,32 @@
                                     <table class="table">
                                         <thead class=" text-primary">
                                         <th>
-                                            CORRECTED QUESTIONS
+                                            PREGUNTAS CORREGIDAS
                                         </th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
 
                                         <th>
-                                            PENDING ANSWERS
+                                            PREGUNTAS PENDIENTES
                                         </th>
                                         <th></th>
                                         </thead>
                                         <tbody>
 
 
-                                                {{#answer}}
+
                                         <tr>
                                             <td> {{#question}}
                                                 <h5>{{info}}</h5>
-                                            </td> {{/question}}
+                                            </td>
 
 
-                                            <td>
+                                            <td>{{#answer}}
                                                 <h5>{{info}}</h5>
                                             </td>
 
-                                            <td>{{#items}}
+                                            <td>
                                             {{#state}}
                                                 <i class="material-icons">check</i>
                                             {{/state}}
@@ -45,34 +45,29 @@
                                                     <i class="material-icons">close</i>
                                             {{/state}}
 
+                                            {{/answer}}
+                                            </td>
+                                            {{/question}}
 
-                                            </td> {{/items}}
-                                                {{/answer}}
-                                                <td></td>
-                                        {{#questions}}
 
-                                                {{^correct}}
+                                                {{#questionPending}}
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                             <td>
                                                 <h5>{{info}}</h5>
-                                            </td>
-                                                {{/correct}}
+                                            </td>{{/questionPending}}
 
 
 
-                                            <td> {{#setAnswer}}
+
+                                            <td> {{#answerPending}}
                                                 <h5>{{info}}</h5>
-                                            </td>{{/setAnswer}}
-                                        {{/questions}}
+                                            </td>{{/answerPending}}
+
 
 
                                         </tr>
-
-                                        <!--tr>
-                                            <i class="material-icons">close</i>
-
-                                            <i class="material-icons">check</i>
-
-                                        </tr-->
                                         </tbody>
                                     </table>
                                 </div>

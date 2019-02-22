@@ -281,8 +281,8 @@ public class DatabaseInitializer {
 		itemRepository.save(item20);
 
 
-		Answer answer1 = new Answer("Respuesta");
-		Answer answer2 = new Answer("Respuesta");
+		Answer answer1 = new Answer("Respuesta cerrada");
+		Answer answer2 = new Answer("Respuesta cerrada");
 
 		Question question1 = new Question(1,"¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
 

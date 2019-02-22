@@ -80,6 +80,8 @@ public class Answer {
         this.correct = true;
     }
 
+    public boolean getCorregir(){return correct;}
+
     public String getState() {
         return state;
     }

@@ -6,7 +6,7 @@ import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Item.ItemService;
-import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.Models.Question.Question;
 import com.urjc.daw.Models.Lessons.LessonRepository;
 import com.urjc.daw.Models.Lessons.LessonService;
 import com.urjc.daw.Models.Question.QuestionRepository;
@@ -14,6 +14,7 @@ import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.User.UserComponent;
 import com.urjc.daw.Models.User.UserRepository;
 import com.urjc.daw.Models.Question.QuestionService;
+import com.urjc.daw.Models.Answer.Answer;
 import com.urjc.daw.Models.Answer.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -91,10 +92,14 @@ public class MainController {
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
         if(concept.isPresent()) {
-            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
-            model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
-            model.addAttribute("question", questionRepository.findAll());
-            model.addAttribute("pending", answerRepository.findByState("pending"));
+            Answer answer = new Answer();
+            if(answer.getCorregir() == true) {
+                model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
+                model.addAttribute("question", questionRepository.findByidConcept(concept.get()));
+            }else{
+                model.addAttribute("answerPending", answerRepository.findAnswerByIdUser(user.get()));
+                model.addAttribute("questionPending", questionRepository.findByidConcept(concept.get()));
+            }
         }
         return "ConceptView/StudentConceptView";
     }

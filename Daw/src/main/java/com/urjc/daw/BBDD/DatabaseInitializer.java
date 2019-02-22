@@ -82,9 +82,9 @@ public class DatabaseInitializer {
 
 
 
-		Concept concept2 = new Concept("Concepto2: Las disciplinas del software",2);
-		Concept concept3 = new Concept("Concepto3: Los patrones de diseño creacionales",3);
-		Concept concept4 = new Concept("Concepto4: Las disciplinas del software",4);
+		Concept concept2 = new Concept("Concepto2: Las disciplinas del software",2, "mundo.png");
+		Concept concept3 = new Concept("Concepto3: Los patrones de diseño creacionales",3, "mundo.pgn");
+		Concept concept4 = new Concept("Concepto4: Las disciplinas del software",4, "mundo.png");
 		Concept concept5 = new Concept("Concepto5",5);
 		Concept concept6 = new Concept("Concepto6",6);
 		Concept concept7 = new Concept("Concepto7",7);

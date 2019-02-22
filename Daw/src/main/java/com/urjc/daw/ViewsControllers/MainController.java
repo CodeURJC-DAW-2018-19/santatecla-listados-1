@@ -100,6 +100,7 @@ public class MainController {
                 model.addAttribute("answerPending", answerRepository.findAnswerByIdUser(user.get()));
                 model.addAttribute("questionPending", questionRepository.findByidConcept(concept.get()));
             }
+            model.addAttribute("concept", concept.get());
         }
         return "ConceptView/StudentConceptView";
     }
@@ -135,6 +136,7 @@ public class MainController {
         if(concept.isPresent()) {
             model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
             model.addAttribute("questions",questionRepository.findByidConcept(concept.get()));
+            model.addAttribute("concept", concept.get());
         }
         return "ConceptView/TeacherConcept_View";
     }

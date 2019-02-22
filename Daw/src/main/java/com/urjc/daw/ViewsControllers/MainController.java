@@ -7,6 +7,7 @@ import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.LessonService;
+import com.urjc.daw.Models.Question.Question;
 import com.urjc.daw.Models.Question.QuestionRepository;
 import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.User.UserComponent;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
@@ -112,7 +114,8 @@ public class MainController {
     }
 
     @RequestMapping(path = "/logout")
-    public String logout(Model model) {
+    public String logout(HttpSession session, Model model) {
+        session.invalidate();
         return "Logout";
     }
 

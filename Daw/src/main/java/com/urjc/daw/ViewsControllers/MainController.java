@@ -6,8 +6,6 @@ import com.urjc.daw.Models.Concept.ConceptRepository;
 import com.urjc.daw.Models.Concept.ConceptService;
 import com.urjc.daw.Models.Item.ItemRepository;
 import com.urjc.daw.Models.Item.ItemService;
-import com.urjc.daw.Models.Question.Question;
-import com.urjc.daw.Models.Lessons.LessonRepository;
 import com.urjc.daw.Models.Lessons.LessonService;
 import com.urjc.daw.Models.Question.QuestionRepository;
 import com.urjc.daw.Models.User.User;
@@ -19,11 +17,11 @@ import com.urjc.daw.Models.Answer.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +33,7 @@ public class MainController {
 
     @Autowired
     ItemService itemService;
+
 
     @Autowired
     UserRepository userRepository;
@@ -89,6 +88,8 @@ public class MainController {
 
     @GetMapping("/StudentConceptView/{idConcept}")
     public String showStudent(Model model, @PathVariable long idConcept){
+        boolean logged = userComponent.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
         if(concept.isPresent()) {
@@ -107,12 +108,17 @@ public class MainController {
 
     @RequestMapping(path = "/")
     public String login(Model model) {
-        return "login";
+        return "Login";
+    }
+
+    @RequestMapping(path = "/logout")
+    public String logout(Model model) {
+        return "Logout";
     }
 
     @RequestMapping(path = "/sign_in")
     public String signin(Model model){
-        return "sign_in";
+        return "Sign_in";
     }
 
 
@@ -132,6 +138,8 @@ public class MainController {
 
     @GetMapping("/TeacherConcept_View/{idConcept}")
     public String showConcept(Model model, @PathVariable long idConcept){
+        boolean logged = userComponent.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         if(concept.isPresent()) {
             model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
@@ -143,6 +151,8 @@ public class MainController {
 
     @RequestMapping(path = "/MainPage")
     public String showMainPage(Model model, @PageableDefault (value = 5, page = 0)Pageable page) {
+        boolean logged = userComponent.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
         model.addAttribute("lessons", lessonService.findAll(page));
         model.addAttribute("concepts", conceptService.findAll(page));
         model.addAttribute("answers", answerService.findAll(page));

@@ -1,13 +1,9 @@
 package com.urjc.daw.ViewsControllers;
 
-import com.urjc.daw.Models.User.User;
 import com.urjc.daw.Models.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
@@ -27,7 +23,7 @@ public class IndexController {
         //System.out.println(name);
         //System.out.println(email);
         //userRepository.save(n);
-        return "login";
+        return "Login";
     }
 
 

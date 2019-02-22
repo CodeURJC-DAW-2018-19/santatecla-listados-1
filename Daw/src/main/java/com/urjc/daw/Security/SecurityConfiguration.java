@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     //         PRIVATE VIEWS            //
 
-        http.authorizeRequests().antMatchers("/MainPage").hasAnyRole("TEACHER","STUDENT");
+        http.authorizeRequests().antMatchers("/MainPage").hasAnyRole("TEACHER","STUDENT","VISITOR");
         http.authorizeRequests().antMatchers("/deleteLessons/**").hasAnyRole("TEACHER");
         http.authorizeRequests().antMatchers("/deleteConcept/**").hasAnyRole("TEACHER");
 

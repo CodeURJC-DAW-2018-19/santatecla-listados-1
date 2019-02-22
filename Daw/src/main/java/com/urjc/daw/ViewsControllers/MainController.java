@@ -83,6 +83,7 @@ public class MainController {
                 teacher=true;
             }
             model.addAttribute("admin",teacher);
+            model.addAttribute("visitor",false);
             model.addAttribute("student",student);
             model.addAttribute("idUser", userComponent.getLoggedUser().getId());
         }
@@ -168,5 +169,17 @@ public class MainController {
         model.addAttribute("answers", answerService.findAll(page));
         model.addAttribute("questions", questionService.findAll(page));
         return "MainPage";
+    }
+
+    @RequestMapping(path = "/addVisitor")
+    public String addVisitor(Model model,@PageableDefault (value = 5, page = 0)Pageable page){
+        userRepository.save(new User("ROLE_VISITOR"));
+        model.addAttribute("visitor",true);
+        model.addAttribute("logged", true);
+        model.addAttribute("lessons", lessonService.findAll(page));
+        model.addAttribute("concepts", conceptService.findAll(page));
+        model.addAttribute("answers", answerService.findAll(page));
+        model.addAttribute("questions", questionService.findAll(page));
+        return "/MainPage";
     }
 }

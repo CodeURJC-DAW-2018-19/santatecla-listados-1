@@ -48,7 +48,6 @@ public class DatabaseInitializer {
         User ac = new User("aitana","aitana","a.cerezo.2016@alumnos.urjc.es","ROLE_STUDENT");
 		User sc = new User("Sandra Cañadas","12345","s.canadas.2016@alumnos.urjc.es","ROLE_STUDENT");
         User eb = new User("Ernesto Baltasar","12345","e.baltasar.2016@alumnos.urjc.es","ROLE_STUDENT");
-		User rf = new User("Rauldilla Fernandez","12345","r.fdez.2016@alumnos.urjc.es","Visitante");
 
         userRepository.save(mg);
         userRepository.save(aa);
@@ -56,7 +55,6 @@ public class DatabaseInitializer {
         userRepository.save(ac);
         userRepository.save(sc);
         userRepository.save(eb);
-        userRepository.save(rf);
 
 
 		Lesson lesson1=new Lesson("TEMA 1");

@@ -104,6 +104,9 @@
                                                 {{#student}}
                                                     <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
                                                 {{/student}}
+                                                {{#visitor}}
+                                                    <p>{{title}}</p>
+                                                {{/visitor}}
                                             </li>
                                             {{#admin}}
                                                 <a class="material-icons" href="/deleteConcept/{{idConcept}}"
@@ -192,11 +195,13 @@
                        data-target="#AddLessonModal">add_circle_outline</a>
                 {{/admin}}
             </div>
+            {{^visitor}}
             <div class="col-md-2 border-dark badge-white align-content-md-end">
                 <button type="button" class="btn btn-default align-self-md-end" data-toggle="modal"
                         data-target="#chartModal">Diagramas
                 </button>
             </div>
+            {{/visitor}}
         </div>
     </div>
 </div>

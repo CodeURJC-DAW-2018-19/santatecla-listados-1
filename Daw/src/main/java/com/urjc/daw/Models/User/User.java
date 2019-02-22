@@ -78,6 +78,10 @@ public class User {
 
     public User(){}
 
+    public User(String visitor){
+        this.userType=visitor;
+    }
+
     public void addAnswer(Answer answer){
         this.idAnswer = idAnswer;
     }

@@ -151,6 +151,7 @@ public class DatabaseInitializer {
 		lesson1.addConcept(concept20);
 
 
+
 		concept2.setIdLesson(lesson1);
 		concept3.setIdLesson(lesson2);
 		concept4.setIdLesson(lesson1);
@@ -172,19 +173,6 @@ public class DatabaseInitializer {
 		concept20.setIdLesson(lesson1);
 
 
-/** initialization of real data **/
-		concept2.addItem(item1);
-		concept2.addItem(item3);
-		concept2.addItem(item4);
-		concept2.addItem(item3);
-		concept2.addItem(item4);
-		concept2.addItem(item5);
-		concept2.addItem(item6);
-		concept2.addItem(item7);
-		concept2.addItem(item8);
-		concept2.addItem(item16);
-		concept2.addItem(item17);
-
 		concept3.addItem(item9);
 		concept3.addItem(item10);
 		concept3.addItem(item11);
@@ -194,52 +182,38 @@ public class DatabaseInitializer {
 		concept3.addItem(item15);
 		concept3.addItem(item18);
 		concept3.addItem(item19);
-/************************************************/
 
 
-		concept3.addItem(item3);
-		concept4.addItem(item4);
-		concept5.addItem(item5);
-		concept6.addItem(item6);
-		concept7.addItem(item7);
-		concept8.addItem(item8);
-		concept9.addItem(item9);
-		concept10.addItem(item10);
-		concept11.addItem(item11);
-		concept12.addItem(item12);
-		concept13.addItem(item13);
-		concept14.addItem(item14);
-		concept15.addItem(item15);
-		concept16.addItem(item16);
-		concept17.addItem(item17);
-		concept18.addItem(item18);
-		concept19.addItem(item19);
-		concept20.addItem(item20);
-
-
+		concept2.addItem(item1);
+		concept2.addItem(item3);
+		concept2.addItem(item4);
+		concept2.addItem(item5);
+		concept2.addItem(item6);
+		concept2.addItem(item7);
+		concept2.addItem(item8);
+		concept2.addItem(item17);
+		concept2.addItem(item20);
 
 		item1.setIdConcept(concept2);
-		item3.setIdConcept(concept3);
-		item4.setIdConcept(concept4);
-		item4.setIdConcept(concept4);
-		item5.setIdConcept(concept5);
-		item6.setIdConcept(concept6);
-		item7.setIdConcept(concept7);
-		item8.setIdConcept(concept8);
-		item9.setIdConcept(concept9);
-		item10.setIdConcept(concept10);
-		item11.setIdConcept(concept11);
-		item12.setIdConcept(concept12);
-		item13.setIdConcept(concept13);
-		item14.setIdConcept(concept14);
-		item15.setIdConcept(concept15);
-		item16.setIdConcept(concept16);
-		item17.setIdConcept(concept17);
-		item18.setIdConcept(concept18);
-		item19.setIdConcept(concept19);
+		item3.setIdConcept(concept2);
+		item4.setIdConcept(concept2);
+		item4.setIdConcept(concept2);
+		item5.setIdConcept(concept2);
+		item6.setIdConcept(concept2);
+		item7.setIdConcept(concept2);
+		item8.setIdConcept(concept2);
+		item9.setIdConcept(concept3);
+		item10.setIdConcept(concept3);
+		item11.setIdConcept(concept3);
+		item12.setIdConcept(concept3);
+		item13.setIdConcept(concept3);
+		item14.setIdConcept(concept3);
+		item15.setIdConcept(concept3);
+		item16.setIdConcept(concept2);
+		item17.setIdConcept(concept2);
+		item18.setIdConcept(concept3);
+		item19.setIdConcept(concept3);
 		item20.setIdConcept(concept20);
-
-
 
 
 		lessonRepository.save(lesson1);
@@ -262,6 +236,9 @@ public class DatabaseInitializer {
 		lessonRepository.save(lesson18);
 		lessonRepository.save(lesson19);
 		lessonRepository.save(lesson20);
+
+
+
 
 
 		conceptRepository.save(concept2);

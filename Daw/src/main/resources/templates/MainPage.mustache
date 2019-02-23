@@ -92,7 +92,7 @@
 
                         <div id="{{title}}-{{id}}" class="collapse" role="tabpanel"
                              aria-labelledby="{{title}}-{{id}}"
-                             data-parent="#accordion"
+                             nameTitle="{{title}}"
                              name="{{getAnswerCorrectOfConcepts}}:{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}">
                             <div class="card-body">
                                 <ul class="list-group col-md-12">
@@ -190,10 +190,9 @@
             {{/lessons}}
         </div>
 
-
         <button type="button" id="loadMore" class="btn btn-default align-self-md-end">Mas temas</button>
         <script src="/js/loadMore.js"></script>
-        <script>loadMoreLesson()</script>
+
         <div class="row">
             <div class="col-md-10">
                 {{#admin}}
@@ -202,11 +201,11 @@
                 {{/admin}}
             </div>
             {{#logged}}
-            <div class="col-md-2 border-dark badge-white align-content-md-end">
-                <button type="button" class="btn btn-default align-self-md-end" data-toggle="modal"
-                        data-target="#chartModal">Diagramas
-                </button>
-            </div>
+                <div class="col-md-2 border-dark badge-white align-content-md-end">
+                    <button type="button" id="diagramas" class="btn btn-default align-self-md-end" data-toggle="modal"
+                            data-target="#chartModal">Diagramas
+                    </button>
+                </div>
             {{/logged}}
         </div>
     </div>
@@ -214,63 +213,72 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        //ATTR
+        var myChart = echarts.init(document.getElementById('main'));
+
         $('#loadMore').click(function () {
             loadMoreLesson();
         });
-        // based on prepared DOM, initialize echarts instance
+
         var myChart = echarts.init(document.getElementById('main'));
-        var datos = [5, 6, 7];
-        // specify chart configuration item and data
-        var option = {
-            title: {
-                text: ' % RESPUESTAS'
-            },
+
+        option = {
+            legend: {},
             tooltip: {},
-            legend: {
-                data: ['Sales']
+            dataset: {
+                dimensions: ['product', 'Preguntas Correctas', 'Preguntas Incorrectas', 'Preguntas Sin Corregir'],
+                source: [{}]
             },
-            xAxis: {
-                data: ["Correctas", "Incorrectas", "Sin responder"]
-            },
+            xAxis: {type: 'category'},
             yAxis: {},
-            series: [{
-                name: 'Sales',
-                type: 'bar',
-                data: [datos[0], datos[1], datos[2]]
-            }]
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                {type: 'bar'},
+                {type: 'bar'},
+                {type: 'bar'}
+            ]
         };
 
         $('#diagramas').click(function () {
-            datos = $(".collapse.show").first().attr("name").split(':');
-            if(datos){
-                var option = {
-                    title: {
-                        text: ' % RESPUESTAS'
-                    },
-                    tooltip: {},
-                    legend: {
-                        data: ['Preguntas']
-                    },
-                    xAxis: {
-                        data: ["Correctas", "Incorrectas", "Sin responder"]
-                    },
-                    yAxis: {},
-                    series: [{
-                        name: 'Preguntas',
-                        type: 'bar',
-                        data: [datos[0], datos[1], datos[2]]
-                    }]
-                };
-                myChart.setOption(option);
-            }else{
-                var datos = [0, 0, 0];
-            }
+            var dato = {};
+            var tema = [];
+            datos = $(".collapse.show").each(function (key, value) {
+                var data = $(this).attr("name").split(':');
+                console.log(data);
+                dato = {
+                    product: $(this).attr("nameTitle"),
+                    'Preguntas Correctas': data[0],
+                    'Preguntas Incorrectas': data[1],
+                    'Preguntas No': data[2]
+                }
+                tema.push(dato);
+            });
 
+            option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    dimensions: ['product', 'Preguntas Correctas', 'Preguntas Incorrectas', 'Preguntas No'],
+                    source: tema
+                },
+                xAxis: {type: 'category'},
+                yAxis: {},
+                // Declare several bar series, each will be mapped
+                // to a column of dataset.source by default.
+                series: [
+                    {type: 'bar'},
+                    {type: 'bar'},
+                    {type: 'bar'}
+                ]
+            };
+            myChart.setOption(option);
         });
-        // use configuration item and data specified to show chart
-        myChart.setOption(option);
-    });
 
+// use configuration item and data specified to show chart
+        myChart.setOption(option);
+        ;
+    });
 
 </script>
 

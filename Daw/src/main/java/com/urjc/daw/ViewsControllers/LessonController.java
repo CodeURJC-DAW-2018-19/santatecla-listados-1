@@ -4,6 +4,7 @@ import com.urjc.daw.Models.Concept.Concept;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Lessons.LessonService;
 import com.urjc.daw.Models.User.User;
+import com.urjc.daw.Models.User.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,30 @@ public class LessonController {
 
     @Autowired
     LessonService lessonService;
+
+    @Autowired
+    UserComponent userComponent;
+
+    @ModelAttribute
+    public void addUserToModel(Model model) {
+        boolean logged = userComponent.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+        if(logged) {
+            boolean teacher;
+            boolean student;
+            if(userComponent.getLoggedUser().getUserType().equals("ROLE_STUDENT")){
+                student=true;
+                teacher=false;
+            }else{
+                student=false;
+                teacher=true;
+            }
+            model.addAttribute("admin",teacher);
+            model.addAttribute("visitor",false);
+            model.addAttribute("student",student);
+            model.addAttribute("idUser", userComponent.getLoggedUser().getId());
+        }
+    }
 
 
     @PostMapping("/lessonSearch")

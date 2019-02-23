@@ -63,8 +63,37 @@
                                         </td>
                                         <td>
                                             <label>
-                                                <a href="/deleteItem/{{idItem}}/{{idConcept}}" data-color="white"><i
-                                                        class="material-icons">delete</i></a>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteItem">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+
+
+
+                                                <div class="modal fade" id="deleteItem" tabindex="-1" role="dialog" aria-labelledby="deleteItem" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteItem">Borrar ítem</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>¿Está seguro de qué que deseea borrar? Se perderán todos los datos.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="/deleteItem/{{idItem}}/{{idConcept}}">
+                                                                    <i class="material-icons">delete</i>
+                                                                </a>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
                                             </label>
                                         </td>
                                     </tr>

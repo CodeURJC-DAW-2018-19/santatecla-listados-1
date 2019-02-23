@@ -102,25 +102,30 @@ public class DatabaseInitializer {
 
 
 
-
+/** initialization of real data **/
 		Item item1 = new Item("Requisitos",true);
 		Item item3 = new Item("Prototype",true);
-		Item item4 = new Item("Compresión",false);
-		Item item5 = new Item("Compresión",false);
-		Item item6 = new Item("Compresión",false);
-		Item item7 = new Item("Compresión",false);
-		Item item8 = new Item("Compresión",false);
-		Item item9 = new Item("Compresión",false);
-		Item item10 = new Item("Compresión",false);
-		Item item11 = new Item("Compresión",false);
-		Item item12 = new Item("Compresión",false);
-		Item item13 = new Item("Compresión",false);
-		Item item14 = new Item("Compresión",false);
-		Item item15 = new Item("Compresión",false);
-		Item item16 = new Item("Compresión",false);
-		Item item17 = new Item("Compresión",false);
-		Item item18 = new Item("Compresión",false);
-		Item item19 = new Item("Compresión",false);
+		Item item4 = new Item("Diseño",true);
+		Item item5 = new Item("Programación",true);
+		Item item6 = new Item("Pruebas",true);
+		Item item17 = new Item("Despliegue",true);
+		Item item7 = new Item("Comprensión",false);
+		Item item8 = new Item("Ofuscación",false);
+		Item item16 = new Item("Análisis de impacto",false);
+
+		Item item9 = new Item("Abstract factory",true);
+		Item item10 = new Item("Builder",true);
+		Item item11 = new Item("Factory Method",true);
+		Item item12 = new Item("Prototype",true);
+		Item item13 = new Item("Singleton",true);
+		Item item14 = new Item("Proxy",true);
+		Item item15 = new Item("Flyweight",true);
+		Item item18 = new Item("Bridge",false);
+		Item item19 = new Item("Composite",false);
+/***************************************************************/
+
+
+
 		Item item20 = new Item("Compresión",false);
 
 
@@ -167,8 +172,31 @@ public class DatabaseInitializer {
 		concept20.setIdLesson(lesson1);
 
 
-
+/** initialization of real data **/
 		concept2.addItem(item1);
+		concept2.addItem(item3);
+		concept2.addItem(item4);
+		concept2.addItem(item3);
+		concept2.addItem(item4);
+		concept2.addItem(item5);
+		concept2.addItem(item6);
+		concept2.addItem(item7);
+		concept2.addItem(item8);
+		concept2.addItem(item16);
+		concept2.addItem(item17);
+
+		concept3.addItem(item9);
+		concept3.addItem(item10);
+		concept3.addItem(item11);
+		concept3.addItem(item12);
+		concept3.addItem(item13);
+		concept3.addItem(item14);
+		concept3.addItem(item15);
+		concept3.addItem(item18);
+		concept3.addItem(item19);
+/************************************************/
+
+
 		concept3.addItem(item3);
 		concept4.addItem(item4);
 		concept5.addItem(item5);

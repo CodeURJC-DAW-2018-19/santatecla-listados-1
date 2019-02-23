@@ -8,3 +8,12 @@ function loadMoreLesson() {
         nextPage++;
     })
 }
+function loadMoreItems() {
+    var urlPage = "/loadMoreItems?page=" + nextPage;
+    $.ajax({
+        url: urlPage
+    }).done(function (data) {
+        $("#showMore").append(data);
+        nextPage++;
+    })
+}

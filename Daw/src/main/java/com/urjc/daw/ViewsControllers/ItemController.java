@@ -8,6 +8,8 @@ import com.urjc.daw.Models.Item.ItemService;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,13 +39,7 @@ public class ItemController {
     public String deleteItem(Model model, @PathVariable long idItem, @PathVariable long idConcept) {
         itemService.deleteItemById(idItem);
 
-        Optional<Concept> concept = conceptService.findByOneId(idConcept);
-        if(concept.isPresent()) {
-            model.addAttribute("items", itemRepository.findItemByIdConcept(concept.get()));
-            model.addAttribute("questions",questionRepository.findByidConcept(concept.get()));
-            model.addAttribute("concept", concept.get());
-        }
-        return "ConceptView/TeacherConcept_View";
+        return "redirect:/TeacherConcept_View/{idConcept}";
     }
 
     @PostMapping("/saveItem/{idConcept}")
@@ -57,4 +53,11 @@ public class ItemController {
         return "redirect:/TeacherConcept_View/{idConcept}";
     }
 
+
+    @GetMapping (path = "/loadMoreItems")
+    public String topicMoreButton(Model model,  @PageableDefault(size = 2) Pageable page){
+        //Optional<Concept> c = conceptService.findByOneId(idConcept);
+        //model.addAttribute("items", itemService.findItemByIdConcept(page,c.get()));
+        return "Items";
+    }
 }

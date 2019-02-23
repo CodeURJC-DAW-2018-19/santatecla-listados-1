@@ -1,5 +1,6 @@
 package com.urjc.daw.Models.Item;
 
+import com.urjc.daw.Models.Concept.Concept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,10 @@ public class ItemService {
     public List<Item> findItemByState(boolean state){ return repository.findItemByState(state); }
 
     public void deleteItemById(long idItem){repository.deleteById(idItem);}
+
+    public Page<Item> findItemByIdConcept(Pageable page, Concept IdConcept){
+        return repository.findItemByIdConcept(page,IdConcept);
+    }
 
 
 

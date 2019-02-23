@@ -161,7 +161,7 @@ public class MainController {
     }
 
     @RequestMapping(path = "/MainPage")
-    public String showMainPage(Model model, @PageableDefault (value = 5)Pageable page) {
+    public String showMainPage(Model model, @PageableDefault (value = 10)Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         model.addAttribute("lessons", lessonService.findAll(page));
@@ -169,7 +169,7 @@ public class MainController {
     }
 
     @RequestMapping(path = "/addVisitor")
-    public String addVisitor(Model model,@PageableDefault (value = 5, page = 0)Pageable page){
+    public String addVisitor(Model model,@PageableDefault (value = 10)Pageable page){
         userRepository.save(new User("ROLE_VISITOR"));
         model.addAttribute("admin",false);
         model.addAttribute("student",false);

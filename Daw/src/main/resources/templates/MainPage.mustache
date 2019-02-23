@@ -201,7 +201,7 @@
                 {{/admin}}
             </div>
             {{#logged}}
-                <div class="col-md-2 border-dark badge-white align-content-md-end">
+                <div class="col-md-2 badge-white align-content-md-end">
                     <button type="button" id="diagramas" class="btn btn-default align-self-md-end" data-toggle="modal"
                             data-target="#chartModal">Diagramas
                     </button>
@@ -239,6 +239,8 @@
                 {type: 'bar'}
             ]
         };
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
 
         $('#diagramas').click(function () {
             var dato = {};
@@ -275,9 +277,6 @@
             myChart.setOption(option);
         });
 
-// use configuration item and data specified to show chart
-        myChart.setOption(option);
-        ;
     });
 
 </script>

@@ -25,8 +25,8 @@ public class QuestionController {
         return "redirect:/addNewQuestions";
     }
 
-    @PostMapping("/saveConcept/{idQuestion}")
-    public String saveConcept(@Valid Question question, Model model, SessionStatus sessionStatus) {
+    @PostMapping("/saveQuestion/{idQuestion}")
+    public String saveQuestion(@Valid Question question, Model model, SessionStatus sessionStatus) {
         questionService.addQuestion(question);
         sessionStatus.setComplete();
         return "redirect:/addnewQuestions";

@@ -43,7 +43,7 @@ public class LessonController {
     }
 
     @GetMapping (path = "/loadMore")
-    public String topicMoreButton(Model model, @PageableDefault(size = 5) Pageable page){
+    public String topicMoreButton(Model model, @PageableDefault(size = 10) Pageable page){
         model.addAttribute("lessons", lessonService.findAll(page));
         return "lesson";
     }

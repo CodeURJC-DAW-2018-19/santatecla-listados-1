@@ -161,13 +161,10 @@ public class MainController {
     }
 
     @RequestMapping(path = "/MainPage")
-    public String showMainPage(Model model, @PageableDefault (value = 5, page = 0)Pageable page) {
+    public String showMainPage(Model model, @PageableDefault (value = 5)Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         model.addAttribute("lessons", lessonService.findAll(page));
-        model.addAttribute("concepts", conceptService.findAll(page));
-        model.addAttribute("answers", answerService.findAll(page));
-        model.addAttribute("questions", questionService.findAll(page));
         return "MainPage";
     }
 

@@ -8,13 +8,13 @@
                 <!-- FIRST CARD: ITEMS-->
                 <div class="card">
                     <div class="card">
-                    {{#concept}}
+                        {{#concept}}
                             {{#idConcept}}
                                 {{#picture}}
                                     <img src="/uploads/{{concept.picture}}" class="card-img-top"/>
                                 {{/picture}}
                             {{/idConcept}}
-                    {{/concept}}
+                        {{/concept}}
                     </div>
                     <div class="card-header card-header-primary ">
                         <h4 class="card-title">URL</h4>
@@ -63,9 +63,8 @@
                                         </td>
                                         <td>
                                             <label>
-                                            <button type="button" class="btn btn-primary btn-round">
-                                                <a href="/deleteItem/{{idItem}}/{{idConcept}}" data-color="white"> <i class="material-icons">delete</i></a>
-                                            </button>
+                                                <a href="/deleteItem/{{idItem}}/{{idConcept}}" data-color="white"><i
+                                                        class="material-icons">delete</i></a>
                                             </label>
                                         </td>
                                     </tr>
@@ -85,27 +84,53 @@
         <!-- FUNCTION: ADD ÍTEM -->
         <div class="row">
             <div class="content">
-                <button type="button" class="material-icons" data-toggle="modal"
-                        data-target="#exampleModal">
-                    add_circle_outline
-                </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <a class="material-icons" style="cursor: pointer"
+                   data-toggle="modal"
+                   href="#AddItem{{idConcept}}" id="buttonItem"
+                   data-target="#AddItem{{idConcept}}">add_circle_outline</a>
+                <!-- Modal Add Concept-->
+                <div class="modal" id="AddItem{{idConcept}}" tabindex="-1" role="dialog"
+                     aria-labelledby="AddItem{{idConcept}}">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add ítem</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Crear
+                                    Item</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true"></span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <form action="/saveItem/{{idConcept}}" method="post"
+                                      enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        {{#item}}<input type="hidden" name="idConcept"
+                                                           value="{{idItem}}"
+                                                           class="form-control"/>
+                                        {{/item}}
+                                        {{#item}}
+                                            <input type="hidden" name="idConcept" value="{{id}}"
+                                                   class="form-control"/>
+                                        {{/item}}
+                                        <label for="title">Contenido del item</label>
+                                        <input type="text" id="info" name="info"
+                                               {{#item}}value="{{info}}"{{/item}}
+                                               class="form-control"/>
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                </button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                        <input type="checkbox" id="state" name="state" {{#item}}value="{{state}}"{{/item}}>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Guardar
+                                            item
+                                        </button>
+                                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -164,6 +189,7 @@
     </div>
 </div>
 </body>
+
 
 
 {{>footer}}

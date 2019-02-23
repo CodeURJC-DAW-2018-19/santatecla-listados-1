@@ -14,6 +14,10 @@ public class ItemService {
     @Autowired
     private ItemRepository repository;
 
+    public void addItem(Item item){
+        repository.save(item);
+    }
+
     public Page<Item> findAll(Pageable page){
         return repository.findAll(page);
     }

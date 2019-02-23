@@ -5,18 +5,20 @@
                 <h4 class="mb-0">
                     <a data-toggle="collapse" href="#{{title}}-{{id}}" aria-expanded="true"
                        aria-controls="{{title}}-{{id}}">
-                    {{title}}
-                    <i class="material-icons" style="float: left">keyboard_arrow_down</i>
+                        {{title}}
+                        <i class="material-icons" style="float: left">keyboard_arrow_down</i>
                     </a>
                     {{#admin}}
-                        <a class="material-icons" href="/deleteLessons/{{id}}"
-                           style="float: right">delete</a>
+                        <a class="material-icons" data-toggle="modal" onClick="addModalInfo('tema',{{id}});"
+                           data-target="#deleteConceptLesson"
+                           style="float: right" style="cursor: pointer">delete</a>
                     {{/admin}}
                     {{#student}}
                         <a style="float: right">{{getAnswerCorrectOfConcepts}}
                             :{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}
                             /{{getSizeOfAnswerPendingOfConcepts}}</a>
                     {{/student}}
+                    </a>
                 </h4>
             </div>
 
@@ -30,7 +32,7 @@
                             <div class="row">
                                 <li class="list-group-item col-md-8">
                                     {{#admin}}
-                                        <a href="/TeacherConcept_View/{{idConcept}}"> {{title}}</a>
+                                        <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>
                                     {{/admin}}
                                     {{#student}}
                                         <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
@@ -40,7 +42,9 @@
                                     {{/logged}}
                                 </li>
                                 {{#admin}}
-                                    <a class="material-icons" href="/deleteConcept/{{idConcept}}"
+                                    <a class="material-icons" data-toggle="modal"
+                                       onClick="addModalInfo('concepto',{{idConcept}});"
+                                       data-target="#deleteConceptLesson"
                                        style="cursor: pointer">delete</a>
                                 {{/admin}}
                                 {{#student}}

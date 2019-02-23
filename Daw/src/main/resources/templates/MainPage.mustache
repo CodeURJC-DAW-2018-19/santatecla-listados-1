@@ -6,7 +6,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" chartModal>Diagramas</h5>
+                <h5 class="modal-title">Diagramas</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"></span>
                 </button>
@@ -22,8 +22,27 @@
 </div>
 {{#admin}}
 
-    <!-- Modal Add Lessons-->
+    <div class="modal" id="deleteConceptLesson" tabindex="-1" role="dialog" aria-labelledby="chartModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tipoBorrado">Borrar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body" id="deleteModal">
 
+                </div>
+                <div class="modal-footer">
+                    <a class="material-icons" id="btn-borrar" style="cursor: pointer">delete</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add Lessons-->
     <div class="modal" id="AddLessonModal" tabindex="-1" role="dialog" aria-labelledby="AddLessonModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -77,12 +96,13 @@
                             <h4 class="mb-0">
                                 <a data-toggle="collapse" href="#{{title}}-{{id}}" aria-expanded="true"
                                    aria-controls="{{title}}-{{id}}">
-                                {{title}}
-                                <i class="material-icons" style="float: left">keyboard_arrow_down</i>
+                                    {{title}}
+                                    <i class="material-icons" style="float: left">keyboard_arrow_down</i>
                                 </a>
                                 {{#admin}}
-                                    <a class="material-icons" href="/deleteLessons/{{id}}"
-                                       style="float: right">delete</a>
+                                    <a class="material-icons" data-toggle="modal" onClick="addModalInfo('tema',{{id}});"
+                                       data-target="#deleteConceptLesson"
+                                       style="float: right" style="cursor: pointer">delete</a>
                                 {{/admin}}
                                 {{#student}}
                                     <a style="float: right">{{getAnswerCorrectOfConcepts}}
@@ -103,6 +123,7 @@
                                         <div class="row">
                                             <li class="list-group-item col-md-8">
                                                 {{#admin}}
+                                                   <!-- <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>-->
                                                     <a href="/TeacherConcept_View/{{idConcept}}"> {{title}}</a>
                                                 {{/admin}}
                                                 {{#student}}
@@ -113,7 +134,9 @@
                                                 {{/logged}}
                                             </li>
                                             {{#admin}}
-                                                <a class="material-icons" href="/deleteConcept/{{idConcept}}"
+                                                <a class="material-icons" data-toggle="modal"
+                                                   onClick="addModalInfo('concepto',{{idConcept}});"
+                                                   data-target="#deleteConceptLesson"
                                                    style="cursor: pointer">delete</a>
                                             {{/admin}}
                                             {{#student}}
@@ -205,7 +228,7 @@
             </div>
             {{#logged}}
                 <div class="col-md-2 badge-white align-content-md-end">
-                    <button type="button" id="diagramas" class="btn btn-default align-self-md-end" data-toggle="modal"
+                    <button type="button" id="diagramas" class="btn btn-primary align-self-md-end" data-toggle="modal"
                             data-target="#chartModal">Diagramas
                     </button>
                 </div>
@@ -219,12 +242,15 @@
         //ATTR
         var myChart = echarts.init(document.getElementById('main'));
 
+        //Button load More
         $('#loadMore').click(function () {
             loadMoreLesson();
         });
 
+        //Init chart
         var myChart = echarts.init(document.getElementById('main'));
 
+        //Init options
         option = {
             legend: {},
             tooltip: {},
@@ -245,6 +271,7 @@
         // use configuration item and data specified to show chart
         myChart.setOption(option);
 
+        //Diagrams button
         $('#diagramas').click(function () {
             var dato = {};
             var tema = [];
@@ -282,6 +309,37 @@
 
     });
 
+    function addModalInfo(tipoBorrado, id) {
+        $('#'+id)
+        $("#tipoBorrado").text("Borrar " + tipoBorrado);
+        $("#deleteModal").html('<h4>¿Está seguro de querer borrar el ' + tipoBorrado + ' ?</h4>');
+
+        if(tipoBorrado==="concepto")
+            $("#btn-borrar").attr('href', "/deleteConcept/" + id);
+        else
+            $("#btn-borrar").attr('href', "/deleteLessons/" + id);
+    }
+
+
+    function openConcept(url, elem){
+        $.get(url).done(function(data){
+            var elemId = $(elem).attr('name');
+            $('#tabContainer').append('<div class="tab-pane active" id="' + elemId + '" role="tabpanel" aria-labelledby="' + elemId + '-tab"></div>');
+            $('#'+elemId).append(data);
+            $('#tabParent').append('<li class="nav-item" id="li-'+ elemId +'"><a class="nav-link" href="#' + elemId + '" onclick="showTab(\''+ elemId +'\')">' + elemId +
+                    '</a><span onclick="disposeTab(\''+ elemId +'\')">x</span></li>');
+        });
+    }
+    function showTab(elemId){
+        $('.tab-pane').removeClass('active');
+        $('#'+elemId).addClass('active');
+        $('#main-panel').html("");
+    }
+
+    function disposeTab(elem){
+        $('#' + elem).remove();
+        $('#li-' + elem).remove();
+    }
 </script>
 
 {{>footer}}

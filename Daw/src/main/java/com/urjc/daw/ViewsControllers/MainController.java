@@ -110,14 +110,14 @@ public class MainController {
     }
 
     @RequestMapping(path = "/")
-    public String login(Model model) {
+    public String login(Model model, HttpSession session) {
         return "Login";
     }
 
-    @RequestMapping(path = "/logout")
-    public String logout(HttpSession session, Model model) {
+    @GetMapping(path="/logout")
+    public String logout(Model model,HttpSession session) {
         session.invalidate();
-        return "Logout";
+        return "redirect:/login";
     }
 
     @RequestMapping(path = "/sign_in")
@@ -128,7 +128,7 @@ public class MainController {
 
 
     @PostMapping(path = "/add")
-    public @ResponseBody String add (Model model,User user) {
+    public String add (Model model,User user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         if(user.getName()==null || user.getpassword()==null){
@@ -171,8 +171,10 @@ public class MainController {
     @RequestMapping(path = "/addVisitor")
     public String addVisitor(Model model,@PageableDefault (value = 5, page = 0)Pageable page){
         userRepository.save(new User("ROLE_VISITOR"));
+        model.addAttribute("admin",false);
+        model.addAttribute("student",false);
         model.addAttribute("visitor",true);
-        model.addAttribute("logged", true);
+        model.addAttribute("logged", false);
         model.addAttribute("lessons", lessonService.findAll(page));
         model.addAttribute("concepts", conceptService.findAll(page));
         model.addAttribute("answers", answerService.findAll(page));

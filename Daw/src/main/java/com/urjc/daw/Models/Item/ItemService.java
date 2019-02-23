@@ -24,6 +24,8 @@ public class ItemService {
 
     public List<Item> findItemByState(boolean state){ return repository.findItemByState(state); }
 
+    public void deleteItemById(long idItem){repository.deleteById(idItem);}
+
 
 
 

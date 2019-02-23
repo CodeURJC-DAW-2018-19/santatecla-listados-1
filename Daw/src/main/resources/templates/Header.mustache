@@ -66,6 +66,8 @@
     <script src="/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
+    <script src="/ECharts/echarts.min.js"></script>
+
 </head>
 <body>
 <div class="wrapper ">
@@ -86,10 +88,13 @@
             </div>
             <form class="form-inline ml-auto">
                 <div class="form-group no-border">
-                    <button class="btn btn-round btn-primary">
-                        {{#logged}}<a href="/logout">Cerrar sesión</a>{{/logged}}
-                        {{^logged}}<a href="/login">Iniciar sesión</a>{{/logged}}
-                    </button>
+                        {{#logged}}
+                                <a href="/logout">Cerrar sesión</a>
+                        {{/logged}}
+                        {{^logged}}
+
+                                <a href="/login">Iniciar sesión</a>
+                        {{/logged}}
                 </div>
             </form>
         </div>

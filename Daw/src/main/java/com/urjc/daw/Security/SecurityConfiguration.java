@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().defaultSuccessUrl("/MainPage");
         http.formLogin().failureUrl("/login");
         http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/");
 
     //         PRIVATE VIEWS            //
 
@@ -37,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests().antMatchers("/TeacherConcept_View/**").hasAnyRole("TEACHER");
-        http.authorizeRequests().antMatchers("/StudentConceptView").hasAnyRole("STUDENT");
+        http.authorizeRequests().antMatchers("/StudentConceptView/**").hasAnyRole("STUDENT");
 
 
 

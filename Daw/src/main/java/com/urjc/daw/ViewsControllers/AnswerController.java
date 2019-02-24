@@ -26,8 +26,8 @@ public class AnswerController {
     QuestionService questionService;
 
 
-    @GetMapping(path="/updateAnswerTrue/{idAnswer}/{idConcept}")
-    public String updateTrue(Model model, @PathVariable long idAnswer, @PathVariable long idConcept){
+    @GetMapping(path = "/updateAnswerTrue/{idAnswer}/{idConcept}")
+    public String updateTrue(Model model, @PathVariable long idAnswer, @PathVariable long idConcept) {
         Optional<Answer> ans = answerService.findOne(idAnswer);
         ans.get().setState("right");
         ans.get().correct();
@@ -37,14 +37,22 @@ public class AnswerController {
     }
 
 
-    @GetMapping(path="/updateAnswerFalse/{idAnswer}/{idConcept}")
-    public String updateFalse(Model model, @PathVariable long idAnswer, @PathVariable long idConcept){
+    @GetMapping(path = "/updateAnswerFalse/{idAnswer}/{idConcept}")
+    public String updateFalse(Model model, @PathVariable long idAnswer, @PathVariable long idConcept) {
         Optional<Answer> ans = answerService.findOne(idAnswer);
         ans.get().setState("wrong");
         ans.get().correct();
         answerService.addAnswer(ans.get());
         questionService.addQuestion(ans.get().accesToQuestion());
         return "redirect:/TeacherConcept_View/{idConcept}";
+    }
+
+    @GetMapping(path = "/addAnswer/{idQuestion}")
+    public String addAnswer(Model model, Answer answer, @PathVariable long idQuestion) {
+        Optional<Question> question=questionService.findOne(idQuestion);
+        question.get().addAnswer(answer);
+        questionService.addQuestion(question.get());
+        return "redirect:/MainPage";
     }
 
 }

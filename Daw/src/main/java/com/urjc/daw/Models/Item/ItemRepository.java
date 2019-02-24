@@ -15,4 +15,5 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findItemByState(boolean state);
     Page<Item> findItemByIdConcept(Pageable page,Concept IdConcept);
+    List<Item> findItemByIdConceptIs(long IdConcept);
 }

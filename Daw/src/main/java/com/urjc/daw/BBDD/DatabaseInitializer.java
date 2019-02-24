@@ -185,7 +185,7 @@ public class DatabaseInitializer {
 
 
 		concept2.addItem(item1);
-		concept2.addItem(item3);
+		concept3.addItem(item3);
 		concept2.addItem(item4);
 		concept2.addItem(item5);
 		concept2.addItem(item6);
@@ -195,7 +195,7 @@ public class DatabaseInitializer {
 		concept2.addItem(item20);
 
 		item1.setIdConcept(concept2);
-		item3.setIdConcept(concept2);
+		item3.setIdConcept(concept3);
 		item4.setIdConcept(concept2);
 		item4.setIdConcept(concept2);
 		item5.setIdConcept(concept2);

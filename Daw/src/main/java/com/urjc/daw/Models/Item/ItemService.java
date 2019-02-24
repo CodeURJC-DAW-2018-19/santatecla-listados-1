@@ -35,6 +35,10 @@ public class ItemService {
         return repository.findItemByIdConcept(page,IdConcept);
     }
 
+    public List<Item> findItemByIdConceptIs(long IdConcept){
+        return repository.findItemByIdConceptIs(IdConcept);
+    }
+
 
 
 

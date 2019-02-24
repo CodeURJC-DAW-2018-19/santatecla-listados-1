@@ -47,7 +47,7 @@ public class QuestionController {
     public String questiontypeone(Model model, @PathVariable(value = "id") long id, @PathVariable(value = "idQuestion") long idQuestion, @PathVariable(value = "idItem") long idItem){
         Optional<Concept> concept = conceptService.findByOneId(id);
         Optional<Item> item = itemService.findOne(idItem);
-        Question question = questionService.findByConceptAndId(concept, idQuestion);
+       // Question question = questionService.findByConceptAndId(concept, idQuestion);
 
         model.addAttribute("question", "¿ "+ item.get() + " es un elemento de " + concept.get());
 

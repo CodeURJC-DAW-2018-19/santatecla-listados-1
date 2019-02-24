@@ -213,7 +213,14 @@
                 </div>
             {{/lessons}}
         </div>
-
+        <div id="cargando">
+            <img
+                    width="200"
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+            <p>
+                Cargando contenido
+            </p>
+        </div>
         <button type="button" id="loadMore" class="btn btn-primary align-self-md-end">Mas temas</button>
         <div class="row">
             <div class="col-md-10">
@@ -241,7 +248,9 @@
 
         //Button load More
         $('#loadMore').click(function () {
+            $("#cargando").show();
             loadMoreLesson();
+            $("#cargando").hide();
         });
 
         //Init chart

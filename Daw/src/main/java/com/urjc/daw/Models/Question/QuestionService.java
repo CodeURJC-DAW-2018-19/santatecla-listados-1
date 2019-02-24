@@ -28,4 +28,7 @@ public class QuestionService {
     public void deleteQuestionById(long id) {
         repository.deleteById(id);
     }
+    public Iterable<Question> findAllById(){ return repository.findAll();}
+
+    public Question findByConceptAndId (Optional<Concept> concept, long id){ return repository.findByConceptAndId(concept, id);}
 }

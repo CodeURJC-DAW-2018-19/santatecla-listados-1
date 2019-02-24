@@ -10,5 +10,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByidConcept(Concept idConcept);
     List<Question> findAll();
     Question findByidQuestion(long idQuestion);
-
+    Question findByConceptAndId(Concept concept, long id);
 }

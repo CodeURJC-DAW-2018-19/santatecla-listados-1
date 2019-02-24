@@ -1,9 +1,11 @@
 package com.urjc.daw.Models.Answer;
 
+import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Question.Question;
 import com.urjc.daw.Models.User.User;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -108,6 +110,24 @@ public class Answer {
     public void correct(){
         this.correct=true;
         idQuestion.metrics();
+    }
+
+
+    public void correctType1(boolean ans){
+        this.setCorrect(true);
+        Set<Item> items = idQuestion.getConcept().getItemSet();
+        Item itemQuestion = null;
+        for (Item i: items) {
+            if(idQuestion.getInfo().contains(i.getInfo())){
+                itemQuestion=i;
+                break;
+            }
+        }
+        if(itemQuestion!=null && itemQuestion.getState() && ans){
+            this.setState("right");
+        }else{
+            this.setState("wrong");
+        }
     }
 
     public long getIdConcept(){

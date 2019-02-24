@@ -1,4 +1,3 @@
-
 <!-- MODAL TIPO 0-->
 {{#question0}}
     <div class="modal" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addQuestion">
@@ -28,7 +27,8 @@
 <!-- END MODAL TIPO 0 -->
 <!-- MODAL TIPO 1-->
 {{#question1}}
-    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog"
+         aria-labelledby="myExtraLargeModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -41,37 +41,35 @@
                             <th class="text-center">{{#question}}{{info}}{{/question}}</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-radio">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="textQuestion" id="textQuestion"
-                                               value="Correct">
-                                        Correcta
-                                        <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-radio">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="textQuestion" id="textQuestion"
-                                               value="Incorrect">
-                                        Incorrecta
-                                        <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
+
                     </table>
                 </div>
 
                 <!-- Modal body -->
-
+                <div class="modal-body">
+                    <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio"
+                                   name="RB_Answer{{#question}}{{idQuestion}}{{/question}}"
+                                   id="inlineRadioRC{{#question}}{{idQuestion}}{{/question}}" value="option1"
+                                   onclick="sendAnswer('true',{{#answer}}{{idAnswer}}{{/answer}})"> Correct
+                            <span class="circle">
+                                            <span class="check"></span>
+                                        </span>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-radio form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio"
+                                   name="RB_Answer{{#question}}{{idQuestion}}{{/question}}"
+                                   id="inlineRadioRI{{#question}}{{idQuestion}}{{/question}}"
+                                   onclick="sendAnswer('false',{{#answer}}{{idAnswer}}{{/answer}})"> Incorrect
+                            <span class="circle">
+                                         <span class="check"></span>
+                                    </span>
+                        </label>
+                    </div>
+                </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
@@ -111,7 +109,8 @@
 <!-- END MODAL TIPO 2 -->
 <!-- MODAL TIPO 3-->
 {{#question3}}
-    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog"
+         aria-labelledby="myExtraLargeModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -130,7 +129,8 @@
                             <td>
                                 <form>
                                     {{#options}}
-                                    <input  id="textQuestion" class="form-check-input" type="checkbox" name="respuesta{{idItem}}">{{info}}<br>
+                                        <input id="textQuestion" class="form-check-input" type="checkbox"
+                                               name="respuesta{{idItem}}">{{info}}<br>
                                     {{/options}}
                                 </form>
                             </td>
@@ -153,7 +153,8 @@
 <!-- END MODAL TIPO 3 -->
 <!-- MODAL TIPO 4-->
 {{#question4}}
-    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog"
+         aria-labelledby="myExtraLargeModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -206,12 +207,19 @@
 <script>
     function addAnswer() {
         $("#textQuestion").each(function (key, value) {
-            var data="";
-            data=data+""+$(this).attr("value");
+            var data = "";
+            data = data + "" + $(this).attr("value");
             console.log(data);
         });
 
+    }
 
+
+    function sendAnswer(correct, idAnswer) {
+
+        $.ajax({
+            url: "/sendAnswerTrue/" + idAnswer + "/" + correct
+        })
     }
 
 </script>

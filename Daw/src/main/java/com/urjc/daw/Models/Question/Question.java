@@ -105,6 +105,10 @@ public class Question {
         return setAnswer.size();
     }
 
+    public Concept getConcept(){
+        return idConcept;
+    }
+
     public void addAnswer(Answer answer){
         this.setAnswer.add(answer);
         if(answer.getState().equals("right")){

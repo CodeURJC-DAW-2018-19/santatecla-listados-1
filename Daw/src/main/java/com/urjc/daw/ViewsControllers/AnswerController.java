@@ -2,6 +2,8 @@ package com.urjc.daw.ViewsControllers;
 
 import com.urjc.daw.Models.Answer.Answer;
 import com.urjc.daw.Models.Answer.AnswerService;
+import com.urjc.daw.Models.Concept.ConceptService;
+import com.urjc.daw.Models.Item.Item;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Question.Question;
 import com.urjc.daw.Models.Question.QuestionService;
@@ -13,12 +15,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class AnswerController {
 
     @Autowired
     AnswerService answerService;
+
+    @Autowired
+    ConceptService conceptService;
 
     @Autowired
     QuestionService questionService;
@@ -57,14 +63,31 @@ public class AnswerController {
     @PostMapping(path = "/saveAnswer/{idQuestion}")
     public String addAnswer(Model model, Answer answer, @PathVariable long idQuestion) {
         Optional<Question> question = questionService.findOne(idQuestion);
+        int type = question.get().getType();
         answer.setQuestion(question.get());
-        answer.setState("pending");
-        answer.setCorrect(false);
+        if(type==0 || type ==2) {
+            answer.setState("pending");
+            answer.setCorrect(false);
+        }else if(type==1){
+        }else{
+
+        }
         answer.setIdUser(userComponent.getLoggedUser());
         answerService.addAnswer(answer);
         question.get().addAnswer(answer);
         questionService.addQuestion(question.get());
         return "redirect:/StudentConceptView/"+question.get().getIdConcept();
     }
+
+
+    @GetMapping(path = "/sendAnswerTrue/{idAnswer}/{correct}")
+    public String sendAnswer(Model model, @PathVariable long idAnswer, @PathVariable boolean correct){
+        Optional<Answer> ans = answerService.findOne(idAnswer);
+        ans.get().correctType1(correct);
+        return "redirect:/StudentConceptView/" + ans.get().getQuestion().getIdConcept();
+    }
+
+
+
 
 }

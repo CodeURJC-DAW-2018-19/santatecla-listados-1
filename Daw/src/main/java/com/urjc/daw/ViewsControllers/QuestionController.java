@@ -63,7 +63,7 @@ public class QuestionController {
         Optional<Concept> concept = conceptService.findByOneId(idConcept);
         if(concept.isPresent()) {
             List<Item> selected = new ArrayList<>();
-            int type = 1;//(int) (Math.random() * 4);
+            int type = 3;//(int) (Math.random() * 4);
             int item = 0;
             String info = "";
             String attr = "";
@@ -98,10 +98,10 @@ public class QuestionController {
                     for (int i = 0; i < numItems; i++) {
                         item = (int) (Math.random() * itemRandom.size() - 1);
                         selected.add(itemRandom.get(item));
-                        complement += itemRandom.get(item) + ",";
+                        complement += itemRandom.get(item).getInfo() + ", ";
                         itemRandom.remove(item);
                     }
-                    info = "¿Qué elementos de + " + complement + "?";
+                    info = "¿Qué elementos de + " + complement + " ?";
                     attr = "question3";
 
                     break;

@@ -15,4 +15,6 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     Object findAnswerByIdUser(User user);
 
     List<Answer> findByState (String state);
+
+    List<Answer> findByCorrectAndIdUser (Boolean correct, User idUser);
 }

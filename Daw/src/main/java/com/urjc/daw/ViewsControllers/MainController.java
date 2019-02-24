@@ -72,38 +72,32 @@ public class MainController {
     public void addUserToModel(Model model) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
-        if(logged) {
+        if (logged) {
             boolean teacher;
             boolean student;
-            if(userComponent.getLoggedUser().getUserType().equals("ROLE_STUDENT")){
-                student=true;
-                teacher=false;
-            }else{
-                student=false;
-                teacher=true;
+            if (userComponent.getLoggedUser().getUserType().equals("ROLE_STUDENT")) {
+                student = true;
+                teacher = false;
+            } else {
+                student = false;
+                teacher = true;
             }
-            model.addAttribute("admin",teacher);
-            model.addAttribute("visitor",false);
-            model.addAttribute("student",student);
+            model.addAttribute("admin", teacher);
+            model.addAttribute("visitor", false);
+            model.addAttribute("student", student);
             model.addAttribute("idUser", userComponent.getLoggedUser().getId());
         }
     }
 
     @GetMapping("/StudentConceptView/{idConcept}")
-    public String showStudent(Model model, @PathVariable long idConcept){
+    public String showStudent(Model model, @PathVariable long idConcept) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
-        if(concept.isPresent()) {
-            Answer answer = new Answer();
-            if(answer.getCorregir() == true) {
-                model.addAttribute("answer", answerRepository.findAnswerByIdUser(user.get()));
-                model.addAttribute("question", questionRepository.findByidConcept(concept.get()));
-            }else{
-                model.addAttribute("answerPending", answerRepository.findAnswerByIdUser(user.get()));
-                model.addAttribute("questionPending", questionRepository.findByidConcept(concept.get()));
-            }
+        if (concept.isPresent() && user.isPresent()) {
+            model.addAttribute("answer", answerRepository.findByCorrectAndIdUser(true, user.get()));
+            model.addAttribute("answerPending", answerRepository.findByCorrectAndIdUser(false, user.get()));
             model.addAttribute("concept", concept.get());
         }
         return "ConceptView/StudentConceptView";
@@ -114,26 +108,25 @@ public class MainController {
         return "Login";
     }
 
-    @GetMapping(path="/logout")
-    public String logout(Model model,HttpSession session) {
+    @GetMapping(path = "/logout")
+    public String logout(Model model, HttpSession session) {
         session.invalidate();
         return "redirect:/login";
     }
 
     @RequestMapping(path = "/sign_in")
-    public String signin(Model model){
+    public String signin(Model model) {
         return "Sign_in";
     }
 
 
-
     @PostMapping(path = "/add")
-    public String add (Model model,User user) {
+    public String add(Model model, User user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        if(user.getName()==null || user.getpassword()==null){
+        if (user.getName() == null || user.getpassword() == null) {
             return "redirect:/sign_in";
-        }else{
+        } else {
             user.setUserType("ROLE_STUDENT");
             userRepository.save(user);
             return "redirect:/login";
@@ -141,26 +134,26 @@ public class MainController {
     }
 
     @GetMapping("/TeacherConcept_View/{idConcept}")
-    public String showConcept(Model model, @PathVariable long idConcept,@PageableDefault (value = 2)Pageable page){
+    public String showConcept(Model model, @PathVariable long idConcept, @PageableDefault(value = 2) Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
-        if(concept.isPresent()) {
-            model.addAttribute("questions",questionRepository.findByidConcept(concept.get()));
+        if (concept.isPresent()) {
+            model.addAttribute("questions", questionRepository.findByidConcept(concept.get()));
             model.addAttribute("concept", concept.get());
         }
         return "ConceptView/TeacherConcept_View";
     }
 
     @GetMapping("addnewQuestion/{idQuestion}")
-    public String showQuestion(Model model, @PathVariable long idQuestion){
+    public String showQuestion(Model model, @PathVariable long idQuestion) {
         Question question = questionRepository.findByidQuestion(idQuestion);
         model.addAttribute("question", question);
         return "addnewQuestion";
     }
 
     @RequestMapping(path = "/MainPage")
-    public String showMainPage(Model model, @PageableDefault (value = 10)Pageable page) {
+    public String showMainPage(Model model, @PageableDefault(value = 10) Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         model.addAttribute("lessons", lessonService.findAll(page));
@@ -168,11 +161,11 @@ public class MainController {
     }
 
     @RequestMapping(path = "/addVisitor")
-    public String addVisitor(Model model,@PageableDefault (value = 10)Pageable page){
+    public String addVisitor(Model model, @PageableDefault(value = 10) Pageable page) {
         userRepository.save(new User("ROLE_VISITOR"));
-        model.addAttribute("admin",false);
-        model.addAttribute("student",false);
-        model.addAttribute("visitor",true);
+        model.addAttribute("admin", false);
+        model.addAttribute("student", false);
+        model.addAttribute("visitor", true);
         model.addAttribute("logged", false);
         model.addAttribute("lessons", lessonService.findAll(page));
         model.addAttribute("concepts", conceptService.findAll(page));

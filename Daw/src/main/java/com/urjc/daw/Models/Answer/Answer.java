@@ -93,4 +93,8 @@ public class Answer {
     public void setCorrect(boolean correct) {
         this.correct = correct;
     }
+
+    public String getQuestion(){
+        return this.idQuestion.getInfo();
+    }
 }

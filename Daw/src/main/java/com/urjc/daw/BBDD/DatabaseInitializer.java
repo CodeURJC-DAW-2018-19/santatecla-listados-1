@@ -289,11 +289,11 @@ public class DatabaseInitializer {
 
 		Question question1 = new Question(1,"¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
 
-        hm.addAnswer(answer1);
-        aa.addAnswer(answer2);
+        ac.addAnswer(answer1);
+        ac.addAnswer(answer2);
 
-        answer1.setIdUser(hm);
-        answer2.setIdUser(aa);
+        answer1.setIdUser(ac);
+        answer2.setIdUser(ac);
 
 		question1.addAnswer(answer1);
 		question1.addAnswer(answer2);
@@ -305,8 +305,8 @@ public class DatabaseInitializer {
 		answer1.setQuestion(question1);
 		answer2.setQuestion(question1);
 
-        userRepository.save(hm);
-        userRepository.save(aa);
+        userRepository.save(ac);
+        userRepository.save(ac);
 
 
 		questionRepository.save(question1);

@@ -17,70 +17,31 @@
                              </div>
                             <div class="card-header card-header-primary">
                                 <h2 class="card-title">Concepto</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h3>CORREGIDAS</h3>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>PENDIENTES DE CORREGIR</h3>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                        <th>
-                                            PREGUNTAS CORREGIDAS
-                                        </th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-
-                                        <th>
-                                            PREGUNTAS PENDIENTES
-                                        </th>
-                                        <th></th>
-                                        </thead>
-                                        <tbody>
-
-
-
-                                        <tr>
-                                            <td> {{#question}}
-                                                <h5>{{info}}</h5>
-                                            </td>
-
-
-                                            <td>{{#answer}}
-                                                <h5>{{info}}</h5>
-                                            </td>
-
-                                            <td>
-                                            {{#state}}
-                                                <i class="material-icons">check</i>
-                                            {{/state}}
-                                            {{^state}}
-                                                    <i class="material-icons">close</i>
-                                            {{/state}}
-
+                                <div class="wrapper" id="showMore">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{#answer}}
+                                                <p>{{getQuestion}} : {{info}} :</p>
                                             {{/answer}}
-                                            </td>
-                                            {{/question}}
 
-
-                                                {{#questionPending}}
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                            <td>
-                                                <h5>{{info}}</h5>
-                                            </td>{{/questionPending}}
-
-
-
-
-                                            <td> {{#answerPending}}
-                                                <h5>{{info}}</h5>
-                                            </td>{{/answerPending}}
-
-
-
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{#answerPending}}
+                                                <p>{{getQuestion}} : {{info}}</p>
+                                            {{/answerPending}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

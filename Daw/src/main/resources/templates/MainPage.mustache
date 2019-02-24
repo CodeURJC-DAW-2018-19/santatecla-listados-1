@@ -123,8 +123,8 @@
                                         <div class="row">
                                             <li class="list-group-item col-md-8">
                                                 {{#admin}}
-                                                   <!-- <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>-->
                                                     <a href="/TeacherConcept_View/{{idConcept}}"> {{title}}</a>
+                                                   <!-- <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>-->
                                                 {{/admin}}
                                                 {{#student}}
                                                     <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
@@ -216,9 +216,7 @@
             {{/lessons}}
         </div>
 
-        <button type="button" id="loadMore" class="btn btn-default align-self-md-end">Mas temas</button>
-        <script src="/js/loadMore.js"></script>
-
+        <button type="button" id="loadMore" class="btn btn-primary align-self-md-end">Mas temas</button>
         <div class="row">
             <div class="col-md-10">
                 {{#admin}}
@@ -237,6 +235,7 @@
     </div>
 </div>
 
+<script src="/js/loadMore.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         //ATTR
@@ -310,7 +309,6 @@
     });
 
     function addModalInfo(tipoBorrado, id) {
-        $('#'+id)
         $("#tipoBorrado").text("Borrar " + tipoBorrado);
         $("#deleteModal").html('<h4>¿Está seguro de querer borrar el ' + tipoBorrado + ' ?</h4>');
 
@@ -330,10 +328,10 @@
                     '</a><span onclick="disposeTab(\''+ elemId +'\')">x</span></li>');
         });
     }
-    function showTab(elemId){
+    function showTab(data){
         $('.tab-pane').removeClass('active');
         $('#'+elemId).addClass('active');
-        $('#main-panel').html("");
+        $('#main-panel').load("items.mustache");
     }
 
     function disposeTab(elem){

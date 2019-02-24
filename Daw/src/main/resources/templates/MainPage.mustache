@@ -1,7 +1,5 @@
 {{>header}}
 <!-- Modal Diagram-->
-
-
 <div class="modal" id="chartModal" tabindex="-1" role="dialog" aria-labelledby="chartModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -20,8 +18,8 @@
         </div>
     </div>
 </div>
-{{#admin}}
 
+{{#admin}}
     <div class="modal" id="deleteConceptLesson" tabindex="-1" role="dialog" aria-labelledby="chartModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -102,7 +100,7 @@
                                 {{#admin}}
                                     <a class="material-icons" data-toggle="modal" onClick="addModalInfo('tema',{{id}});"
                                        data-target="#deleteConceptLesson"
-                                       style="float: right" style="cursor: pointer">delete</a>
+                                       style="float: right; cursor: pointer">delete</a>
                                 {{/admin}}
                                 {{#student}}
                                     <a style="float: right">{{getAnswerCorrectOfConcepts}}

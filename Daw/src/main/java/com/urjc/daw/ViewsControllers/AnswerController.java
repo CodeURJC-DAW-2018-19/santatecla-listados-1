@@ -49,7 +49,11 @@ public class AnswerController {
 
     @PostMapping(path = "/saveAnswer/{idQuestion}")
     public String addAnswer(Model model, Answer answer, @PathVariable long idQuestion) {
-        Optional<Question> question=questionService.findOne(idQuestion);
+        Optional<Question> question = questionService.findOne(idQuestion);
+        answer.setQuestion(question.get());
+        answer.setState("pending");
+        answer.setCorrect(false);
+        answerService.addAnswer(answer);
         question.get().addAnswer(answer);
         questionService.addQuestion(question.get());
         return "redirect:/MainPage";

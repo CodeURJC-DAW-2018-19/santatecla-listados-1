@@ -113,4 +113,12 @@ public class Answer {
     public long getIdConcept(){
         return this.idQuestion.getIdConcept();
     }
+
+    public boolean isCorrect(){
+        if(this.state.equals("right")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -82,7 +82,7 @@ public class DatabaseInitializer {
 
 		Concept concept2 = new Concept("Concepto2: Las disciplinas del software",2, "mundo.png");
 		Concept concept3 = new Concept("Concepto3: Los patrones de diseño creacionales",3, "mundo.pgn");
-		Concept concept4 = new Concept("Concepto4: Las disciplinas del software",4, "mundo.png");
+		Concept concept4 = new Concept("Concepto4: Los patrones de comportamiento",4, "mundo.png");
 		Concept concept5 = new Concept("Concepto5",5);
 		Concept concept6 = new Concept("Concepto6",6);
 		Concept concept7 = new Concept("Concepto7",7);
@@ -122,6 +122,16 @@ public class DatabaseInitializer {
 		Item item15 = new Item("Flyweight",true);
 		Item item18 = new Item("Bridge",false);
 		Item item19 = new Item("Composite",false);
+
+
+		Item item21 = new Item("Command",true);
+		Item item22 = new Item("Iterator",true);
+		Item item23 = new Item("Memento",true);
+		Item item24 = new Item("Observer",true);
+		Item item25 = new Item("State",true);
+		Item item26 = new Item("Visitor",true);
+		Item item27 = new Item("Strategy",true);
+		Item item28 = new Item("Adapter",false);
 /***************************************************************/
 
 
@@ -193,6 +203,9 @@ public class DatabaseInitializer {
 		concept2.addItem(item8);
 		concept2.addItem(item17);
 		concept2.addItem(item20);
+
+		concept4.addItem(item21);
+
 
 		item1.setIdConcept(concept2);
 		item3.setIdConcept(concept3);

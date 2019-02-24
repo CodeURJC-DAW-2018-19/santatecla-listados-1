@@ -192,7 +192,7 @@
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="radio"
                                                                name="RB_Answer1"
-                                                               id="inlineRadioRC1" value="option1" onclick="updateAnswer({{idAnswer}})"> Correct
+                                                               id="inlineRadioRC1" value="option1" onclick="updateAnswer('true',{{idAnswer}})"> Correct
                                                         <span class="circle">
                                         <span class="check"></span>
                                     </span>
@@ -202,7 +202,7 @@
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="radio"
                                                                name="RB_Answer1"
-                                                               id="inlineRadioRI1" value="option2"> Incorrect
+                                                               id="inlineRadioRI1" onclick="updateAnswer('false',{{idAnswer}})" value="option2"> Incorrect
                                                         <span class="circle">
                                          <span class="check"></span>
                                     </span>
@@ -231,18 +231,21 @@
         $('#loadMoreItems').click(function () {
             loadMoreItems();
         });
-        
-        function updateAnswer(correcto,idAnswer){
-            if (correcto==="true")
-                $.ajax({
-                    url: "/updateAnswerTrue/"+idAnswer
-                })
-            else
-                $.ajax({
-                    url: "/updateAnswerFalse/"+idAnswer
-                })
-        }
+
+
     });
+
+    function updateAnswer(correcto,idAnswer){
+
+        if (correcto==="true")
+            $.ajax({
+                url: "/updateAnswerTrue/"+idAnswer
+            })
+        else
+            $.ajax({
+                url: "/updateAnswerFalse/"+idAnswer
+            })
+    }
 </script>
 
 {{>footer}}

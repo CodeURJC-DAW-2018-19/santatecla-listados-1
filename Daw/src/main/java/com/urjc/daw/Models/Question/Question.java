@@ -104,6 +104,7 @@ public class Question {
     public int getSizeQuestions(){
         return setAnswer.size();
     }
+
     public void addAnswer(Answer answer){
         this.setAnswer.add(answer);
         if(answer.getState().equals("right")){
@@ -117,7 +118,7 @@ public class Question {
 
     public void addItem(Item item){this.setItem.add(item);}
 
-    private void metrics(){
+    public void metrics(){
         int rigth=0;
         int wrong=0;
         int pending=0;

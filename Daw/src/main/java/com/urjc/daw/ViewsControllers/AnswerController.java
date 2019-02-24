@@ -3,6 +3,8 @@ package com.urjc.daw.ViewsControllers;
 import com.urjc.daw.Models.Answer.Answer;
 import com.urjc.daw.Models.Answer.AnswerService;
 import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.Models.Question.Question;
+import com.urjc.daw.Models.Question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +22,17 @@ public class AnswerController {
     @Autowired
     AnswerService answerService;
 
+    @Autowired
+    QuestionService questionService;
+
+
     @GetMapping(path="/updateAnswerTrue/{idAnswer}/{idConcept}")
     public String updateTrue(Model model, @PathVariable long idAnswer, @PathVariable long idConcept){
         Optional<Answer> ans = answerService.findOne(idAnswer);
-        ans.get().setState("rigth");
-        ans.get().setCorrect(true);
+        ans.get().setState("right");
+        ans.get().correct();
         answerService.addAnswer(ans.get());
+        questionService.addQuestion(ans.get().accesToQuestion());
         return "redirect:/TeacherConcept_View/{idConcept}";
     }
 
@@ -34,8 +41,9 @@ public class AnswerController {
     public String updateFalse(Model model, @PathVariable long idAnswer, @PathVariable long idConcept){
         Optional<Answer> ans = answerService.findOne(idAnswer);
         ans.get().setState("wrong");
-        ans.get().setCorrect(true);
+        ans.get().correct();
         answerService.addAnswer(ans.get());
+        questionService.addQuestion(ans.get().accesToQuestion());
         return "redirect:/TeacherConcept_View/{idConcept}";
     }
 

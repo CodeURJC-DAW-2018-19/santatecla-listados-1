@@ -47,6 +47,8 @@ public class Answer {
         this.idAnswer = idAnswer;
     }
 
+    public Question accesToQuestion(){return idQuestion;}
+
     public String getInfo() {
         return info;
     }
@@ -96,5 +98,11 @@ public class Answer {
 
     public String getQuestion(){
         return this.idQuestion.getInfo();
+    }
+
+
+    public void correct(){
+        this.correct=true;
+        idQuestion.metrics();
     }
 }

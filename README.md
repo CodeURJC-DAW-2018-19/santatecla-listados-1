@@ -77,7 +77,25 @@ Questions: It is a view to add questions, where in each type of question there i
 ### Navigation diagrams
 Se actualizarán las capturas de pantalla de las páginas principales de la aplicación. En caso de que haya cambiado la navegación, se deberá actualizar el diagrama de navegación.
 ### Development environment
-Se indicarán cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación.
+To begin with we had to decide what environment we wanted to use.
+In our case it was INTELLIJ.
+The configuration of the environment was not very laborious, since it has a spring initializer, which creates the project with the dependencies that you mark (mustache, security ....).
+Once this was done we decided that the first step was to connect to the database, download MYSQL Workbench to put it to work and MYSQLServer to manage a server on localhost.
+The sentences introduced in our case can be found in the aplication.properties:
+
+spring.jpa.hibernate.ddl-auto = create-drop
+spring.datasource.url = jdbc: mysql: // localhost: 3306 / daw_group9? useSSL = false & useLegacyDatetimeCode = false & serverTimezone = UTC
+spring.datasource.username = Group9
+spring.datasource.password = URJCDAWGrupo9
+server.port = 8443
+server.ssl.key-store = classpath: keystore.jks
+server.ssl.key-store-password = password
+server.ssl.key-password = secret
+
+spring.http.multipart.max-file-size = 10MB
+spring.http.multipart.max-request-size = 10MB
+
+Once connected to the environment we had to familiarize ourselves with the tags @ Entity, @ ManyToOne .... And so we finally managed to create a DB according to our requirements.
 ### Entity diagram
 Se incluirá un diagrama con las entidades de la base de datos, sus campos y las relaciones entre ellas. Se usará un diagrama de las clases Java, no un diagrama entidad-relación de base de datos
 ###Class diagram and templates

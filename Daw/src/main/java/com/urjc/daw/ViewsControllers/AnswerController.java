@@ -80,11 +80,25 @@ public class AnswerController {
     }
 
 
-    @GetMapping(path = "/sendAnswerTrue/{idAnswer}/{correct}")
-    public String sendAnswer(Model model, @PathVariable long idAnswer, @PathVariable boolean correct){
-        Optional<Answer> ans = answerService.findOne(idAnswer);
-        ans.get().correctType1(correct);
-        return "redirect:/StudentConceptView/" + ans.get().getQuestion().getIdConcept();
+    @GetMapping(path = "/sendAnswerTrue/{idQuestion}/{correct}")
+    public String sendAnswer(Model model, @PathVariable long idQuestion, @PathVariable boolean correct){
+        String correcto="";
+        if (correct)
+            correcto="true";
+        else
+            correcto="false";
+
+        Answer answer= new Answer(correcto);
+
+        Question question=questionService.findOne(idQuestion).get();
+        answer.setIdUser(userComponent.getLoggedUser());
+        answer.setQuestion(question);
+        question.addAnswer(answer);
+        answerService.addAnswer(answer);
+        questionService.addQuestion(question);
+        answer.correctType1(correct);
+        answerService.addAnswer(answer);
+        return "redirect:/StudentConceptView/" + question.getIdConcept();
     }
 
 

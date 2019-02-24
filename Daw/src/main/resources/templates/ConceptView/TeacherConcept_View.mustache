@@ -107,7 +107,7 @@
                     </div>
 
                 </div>
-                    <button type="button" id="loadMoreItems" class="btn btn-default align-self-md-end">Más Ítems</button>
+                    <button type="button" id="loadMoreItems" class="btn btn-primary align-self-md-start">Más Ítems</button>
                 </div>
 
                     <script src="/js/loadMore.js"></script>
@@ -116,7 +116,7 @@
                          $(document).ready(function () {
                              $('#loadMoreItems').click(function () {
                                  $("#cargando").show();
-                                 loadMoreLesson();
+                                 loadMoreItems();
                                  $("#cargando").hide();
                             });
                          });
@@ -242,7 +242,7 @@
 
         $('#loadMoreItems').click(function () {
             $("#cargando").show();
-            loadMoreLesson();
+            loadMoreItems();
             $("#cargando").hide();
         });
 

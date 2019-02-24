@@ -52,7 +52,7 @@
                             <input class="form-check-input" type="radio"
                                    name="RB_Answer{{#question}}{{idQuestion}}{{/question}}"
                                    id="inlineRadioRC{{#question}}{{idQuestion}}{{/question}}" value="option1"
-                                   onclick="sendAnswer('true',{{#answer}}{{idAnswer}}{{/answer}})"> Correct
+                                   onclick="sendAnswer('true',{{#question}}{{idQuestion}}{{/question}})"> Correct
                             <span class="circle">
                                             <span class="check"></span>
                                         </span>
@@ -63,7 +63,7 @@
                             <input class="form-check-input" type="radio"
                                    name="RB_Answer{{#question}}{{idQuestion}}{{/question}}"
                                    id="inlineRadioRI{{#question}}{{idQuestion}}{{/question}}"
-                                   onclick="sendAnswer('false',{{#answer}}{{idAnswer}}{{/answer}})"> Incorrect
+                                   onclick="sendAnswer('false',{{#question}}{{idQuestion}}{{/question}})"> Incorrect
                             <span class="circle">
                                          <span class="check"></span>
                                     </span>
@@ -72,7 +72,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
+                    <button type="button" class="btn btn-primary" onclick="reFresh()">Enviar respuesta</button>
                 </div>
 
             </div>
@@ -143,7 +143,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
+                    <button type="button" class="btn btn-primary" onclick="reFresh()">Enviar respuesta</button>
                 </div>
 
             </div>
@@ -214,11 +214,15 @@
 
     }
 
+    function reFresh() {
+        location.reload(true)
+    }
 
-    function sendAnswer(correct, idAnswer) {
-
+    function sendAnswer(correct, idQuestion) {
+        console.log(idQuestion);
+        console.log(correct);
         $.ajax({
-            url: "/sendAnswerTrue/" + idAnswer + "/" + correct
+            url: "/sendAnswerTrue/" + idQuestion + "/" + correct
         })
     }
 

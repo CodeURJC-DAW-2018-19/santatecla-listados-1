@@ -123,8 +123,10 @@ public class Answer {
                 break;
             }
         }
-        if(itemQuestion!=null && itemQuestion.getState() && ans){
-            this.setState("right");
+        if(itemQuestion!=null){
+            if(itemQuestion.getState()==ans) {
+                this.setState("right");
+            }
         }else{
             this.setState("wrong");
         }

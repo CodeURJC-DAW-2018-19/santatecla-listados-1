@@ -76,7 +76,7 @@ public class QuestionController {
                 case 1:
                     List<Item> itemList = itemService.findItemByIdConceptIs(concept.get());
                     item = (int) (Math.random() * itemList.size() - 1);
-                    info = "¿" + itemList.get(item) + " es un elemento de " + concept.get().getTitle() + "?";
+                    info = "¿" + itemList.get(item).getInfo() + " es un elemento de " + concept.get().getTitle() + "?";
                     attr = "question1";
                     break;
                 case 2:

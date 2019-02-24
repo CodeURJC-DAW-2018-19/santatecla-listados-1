@@ -17,12 +17,3 @@ function loadMoreItems() {
         nextPage++;
     })
 }
-function loadMoreConcepts() {
-    var urlPage = "/loadMoreConcepts?page" + nextPage;
-    $.ajax({
-        url: urlPage
-    }).done(function (data) {
-        $("#showMore").append(data);
-        nextPage++;
-    })
-}

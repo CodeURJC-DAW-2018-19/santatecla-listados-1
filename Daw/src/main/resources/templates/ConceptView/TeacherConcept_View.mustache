@@ -30,7 +30,7 @@
 
                 {{#concept}}
                     {{#itemSet}}
-                            <div class="row" style="height: 20%">
+                            <div class="row" style="height: 8%">
                                 <div class="col-md-4">
                                     <h5>{{info}}</h5>
                                 </div>
@@ -191,8 +191,8 @@
                                                 <div class="form-check form-check-radio form-check-inline">
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="radio"
-                                                               name="RB_Answer1"
-                                                               id="inlineRadioRC1" value="option1" onclick="updateAnswer('true',{{idAnswer}})"> Correct
+                                                               name="RB_Answer{{idAnswer}}"
+                                                               id="inlineRadioRC{{idAnswer}}" value="option1" onclick="updateAnswer('true',{{idAnswer}},{{#concept}} {{idConcept}} {{/concept}})"> Correct
                                                         <span class="circle">
                                         <span class="check"></span>
                                     </span>
@@ -201,8 +201,8 @@
                                                 <div class="form-check form-check-radio form-check-inline">
                                                     <label class="form-check-label">
                                                         <input class="form-check-input" type="radio"
-                                                               name="RB_Answer1"
-                                                               id="inlineRadioRI1" onclick="updateAnswer('false',{{idAnswer}})" value="option2"> Incorrect
+                                                               name="RB_Answer{{idAnswer}}"
+                                                               id="inlineRadioRI{{idAnswer}}" onclick="updateAnswer('false',{{idAnswer}},{{#concept}} {{idConcept}} {{/concept}})" value="option2"> Incorrect
                                                         <span class="circle">
                                          <span class="check"></span>
                                     </span>
@@ -235,15 +235,15 @@
 
     });
 
-    function updateAnswer(correcto,idAnswer){
+    function updateAnswer(correcto,idAnswer,idConcept){
 
         if (correcto==="true")
             $.ajax({
-                url: "/updateAnswerTrue/"+idAnswer
+                url: "/updateAnswerTrue/"+idAnswer+"/"+idConcept
             })
         else
             $.ajax({
-                url: "/updateAnswerFalse/"+idAnswer
+                url: "/updateAnswerFalse/"+idAnswer+"/"+idConcept
             })
     }
 </script>

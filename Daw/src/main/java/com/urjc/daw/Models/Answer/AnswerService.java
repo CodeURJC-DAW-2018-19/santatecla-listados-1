@@ -15,6 +15,8 @@ public class AnswerService {
     @Autowired
     private AnswerRepository repository;
 
+    public void addAnswer(Answer answer){repository.save(answer);}
+
     public Page<Answer> findAll(Pageable page){
         return repository.findAll(page);
     }

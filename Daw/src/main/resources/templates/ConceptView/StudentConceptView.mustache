@@ -53,9 +53,16 @@
                                         <div class="col-md-6">
                                             {{#answer}}
                                                 <p>{{getQuestionInfo}} : {{info}} :</p>
+                                                {{#state}}
+                                                    <i class="material-icons">check</i>
+                                                {{/state}}
+                                                {{^state}}
+                                                    <i class="material-icons">close</i>
+                                                {{/state}}
                                             {{/answer}}
 
                                         </div>
+
                                         <div class="col-md-6">
                                             {{#answerPending}}
                                                 <p>{{getQuestionInfo}} : {{info}}</p>

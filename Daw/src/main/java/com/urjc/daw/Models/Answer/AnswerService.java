@@ -28,7 +28,7 @@ public class AnswerService {
 
     public Optional<Question> findQuestion(Long idQuestion){ return repository.findByIdQuestion(idQuestion);}
 
-    public List<Answer> findByCorrectAndIdUser(Boolean correct, User idUser){
+    public List<Answer> findByStateAndIdUser(Boolean correct, User idUser){
         return repository.findByCorrectAndIdUser(correct,idUser);
     }
 

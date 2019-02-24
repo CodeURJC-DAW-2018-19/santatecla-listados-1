@@ -28,7 +28,8 @@
                     <div class="wrapper" id="showMore">
 
                 {{#concept}}
-                    {{#itemSet}}
+                    <div class="row" id="showMore"
+                    {{#items}}
                             <div class="row" style="height: 8%">
                                 <div class="col-md-4">
                                     <h5>{{info}}</h5>
@@ -100,15 +101,25 @@
                                 </div>
                             </div>
 
-                    {{/itemSet}}
+                    {{/items}}
+
                  {{/concept}}
                     </div>
 
                 </div>
+                    <button type="button" id="loadMoreItems" class="btn btn-default align-self-md-end">Más Ítems</button>
                 </div>
-                    <button type="button" id="loadMoreItems" class="btn btn-default align-self-md-end">Mas Ítems
-                    </button>
+
                     <script src="/js/loadMore.js"></script>
+                    <script>loadMoreItems()</script>
+                    <script type="text/javascript">
+                         $(document).ready(function () {
+                             $('#loadMoreItems').click(function () {
+                                 loadMoreItems();
+                            });
+                         });
+                    </script>
+            </div>
         </div>
     </div>
     <!-- END FIRST CARD: ÍTEMS -->

@@ -55,9 +55,9 @@ public class ItemController {
 
 
     @GetMapping (path = "/loadMoreItems")
-    public String topicMoreButton(Model model,  @PageableDefault(size = 2) Pageable page){
+    public String topicMoreButton(Model model,  @PageableDefault(size = 3) Pageable page){
         //Optional<Concept> c = conceptService.findByOneId(idConcept);
-        //model.addAttribute("items", itemService.findItemByIdConcept(page,c.get()));
+        model.addAttribute("items", itemService.findAll(page));
         return "Items";
     }
 }

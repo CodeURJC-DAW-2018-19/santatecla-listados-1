@@ -160,6 +160,7 @@ public class MainController {
         if (concept.isPresent()) {
             model.addAttribute("questions", questionRepository.findByidConcept(concept.get()));
             model.addAttribute("concept", concept.get());
+            model.addAttribute("items", itemService.findAll(page));
         }
         return "ConceptView/TeacherConcept_View";
     }

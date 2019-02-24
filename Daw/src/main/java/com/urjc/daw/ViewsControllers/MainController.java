@@ -99,6 +99,7 @@ public class MainController {
             model.addAttribute("answer", answerRepository.findByCorrectAndIdUser(true, user.get()));
             model.addAttribute("answerPending", answerRepository.findByCorrectAndIdUser(false, user.get()));
             model.addAttribute("concept", concept.get());
+            model.addAttribute("statitics",user.get().toStringStatistics(idConcept));
         }
         return "ConceptView/StudentConceptView";
     }

@@ -8,6 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity// This tells Hibernate to make a table out of this class
@@ -23,8 +24,8 @@ public class User {
     private String email;
     @Column
     private String userType;
-    @ManyToOne
-    private Answer idAnswer;
+    @OneToMany
+    private Set<Answer> setAnswer;
 
 
     public long getId() {
@@ -74,16 +75,40 @@ public class User {
         //this.password = password;
         this.email = email;
         this.userType = userType;
+        this.setAnswer = new HashSet<>();
     }
 
-    public User(){}
-
-    public User(String visitor){
-        this.userType=visitor;
+    public User() {
     }
 
-    public void addAnswer(Answer answer){
-        this.idAnswer = idAnswer;
+    public User(String visitor) {
+        this.userType = visitor;
+    }
+
+    public void addAnswer(Answer answer) {
+        this.setAnswer.add(answer);
+    }
+
+    public String toStringStatistics(long idConcept) {
+        int [] result = new int[3];
+        for (Answer ans : setAnswer) {
+            if (ans.getQuestion().getIdConcept()==idConcept){
+                switch (ans.getState()){
+                    case ("pending"):
+                        result[0]++;
+                        break;
+                    case ("wrong"):
+                        result[1]++;
+                        break;
+                    case ("right"):
+                        result[2]++;
+                        break;
+                }
+            }
+        }
+
+        return (result[0]+":"+result[1]+":"+result[2]);
+
     }
 
 }

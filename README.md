@@ -111,7 +111,91 @@ Composition relations:
 - Concept with Item
 
 ### Class diagram and templates
- Se creará un diagrama de clases de la aplicación. No se incluirán ni atributos ni métodos en las clases. Se mostrarán las relaciones entre las clases (asociación, composición o herencia) y se diferenciará claramente qué clases son @Controller, @Service, Repository u otro tipo de clases. Para ello se puede usar un código de colores, una distribución de las clases por partes u otro mecanismo. En este diagrama también se incluirán los ficheros que contienen los templates y se indicará con qué @Controller se relacionan.
+Complete diagram, all classes and relationshp:
+
+![diagrama de clases y templates](https://user-images.githubusercontent.com/46897050/53306284-605fa000-388b-11e9-8e0f-df6c32e5db3c.jpg)
+
+Since there are so many classes and relationships, the diagram looks very bad, so we have summarized the diagram as follows:
+
+![diagrama de clases y templates1](https://user-images.githubusercontent.com/46897050/53306386-bed94e00-388c-11e9-9d14-29410c31b268.jpg)
+
+We use the MVC architecture patter( Model-View-Controller).
+
+MODEL:
+- @Service
+- Repository 
+- @Entity
+- @Component
+- @Configuration
+
+CONTROLLER
+- @Controller
+- @SpringBootApplication
+
+VIEW
+- Templates
+- Error
+
+All entities and all repositories have a composition relationship with DatabaseInitializer.
+
+@Service
+- ItemService
+- AnswerService
+- ConceptService
+- LessonService
+- QuestionService
+
+Repository (Interface)
+- LessonRepository 
+- QuestionRepository
+- AnswerRepository
+- UserRepository
+- ConceptRepository
+- ItemRepository
+
+@Entity: Concept, Question, Answer, Item, User and Lesson. The relationships between them are the same as the picture of the entity diagram
+
+@Component
+- DatabaseInitializer
+- AuthenticationProviderUser has an association relationship with: UserComponent, UserRepository and User.
+- UserComponent
+
+@Configuration: CSRFHandlerConfiguration and SecurityConfiguration
+
+@Controller
+- QuestionController has an association relationship with: QuestionService, Concept, ConceptService, ItemService, Item, Question, StudentConceptView, TeacherConcept_View and addnewQuestions.
+- AnswerController has an association relationship with: Answer, AnswerService, Question, QUestionService, UserComponent and TeacherConcept_View
+- ConceptController has an association relationship with: Concept, ConceptRepository, ConceptService, ItemRepository, LessonService, QuestionRepository, AnswerRepository, UserRepository, Lesson and MainPage
+- IndexController has an association relationship with: UserRepository and login
+- ItemController has an association relationship with: Concept, ConceptService, Item, ItemRepository, ItemService, QuestionRepository, TeacherConcept_View and Items
+- LessonController has an association relationship with: Lesson, LessonService, UserComponent, MainPage and lesson
+- MainController has an association relationship with: AnswerRepository, Concept, ConceptRepository, ConceptService, ItemRepository, ItemSrvice, LessonService, Question, QuestionRepository, User, UserComponent, UserRepository, QuestionService, Answer, AnswerService, StudentConceptView, sign_in, login, TeacherConcept_View, addnewQuestion and MainPage
+
+Error
+- 403
+- 404
+- 500
+
+Templates
+- StartedView_Visitor
+- header
+- StartedView_Teacher
+- footer
+- Items
+- TeacherConcept_View has an association relationship with: header and footer
+- MainPageStudent
+- MainPageTeacher
+- StudentConceptView has an association relationship with: header and footer
+- MainPage
+- ModalMainPage
+- Sign_in has an association relationship with: footer and header
+- Login has an association relationship with: footer and header
+- lesson
+- addnewQuestion
+
+@SpringBootApplication
+- DawApplication
+
 ### Bibliography
 
 ## PHASE 3

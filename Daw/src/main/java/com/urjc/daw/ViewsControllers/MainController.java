@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -95,9 +97,25 @@ public class MainController {
         model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
+
+        List<Answer> answerListPending = answerRepository.findByCorrectAndIdUser(false,user.get());
+        List<Answer> answerListFinalPending = new ArrayList<>();
+        for (Answer ans:answerListPending) {
+            if(concept.get().getIdConcept()==ans.getIdConcept()){
+                answerListFinalPending.add(ans);
+            }
+        }
+
+        List<Answer> answerList = answerRepository.findByCorrectAndIdUser(true,user.get());
+        List<Answer> answerListFinal = new ArrayList<>();
+        for (Answer ans:answerList) {
+            if(concept.get().getIdConcept()==ans.getIdConcept()){
+                answerListFinal.add(ans);
+            }
+        }
         if (concept.isPresent() && user.isPresent()) {
-            model.addAttribute("answer", answerRepository.findByCorrectAndIdUser(true, user.get()));
-            model.addAttribute("answerPending", answerRepository.findByCorrectAndIdUser(false, user.get()));
+            model.addAttribute("answer", answerListFinal);
+            model.addAttribute("answerPending",answerListFinalPending );
             model.addAttribute("concept", concept.get());
             model.addAttribute("statitics",user.get().toStringStatistics(idConcept));
         }

@@ -109,4 +109,8 @@ public class Answer {
         this.correct=true;
         idQuestion.metrics();
     }
+
+    public long getIdConcept(){
+        return this.idQuestion.getIdConcept();
+    }
 }

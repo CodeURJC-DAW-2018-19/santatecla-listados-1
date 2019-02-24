@@ -5,13 +5,11 @@ import com.urjc.daw.Models.Answer.AnswerService;
 import com.urjc.daw.Models.Lessons.Lesson;
 import com.urjc.daw.Models.Question.Question;
 import com.urjc.daw.Models.Question.QuestionService;
+import com.urjc.daw.Models.User.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +22,15 @@ public class AnswerController {
 
     @Autowired
     QuestionService questionService;
+
+    @Autowired
+    UserComponent userComponent;
+
+    @ModelAttribute
+    public void addUserToModel(Model model) {
+        boolean logged = userComponent.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+    }
 
 
     @GetMapping(path = "/updateAnswerTrue/{idAnswer}/{idConcept}")
@@ -53,6 +60,7 @@ public class AnswerController {
         answer.setQuestion(question.get());
         answer.setState("pending");
         answer.setCorrect(false);
+        answer.setIdUser(userComponent.getLoggedUser());
         answerService.addAnswer(answer);
         question.get().addAnswer(answer);
         questionService.addQuestion(question.get());

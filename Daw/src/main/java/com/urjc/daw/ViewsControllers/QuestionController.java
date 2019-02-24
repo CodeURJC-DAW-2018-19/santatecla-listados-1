@@ -85,7 +85,7 @@ public class QuestionController {
                     itemsCorrect.remove(item);
                     String complementInfo = "";
                     for (int i = 0; i < itemsCorrect.size(); i++) {
-                        complementInfo += itemsCorrect.get(i).getInfo() + ",";
+                        complementInfo += itemsCorrect.get(i).getInfo() + ", ";
                     }
                     info = "¿Qué elemento falta en " + complementInfo + " _________ ,para completar la lista de <concepto>?";
                     attr = "question2";

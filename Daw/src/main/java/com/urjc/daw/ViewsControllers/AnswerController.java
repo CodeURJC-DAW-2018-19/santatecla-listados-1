@@ -56,7 +56,7 @@ public class AnswerController {
         answerService.addAnswer(answer);
         question.get().addAnswer(answer);
         questionService.addQuestion(question.get());
-        return "redirect:/MainPage";
+        return "redirect:/StudentConceptView/"+question.get().getIdConcept();
     }
 
 }

@@ -84,39 +84,26 @@
 <!-- END MODAL TIPO 1 -->
 <!-- MODAL TIPO 2-->
 {{#question2}}
-    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+    <div class="modal" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="addQuestion">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-center">1</td>
-                            <td>
-                                <div class="input-group">
-                                    <input type="text" id="textQuestion" class="form-control" placeholder="...">
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <h5 class="modal-title" id="addQuestionHead">{{#question}}{{info}}{{/question}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
                 </div>
-
-                <!-- Modal body -->
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
+                <div class="modal-body">
+                    <form action="/saveAnswer/{{#question}}{{idQuestion}}{{/question}}" method="post">
+                        <div class="form-group">
+                            <label for="title">Respuesta</label>
+                            <input type="text" id="info" name="info"
+                                   {{#answer}}value="{{info}}"{{/answer}} class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar tema</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>

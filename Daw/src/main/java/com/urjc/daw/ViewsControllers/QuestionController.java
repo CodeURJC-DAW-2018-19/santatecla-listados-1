@@ -63,7 +63,7 @@ public class QuestionController {
         Optional<Concept> concept = conceptService.findByOneId(idConcept);
         if(concept.isPresent()) {
             List<Item> selected = new ArrayList<>();
-            int type = 0;//(int) (Math.random() * 4);
+            int type = 2;//(int) (Math.random() * 4);
             int item = 0;
             String info = "";
             String attr = "";
@@ -111,7 +111,10 @@ public class QuestionController {
             model.addAttribute(attr, true);
             model.addAttribute("options", selected);
             model.addAttribute("question", question);
+            concept.get().addQuestion(question);
+            question.setConcept(concept.get());
             questionService.addQuestion(question);
+            conceptService.addConcept(concept.get());
         }
         return "addnewQuestions";
 

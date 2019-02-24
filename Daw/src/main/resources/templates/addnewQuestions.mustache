@@ -1,0 +1,236 @@
+
+<!-- MODAL TIPO 0-->
+{{#question0}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <i class="material-icons" style="font-size:48px;color:blueviolet">add_circle_outline</i>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question0}}
+<!-- END MODAL TIPO 0 -->
+<!-- MODAL TIPO 1-->
+{{#question1}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <div class="form-check form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                               value="option1">
+                                        Correcta
+                                        <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                               value="option1">
+                                        Incorrecta
+                                        <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question1}}
+<!-- END MODAL TIPO 1 -->
+<!-- MODAL TIPO 2-->
+{{#question2}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question2}}
+<!-- END MODAL TIPO 2 -->
+<!-- MODAL TIPO 3-->
+{{#question3}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <form>
+                                    {{#options}}
+                                    <input class="form-check-input" type="checkbox" name="respuesta{{idItem}}">{{info}}<br>
+                                    {{/options}}
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question3}}
+<!-- END MODAL TIPO 3 -->
+<!-- MODAL TIPO 4-->
+{{#question4}}
+    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="...">
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{{/question4}}
+<!-- END MODAL TIPO 4 -->

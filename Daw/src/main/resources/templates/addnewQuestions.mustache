@@ -1,43 +1,27 @@
 
 <!-- MODAL TIPO 0-->
 {{#question0}}
-    <div class="modal fade bd-example-modal-xl" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+    <div class="modal" id="AddLessonModal" tabindex="-1" role="dialog" aria-labelledby="AddLessonModal">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-
-                <!-- Modal Header -->
                 <div class="modal-header">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="text-center">{{#question}}{{info}}{{/question}}</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-center">1</td>
-                            <td>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="...">
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title" id="AddLessonModalHead">{{#question}}{{info}}{{/question}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
                 </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
-                    <i class="material-icons" style="font-size:48px;color:blueviolet">add_circle_outline</i>
+                    <form action="/saveAnswer/{{#question}}{{idQuestion}}{{/question}}" method="post">
+                        <div class="form-group">
+                            {{#answer}}<input type="hidden" name="idAnswer" value="{{idAnswer}}" class="form-control"/>{{/answer}}
+                            <label for="title">Respuesta</label>
+                            <input type="text" id="info" name="info"
+                                   {{#answer}}value="{{info}}"{{/answer}} class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar tema</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
                 </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                </div>
-
             </div>
         </div>
     </div>
@@ -60,12 +44,11 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="text-center">1</td>
                             <td>
                                 <div class="form-check form-check-radio">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                               value="option1">
+                                        <input class="form-check-input" type="radio" name="textQuestion" id="textQuestion"
+                                               value="Correct">
                                         Correcta
                                         <span class="circle">
                                                 <span class="check"></span>
@@ -74,8 +57,8 @@
                                 </div>
                                 <div class="form-check form-check-radio">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                               value="option1">
+                                        <input class="form-check-input" type="radio" name="textQuestion" id="textQuestion"
+                                               value="Incorrect">
                                         Incorrecta
                                         <span class="circle">
                                                 <span class="check"></span>
@@ -86,13 +69,13 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
+
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
                 </div>
 
             </div>
@@ -120,19 +103,19 @@
                             <td class="text-center">1</td>
                             <td>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="...">
+                                    <input type="text" id="textQuestion" class="form-control" placeholder="...">
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
+
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
                 </div>
 
             </div>
@@ -161,20 +144,20 @@
                             <td>
                                 <form>
                                     {{#options}}
-                                    <input class="form-check-input" type="checkbox" name="respuesta{{idItem}}">{{info}}<br>
+                                    <input  id="textQuestion" class="form-check-input" type="checkbox" name="respuesta{{idItem}}">{{info}}<br>
                                     {{/options}}
                                 </form>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
+
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
                 </div>
 
             </div>
@@ -220,13 +203,13 @@
                         </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
+
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-primary" onclick="addAnswer(1)">Enviar respuesta</button>
                 </div>
 
             </div>
@@ -234,3 +217,15 @@
     </div>
 {{/question4}}
 <!-- END MODAL TIPO 4 -->
+<script>
+    function addAnswer() {
+        $("#textQuestion").each(function (key, value) {
+            var data="";
+            data=data+""+$(this).attr("value");
+            console.log(data);
+        });
+
+
+    }
+
+</script>

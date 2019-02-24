@@ -97,8 +97,20 @@ spring.http.multipart.max-request-size = 10MB
 
 Once connected to the environment we had to familiarize ourselves with the tags @ Entity, @ ManyToOne .... And so we finally managed to create a DB according to our requirements.
 ### Entity diagram
-Se incluirá un diagrama con las entidades de la base de datos, sus campos y las relaciones entre ellas. Se usará un diagrama de las clases Java, no un diagrama entidad-relación de base de datos
-###Class diagram and templates
+![diagrama de clases bbdd](https://user-images.githubusercontent.com/46897050/53304966-bdebf080-387b-11e9-8026-2ebd933f7413.jpg)
+
+The database is composed of the following entities:Answer, Concept, Question, Item, User and Lesson.  Each of the entities has a series of field, as we can see in the photo
+
+Association relations:
+- Answer with Question
+
+Composition relations:
+- Lesson with Concept
+- User with Answer
+- Concept with Question
+- Concept with Item
+
+### Class diagram and templates
  Se creará un diagrama de clases de la aplicación. No se incluirán ni atributos ni métodos en las clases. Se mostrarán las relaciones entre las clases (asociación, composición o herencia) y se diferenciará claramente qué clases son @Controller, @Service, Repository u otro tipo de clases. Para ello se puede usar un código de colores, una distribución de las clases por partes u otro mecanismo. En este diagrama también se incluirán los ficheros que contienen los templates y se indicará con qué @Controller se relacionan.
 ### Bibliography
 

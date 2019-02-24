@@ -68,6 +68,9 @@ public class MainController {
 
     @Autowired
     ConceptService conceptService;
+    Concept idConc;
+
+
 
 
     @ModelAttribute
@@ -153,15 +156,16 @@ public class MainController {
     }
 
     @GetMapping("/TeacherConcept_View/{idConcept}")
-    public String showConcept(Model model, @PathVariable long idConcept, @PageableDefault(value = 2) Pageable page) {
+    public String showConcept(Model model, @PathVariable long idConcept, @PageableDefault(value = 3) Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
+        Optional<Concept> con = conceptService.findByOneId(idConcept);
         if (concept.isPresent()) {
             model.addAttribute("questions", questionRepository.findByidConcept(concept.get()));
             model.addAttribute("concept", concept.get());
-            model.addAttribute("items", itemService.findAll(page));
         }
+        model.addAttribute("items", itemService.findItemByIdConcept(page, con.get()));
         return "ConceptView/TeacherConcept_View";
     }
 

@@ -115,7 +115,9 @@
                     <script type="text/javascript">
                          $(document).ready(function () {
                              $('#loadMoreItems').click(function () {
-                                 loadMoreItems();
+                                 $("#cargando").show();
+                                 loadMoreLesson();
+                                 $("#cargando").hide();
                             });
                          });
                     </script>
@@ -239,7 +241,9 @@
     $(document).ready(function () {
 
         $('#loadMoreItems').click(function () {
-            loadMoreItems();
+            $("#cargando").show();
+            loadMoreLesson();
+            $("#cargando").hide();
         });
 
 

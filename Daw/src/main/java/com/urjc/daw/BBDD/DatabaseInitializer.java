@@ -173,47 +173,48 @@ public class DatabaseInitializer {
 		concept20.setIdLesson(lesson1);
 
 
-		concept3.addItem(item9);
-		concept3.addItem(item10);
-		concept3.addItem(item11);
-		concept3.addItem(item12);
-		concept3.addItem(item13);
-		concept3.addItem(item14);
-		concept3.addItem(item15);
-		concept3.addItem(item18);
-		concept3.addItem(item19);
+		concept7.addItem(item9);
+		concept7.addItem(item10);
+		concept7.addItem(item11);
+		concept7.addItem(item12);
+		concept7.addItem(item13);
+		concept7.addItem(item14);
+		concept7.addItem(item15);
+		concept7.addItem(item16);
+		concept7.addItem(item18);
+		concept7.addItem(item19);
 
 
-		concept2.addItem(item1);
-		concept3.addItem(item3);
-		concept2.addItem(item4);
-		concept2.addItem(item5);
-		concept2.addItem(item6);
-		concept2.addItem(item7);
-		concept2.addItem(item8);
-		concept2.addItem(item17);
-		concept2.addItem(item20);
+		concept7.addItem(item1);
+		concept7.addItem(item3);
+		concept7.addItem(item4);
+		concept7.addItem(item5);
+		concept7.addItem(item6);
+		concept7.addItem(item7);
+		concept7.addItem(item8);
+		concept7.addItem(item17);
+		concept7.addItem(item20);
 
-		item1.setIdConcept(concept2);
-		item3.setIdConcept(concept3);
-		item4.setIdConcept(concept2);
-		item4.setIdConcept(concept2);
-		item5.setIdConcept(concept2);
-		item6.setIdConcept(concept2);
-		item7.setIdConcept(concept2);
-		item8.setIdConcept(concept2);
-		item9.setIdConcept(concept3);
-		item10.setIdConcept(concept3);
-		item11.setIdConcept(concept3);
-		item12.setIdConcept(concept3);
-		item13.setIdConcept(concept3);
-		item14.setIdConcept(concept3);
-		item15.setIdConcept(concept3);
-		item16.setIdConcept(concept2);
-		item17.setIdConcept(concept2);
-		item18.setIdConcept(concept3);
-		item19.setIdConcept(concept3);
-		item20.setIdConcept(concept20);
+		item1.setIdConcept(concept7);
+		item3.setIdConcept(concept7);
+		item4.setIdConcept(concept7);
+		item4.setIdConcept(concept7);
+		item5.setIdConcept(concept7);
+		item6.setIdConcept(concept7);
+		item7.setIdConcept(concept7);
+		item8.setIdConcept(concept7);
+		item9.setIdConcept(concept7);
+		item10.setIdConcept(concept7);
+		item11.setIdConcept(concept7);
+		item12.setIdConcept(concept7);
+		item13.setIdConcept(concept7);
+		item14.setIdConcept(concept7);
+		item15.setIdConcept(concept7);
+		item16.setIdConcept(concept7);
+		item17.setIdConcept(concept7);
+		item18.setIdConcept(concept7);
+		item19.setIdConcept(concept7);
+		item20.setIdConcept(concept7);
 
 
 		lessonRepository.save(lesson1);

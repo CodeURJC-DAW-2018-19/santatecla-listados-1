@@ -207,6 +207,7 @@
 
                                     {{/admin}}
                                 </ul>
+                                <button type="button" id="loadMoreConcepts" class="btn btn-primary align-self-md-end">Más conceptos</button>
                             </div>
                         </div>
                     </div>
@@ -221,7 +222,7 @@
                 Cargando contenido
             </p>
         </div>
-        <button type="button" id="loadMore" class="btn btn-primary align-self-md-end">Mas temas</button>
+        <button type="button" id="loadMore" class="btn btn-primary align-self-md-end">Más temas</button>
         <div class="row">
             <div class="col-md-10">
                 {{#admin}}
@@ -252,6 +253,12 @@
             loadMoreLesson();
             $("#cargando").hide();
         });
+
+        $('#loadMoreConcepts').click(function () {
+            $("#cargando").show();
+            loadMoreConcepts();
+            $("#cargando").hide();
+        })
 
         //Init chart
         var myChart = echarts.init(document.getElementById('main'));

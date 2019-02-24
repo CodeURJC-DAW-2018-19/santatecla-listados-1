@@ -309,7 +309,6 @@
     function addModalInfo(tipoBorrado, id) {
         $("#tipoBorrado").text("Borrar " + tipoBorrado);
         $("#deleteModal").html('<h4>¿Está seguro de querer borrar el ' + tipoBorrado + ' ?</h4>');
-
         if(tipoBorrado==="concepto")
             $("#btn-borrar").attr('href', "/deleteConcept/" + id);
         else

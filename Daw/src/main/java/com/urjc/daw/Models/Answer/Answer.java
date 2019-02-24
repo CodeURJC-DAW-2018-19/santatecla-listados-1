@@ -67,6 +67,10 @@ public class Answer {
         return idQuestion.getIdQuestion();
     }
 
+    public Question getQuestion(){
+        return idQuestion;
+    }
+
     public void setQuestion(Question idQuestion) {
         this.idQuestion = idQuestion;
     }
@@ -94,7 +98,7 @@ public class Answer {
         this.correct = correct;
     }
 
-    public String getQuestion(){
+    public String getQuestionInfo(){
         return this.idQuestion.getInfo();
     }
 }

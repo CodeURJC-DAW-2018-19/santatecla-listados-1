@@ -300,21 +300,24 @@ public class DatabaseInitializer {
 
         question1.setConcept(concept2);
 
+		questionRepository.save(question1);
+
         concept2.addQuestion(question1);
 
 		answer1.setQuestion(question1);
 		answer2.setQuestion(question1);
 
-        userRepository.save(ac);
+
+
+		answerRepository.save(answer1);
+		answerRepository.save(answer2);
+
         userRepository.save(ac);
 
 
-		questionRepository.save(question1);
 
 		conceptRepository.save(concept2);
 
-        answerRepository.save(answer1);
-        answerRepository.save(answer2);
 
 
 

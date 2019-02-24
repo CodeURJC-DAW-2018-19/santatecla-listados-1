@@ -63,7 +63,7 @@ public class QuestionController {
         Optional<Concept> concept = conceptService.findByOneId(idConcept);
         if(concept.isPresent()) {
             List<Item> selected = new ArrayList<>();
-            int type = (int) (Math.random() * 4);
+            int type = 0;//(int) (Math.random() * 4);
             int item = 0;
             String info = "";
             String attr = "";

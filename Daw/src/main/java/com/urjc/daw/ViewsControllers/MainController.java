@@ -156,7 +156,7 @@ public class MainController {
     }
 
     @GetMapping("/TeacherConcept_View/{idConcept}")
-    public String showConcept(Model model, @PathVariable long idConcept, @PageableDefault(value = 3) Pageable page) {
+    public String showConcept(Model model, @PathVariable long idConcept, @PageableDefault(value = 10) Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);

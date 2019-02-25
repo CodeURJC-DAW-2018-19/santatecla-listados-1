@@ -56,8 +56,7 @@ public class ConceptController {
     @PostMapping("/saveConcept/{id}")
     public String saveConcept(Model model, Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
         if (!multipartFile.isEmpty()) {
-            Path derectorioRecursos = Paths.get("src//main//resources//static//uploads");
-            String rootPath = derectorioRecursos.toFile().getAbsolutePath();
+            String rootPath = "C://Temp//uploads";
             try {
                 byte[] bytes = multipartFile.getBytes();
                 Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());

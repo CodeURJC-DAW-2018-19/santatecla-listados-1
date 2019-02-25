@@ -75,7 +75,32 @@ Questions: It is a view to add questions, where in each type of question there i
 
 ## PHASE 2
 ### Navigation diagrams
-Se actualizarán las capturas de pantalla de las páginas principales de la aplicación. En caso de que haya cambiado la navegación, se deberá actualizar el diagrama de navegación.
+
+####  screenshots
+
+Login:
+![login](https://user-images.githubusercontent.com/46897050/53310412-138cc100-38ad-11e9-966f-109255883ff6.jpg)
+
+Main Page Teacher :
+![mainpage teacher1](https://user-images.githubusercontent.com/46897050/53310437-36b77080-38ad-11e9-88f9-06b601aa0b44.jpg)
+![mainpage teacher2](https://user-images.githubusercontent.com/46897050/53310455-48991380-38ad-11e9-8e97-f3ea0c2ac8de.jpg)
+
+Main Page Student:
+![mainpage student1](https://user-images.githubusercontent.com/46897050/53310413-138cc100-38ad-11e9-88f7-528da9c537e1.jpg)
+![mainpage student4](https://user-images.githubusercontent.com/46897050/53310450-433bc900-38ad-11e9-8ff4-a032a8ee28ad.jpg)
+
+Main Page Visitor:
+![mainpage visitante1](https://user-images.githubusercontent.com/46897050/53310420-1edfec80-38ad-11e9-9c1b-db2d3346b947.jpg)
+
+Sign in:
+![sign in](https://user-images.githubusercontent.com/46897050/53310664-189e4000-38ae-11e9-93ed-f59f419f97ca.jpg)
+
+Teacher concept view:
+
+
+Student concept view:
+
+
 ### Development environment
 To begin with we had to decide what environment we wanted to use.
 In our case it was INTELLIJ.

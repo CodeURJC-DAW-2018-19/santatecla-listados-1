@@ -101,6 +101,24 @@ public class AnswerController {
         return "redirect:/StudentConceptView/" + question.getIdConcept();
     }
 
+    @GetMapping(path = "/sendSelectedItems/{idQuestion}/{ret}/{total}")
+    public String sendItemsSelected(Model model, @PathVariable long idQuestion, @PathVariable String ret,@PathVariable String total){
+        String [] items = ret.split("sss");
+        String [] all = total.split("sss");
+        Answer answer = new Answer(ret);
+
+        Question question=questionService.findOne(idQuestion).get();
+        answer.setIdUser(userComponent.getLoggedUser());
+        answer.setQuestion(question);
+        question.addAnswer(answer);
+        answerService.addAnswer(answer);
+        questionService.addQuestion(question);
+        answer.correctType2(items,all);
+        answerService.addAnswer(answer);
+
+        return "redirect:/StudentConceptView/" + question.getIdConcept();
+    }
+
 
 
 

@@ -63,7 +63,7 @@ public class QuestionController {
         Optional<Concept> concept = conceptService.findByOneId(idConcept);
         if(concept.isPresent()) {
             List<Item> selected = new ArrayList<>();
-            int type = 3;//(int) (Math.random() * 4);
+            int type = (int) (Math.random() * 4);
             int item = 0;
             String info = "";
             String attr = "";
@@ -76,7 +76,7 @@ public class QuestionController {
                 case 1:
                     List<Item> itemList = itemService.findItemByIdConceptIs(concept.get());
                     item = (int) (Math.random() * itemList.size() - 1);
-                    info = "¿" + itemList.get(item).getInfo() + " es un elemento de " + concept.get().getTitle() + "?";
+                    info = "¿" + itemList.get(item).getInfo() + " es un elemento de " + concept.get().getTitle() + " ?";
                     attr = "question1";
                     break;
                 case 2:
@@ -87,7 +87,7 @@ public class QuestionController {
                     for (int i = 0; i < itemsCorrect.size(); i++) {
                         complementInfo += itemsCorrect.get(i).getInfo() + ", ";
                     }
-                    info = "¿Qué elemento falta en " + complementInfo + " _________ ,para completar la lista de <concepto>?";
+                    info = "¿Qué elemento falta en " + complementInfo + " _________ , para completar la lista de " + concept.get().getTitle() +" ?";
                     attr = "question2";
                     break;
                 case 3:
@@ -101,7 +101,7 @@ public class QuestionController {
                         complement += itemRandom.get(item).getInfo() + ", ";
                         itemRandom.remove(item);
                     }
-                    info = "¿Qué elementos de + " + complement + " ?";
+                    info = "¿Qué elementos de + " + complement + " no son parte de " + concept.get().getTitle() + " ?";
                     attr = "question3";
 
                     break;

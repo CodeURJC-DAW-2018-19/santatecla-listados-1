@@ -80,9 +80,9 @@ public class DatabaseInitializer {
 
 
 
-		Concept concept2 = new Concept("Concepto2: Las disciplinas del software",2, "mundo.png");
-		Concept concept3 = new Concept("Concepto3: Los patrones de diseño creacionales",3, "mundo.pgn");
-		Concept concept4 = new Concept("Concepto4: Los patrones de comportamiento",4, "mundo.png");
+		Concept concept2 = new Concept("Las disciplinas del software",2, "mundo.png");
+		Concept concept3 = new Concept("Los patrones de diseño creacionales",3, "mundo.pgn");
+		Concept concept4 = new Concept("Los patrones de comportamiento",4, "mundo.png");
 		Concept concept5 = new Concept("Concepto5",5);
 		Concept concept6 = new Concept("Concepto6",6);
 		Concept concept7 = new Concept("Concepto7",7);
@@ -106,12 +106,12 @@ public class DatabaseInitializer {
 		Item item1 = new Item("Requisitos",true);
 		Item item3 = new Item("Prototype",true);
 		Item item4 = new Item("Diseño",true);
-		Item item5 = new Item("Programación",true);
+		Item item5 = new Item("Programacion",true);
 		Item item6 = new Item("Pruebas",true);
 		Item item17 = new Item("Despliegue",true);
-		Item item7 = new Item("Comprensión",false);
-		Item item8 = new Item("Ofuscación",false);
-		Item item16 = new Item("Análisis de impacto",false);
+		Item item7 = new Item("Comprension",false);
+		Item item8 = new Item("Ofuscacion",false);
+		Item item16 = new Item("Analisis de impacto",false);
 
 		Item item9 = new Item("Abstract factory",true);
 		Item item10 = new Item("Builder",true);

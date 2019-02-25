@@ -132,6 +132,28 @@ public class Answer {
         }
     }
 
+    public void correctType2(String[] items, String [] all){
+        this.setCorrect(true);
+        if(getCorrectOptions(items)  == getCorrectOptions(all)){
+            this.setState("right");
+        }else{
+            this.setState("wrong");
+        }
+    }
+
+    private int getCorrectOptions(String [] array){
+        Set<Item> items = idQuestion.getConcept().getItemSet();
+        int result = 0;
+        for (String s: array) {
+            for (Item i: items) {
+                if(i.getInfo().equals(s) && i.getState()){
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+
     public long getIdConcept(){
         return this.idQuestion.getIdConcept();
     }

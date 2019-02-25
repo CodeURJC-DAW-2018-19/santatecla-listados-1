@@ -187,17 +187,19 @@
 <script>
     function addAnswer(idQuestion) {
         var ret="";
+        var total="";
         $("#textQuestion").children().each(function(){
             if($(this).is(':checked')){
-               ret=ret+"|"+$(this).attr("name");
+               ret=ret+"sss"+$(this).attr("name");
             }
+                total=total+"sss"+$(this).attr("name");
         });
 
-        var urlPage = "/iloveu/"+idQuestion+"/"+ ret;
+        var urlPage = "/sendSelectedItems/"+idQuestion+"/"+ ret + "/" + total;
         $.ajax({
             url: urlPage
         }).done(function (data) {
-
+            reFresh();
         })
     }
 

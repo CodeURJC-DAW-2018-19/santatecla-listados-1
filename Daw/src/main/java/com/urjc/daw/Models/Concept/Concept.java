@@ -1,8 +1,8 @@
-package com.urjc.daw.Models.Concept;
+package com.urjc.daw.models.concept;
 
-import com.urjc.daw.Models.Item.Item;
-import com.urjc.daw.Models.Lessons.Lesson;
-import com.urjc.daw.Models.Question.Question;
+import com.urjc.daw.models.item.Item;
+import com.urjc.daw.models.lessons.Lesson;
+import com.urjc.daw.models.question.Question;
 
 import javax.persistence.*;
 import java.util.HashSet;

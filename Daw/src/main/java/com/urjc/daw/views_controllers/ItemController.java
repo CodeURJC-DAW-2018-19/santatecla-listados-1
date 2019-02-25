@@ -1,16 +1,14 @@
-package com.urjc.daw.ViewsControllers;
+package com.urjc.daw.views_controllers;
 
-import com.urjc.daw.Models.Concept.Concept;
-import com.urjc.daw.Models.Concept.ConceptService;
-import com.urjc.daw.Models.Item.Item;
-import com.urjc.daw.Models.Item.ItemRepository;
-import com.urjc.daw.Models.Item.ItemService;
-import com.urjc.daw.Models.Lessons.Lesson;
-import com.urjc.daw.Models.Question.QuestionRepository;
+import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.concept.ConceptService;
+import com.urjc.daw.models.item.Item;
+import com.urjc.daw.models.item.ItemRepository;
+import com.urjc.daw.models.item.ItemService;
+import com.urjc.daw.models.question.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,24 +37,24 @@ public class ItemController {
     public String deleteItem(Model model, @PathVariable long idItem, @PathVariable long idConcept) {
         itemService.deleteItemById(idItem);
 
-        return "redirect:/TeacherConcept_View/{idConcept}";
+        return "redirect:/TeacherConceptView/{idConcept}";
     }
 
     @PostMapping("/saveItem/{idConcept}")
-    public String saveItem(Model model, Item item, @PathVariable long idConcept){
+    public String saveItem(Model model, Item item, @PathVariable long idConcept) {
         Optional<Concept> c = conceptService.findByOneId(idConcept);
-        if(c.isPresent()){
+        if (c.isPresent()) {
             Concept concept = c.get();
             concept.addItem(item);
             conceptService.addConcept(concept);
         }
-        return "redirect:/TeacherConcept_View/{idConcept}";
+        return "redirect:/TeacherConceptView/{idConcept}";
     }
 
 
-    @GetMapping (path = "/loadMoreItems")
-    public String topicMoreButton(Model model,  @PageableDefault(size = 3) Pageable page){
-        //Optional<Concept> c = conceptService.findByOneId(idConcept);
+    @GetMapping(path = "/loadMoreItems")
+    public String topicMoreButton(Model model, @PageableDefault(size = 3) Pageable page) {
+        //Optional<concept> c = conceptService.findByOneId(idConcept);
         model.addAttribute("items", itemService.findAll(page));
         return "Items";
     }

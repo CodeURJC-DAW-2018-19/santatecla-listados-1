@@ -1,4 +1,4 @@
-package com.urjc.daw.Models.Concept;
+package com.urjc.daw.models.concept;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

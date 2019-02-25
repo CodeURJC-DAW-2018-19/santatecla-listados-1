@@ -1,4 +1,4 @@
-package com.urjc.daw.Security;
+package com.urjc.daw.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -30,9 +30,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
 
-    //         PRIVATE VIEWS            //
+        //         PRIVATE VIEWS            //
 
-        http.authorizeRequests().antMatchers("/MainPage").hasAnyRole("TEACHER","STUDENT","VISITOR");
+        http.authorizeRequests().antMatchers("/MainPage").hasAnyRole("TEACHER", "STUDENT", "VISITOR");
         http.authorizeRequests().antMatchers("/deleteLessons/**").hasAnyRole("TEACHER");
         http.authorizeRequests().antMatchers("/deleteConcept/**").hasAnyRole("TEACHER");
 
@@ -41,12 +41,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/StudentConceptView/**").hasAnyRole("STUDENT");
 
 
-
-
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder authentication) throws Exception{
+    public void configure(AuthenticationManagerBuilder authentication) throws Exception {
         authentication.authenticationProvider(authenticationProvider);
     }
 }

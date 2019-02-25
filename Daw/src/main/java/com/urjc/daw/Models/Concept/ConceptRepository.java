@@ -1,8 +1,6 @@
-package com.urjc.daw.Models.Concept;
+package com.urjc.daw.models.concept;
 
-import com.urjc.daw.Models.Concept.Concept;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 

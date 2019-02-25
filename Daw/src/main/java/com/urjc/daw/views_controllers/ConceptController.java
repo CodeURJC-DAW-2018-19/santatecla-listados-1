@@ -1,15 +1,14 @@
-package com.urjc.daw.ViewsControllers;
+package com.urjc.daw.views_controllers;
 
-import com.urjc.daw.Models.Concept.Concept;
-import com.urjc.daw.Models.Concept.ConceptRepository;
-import com.urjc.daw.Models.Concept.ConceptService;
-import com.urjc.daw.Models.Item.ItemRepository;
-import com.urjc.daw.Models.Lessons.LessonService;
-import com.urjc.daw.Models.Question.QuestionRepository;
-import com.urjc.daw.Models.Answer.AnswerRepository;
-import com.urjc.daw.Models.User.User;
-import com.urjc.daw.Models.User.UserRepository;
-import com.urjc.daw.Models.Lessons.Lesson;
+import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.concept.ConceptRepository;
+import com.urjc.daw.models.concept.ConceptService;
+import com.urjc.daw.models.item.ItemRepository;
+import com.urjc.daw.models.lessons.LessonService;
+import com.urjc.daw.models.question.QuestionRepository;
+import com.urjc.daw.models.answer.AnswerRepository;
+import com.urjc.daw.models.user.UserRepository;
+import com.urjc.daw.models.lessons.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +23,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 
 @Controller
 public class ConceptController {
@@ -56,8 +54,8 @@ public class ConceptController {
     }
 
     @PostMapping("/saveConcept/{id}")
-    public String saveConcept(Model model, Concept concept, @PathVariable long id,@RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
-        if(!multipartFile.isEmpty()){
+    public String saveConcept(Model model, Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
+        if (!multipartFile.isEmpty()) {
             Path derectorioRecursos = Paths.get("src//main//resources//static//uploads");
             String rootPath = derectorioRecursos.toFile().getAbsolutePath();
             try {
@@ -71,7 +69,7 @@ public class ConceptController {
             }
         }
 
-        Lesson lesson= lessonService.findOne(id).get();
+        Lesson lesson = lessonService.findOne(id).get();
         concept.setIdLesson(lesson);
         conceptService.addConcept(concept);
         lesson.addConcept(concept);

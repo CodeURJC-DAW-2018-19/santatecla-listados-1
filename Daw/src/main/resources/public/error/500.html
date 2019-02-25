@@ -12,14 +12,19 @@
     <!--custom css-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style type="text/css">
-        img{
+        img {
             width: 100px;
             height: 100px;
         }
     </style>
 </head>
+<style>
+    body {
+        background-size: cover;
+    }
+</style>
 
-<body>
+<body class="" background="/img/knowledge-books.jpg">
 <div class="wrapper ">
     <nav class="navbar navbar-expand-lg" style="background-image: linear-gradient(60deg, #7556ff, #E8E8E8)">
         <div class="container">
@@ -30,17 +35,8 @@
                 <span class="navbar-toggler-bar navbar-kebab"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav nav-tabs" id="tabParent" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/MainPage" onclick="showTab('inicio')">INICIO</a>
-                    </li>
-                </ul>
             </div>
             <form class="form-inline ml-auto">
-                <div class="form-group no-border">
-                    <a href="/logout">Cerrar sesión</a>
-                    <a href="/login">Iniciar sesión</a>
-                </div>
             </form>
         </div>
     </nav>
@@ -59,6 +55,36 @@
         <a href="/MainPage" class="btn btn-primary align-self-md-start" style="background: #917deb87">Home Page</a>
     </div>
 </div>
+<footer class="footer">
+    <div class="container-fluid">
+        <nav class="float-left">
+            <ul>
+                <li style="display: inline">
+                    <a href="https://trello.com/b/kwE4oDnN/grupo9-daw">
+                        Trello
+                    </a>
+                </li>
+                <li style="display: inline">
+                    <a >
+                        Grupo 9
+                    </a>
+                </li>
+                <li style="display: inline">
+                    <a href="https://docs.google.com/document/d/1eq-zIDgxicw_UoEpP-LEa3dN-9cM59FqMHtBGM7VUPw/edit">
+                        Documento
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a>Grupo 9</a> for a better web.
+        </div>
+    </div>
+</footer>
 </body>
 
 </html>

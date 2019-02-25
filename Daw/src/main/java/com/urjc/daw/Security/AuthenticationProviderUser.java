@@ -1,8 +1,8 @@
-package com.urjc.daw.Security;
+package com.urjc.daw.security;
 
-import com.urjc.daw.Models.User.User;
-import com.urjc.daw.Models.User.UserComponent;
-import com.urjc.daw.Models.User.UserRepository;
+import com.urjc.daw.models.user.User;
+import com.urjc.daw.models.user.UserComponent;
+import com.urjc.daw.models.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,17 +28,17 @@ public class AuthenticationProviderUser implements AuthenticationProvider {
     UserComponent userComponent;
 
     @Override
-    public Authentication authenticate (Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
         String password = (String) authentication.getCredentials();
 
         User user = repository.findByName(name);
 
-        if(user==null){
-            throw new BadCredentialsException("User not found");
+        if (user == null) {
+            throw new BadCredentialsException("user not found");
         }
 
-        if(!new BCryptPasswordEncoder().matches(password, user.getpassword())){
+        if (!new BCryptPasswordEncoder().matches(password, user.getpassword())) {
             throw new BadCredentialsException("Wrong password");
         }
 

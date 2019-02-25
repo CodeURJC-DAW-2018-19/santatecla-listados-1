@@ -1,8 +1,6 @@
-package com.urjc.daw.Models.User;
+package com.urjc.daw.models.user;
 
-import com.urjc.daw.Models.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 

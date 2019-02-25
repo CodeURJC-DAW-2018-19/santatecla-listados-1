@@ -1,21 +1,17 @@
-package com.urjc.daw.ViewsControllers;
+package com.urjc.daw.views_controllers;
 
-import com.urjc.daw.Models.Answer.Answer;
-import com.urjc.daw.Models.Answer.AnswerService;
-import com.urjc.daw.Models.Concept.ConceptService;
-import com.urjc.daw.Models.Item.Item;
-import com.urjc.daw.Models.Lessons.Lesson;
-import com.urjc.daw.Models.Question.Question;
-import com.urjc.daw.Models.Question.QuestionService;
-import com.urjc.daw.Models.User.UserComponent;
+import com.urjc.daw.models.answer.Answer;
+import com.urjc.daw.models.answer.AnswerService;
+import com.urjc.daw.models.concept.ConceptService;
+import com.urjc.daw.models.question.Question;
+import com.urjc.daw.models.question.QuestionService;
+import com.urjc.daw.models.user.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class AnswerController {
@@ -46,7 +42,7 @@ public class AnswerController {
         ans.get().correct();
         answerService.addAnswer(ans.get());
         questionService.addQuestion(ans.get().accesToQuestion());
-        return "redirect:/TeacherConcept_View/{idConcept}";
+        return "/TeacherConceptView/{idConcept}";
     }
 
 
@@ -57,7 +53,7 @@ public class AnswerController {
         ans.get().correct();
         answerService.addAnswer(ans.get());
         questionService.addQuestion(ans.get().accesToQuestion());
-        return "redirect:/TeacherConcept_View/{idConcept}";
+        return "/TeacherConceptView/{idConcept}";
     }
 
     @PostMapping(path = "/saveAnswer/{idQuestion}")
@@ -72,7 +68,7 @@ public class AnswerController {
         question.get().addAnswer(answer);
         question.get().metrics();
         questionService.addQuestion(question.get());
-        return "redirect:/StudentConceptView/" + question.get().getIdConcept();
+        return "/StudentConceptView/" + question.get().getIdConcept();
     }
 
 
@@ -95,7 +91,7 @@ public class AnswerController {
         questionService.addQuestion(question);
         answer.correctType1(correct);
         answerService.addAnswer(answer);
-        return "redirect:/StudentConceptView/" + question.getIdConcept();
+        return "/StudentConceptView/" + question.getIdConcept();
     }
 
     @GetMapping(path = "/sendSelectedItems/{idQuestion}/{ret}/{total}")
@@ -114,7 +110,7 @@ public class AnswerController {
         answer.correctType2(items, all);
         answerService.addAnswer(answer);
 
-        return "redirect:/StudentConceptView/" + question.getIdConcept();
+        return "/StudentConceptView/" + question.getIdConcept();
     }
 
 

@@ -1,4 +1,4 @@
-package com.urjc.daw.Models.User;
+package com.urjc.daw.models.user;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;

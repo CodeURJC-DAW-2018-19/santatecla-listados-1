@@ -1,12 +1,10 @@
-package com.urjc.daw.Models.Question;
+package com.urjc.daw.models.question;
 
-import com.urjc.daw.Models.Concept.Concept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 @Service
 public class QuestionService {
@@ -30,5 +28,5 @@ public class QuestionService {
     }
     public Iterable<Question> findAllById(){ return repository.findAll();}
 
-    //public Question findByConceptAndId (Optional<Concept> concept, long id){ return repository.findByConceptAndId(concept.get(), id);}
+    //public question findByConceptAndId (Optional<concept> concept, long id){ return repository.findByConceptAndId(concept.get(), id);}
 }

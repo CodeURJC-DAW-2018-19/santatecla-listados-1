@@ -1,7 +1,7 @@
-package com.urjc.daw.Models.Answer;
+package com.urjc.daw.models.answer;
 
-import com.urjc.daw.Models.Question.Question;
-import com.urjc.daw.Models.User.User;
+import com.urjc.daw.models.question.Question;
+import com.urjc.daw.models.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

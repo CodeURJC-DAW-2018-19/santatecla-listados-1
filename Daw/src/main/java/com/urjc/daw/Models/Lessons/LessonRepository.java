@@ -1,4 +1,4 @@
-package com.urjc.daw.Models.Lessons;
+package com.urjc.daw.models.lessons;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

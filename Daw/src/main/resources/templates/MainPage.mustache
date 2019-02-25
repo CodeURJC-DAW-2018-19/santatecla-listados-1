@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <!-- Modal Add Lessons-->
+    <!-- Modal Add lessons-->
     <div class="modal" id="AddLessonModal" tabindex="-1" role="dialog" aria-labelledby="AddLessonModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -103,7 +103,9 @@
                                        style="float: right; cursor: pointer">delete</a>
                                 {{/admin}}
                                 {{#student}}
-                                    <a style="float: right">{{getAnswerCorrectOfConcepts}}:{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}/ {{getSizeOfAnswerPendingOfConcepts}}</a>
+                                    <a style="float: right">{{getAnswerCorrectOfConcepts}}
+                                        :{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}
+                                        / {{getSizeOfAnswerPendingOfConcepts}}</a>
                                 {{/student}}
                                 </a>
                             </h4>
@@ -119,8 +121,8 @@
                                         <div class="row">
                                             <li class="list-group-item col-md-8">
                                                 {{#admin}}
-                                                    <a href="/TeacherConcept_View/{{idConcept}}"> {{title}}</a>
-                                                   <!-- <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>-->
+                                                    <a href="/TeacherConceptView/{{idConcept}}"> {{title}}</a>
+                                                    <!-- <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>-->
                                                 {{/admin}}
                                                 {{#student}}
                                                     <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
@@ -136,12 +138,7 @@
                                                    style="cursor: pointer">delete</a>
                                             {{/admin}}
                                             {{#student}}
-
-                                                    <a style="cursor: pointer">{{toStringMetrics}}</a>
-
-                                                {{#setQuestion}}
-                                                    <a style="cursor: pointer">{{getAnswerCorrect}}:{{getAnswerIncorrect}}:{{getAnswerPending}}/ {{getSizeQuestions}}</a>
-                                                {{/setQuestion}}
+                                                <a style="cursor: pointer">{{toStringMetrics}}</a>
                                             {{/student}}
                                         </div>
                                     {{/conceptSet}}
@@ -150,7 +147,7 @@
                                            data-toggle="modal"
                                            href="#AddConceptModal{{id}}" id="buttonNewConcept"
                                            data-target="#AddConceptModal{{id}}">add_circle_outline</a>
-                                        <!-- Modal Add Concept-->
+                                        <!-- Modal Add concept-->
                                         <div class="modal" id="AddConceptModal{{id}}" tabindex="-1" role="dialog"
                                              aria-labelledby="AddConceptModal{{id}}">
                                             <div class="modal-dialog" role="document">
@@ -215,7 +212,7 @@
         <div id="download" style="diplay:none">
             <img
                     width="200"
-                    src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"/>
             <p>
                 Cargando contenido
             </p>
@@ -318,29 +315,30 @@
     function addModalInfo(tipoBorrado, id) {
         $("#tipoBorrado").text("Borrar " + tipoBorrado);
         $("#deleteModal").html('<h4>¿Está seguro de querer borrar el ' + tipoBorrado + ' ?</h4>');
-        if(tipoBorrado==="concepto")
+        if (tipoBorrado === "concepto")
             $("#btn-borrar").attr('href', "/deleteConcept/" + id);
         else
             $("#btn-borrar").attr('href', "/deleteLessons/" + id);
     }
 
 
-    function openConcept(url, elem){
-        $.get(url).done(function(data){
+    function openConcept(url, elem) {
+        $.get(url).done(function (data) {
             var elemId = $(elem).attr('name');
             $('#tabContainer').append('<div class="tab-pane active" id="' + elemId + '" role="tabpanel" aria-labelledby="' + elemId + '-tab"></div>');
-            $('#'+elemId).append(data);
-            $('#tabParent').append('<li class="nav-item" id="li-'+ elemId +'"><a class="nav-link" href="#' + elemId + '" onclick="showTab(\''+ elemId +'\')">' + elemId +
-                    '</a><span onclick="disposeTab(\''+ elemId +'\')">x</span></li>');
+            $('#' + elemId).append(data);
+            $('#tabParent').append('<li class="nav-item" id="li-' + elemId + '"><a class="nav-link" href="#' + elemId + '" onclick="showTab(\'' + elemId + '\')">' + elemId +
+                    '</a><span onclick="disposeTab(\'' + elemId + '\')">x</span></li>');
         });
     }
-    function showTab(data){
+
+    function showTab(data) {
         $('.tab-pane').removeClass('active');
-        $('#'+elemId).addClass('active');
+        $('#' + elemId).addClass('active');
         $('#main-panel').load("items.mustache");
     }
 
-    function disposeTab(elem){
+    function disposeTab(elem) {
         $('#' + elem).remove();
         $('#li-' + elem).remove();
     }

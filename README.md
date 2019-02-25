@@ -75,6 +75,7 @@ Questions: It is a view to add questions, where in each type of question there i
 
 ## PHASE 2
 ### Navigation diagrams
+![diagrama de navegacion](https://user-images.githubusercontent.com/46897050/53312120-0f17d680-38b4-11e9-83d5-48c021a6e65c.jpg)
 
 ####  screenshots
 
@@ -96,10 +97,13 @@ Sign in:
 ![sign in](https://user-images.githubusercontent.com/46897050/53310664-189e4000-38ae-11e9-93ed-f59f419f97ca.jpg)
 
 Teacher concept view:
-
+![concept teacher](https://user-images.githubusercontent.com/46897050/53311833-c27fcb80-38b2-11e9-8667-fd7f852297cb.jpg)
 
 Student concept view:
+![concept s](https://user-images.githubusercontent.com/46897050/53311888-0a9eee00-38b3-11e9-97a5-892528201cfc.jpg)
 
+Add question:
+![generar](https://user-images.githubusercontent.com/46897050/53311890-0a9eee00-38b3-11e9-93b3-4d6ca671c373.jpg)
 
 ### Development environment
 To begin with we had to decide what environment we wanted to use.

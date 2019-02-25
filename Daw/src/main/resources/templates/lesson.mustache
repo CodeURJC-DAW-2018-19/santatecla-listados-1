@@ -32,7 +32,8 @@
                             <div class="row">
                                 <li class="list-group-item col-md-8">
                                     {{#admin}}
-                                        <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)" name="{{title}}"> {{title}}</a>
+                                        <a onclick="openConcept('/TeacherConcept_View/{{idConcept}}', this)"
+                                           name="{{title}}"> {{title}}</a>
                                     {{/admin}}
                                     {{#student}}
                                         <a href="/StudentConceptView/{{idConcept}}"> {{title}}</a>
@@ -61,7 +62,7 @@
                                data-toggle="modal"
                                href="#AddConceptModal{{id}}" id="buttonNewConcept"
                                data-target="#AddConceptModal{{id}}">add_circle_outline</a>
-                            <!-- Modal Add Concept-->
+                            <!-- Modal Add concept-->
                             <div class="modal" id="AddConceptModal{{id}}" tabindex="-1" role="dialog"
                                  aria-labelledby="AddConceptModal{{id}}">
                                 <div class="modal-dialog" role="document">

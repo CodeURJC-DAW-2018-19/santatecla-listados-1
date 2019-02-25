@@ -1,14 +1,12 @@
-package com.urjc.daw.Models.User;
+package com.urjc.daw.models.user;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.urjc.daw.Models.Answer.Answer;
+import com.urjc.daw.models.answer.Answer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity// This tells Hibernate to make a table out of this class

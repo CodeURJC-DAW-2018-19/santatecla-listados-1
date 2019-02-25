@@ -1,7 +1,7 @@
-package com.urjc.daw.Models.Item;
+package com.urjc.daw.models.item;
 
 
-import com.urjc.daw.Models.Concept.Concept;
+import com.urjc.daw.models.concept.Concept;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

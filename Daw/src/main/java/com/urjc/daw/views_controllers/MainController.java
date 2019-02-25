@@ -1,25 +1,23 @@
-package com.urjc.daw.ViewsControllers;
+package com.urjc.daw.views_controllers;
 
-import com.urjc.daw.Models.Answer.AnswerRepository;
-import com.urjc.daw.Models.Concept.Concept;
-import com.urjc.daw.Models.Concept.ConceptRepository;
-import com.urjc.daw.Models.Concept.ConceptService;
-import com.urjc.daw.Models.Item.ItemRepository;
-import com.urjc.daw.Models.Item.ItemService;
-import com.urjc.daw.Models.Lessons.LessonService;
-import com.urjc.daw.Models.Question.Question;
-import com.urjc.daw.Models.Question.QuestionRepository;
-import com.urjc.daw.Models.User.User;
-import com.urjc.daw.Models.User.UserComponent;
-import com.urjc.daw.Models.User.UserRepository;
-import com.urjc.daw.Models.Question.QuestionService;
-import com.urjc.daw.Models.Answer.Answer;
-import com.urjc.daw.Models.Answer.AnswerService;
+import com.urjc.daw.models.answer.AnswerRepository;
+import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.concept.ConceptRepository;
+import com.urjc.daw.models.concept.ConceptService;
+import com.urjc.daw.models.item.ItemRepository;
+import com.urjc.daw.models.item.ItemService;
+import com.urjc.daw.models.lessons.LessonService;
+import com.urjc.daw.models.question.Question;
+import com.urjc.daw.models.question.QuestionRepository;
+import com.urjc.daw.models.user.User;
+import com.urjc.daw.models.user.UserComponent;
+import com.urjc.daw.models.user.UserRepository;
+import com.urjc.daw.models.question.QuestionService;
+import com.urjc.daw.models.answer.Answer;
+import com.urjc.daw.models.answer.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,8 +70,6 @@ public class MainController {
     Concept idConc;
 
 
-
-
     @ModelAttribute
     public void addUserToModel(Model model) {
         boolean logged = userComponent.getLoggedUser() != null;
@@ -102,28 +98,28 @@ public class MainController {
         Optional<Concept> concept = conceptRepository.findByIdConcept(idConcept);
         Optional<User> user = userRepository.findByIdUser(userComponent.getLoggedUser().getId());
 
-        List<Answer> answerListPending = answerRepository.findByCorrectAndIdUser(false,user.get());
+        List<Answer> answerListPending = answerRepository.findByCorrectAndIdUser(false, user.get());
         List<Answer> answerListFinalPending = new ArrayList<>();
-        for (Answer ans:answerListPending) {
-            if(concept.get().getIdConcept()==ans.getIdConcept()){
+        for (Answer ans : answerListPending) {
+            if (concept.get().getIdConcept() == ans.getIdConcept()) {
                 answerListFinalPending.add(ans);
             }
         }
 
-        List<Answer> answerList = answerRepository.findByCorrectAndIdUser(true,user.get());
+        List<Answer> answerList = answerRepository.findByCorrectAndIdUser(true, user.get());
         List<Answer> answerListFinal = new ArrayList<>();
-        for (Answer ans:answerList) {
-            if(concept.get().getIdConcept()==ans.getIdConcept()){
+        for (Answer ans : answerList) {
+            if (concept.get().getIdConcept() == ans.getIdConcept()) {
                 answerListFinal.add(ans);
             }
         }
         if (concept.isPresent() && user.isPresent()) {
             model.addAttribute("answer", answerListFinal);
-            model.addAttribute("answerPending",answerListFinalPending );
+            model.addAttribute("answerPending", answerListFinalPending);
             model.addAttribute("concept", concept.get());
-            model.addAttribute("statitics",user.get().toStringStatistics(idConcept));
+            model.addAttribute("statitics", user.get().toStringStatistics(idConcept));
         }
-        return "ConceptView/StudentConceptView";
+        return "conceptView/StudentConceptView";
     }
 
     @RequestMapping(path = "/")
@@ -158,7 +154,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/TeacherConcept_View/{idConcept}")
+    @GetMapping("/TeacherConceptView/{idConcept}")
     public String showConcept(Model model, @PathVariable long idConcept, @PageableDefault(value = 10) Pageable page) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
@@ -169,7 +165,7 @@ public class MainController {
             model.addAttribute("concept", concept.get());
         }
         model.addAttribute("items", itemService.findItemByIdConcept(page, con.get()));
-        return "ConceptView/TeacherConcept_View";
+        return "conceptView/TeacherConceptView";
     }
 
     @GetMapping("addnewQuestion/{idQuestion}")

@@ -16,4 +16,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findItemByState(boolean state);
     Page<Item> findItemByIdConcept(Pageable page,Concept IdConcept);
     List<Item> findItemByIdConceptIs(Concept IdConcept);
+    List<Item> findByStateAndIdConcept(boolean state,Concept IdConcept);
 }

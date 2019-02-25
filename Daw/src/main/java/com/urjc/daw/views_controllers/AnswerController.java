@@ -56,7 +56,7 @@ public class AnswerController {
         return "/TeacherConceptView/{idConcept}";
     }
 
-    @PostMapping(path = "/saveAnswer/{idQuestion}")
+    @GetMapping(path = "/saveAnswer/{idQuestion}")
     public String addAnswer(Model model, Answer answer, @PathVariable long idQuestion) {
         Optional<Question> question = questionService.findOne(idQuestion);
         int type = question.get().getType();

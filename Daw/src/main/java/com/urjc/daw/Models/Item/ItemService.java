@@ -40,6 +40,10 @@ public class ItemService {
     }
 
 
+    public List<Item> findByStateAndIdConcept (Concept IdConcept, boolean state){
+        return repository.findByStateAndIdConcept(state,IdConcept);
+    }
+
 
 
 }

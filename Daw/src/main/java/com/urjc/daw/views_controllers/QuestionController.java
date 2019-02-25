@@ -67,14 +67,14 @@ public class QuestionController {
                     attr = "question1";
                     break;
                 case 2:
-                    List<Item> itemsCorrect = itemService.findItemByState(true);
+                    List<Item> itemsCorrect = itemService.findByStateAndIdConcept(concept.get(),true);
                     item = (int) (Math.random() * itemsCorrect.size() - 1);
                     itemsCorrect.remove(item);
                     String complementInfo = "";
                     for (int i = 0; i < itemsCorrect.size(); i++) {
                         complementInfo += itemsCorrect.get(i).getInfo() + ", ";
                     }
-                    info = "¿Qué elemento falta en " + complementInfo + " _________ , para completar la lista de " + concept.get().getTitle() + " ?";
+                    info = "¿Qué elemento falta en " + complementInfo + " para completar la lista de " + concept.get().getTitle() + " ?";
                     attr = "question2";
                     break;
                 case 3:

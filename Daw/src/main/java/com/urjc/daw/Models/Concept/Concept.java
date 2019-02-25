@@ -130,6 +130,19 @@ public class Concept {
 
     public void addQuestion(Question question){ setQuestion.add(question); }
 
+    public String toStringMetrics(){
+        int right = 0;
+        int wrong = 0;
+        int pending = 0;
+        int size = 0;
+        for (Question q: setQuestion) {
+            right += q.getAnswerCorrect();
+            wrong += q.getAnswerIncorrect();
+            pending += q.getAnswerPending();
+            size += q.getSizeQuestions();
+        }
 
+        return (right + " : " + wrong + " : " + pending + " / " + pending);
+    }
 
 }

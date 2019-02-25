@@ -101,7 +101,7 @@ public class QuestionController {
                         complement += itemRandom.get(item).getInfo() + ", ";
                         itemRandom.remove(item);
                     }
-                    info = "¿Qué elementos de + " + complement + " no son parte de " + concept.get().getTitle() + " ?";
+                    info = "¿Qué elementos de " + complement + " no son parte de " + concept.get().getTitle() + " ?";
                     attr = "question3";
 
                     break;

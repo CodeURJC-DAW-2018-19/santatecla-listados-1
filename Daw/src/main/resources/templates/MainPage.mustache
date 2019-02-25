@@ -138,11 +138,7 @@
                                                    style="cursor: pointer">delete</a>
                                             {{/admin}}
                                             {{#student}}
-                                                {{#setQuestion}}
-                                                    <a style="cursor: pointer">{{getAnswerCorrect}}
-                                                        :{{getAnswerIncorrect}}:{{getAnswerPending}}
-                                                        /{{getSizeQuestions}}</a>
-                                                {{/setQuestion}}
+                                                    <a style="cursor: pointer">{{toStringMetrics}}</a>
                                             {{/student}}
                                         </div>
                                     {{/conceptSet}}

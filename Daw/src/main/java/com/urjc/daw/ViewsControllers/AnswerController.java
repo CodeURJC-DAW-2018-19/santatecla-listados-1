@@ -65,35 +65,32 @@ public class AnswerController {
         Optional<Question> question = questionService.findOne(idQuestion);
         int type = question.get().getType();
         answer.setQuestion(question.get());
-        if(type==0 || type ==2) {
-            answer.setState("pending");
-            answer.setCorrect(false);
-        }else if(type==1){
-        }else{
-
-        }
+        answer.setState("pending");
+        answer.setCorrect(false);
         answer.setIdUser(userComponent.getLoggedUser());
         answerService.addAnswer(answer);
         question.get().addAnswer(answer);
+        question.get().metrics();
         questionService.addQuestion(question.get());
-        return "redirect:/StudentConceptView/"+question.get().getIdConcept();
+        return "redirect:/StudentConceptView/" + question.get().getIdConcept();
     }
 
 
     @GetMapping(path = "/sendAnswerTrue/{idQuestion}/{correct}")
-    public String sendAnswer(Model model, @PathVariable long idQuestion, @PathVariable boolean correct){
-        String correcto="";
+    public String sendAnswer(Model model, @PathVariable long idQuestion, @PathVariable boolean correct) {
+        String correcto = "";
         if (correct)
-            correcto="true";
+            correcto = "true";
         else
-            correcto="false";
+            correcto = "false";
 
-        Answer answer= new Answer(correcto);
+        Answer answer = new Answer(correcto);
 
-        Question question=questionService.findOne(idQuestion).get();
+        Question question = questionService.findOne(idQuestion).get();
         answer.setIdUser(userComponent.getLoggedUser());
         answer.setQuestion(question);
         question.addAnswer(answer);
+        question.metrics();
         answerService.addAnswer(answer);
         questionService.addQuestion(question);
         answer.correctType1(correct);
@@ -102,24 +99,23 @@ public class AnswerController {
     }
 
     @GetMapping(path = "/sendSelectedItems/{idQuestion}/{ret}/{total}")
-    public String sendItemsSelected(Model model, @PathVariable long idQuestion, @PathVariable String ret,@PathVariable String total){
-        String [] items = ret.split("sss");
-        String [] all = total.split("sss");
+    public String sendItemsSelected(Model model, @PathVariable long idQuestion, @PathVariable String ret, @PathVariable String total) {
+        String[] items = ret.split("sss");
+        String[] all = total.split("sss");
         Answer answer = new Answer(ret);
 
-        Question question=questionService.findOne(idQuestion).get();
+        Question question = questionService.findOne(idQuestion).get();
         answer.setIdUser(userComponent.getLoggedUser());
         answer.setQuestion(question);
         question.addAnswer(answer);
+        question.metrics();
         answerService.addAnswer(answer);
         questionService.addQuestion(question);
-        answer.correctType2(items,all);
+        answer.correctType2(items, all);
         answerService.addAnswer(answer);
 
         return "redirect:/StudentConceptView/" + question.getIdConcept();
     }
-
-
 
 
 }

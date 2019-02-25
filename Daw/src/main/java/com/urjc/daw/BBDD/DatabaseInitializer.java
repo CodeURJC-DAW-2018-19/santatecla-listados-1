@@ -56,6 +56,7 @@ public class DatabaseInitializer {
         userRepository.save(sc);
         userRepository.save(eb);
 
+/** initialization of real data **/
 
 		Lesson lesson1=new Lesson("TEMA 1");
 		Lesson lesson2 = new Lesson("TEMA 2");
@@ -79,40 +80,36 @@ public class DatabaseInitializer {
 		Lesson lesson20 = new Lesson("TEMA 20");
 
 
-
+		Concept concept1 = new Concept("Introducción",1, "mundo.png");
 		Concept concept2 = new Concept("Las disciplinas del software",2, "mundo.png");
 		Concept concept3 = new Concept("Los patrones de diseño creacionales",3, "mundo.pgn");
-		Concept concept4 = new Concept("Los patrones de comportamiento",4, "mundo.png");
-		Concept concept5 = new Concept("Concepto5",5);
-		Concept concept6 = new Concept("Concepto6",6);
-		Concept concept7 = new Concept("Concepto7",7);
-		Concept concept8 = new Concept("Concepto8",8);
-		Concept concept9 = new Concept("Concepto9",9);
-		Concept concept10 = new Concept("Concepto10",10);
-		Concept concept11 = new Concept("Concepto11",11);
-		Concept concept12 = new Concept("Concepto12",12);
-		Concept concept13 = new Concept("Concepto13",13);
-		Concept concept14 = new Concept("Concepto14",14);
-		Concept concept15 = new Concept("Concepto15",15);
-		Concept concept16 = new Concept("Concepto16",16);
-		Concept concept17 = new Concept("Concepto17",17);
-		Concept concept18 = new Concept("Concepto18",18);
-		Concept concept19 = new Concept("Concepto19",19);
-		Concept concept20 = new Concept("Concepto20",20);
+		Concept concept4 = new Concept("Maquetación: HTML y CSSo",4, "mundo.png");
+		Concept concept5 = new Concept("JavaScript",5, "mundo.png");
+		Concept concept6 = new Concept("APIs REST",6, "mundo.png");
+		Concept concept7 = new Concept("Desarrollo web con Java y Spring",7, "mundo.png");
+		Concept concept8 = new Concept("Seguridad",8, "mundo.png");
+		Concept concept9 = new Concept("Testing",9, "mundo.png");
+		Concept concept10 = new Concept("Encriptar",10, "mundo.png");
+		Concept concept11 = new Concept("APIs REST con Spring",11, "mundo.png");
+		Concept concept12 = new Concept("Bases de datos con Spring",12, "mundo.png");
+		Concept concept13 = new Concept("Seguridad con Spring",13, "mundo.png");
+		Concept concept14 = new Concept("Despliegue con Spring",14, "mundo.png");
+		Concept concept15 = new Concept("Virtualización, cloud computing y contenedores",15, "mundo.png");
+		Concept concept16 = new Concept("Docker",16, "mundo.png");
+		Concept concept17 = new Concept("Introducción a Angular: TypeScript y Herramientas",17, "mundo.png");
+		Concept concept18 = new Concept("Componentes en Angular",18, "mundo.png");
+		Concept concept19 = new Concept("REST y Servicios en Angular",19, "mundo.png");
+		Concept concept20 = new Concept("Router en Angular",20, "mundo.png");
 
 
-
-/** initialization of real data **/
 		Item item1 = new Item("Requisitos",true);
+		Item item2 = new Item("Adapter",false);
 		Item item3 = new Item("Prototype",true);
 		Item item4 = new Item("Diseño",true);
 		Item item5 = new Item("Programacion",true);
 		Item item6 = new Item("Pruebas",true);
-		Item item17 = new Item("Despliegue",true);
 		Item item7 = new Item("Comprension",false);
 		Item item8 = new Item("Ofuscacion",false);
-		Item item16 = new Item("Analisis de impacto",false);
-
 		Item item9 = new Item("Abstract factory",true);
 		Item item10 = new Item("Builder",true);
 		Item item11 = new Item("Factory Method",true);
@@ -120,113 +117,114 @@ public class DatabaseInitializer {
 		Item item13 = new Item("Singleton",true);
 		Item item14 = new Item("Proxy",true);
 		Item item15 = new Item("Flyweight",true);
+		Item item16 = new Item("Analisis de impacto",false);
+		Item item17 = new Item("Despliegue",true);
 		Item item18 = new Item("Bridge",false);
 		Item item19 = new Item("Composite",false);
-
-
+		Item item20 = new Item("Compresión",false);
 		Item item21 = new Item("Command",true);
 		Item item22 = new Item("Iterator",true);
 		Item item23 = new Item("Memento",true);
 		Item item24 = new Item("Observer",true);
-		Item item25 = new Item("State",true);
-		Item item26 = new Item("Visitor",true);
-		Item item27 = new Item("Strategy",true);
-		Item item28 = new Item("Adapter",false);
+
 /***************************************************************/
 
 
-
-		Item item20 = new Item("Compresión",false);
-
-
-
+		lesson1.addConcept(concept1);
 		lesson1.addConcept(concept2);
-		lesson2.addConcept(concept3);
+		lesson1.addConcept(concept3);
 		lesson1.addConcept(concept4);
-		lesson1.addConcept(concept5);
-		lesson1.addConcept(concept6);
-		lesson1.addConcept(concept7);
-		lesson1.addConcept(concept8);
-		lesson1.addConcept(concept9);
-		lesson1.addConcept(concept10);
-		lesson1.addConcept(concept11);
-		lesson1.addConcept(concept12);
-		lesson1.addConcept(concept13);
-		lesson1.addConcept(concept14);
-		lesson1.addConcept(concept15);
-		lesson1.addConcept(concept16);
-		lesson1.addConcept(concept17);
-		lesson1.addConcept(concept18);
-		lesson1.addConcept(concept19);
-		lesson1.addConcept(concept20);
+		lesson2.addConcept(concept5);
+		lesson2.addConcept(concept6);
+		lesson2.addConcept(concept7);
+		lesson2.addConcept(concept8);
+		lesson3.addConcept(concept9);
+		lesson3.addConcept(concept10);
+		lesson3.addConcept(concept11);
+		lesson3.addConcept(concept12);
+		lesson4.addConcept(concept13);
+		lesson4.addConcept(concept14);
+		lesson4.addConcept(concept15);
+		lesson4.addConcept(concept16);
+		lesson5.addConcept(concept17);
+		lesson5.addConcept(concept18);
+		lesson5.addConcept(concept19);
+		lesson5.addConcept(concept20);
 
 
-
+		concept1.setIdLesson(lesson1);
 		concept2.setIdLesson(lesson1);
-		concept3.setIdLesson(lesson2);
+		concept3.setIdLesson(lesson1);
 		concept4.setIdLesson(lesson1);
-		concept5.setIdLesson(lesson1);
-		concept6.setIdLesson(lesson1);
-		concept7.setIdLesson(lesson1);
-		concept8.setIdLesson(lesson1);
-		concept9.setIdLesson(lesson1);
-		concept10.setIdLesson(lesson1);
-		concept11.setIdLesson(lesson1);
-		concept12.setIdLesson(lesson1);
-		concept13.setIdLesson(lesson1);
-		concept14.setIdLesson(lesson1);
-		concept15.setIdLesson(lesson1);
-		concept16.setIdLesson(lesson1);
-		concept17.setIdLesson(lesson1);
-		concept18.setIdLesson(lesson1);
-		concept19.setIdLesson(lesson1);
-		concept20.setIdLesson(lesson1);
+		concept5.setIdLesson(lesson2);
+		concept6.setIdLesson(lesson2);
+		concept7.setIdLesson(lesson2);
+		concept8.setIdLesson(lesson2);
+		concept9.setIdLesson(lesson3);
+		concept10.setIdLesson(lesson3);
+		concept11.setIdLesson(lesson3);
+		concept12.setIdLesson(lesson3);
+		concept13.setIdLesson(lesson4);
+		concept14.setIdLesson(lesson4);
+		concept15.setIdLesson(lesson4);
+		concept16.setIdLesson(lesson4);
+		concept17.setIdLesson(lesson5);
+		concept18.setIdLesson(lesson5);
+		concept19.setIdLesson(lesson5);
+		concept20.setIdLesson(lesson5);
 
 
-		concept3.addItem(item9);
-		concept3.addItem(item10);
-		concept3.addItem(item11);
-		concept3.addItem(item12);
+		concept1.addItem(item1);
+		concept1.addItem(item2);
+		concept1.addItem(item3);
+		concept1.addItem(item4);
+		concept1.addItem(item5);
+		concept1.addItem(item6);
+		concept2.addItem(item7);
+		concept2.addItem(item8);
+		concept2.addItem(item9);
+		concept2.addItem(item10);
+		concept2.addItem(item11);
+		concept2.addItem(item12);
 		concept3.addItem(item13);
 		concept3.addItem(item14);
 		concept3.addItem(item15);
+		concept3.addItem(item16);
+		concept3.addItem(item17);
 		concept3.addItem(item18);
-		concept3.addItem(item19);
-
-
-		concept2.addItem(item1);
-		concept3.addItem(item3);
-		concept2.addItem(item4);
-		concept2.addItem(item5);
-		concept2.addItem(item6);
-		concept2.addItem(item7);
-		concept2.addItem(item8);
-		concept2.addItem(item17);
-		concept2.addItem(item20);
-
+		concept4.addItem(item19);
+		concept4.addItem(item20);
 		concept4.addItem(item21);
+		concept4.addItem(item22);
+		concept4.addItem(item23);
+		concept4.addItem(item24);
 
 
-		item1.setIdConcept(concept2);
-		item3.setIdConcept(concept3);
-		item4.setIdConcept(concept2);
-		item4.setIdConcept(concept2);
-		item5.setIdConcept(concept2);
+		item1.setIdConcept(concept1);
+		item2.setIdConcept(concept1);
+		item3.setIdConcept(concept1);
+		item4.setIdConcept(concept1);
+		item4.setIdConcept(concept1);
+		item5.setIdConcept(concept1);
 		item6.setIdConcept(concept2);
 		item7.setIdConcept(concept2);
 		item8.setIdConcept(concept2);
-		item9.setIdConcept(concept3);
-		item10.setIdConcept(concept3);
-		item11.setIdConcept(concept3);
-		item12.setIdConcept(concept3);
+		item9.setIdConcept(concept2);
+		item10.setIdConcept(concept2);
+		item11.setIdConcept(concept2);
+		item12.setIdConcept(concept2);
 		item13.setIdConcept(concept3);
 		item14.setIdConcept(concept3);
 		item15.setIdConcept(concept3);
-		item16.setIdConcept(concept2);
-		item17.setIdConcept(concept2);
+		item16.setIdConcept(concept3);
+		item17.setIdConcept(concept3);
 		item18.setIdConcept(concept3);
-		item19.setIdConcept(concept3);
-		item20.setIdConcept(concept20);
+		item19.setIdConcept(concept4);
+		item20.setIdConcept(concept4);
+		item21.setIdConcept(concept4);
+		item22.setIdConcept(concept4);
+		item23.setIdConcept(concept4);
+		item24.setIdConcept(concept4);
 
 
 		lessonRepository.save(lesson1);
@@ -251,9 +249,7 @@ public class DatabaseInitializer {
 		lessonRepository.save(lesson20);
 
 
-
-
-
+		conceptRepository.save(concept1);
 		conceptRepository.save(concept2);
 		conceptRepository.save(concept3);
 		conceptRepository.save(concept4);
@@ -277,6 +273,7 @@ public class DatabaseInitializer {
 
 
 		itemRepository.save(item1);
+		itemRepository.save(item2);
 		itemRepository.save(item3);
 		itemRepository.save(item4);
 		itemRepository.save(item5);
@@ -295,6 +292,11 @@ public class DatabaseInitializer {
 		itemRepository.save(item18);
 		itemRepository.save(item19);
 		itemRepository.save(item20);
+		itemRepository.save(item21);
+		itemRepository.save(item22);
+		itemRepository.save(item23);
+		itemRepository.save(item24);
+
 
 
 		Answer answer1 = new Answer("Respuesta cerrada");

@@ -1,4 +1,4 @@
-var nextPageLesson = 0;
+var nextPageLesson = 1;
 function loadMoreLesson() {
     var urlPage = "/loadMore?page=" + nextPageLesson;
     $.ajax({

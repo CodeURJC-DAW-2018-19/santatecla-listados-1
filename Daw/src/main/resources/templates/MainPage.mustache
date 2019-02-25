@@ -103,9 +103,7 @@
                                        style="float: right; cursor: pointer">delete</a>
                                 {{/admin}}
                                 {{#student}}
-                                    <a style="float: right">{{getAnswerCorrectOfConcepts}}
-                                        :{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}
-                                        /{{getSizeOfAnswerPendingOfConcepts}}</a>
+                                    <a style="float: right">{{getAnswerCorrectOfConcepts}}:{{getAnswerIncorrectOfConcepts}}:{{getAnswerPendingOfConcepts}}/ {{getSizeOfAnswerPendingOfConcepts}}</a>
                                 {{/student}}
                                 </a>
                             </h4>
@@ -138,7 +136,12 @@
                                                    style="cursor: pointer">delete</a>
                                             {{/admin}}
                                             {{#student}}
+
                                                     <a style="cursor: pointer">{{toStringMetrics}}</a>
+
+                                                {{#setQuestion}}
+                                                    <a style="cursor: pointer">{{getAnswerCorrect}}:{{getAnswerIncorrect}}:{{getAnswerPending}}/ {{getSizeQuestions}}</a>
+                                                {{/setQuestion}}
                                             {{/student}}
                                         </div>
                                     {{/conceptSet}}
@@ -209,7 +212,7 @@
                 </div>
             {{/lessons}}
         </div>
-        <div id="cargando" style="diplay:none">
+        <div id="download" style="diplay:none">
             <img
                     width="200"
                     src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
@@ -242,11 +245,12 @@
         //ATTR
         var myChart = echarts.init(document.getElementById('main'));
 
-        //Button load More
+        $("#download").show();
+        $("#download").hide();
         $('#loadMore').click(function () {
-            $("#cargando").show();
+            $("#download").show();
             loadMoreLesson();
-            $("#cargando").hide();
+            $("#download").hide();
         });
 
         //Init chart

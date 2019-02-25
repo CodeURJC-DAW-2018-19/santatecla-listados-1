@@ -19,70 +19,71 @@
     </div>
 </div>
 <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
-                             <div class="card" id="datosTabla" name="{{statitics}}">
-                                 {{#concept}}
-                                     {{#idConcept}}
-                                          {{#picture}}
-                                               <img src="/uploads/{{concept.picture}}" class="card-img-top" width="400" height="341"/>
-                                          {{/picture}}
-                                     {{/idConcept}}
-                                 {{/concept}}
-                             </div>
-                            <div class="card-header card-header-primary">
-                                {{#user}}
-                                <h2 class="card-title">{{title}}</h2>
-                                <h3>{{toStringStatistics}}</h3>
-                                {{/user}}
-                                    <div class="row">
-                                    <div class="col-md-6">
-                                        <h3>CORREGIDAS</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card" id="datosTabla" name="{{statitics}}">
+                        {{#concept}}
+                            {{#idConcept}}
+                                {{#picture}}
+                                    <img src="/uploads/{{concept.picture}}" class="card-img-top" width="400"
+                                         height="341"/>
+                                {{/picture}}
+                            {{/idConcept}}
+                        {{/concept}}
+                    </div>
+                    <div class="card-header card-header-primary">
+                        {{#user}}
+                            <h2 class="card-title">{{title}}</h2>
+                            <h3>{{toStringStatistics}}</h3>
+                        {{/user}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>CORREGIDAS</h3>
 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3>PENDIENTES DE CORREGIR</h3>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="wrapper" id="showMore">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            {{#answer}}
-                                                <p>{{getQuestionInfo}} : {{info}} :
-                                                    <i class="material-icons">
-                                                        {{#isCorrect}}done{{/isCorrect}}
-                                                        {{^isCorrect}}clear{{/isCorrect}}
-                                                    </i> </p>
-                                            {{/answer}}
+                            <div class="col-md-6">
+                                <h3>PENDIENTES DE CORREGIR</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="wrapper" id="showMore">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{#answer}}
+                                        <p>{{getQuestionInfo}} : {{info}} :
+                                            <i class="material-icons">
+                                                {{#isCorrect}}done{{/isCorrect}}
+                                                {{^isCorrect}}clear{{/isCorrect}}
+                                            </i></p>
+                                    {{/answer}}
 
-                                        </div>
+                                </div>
 
-                                        <div class="col-md-6">
-                                            {{#answerPending}}
-                                                <p>{{getQuestionInfo}} : {{info}}</p>
-                                            {{/answerPending}}
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    {{#answerPending}}
+                                        <p>{{getQuestionInfo}} : {{info}}</p>
+                                    {{/answerPending}}
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        <button type="submit" id="diagramas" class="btn btn-primary" style="margin-left: 39%" data-toggle="modal" data-target="#chartModal">
-                            Diagramas <i class="material-icons">signal_cellular_alt</i>
-                        </button>
-                        <button type="submit" id="generarQuestion" onclick="createQuestion({{#concept}}{{idConcept}}{{/concept}})" class="btn btn-primary" style="margin-left: 39%" data-toggle="modal" data-target="#addQuestion">
-                        Diagramas <i class="material-icons">signal_cellular_alt</i>
-                    </button>
                     </div>
                 </div>
             </div>
+            <button type="submit" id="diagramas" class="btn btn-primary" style="margin-left: 39%" data-toggle="modal"
+                    data-target="#chartModal">
+                Diagramas <i class="material-icons">signal_cellular_alt</i>
+            </button>
+            <button type="submit" id="generarQuestion" onclick="createQuestion({{#concept}}{{idConcept}}{{/concept}})"
+                    class="btn btn-primary" style="margin-left: 39%" data-toggle="modal" data-target="#addQuestion">
+                Generar pregunta <i class="material-icons">add</i>
+            </button>
         </div>
+    </div>
+</div>
 </body>
-
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -150,7 +151,7 @@
 
     function createQuestion(id) {
 
-        var urlPage = "/createQuestion/"+id;
+        var urlPage = "/createQuestion/" + id;
         $.ajax({
             url: urlPage
         }).done(function (data) {

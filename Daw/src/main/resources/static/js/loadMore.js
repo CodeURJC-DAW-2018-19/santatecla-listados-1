@@ -1,19 +1,20 @@
-var nextPage = 1;
+var nextPageLesson = 0;
 function loadMoreLesson() {
-    var urlPage = "/loadMore?page=" + nextPage;
+    var urlPage = "/loadMore?page=" + nextPageLesson;
     $.ajax({
         url: urlPage
     }).done(function (data) {
         $("#showMore").append(data);
-        nextPage++;
+        nextPageLesson++;
     })
 }
+var nextPageItems = 1;
 function loadMoreItems() {
-    var urlPage = "/loadMoreItems?page=" + nextPage;
+    var urlPage = "/loadMoreItems?page=" + nextPageItems;
     $.ajax({
         url: urlPage
     }).done(function (data) {
         $("#showMore").append(data);
-        nextPage++;
+        nextPageItems++;
     })
 }

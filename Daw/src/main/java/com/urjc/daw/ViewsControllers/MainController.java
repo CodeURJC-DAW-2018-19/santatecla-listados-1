@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -150,6 +151,8 @@ public class MainController {
             return "redirect:/sign_in";
         } else {
             user.setUserType("ROLE_STUDENT");
+            userRepository.save(user);
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getpassword()));
             userRepository.save(user);
             return "redirect:/login";
         }

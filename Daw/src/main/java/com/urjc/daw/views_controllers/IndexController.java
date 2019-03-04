@@ -14,6 +14,7 @@ public class IndexController {
 
     @RequestMapping(path = "/login") // Map ONLY GET Requests
     public String login() {
+
         return "Login";
     }
 

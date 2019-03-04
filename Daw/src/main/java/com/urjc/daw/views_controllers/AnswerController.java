@@ -74,13 +74,13 @@ public class AnswerController {
 
     @GetMapping(path = "/sendAnswerTrue/{idQuestion}/{correct}")
     public String sendAnswer(Model model, @PathVariable long idQuestion, @PathVariable boolean correct) {
-        String correcto = "";
+        String correct2 = "";
         if (correct)
-            correcto = "true";
+            correct2 = "true";
         else
-            correcto = "false";
+            correct2 = "false";
 
-        Answer answer = new Answer(correcto);
+        Answer answer = new Answer(correct2);
 
         Question question = questionService.findOne(idQuestion).get();
         answer.setIdUser(userComponent.getLoggedUser());

@@ -41,7 +41,7 @@ public class Lesson {
         return id;
     }
 
-    public void setIdLesson(Integer idLesson) {
+    public void setIdLesson(long idLesson) {
         this.id = idLesson;
     }
 

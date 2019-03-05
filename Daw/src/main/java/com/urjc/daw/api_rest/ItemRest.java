@@ -2,13 +2,17 @@ package com.urjc.daw.api_rest;
 
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.item.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.xml.ws.soap.Addressing;
 
 @RestController
 @RequestMapping ("/api/items")
 public class ItemRest {
 
+    @Autowired
     private ItemService itemService;
 
     @GetMapping(value = "/{id}")

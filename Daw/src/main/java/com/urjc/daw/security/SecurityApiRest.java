@@ -21,7 +21,9 @@ public class SecurityApiRest extends WebSecurityConfigurerAdapter {
 		http.antMatcher("/api/**");
 
 		// here urls need authentication
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/{id}");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/{name}");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/question/{id}");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/question/{id}");
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/");
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/concept/{id}");
 

@@ -193,7 +193,7 @@ public class MainController {
         model.addAttribute("lessons", lessonService.findAll(page));
         model.addAttribute("concepts", conceptService.findAll(page));
         model.addAttribute("answers", answerService.findAll(page));
-        model.addAttribute("questions", questionService.findAll(page));
+        model.addAttribute("questions", questionService.findAll());
         return "/MainPage";
     }
 }

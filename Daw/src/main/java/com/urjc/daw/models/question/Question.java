@@ -1,5 +1,6 @@
 package com.urjc.daw.models.question;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.item.Item;
@@ -24,15 +25,18 @@ public class Question {
     private String info;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Answer> setAnswer;
 
     @Column
     private int [] arrayRespuestas={0,0,0};
 
     @ManyToOne
+    @JsonIgnore
     private Concept idConcept;
 
     @ManyToMany
+    @JsonIgnore
     private Set<Item> setItem;
 
 

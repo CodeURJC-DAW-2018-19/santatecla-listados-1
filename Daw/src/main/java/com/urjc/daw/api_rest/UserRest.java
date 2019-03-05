@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserRest {
 
     @Autowired
@@ -22,18 +22,16 @@ public class UserRest {
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/user/")
+    @PostMapping(value = "/")
     @ResponseStatus(HttpStatus.CREATED)
     public User add_new_user(@RequestBody User user) {
         userService.addUser(user);
         return user;
     }
 
-    @GetMapping(value = "/user/{id}")
-    public User getUser(@PathVariable long id) {
-        User user = userService.findById(id).get();
-        System.out.println(user.getName());
-        return user;
+    @GetMapping(value = "/{name}")
+    public User getUser(@PathVariable String name) {
+        return userService.findUserByName(name);
     }
 
 }

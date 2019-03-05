@@ -12,18 +12,13 @@ public class UserService {
 
     UserRepository userRepository;
 
-    public User findUserByName(String name) {
-        return userRepository.findByName(name);
-    }
-
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
-
+    public User findUserByName(String name) { return userRepository.findByName(name); }
+    public void addUser(User user) { userRepository.save(user);}
     public List<User> findAllUser() {
         return userRepository.findAll();
     }
-    public Optional<User> findById(long id){
-        return userRepository.findByIdUser(id);
+    public Optional<User> findById(long id) {
+        return userRepository.findById(id);
     }
+
 }

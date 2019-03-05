@@ -14,7 +14,7 @@ public class LessonsRest {
     LessonService lessonService;
 
     @GetMapping(value = "/{id}")
-    public Lesson getUser(@PathVariable long id) {
+    public Lesson getLesson(@PathVariable long id) {
         Lesson lesson = lessonService.findOne(id).get();
         System.out.println(lesson.getIdLesson());
         return lesson;

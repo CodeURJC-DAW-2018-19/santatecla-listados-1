@@ -44,6 +44,9 @@ public class ItemService {
         return repository.findByStateAndIdConcept(state,IdConcept);
     }
 
+    public Optional<Item> findByOneId(Long id) {
+        return repository.findById(id);
+    }
 
 
 }

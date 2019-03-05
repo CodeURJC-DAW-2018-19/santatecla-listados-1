@@ -1,4 +1,4 @@
-package com.urjc.daw.bbdd;
+package com.urjc.daw.BBDD;
 
 import com.urjc.daw.models.answer.AnswerRepository;
 import com.urjc.daw.models.answer.Answer;

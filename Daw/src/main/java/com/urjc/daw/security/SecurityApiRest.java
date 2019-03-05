@@ -37,7 +37,9 @@ public class SecurityApiRest extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/item/").hasAnyRole("TEACHER");
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/item/{id}").hasAnyRole("TEACHER");
 
-
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/answer/{id}").hasAnyRole("TEACHER", "STUDENT");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/answer/").hasAnyRole("STUDENT");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/answer/{id}").hasAnyRole("TEACHER");
 
 		
 		// urls not need authentication

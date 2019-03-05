@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class UserRest {
+
     @Autowired
     UserComponent userComponent;
     @Autowired
@@ -29,7 +30,7 @@ public class UserRest {
     }
 
     @GetMapping(value = "/user/{id}")
-    public User getItem(@PathVariable long id) {
+    public User getUser(@PathVariable long id) {
         User user = userService.findById(id).get();
         System.out.println(user.getName());
         return user;

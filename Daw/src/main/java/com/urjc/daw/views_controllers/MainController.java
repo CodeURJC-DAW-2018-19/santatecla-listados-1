@@ -143,12 +143,12 @@ public class MainController {
     public String add(Model model, User user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        if (user.getName() == null || user.getpassword() == null) {
+        if (user.getName() == null || user.getPassword() == null) {
             return "redirect:/sign_in";
         } else {
             user.setUserType("ROLE_STUDENT");
             userRepository.save(user);
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getpassword()));
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             userRepository.save(user);
             return "redirect:/login";
         }

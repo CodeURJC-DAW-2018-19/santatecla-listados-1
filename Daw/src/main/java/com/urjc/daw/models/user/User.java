@@ -42,7 +42,7 @@ public class User {
         this.name = name;
     }
 
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 

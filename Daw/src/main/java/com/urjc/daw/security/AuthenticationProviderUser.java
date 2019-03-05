@@ -38,7 +38,7 @@ public class AuthenticationProviderUser implements AuthenticationProvider {
             throw new BadCredentialsException("user not found");
         }
 
-        if (!new BCryptPasswordEncoder().matches(password, user.getpassword())) {
+        if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
             throw new BadCredentialsException("Wrong password");
         }
 

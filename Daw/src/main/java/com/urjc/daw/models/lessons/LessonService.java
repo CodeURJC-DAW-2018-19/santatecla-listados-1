@@ -15,9 +15,11 @@ public class LessonService {
     @Autowired
     private LessonRepository repository;
 
-    public void deleteLessonById(Long id){repository.deleteById(id);}
+    public void deleteLessonById(Long id) {
+        repository.deleteById(id);
+    }
 
-    public Page<Lesson> findAll(Pageable page){
+    public Page<Lesson> findAll(Pageable page) {
         return repository.findAll(page);
     }
 
@@ -25,15 +27,12 @@ public class LessonService {
         return repository.findById(id);
     }
 
-    public void addLesson(Lesson lesson){
+    public void addLesson(Lesson lesson) {
         repository.save(lesson);
     }
 
-    public List<Lesson> searchLessons(String name){
+    public List<Lesson> searchLessons(String name) {
         return repository.searchByName(name);
     }
 
-    public Optional<Lesson> findByOneId(Long id) {
-        return repository.findById(id);
-    }
 }

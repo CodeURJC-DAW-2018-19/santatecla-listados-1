@@ -33,7 +33,7 @@ public class LessonsRest {
 
     @PutMapping("/{id}")
     public Lesson updateLesson(@PathVariable long id, @RequestBody Lesson updatedLesson){
-        lessonService.findByOneId(id).get();
+        lessonService.findOne(id).get();
         updatedLesson.setIdLesson(id);
         lessonService.addLesson(updatedLesson);
         return updatedLesson;
@@ -41,7 +41,7 @@ public class LessonsRest {
 
     @DeleteMapping("/{id}")
     public Lesson deteleLesson(@PathVariable long id){
-        Lesson deleteLesson = lessonService.findByOneId(id).get();
+        Lesson deleteLesson = lessonService.findOne(id).get();
         lessonService.deleteLessonById(id);
         return deleteLesson;
     }

@@ -18,7 +18,7 @@ public class Question {
     public interface BasicInfo{}
     public interface AnswerList{}
     public interface ConceptDet{}
-
+    public interface ItemList{}
 
 /**         ATTRIBUTES      **/
     @Id
@@ -46,7 +46,7 @@ public class Question {
     private Concept idConcept;
 
     @ManyToMany
-    @JsonView(BasicInfo.class)
+    @JsonView(ItemList.class)
     private Set<Item> setItem;
 
 

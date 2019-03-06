@@ -4,6 +4,7 @@ package com.urjc.daw.api_rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.question.QuestionService;
@@ -15,9 +16,8 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/api/question")
 public class QuestionRest {
-
-    interface QuestionDetails extends Question.BasicInfo,Question.AnswerList,Question.ConceptDet,
-            Concept.BasicInfo, Answer.BasicInfo {}
+    interface QuestionDetails extends Question.BasicInfo,Question.AnswerList,Question.ConceptDet,Question.ItemList,
+            Concept.BasicInfo, Answer.BasicInfo, Item.BasicInfo {}
 
     @Autowired
     QuestionService service;

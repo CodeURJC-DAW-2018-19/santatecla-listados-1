@@ -1,5 +1,6 @@
 package com.urjc.daw.models.concept;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
@@ -11,27 +12,37 @@ import java.util.Set;
 
 @Entity
 public class Concept {
+
+    public interface BasicInfo{}
+    public interface ItemList{}
+    public interface QuestionList{}
+
 /**             Atributos           **/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(BasicInfo.class)
     private long idConcept;
 
     @ManyToOne
     private Lesson idLesson;
 
     @Column
+    @JsonView(BasicInfo.class)
     private String title;
 
     @Column
     private Integer conceptNumber;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonView(ItemList.class)
     private Set<Item> itemSet;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonView(QuestionList.class)
     private Set<Question> setQuestion;
 
     @Column
+    @JsonView(BasicInfo.class)
     private String picture;
 
 /**********************************/

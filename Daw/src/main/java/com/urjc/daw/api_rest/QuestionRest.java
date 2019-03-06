@@ -11,8 +11,8 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/api/question")
-@CrossOrigin(origins = "http://localhost:8080")
 public class QuestionRest {
+
 
     @Autowired
     QuestionService service;

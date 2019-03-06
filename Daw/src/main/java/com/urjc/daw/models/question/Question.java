@@ -1,9 +1,11 @@
 package com.urjc.daw.models.question;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.item.Item;
+import com.urjc.daw.models.lessons.Lesson;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,30 +15,38 @@ import java.util.Set;
 @Entity
 public class Question {
 
+    public interface BasicInfo{}
+    public interface AnswerList{}
+    public interface ConceptDet{}
+
+
 /**         ATTRIBUTES      **/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(BasicInfo.class)
     private long idQuestion;
 
     @Column
+    @JsonView(BasicInfo.class)
     int type;
 
     @Column
+    @JsonView(BasicInfo.class)
     private String info;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonView(AnswerList.class)
     private Set<Answer> setAnswer;
 
     @Column
     private int [] arrayRespuestas={0,0,0};
 
     @ManyToOne
-    @JsonIgnore
+    @JsonView(ConceptDet.class)
     private Concept idConcept;
 
     @ManyToMany
-    @JsonIgnore
+    @JsonView(BasicInfo.class)
     private Set<Item> setItem;
 
 

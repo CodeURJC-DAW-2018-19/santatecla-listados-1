@@ -1,0 +1,31 @@
+
+version: "3"
+
+services:
+  daw_grupo9:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=daw_grupo9
+      - MYSQL_ROOT_PASSWORD=Latribu5
+      - MYSQL_USER=Grupo9
+      - MYSQL_PASSWORD=URJCDAWGrupo9
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    network_mode: bridge
+
+  daw:
+
+    image: 98961bb7a965
+    expose:
+      - 8443
+    ports:
+      - 8443:8443
+    links:
+      - daw_grupo9
+    depends_on:
+      - daw_grupo9
+    network_mode: bridge
+    environment:
+      WAIT_HOSTS: daw_grupo9:3306

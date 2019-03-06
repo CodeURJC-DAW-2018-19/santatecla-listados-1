@@ -6,7 +6,7 @@ services:
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=daw_grupo9
-      - MYSQL_ROOT_PASSWORD=Latribu5
+      - MYSQL_ROOT_PASSWORD=**
       - MYSQL_USER=Grupo9
       - MYSQL_PASSWORD=URJCDAWGrupo9
     expose:

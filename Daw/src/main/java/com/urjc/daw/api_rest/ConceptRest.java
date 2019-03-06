@@ -13,6 +13,11 @@ public class ConceptRest {
     @Autowired
     ConceptService conceptService;
 
+    @GetMapping(value ="{id}")
+    public Concept getConcept(@PathVariable long id){
+        return conceptService.findByOneId(id).get();
+    }
+
     @DeleteMapping(value ="{id}")
     public Concept deleteConcept(@PathVariable long id){
         Concept deleteConcept = conceptService.findByOneId(id).get();

@@ -19,6 +19,7 @@ public interface LessonRepository extends JpaRepository<Lesson, Long>, PagingAnd
     @Query(value = "SELECT * FROM lesson WHERE UPPER(name) LIKE CONCAT('%', CONCAT(UPPER(:name), '%'))", nativeQuery = true)
     List<Lesson> searchByName(@Param("name") String name);
 
+
     @Override
     Optional<Lesson> findById(Long aLong);
 

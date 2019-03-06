@@ -20,6 +20,7 @@ import java.util.List;
 public class LessonsRest {
 
     interface LessonDetails extends Lesson.BasicInfo,Lesson.ConceptList, Concept.BasicInfo{}
+
     @Autowired
     LessonService lessonService;
 

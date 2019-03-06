@@ -1,5 +1,6 @@
 package com.urjc.daw.models.answer;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.user.User;
@@ -11,24 +12,33 @@ import java.util.Set;
 @Entity
 public class Answer {
 
+    public interface BasicInfo{}
+    public interface QuestionDet{}
+    public interface UserDet{}
 /**         ATTRIBUTES          **/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(BasicInfo.class)
     private long idAnswer;
 
     @Column
+    @JsonView(BasicInfo.class)
     private String info;
 
     @Column
+    @JsonView(BasicInfo.class)
     private String state;
 
     @ManyToOne
+    @JsonView(UserDet.class)
     private User idUser;
 
     @ManyToOne
+    @JsonView(QuestionDet.class)
     private Question idQuestion;
 
     @Column
+    @JsonView(BasicInfo.class)
     private boolean correct;
 /**         CONSTRUCTOR         **/
 

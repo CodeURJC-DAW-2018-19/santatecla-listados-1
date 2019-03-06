@@ -2,6 +2,7 @@ package com.urjc.daw.models.user;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -11,18 +12,27 @@ import java.util.Set;
 
 @Entity// This tells Hibernate to make a table out of this class
 public class User {
+    public interface BasicInfo{}
+    public interface AnswerList{}
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(BasicInfo.class)
     private long idUser;
     @Column
+    @JsonView(BasicInfo.class)
     private String name;
     @Column
+    @JsonView(BasicInfo.class)
     private String password;
     @Column
+    @JsonView(BasicInfo.class)
     private String email;
     @Column
+    @JsonView(BasicInfo.class)
     private String userType;
     @OneToMany
+    @JsonView(AnswerList.class)
     private Set<Answer> setAnswer;
 
 

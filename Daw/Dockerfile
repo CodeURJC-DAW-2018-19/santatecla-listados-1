@@ -1,6 +1,6 @@
-FROM openjdk:13-ea-9-jdk-alpine3.9
+FROM openjdk:11-jdk
 
-COPY target/daw-0.0.1-SNAPSHOT.jar /
+COPY /target/daw-0.0.1-SNAPSHOT.jar /
 
 EXPOSE 8443
 

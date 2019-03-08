@@ -7,9 +7,9 @@ import com.urjc.daw.models.item.ItemService;
 import com.urjc.daw.models.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.ws.soap.Addressing;
+import java.util.Optional;
 
 @RestController
 @RequestMapping ("/api/items")
@@ -23,10 +23,12 @@ public class ItemRest {
 
     @GetMapping(value = "/{id}")
     @JsonView(ItemsDetails.class)
-    public Item getItem(@PathVariable long id) {
-        Item item = itemService.findOne(id).get();
-        System.out.println(item.getIdItem());
-        return item;
+    public ResponseEntity<Item> getItem (@PathVariable long id) {
+        Optional<Item> item = itemService.findOne(id);
+        if(item.isPresent()){
+            return new ResponseEntity<>(item.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/")

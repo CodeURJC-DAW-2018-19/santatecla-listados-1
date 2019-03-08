@@ -3,13 +3,14 @@ package com.urjc.daw.api_rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.answer.AnswerService;
-import com.urjc.daw.models.concept.Concept;
-import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/answer")
@@ -21,10 +22,12 @@ public class AnswerRest {
 
     @GetMapping(value = "/{id}")
     @JsonView(AnswerDetails.class)
-    public Answer getAnswer(@PathVariable long id) {
-        Answer answer = answerService.findOne(id).get();
-        System.out.println(answer.getIdAnswer());
-        return answer;
+    public ResponseEntity<Answer> getAnswer (@PathVariable long id) {
+        Optional<Answer> answer = answerService.findOne(id);
+        if(answer.isPresent()){
+            return new ResponseEntity<>(answer.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/")

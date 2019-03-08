@@ -22,6 +22,38 @@ public class UserRest {
     @Autowired
     UserService userService;
 
+
+    @GetMapping(value="/login")
+    public ResponseEntity<User> logIn() {
+        if (userComponent.getLoggedUser() != null){
+            return new ResponseEntity<>(userComponent.getLoggedUser(), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+    }
+
+    @PostMapping(value="/register")
+    public ResponseEntity<User> register(@RequestBody User newUser) {
+        if(newUser == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        User findUser = userService.findUserByName(newUser.getName());
+
+        //If the user is already sign in or already exists
+        if((userComponent.getLoggedUser() != null || findUser != null)){
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        User user = new User();
+        user.setName(newUser.getName());
+        user.setPassword(newUser.getPassword());
+        userService.addUser(user);
+
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
     @PostMapping(value = "/")
     @ResponseStatus(HttpStatus.CREATED)
     public User add_new_user(@RequestBody User user) {

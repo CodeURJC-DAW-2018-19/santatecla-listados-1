@@ -10,10 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.soap.Addressing;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/lesson")
@@ -26,12 +28,17 @@ public class LessonsRest {
 
     @GetMapping(value = "/{id}")
     @JsonView(LessonDetails.class)
-    public Lesson getLesson(@PathVariable long id) {
-        return  lessonService.findOne(id).get();
+    public ResponseEntity<Lesson> getLesson(@PathVariable long id) {
+        Optional<Lesson> lesson=lessonService.findOne(id);
+        if(lesson.isPresent()){
+            return new ResponseEntity<>(lesson.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+
     @GetMapping(value = "/pag")
-    public Page<Lesson> get (Pageable page){
+    public Page<Lesson> getPage (Pageable page){
         return lessonService.findAll(page);
     }
 

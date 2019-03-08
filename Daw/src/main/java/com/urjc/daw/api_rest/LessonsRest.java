@@ -31,7 +31,6 @@ public class LessonsRest {
     }
 
     @GetMapping(value = "/pag")
-    @JsonView(LessonDetails.class)
     public Page<Lesson> get (Pageable page){
         return lessonService.findAll(page);
     }

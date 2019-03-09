@@ -38,11 +38,14 @@ public class ItemRest extends OperationsRest<Item> {
         Optional<Concept> c = conceptService.findByOneId(idConcept);
         if (c.isPresent()) {
             Concept concept = c.get();
+            item.setIdConcept(c.get());
+            ResponseEntity<Item> responseEntity = safeCreate(item,itemService.repository);
             concept.addItem(item);
             conceptService.addConcept(concept);
-            item.setIdConcept(c.get());
+            return responseEntity;
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return safeCreate(item,itemService.repository);
     }
 
     @DeleteMapping("/{id}")

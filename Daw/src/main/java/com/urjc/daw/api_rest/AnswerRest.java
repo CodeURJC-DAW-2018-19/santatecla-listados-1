@@ -65,13 +65,61 @@ public class AnswerRest extends OperationsRest<Answer> {
             responseEntity = safeCreate(answer,answerService.repository);
             //* * * *    Update question's parameters related to answer    * * * *
             question.addAnswer(answer);
-            question.metrics();
             questionService.addQuestion(question);
         }else{
             responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return responseEntity;
     }
+
+
+    @PostMapping(path = "/sendAnswerTrue/{idQuestion}")
+    @JsonView(AnswerDetails.class)
+    public ResponseEntity<Answer> sendAnswerOne(@PathVariable long idQuestion, @RequestBody Answer answer){
+        Optional<Question> option = questionService.findOne(idQuestion);
+        if(option.isPresent()){
+            Question question = option.get();
+            //* * * *    Correct answer    * * * *
+            answer.setIdUser(userComponent.getLoggedUser());
+            answer.setQuestion(question);
+            answer.correctType1(answer.getInfo().equals("true"));
+            ResponseEntity<Answer> responseEntity = safeCreate(answer,answerService.repository);
+
+            //* * * *    Update question's parameters related to answer    * * * *
+            question.addAnswer(answer);
+            questionService.addQuestion(question);
+
+            return responseEntity;
+
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /*@GetMapping(path = "/sendSelectedItems/{idQuestion}/{ret}/{total}")
+    @JsonView(AnswerDetails.class)
+    public ResponseEntity<Answer> sendItemsSelected(@PathVariable long idQuestion, @PathVariable String ret, @PathVariable String total){
+
+        Optional<Question> option = questionService.findOne(idQuestion);
+
+        if(option.isPresent()){
+            Question question = option.get();
+
+            Answer answer = new Answer(ret);
+            answer.setIdUser(userComponent.getLoggedUser());
+            answer.setQuestion(question);
+            answer.correctType2(ret.split("sss"),total.split("sss"));
+            ResponseEntity<Answer> responseEntity = safeCreate(answer,answerService.repository);
+
+            question.addAnswer(answer);
+            questionService.addQuestion(question);
+
+            return responseEntity;
+
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }*/
 
     @PutMapping("/{id}")
     @JsonView(AnswerDetails.class)

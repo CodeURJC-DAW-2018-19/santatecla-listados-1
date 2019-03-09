@@ -50,6 +50,8 @@ public class Answer {
 
     public Answer(){}
 
+
+
 /**         GETTER & SETTER         **/
     public long getIdAnswer() {
         return idAnswer;

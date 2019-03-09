@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ItemService {
 
     @Autowired
-    private ItemRepository repository;
+    public ItemRepository repository;
 
     public void addItem(Item item){
         repository.save(item);

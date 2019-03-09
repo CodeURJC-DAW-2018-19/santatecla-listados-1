@@ -40,9 +40,9 @@ public class ItemRest extends OperationsRest<Item> {
             Concept concept = c.get();
             concept.addItem(item);
             conceptService.addConcept(concept);
+            item.setIdConcept(c.get());
         }
-        Optional<Item> item1=itemService.findByOneId(item.getIdItem());
-        return checkIfExist(item1);
+        return safeCreate(item,itemService.repository);
     }
 
     @DeleteMapping("/{id}")

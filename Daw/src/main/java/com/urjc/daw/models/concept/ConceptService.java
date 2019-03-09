@@ -12,7 +12,7 @@ import java.util.Optional;
 public class ConceptService{
 
     @Autowired
-    private ConceptRepository repository;
+    public ConceptRepository repository;
 
 
     public void addConcept(Concept concept){

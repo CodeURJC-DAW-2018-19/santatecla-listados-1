@@ -2,14 +2,13 @@ package com.urjc.daw.api_rest;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
-import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +26,15 @@ public class ConceptRest extends CheckIfCreate<Concept> {
 
     @GetMapping(value ="{id}")
     @JsonView(ConceptDetails.class)
-    public Concept getConcept(@PathVariable long id){
-        return conceptService.findByOneId(id).get();
+    public ResponseEntity<Concept> getConcept(@PathVariable long id){
+        Optional<Concept> concept= conceptService.findByOneId(id);
+        return safeDelete(concept,conceptService.repository);
+    }
+
+    @GetMapping(value ="/")
+    @JsonView(ConceptDetails.class)
+    public Page<Concept> getConcepts(Pageable page){
+        return  conceptService.findAll(page);
     }
 
     @DeleteMapping(value ="{id}")
@@ -42,7 +48,6 @@ public class ConceptRest extends CheckIfCreate<Concept> {
     @PostMapping("/")
     @JsonView(ConceptDetails.class)
     public Concept saveConcept(@RequestBody Concept concept){
-
         conceptService.addConcept(concept);
         return  concept;
     }

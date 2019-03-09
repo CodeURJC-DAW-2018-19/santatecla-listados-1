@@ -23,6 +23,13 @@ public class LessonsRest extends CheckIfCreate<Lesson>{
     @Autowired
     LessonService lessonService;
 
+    @PostMapping("/")
+    @ResponseStatus(HttpStatus.CREATED)
+    @JsonView(LessonDetails.class)
+    public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson){
+        return safeCreate(lesson,lessonService.repository);
+    }
+
     @GetMapping(value = "/{id}")
     @JsonView(LessonDetails.class)
     public ResponseEntity<Lesson> getLesson(@PathVariable long id) {
@@ -30,18 +37,10 @@ public class LessonsRest extends CheckIfCreate<Lesson>{
         return checkIfExist(lesson);
     }
 
-
     @GetMapping(value = "/pag")
+    @JsonView(LessonDetails.class)
     public Page<Lesson> getPage (Pageable page){
         return lessonService.findAll(page);
-    }
-
-    @PostMapping("/")
-    @ResponseStatus(HttpStatus.CREATED)
-    @JsonView(LessonDetails.class)
-    public Lesson createLesson(@RequestBody Lesson lesson){
-        lessonService.addLesson(lesson);
-        return lesson;
     }
 
     @PutMapping("/{id}")
@@ -55,9 +54,8 @@ public class LessonsRest extends CheckIfCreate<Lesson>{
 
     @DeleteMapping("/{id}")
     @JsonView(LessonDetails.class)
-    public Lesson deteleLesson(@PathVariable long id){
-        Lesson deleteLesson = lessonService.findOne(id).get();
-        lessonService.deleteLessonById(id);
-        return deleteLesson;
+    public ResponseEntity<Lesson> deteleLesson(@PathVariable long id){
+        Optional<Lesson> deleteLesson = lessonService.findOne(id);
+        return safeDelete(deleteLesson,lessonService.repository);
     }
 }

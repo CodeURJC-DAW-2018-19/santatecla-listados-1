@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class CheckIfCreate <T>{
-    public ResponseEntity<T> checkIfExist(Optional<T> t){
+public class CheckIfCreate<T> {
+    public ResponseEntity<T> checkIfExist(Optional<T> t) {
         if (t.isPresent()) {
             return new ResponseEntity<>(t.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<T> safeDelete(Optional<T> t, JpaRepository<T,Long> service){
+    public ResponseEntity<T> safeDelete(Optional<T> t, JpaRepository<T, Long> service) {
         if (t.isPresent()) {
             service.delete(t.get());
             return new ResponseEntity<>(t.get(), HttpStatus.OK);
@@ -26,11 +26,8 @@ public class CheckIfCreate <T>{
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<T> safeCreate(Optional<T> t, JpaRepository<T,Long> service){
-        if (t.isPresent()) {
-            service.save(t.get());
-            return new ResponseEntity<>(t.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<T> safeCreate(T t, JpaRepository<T, Long> service) {
+        service.save(t);
+        return new ResponseEntity<>(t, HttpStatus.OK);
     }
 }

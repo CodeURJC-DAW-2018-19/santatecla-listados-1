@@ -13,7 +13,7 @@ import java.util.Optional;
 public class LessonService {
 
     @Autowired
-    private LessonRepository repository;
+    public LessonRepository repository;
 
     public void deleteLessonById(Long id) {
         repository.deleteById(id);

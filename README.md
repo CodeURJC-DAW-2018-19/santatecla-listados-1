@@ -249,7 +249,38 @@ All classes and all views have a composition relationship with DawApplication.
 ### API REST Documentation
  La documentación pública de cada uno de los endpoints de la API REST. Por cada tipo de recurso se deberá indicar el formato de la URL, las operaciones soportadas, el formato de la información de entrada y de salida, los códigos de estado, etc. Para los formatos de entrada (en el body) y salida se usarán ejemplos de los datos de las peticiones en JSON.
 ### Class diagram updates
-Se actualizará el diagrama de clases y templates incluyendo las nuevas clases @RestController. Se prestará especial atención a que los servicios compartidos entre los @Controller y los @RestController aparezcan correctamente reflejados en el diagrama.
+In the following image we can see the diagram of classes and templates summarized and updated:
+
+![Diagrama de clases y templates1](https://user-images.githubusercontent.com/46897050/54071315-1dc69c00-426b-11e9-8817-5a8c18282732.jpg)
+
+As we can see, the classes @RestController and @ControllerAdvice have been added. These classes are part of the Controller.
+
+New classes:
+
+MODEL:
+@Service
+- UploadFileServiceImpli
+
+Repository (Interface)
+- IUploadFileService
+
+@Configuration
+- MvcConfig
+- SecurityApiRest
+
+CONTROLLER:
+@RestController
+- ConceptRest has an association relationship with: Concept, Question, Item and ConceptService
+- QuestionRest has an association relationship with: Concept, Question, Item, Answer and QuestionService
+- ItemRest has an association relationship with: Concept, Question, Item and ItemService
+- AnswerRest has an association relationship with: Question, Answer, User and AnswerService
+- LessonsRest has an association relationship with: Concept, Lesson and LessonService
+- UserRest has an association relationship with: User, UserService and UserComponent
+
+@ControllerAdvice
+- RestControllerExceptionHandler
+
+All classes and all views have a composition relationship with DawApplication.
 
 ### Dockerized application execution instructions
 Instrucciones de ejecución usando el docker-compose.yml.

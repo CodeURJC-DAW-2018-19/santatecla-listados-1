@@ -23,6 +23,20 @@ public class UserRest {
     UserService userService;
 
 
+    @GetMapping("/login2")
+
+    public ResponseEntity<User> logIn2() {
+
+        if (!userComponent.isLoggedUser()) {
+            //log.info("Not user logged");
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        } else {
+            User loggedUser = userComponent.getLoggedUser();
+            //log.info("Logged as " + loggedUser.getName());
+            return new ResponseEntity<>(loggedUser, HttpStatus.OK);
+        }
+    }
+
     @GetMapping(value="/login")
     public ResponseEntity<User> logIn() {
         if (userComponent.getLoggedUser() != null){

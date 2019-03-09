@@ -2,7 +2,6 @@ package com.urjc.daw.models.item;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.concept.Concept;
-import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
 
 import javax.persistence.*;

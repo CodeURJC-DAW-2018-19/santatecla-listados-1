@@ -2,6 +2,7 @@ package com.urjc.daw.models.user;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,8 +32,9 @@ public class User {
     @Column
     @JsonView(BasicInfo.class)
     private String userType;
+
     @OneToMany
-    @JsonView(AnswerList.class)
+    @JsonIgnore
     private Set<Answer> setAnswer;
 
 
@@ -87,10 +89,12 @@ public class User {
     }
 
     public User() {
+        this.setAnswer = new HashSet<>();
     }
 
     public User(String visitor) {
         this.userType = visitor;
+        this.setAnswer = new HashSet<>();
     }
 
     public void addAnswer(Answer answer) {

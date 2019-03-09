@@ -14,33 +14,42 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/answer")
-public class AnswerRest {
-    interface AnswerDetails extends Answer.BasicInfo,Answer.QuestionDet,Answer.UserDet,
-            User.BasicInfo,Question.BasicInfo {}
-    @Autowired
-    AnswerService answerService;
+public class AnswerRest implements CheckIfCreate<Answer> {
 
-    @GetMapping(value = "/{id}")
-    @JsonView(AnswerDetails.class)
-    public ResponseEntity<Answer> getAnswer (@PathVariable long id) {
-        Optional<Answer> answer = answerService.findOne(id);
-        if(answer.isPresent()){
+
+    @Override
+    public ResponseEntity<Answer> checkIfExist(Optional<Answer> answer) {
+        if (answer.isPresent()) {
             return new ResponseEntity<>(answer.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    interface AnswerDetails extends Answer.BasicInfo, Answer.QuestionDet, Answer.UserDet,
+            User.BasicInfo, Question.BasicInfo {
+    }
+
+    @Autowired
+    AnswerService answerService;
+
+    @GetMapping(value = "/{id}")
+    @JsonView(AnswerDetails.class)
+    public ResponseEntity<Answer> getAnswer(@PathVariable long id) {
+        Optional<Answer> answer = answerService.findOne(id);
+        return checkIfExist(answer);
+    }
+
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     @JsonView(AnswerDetails.class)
-    public Answer createAnswer(@RequestBody Answer answer){
+    public Answer createAnswer(@RequestBody Answer answer) {
         answerService.addAnswer(answer);
         return answer;
     }
 
     @PutMapping("/{id}")
     @JsonView(AnswerDetails.class)
-    public Answer updateAnswer(@PathVariable long id, @RequestBody Answer updatedAnswer){
+    public Answer updateAnswer(@PathVariable long id, @RequestBody Answer updatedAnswer) {
         answerService.findOne(id).get();
         updatedAnswer.setIdAnswer(id);
         answerService.addAnswer(updatedAnswer);

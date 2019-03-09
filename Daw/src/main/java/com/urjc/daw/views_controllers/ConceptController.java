@@ -1,5 +1,6 @@
 package com.urjc.daw.views_controllers;
 
+import com.urjc.daw.files.UploadFileServiceImpl;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptRepository;
 import com.urjc.daw.models.concept.ConceptService;
@@ -47,6 +48,9 @@ public class ConceptController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UploadFileServiceImpl uploadFileService;
+
     @GetMapping("/deleteConcept/{id}")
     public String deleteConcept(Model model, @PathVariable long id) {
         conceptService.deleteConceptById(id);
@@ -54,18 +58,16 @@ public class ConceptController {
     }
 
     @PostMapping("/saveConcept/{id}")
-    public String saveConcept(Model model, Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile, RedirectAttributes redirectAttributes) {
+    public String saveConcept(Model model, Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile) {
         if (!multipartFile.isEmpty()) {
-            String rootPath = "C://Temp//uploads";
+            String uniqueFilename = null;
             try {
-                byte[] bytes = multipartFile.getBytes();
-                Path rutaCompleta = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
-                Files.write(rutaCompleta, bytes);
-                redirectAttributes.addFlashAttribute("info", "Has subido correctamente ' " + multipartFile.getOriginalFilename() + "'");
-                concept.setPicture(multipartFile.getOriginalFilename());
+                uniqueFilename = uploadFileService.copy(multipartFile);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            concept.setPicture(uniqueFilename);
         }
 
         Lesson lesson = lessonService.findOne(id).get();

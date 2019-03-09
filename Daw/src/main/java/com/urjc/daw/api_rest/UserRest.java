@@ -19,7 +19,7 @@ public class UserRest  extends OperationsRest<User> {
 
 
     @GetMapping("/login")
-    public ResponseEntity<User> logIn2() {
+    public ResponseEntity<User> logIn() {
         if (!userComponent.isLoggedUser()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {

@@ -31,11 +31,11 @@ public class ItemRest extends OperationsRest<Item> {
         return checkIfExist(item);
     }
 
-    @PostMapping("/")
+    @PostMapping("/concept/{idConcept}")
     @ResponseStatus(HttpStatus.CREATED)
     @JsonView(ItemsDetails.class)
-    public ResponseEntity<Item> createItem(@RequestBody Item item){
-        Optional<Concept> c = conceptService.findByOneId(item.getIdConcept());
+    public ResponseEntity<Item> createItem(@PathVariable long idConcept,@RequestBody Item item){
+        Optional<Concept> c = conceptService.findByOneId(idConcept);
         if (c.isPresent()) {
             Concept concept = c.get();
             concept.addItem(item);

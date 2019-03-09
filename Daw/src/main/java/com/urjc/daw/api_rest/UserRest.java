@@ -1,21 +1,16 @@
 package com.urjc.daw.api_rest;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.user.User;
 import com.urjc.daw.models.user.UserComponent;
-import com.urjc.daw.models.user.UserRepository;
 import com.urjc.daw.models.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/user")
-public class UserRest  extends CheckIfCreate<User>{
+public class UserRest  extends OperationsRest<User> {
 
     @Autowired
     UserComponent userComponent;

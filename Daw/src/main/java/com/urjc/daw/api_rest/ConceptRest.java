@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/concept")
-public class ConceptRest extends CheckIfCreate<Concept> {
+public class ConceptRest extends OperationsRest<Concept> {
 
     interface ConceptDetails extends Concept.BasicInfo,Concept.ItemList,Concept.QuestionList,
             Item.BasicInfo,Question.BasicInfo {}

@@ -8,7 +8,6 @@ import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +16,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/question")
-public class QuestionRest extends CheckIfCreate<Question> {
+public class QuestionRest extends OperationsRest<Question> {
 
     interface QuestionDetails extends Question.BasicInfo,Question.AnswerList,Question.ConceptDet,Question.ItemList,
             Concept.BasicInfo, Answer.BasicInfo, Item.BasicInfo {}
-
 
     @Autowired
     QuestionService questionService;

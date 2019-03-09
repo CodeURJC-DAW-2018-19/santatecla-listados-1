@@ -2,6 +2,7 @@ package com.urjc.daw.api_rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.item.ItemService;
 import com.urjc.daw.models.question.Question;
@@ -13,13 +14,15 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping ("/api/items")
-public class ItemRest extends CheckIfCreate<Item>{
+public class ItemRest extends OperationsRest<Item> {
 
     interface ItemsDetails extends Item.BasicInfo,Item.ConceptList,Item.QuestionList,
             Question.BasicInfo,Concept.BasicInfo {}
 
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private ConceptService conceptService;
 
     @GetMapping(value = "/{id}")
     @JsonView(ItemsDetails.class)
@@ -32,7 +35,13 @@ public class ItemRest extends CheckIfCreate<Item>{
     @ResponseStatus(HttpStatus.CREATED)
     @JsonView(ItemsDetails.class)
     public Item createItem(@RequestBody Item item){
-        itemService.addItem(item);
+        Optional<Concept> c = conceptService.findByOneId(item.getIdConcept());
+        if (c.isPresent()) {
+            Concept concept = c.get();
+            concept.addItem(item);
+            conceptService.addConcept(concept);
+        }
+
         return item;
     }
 

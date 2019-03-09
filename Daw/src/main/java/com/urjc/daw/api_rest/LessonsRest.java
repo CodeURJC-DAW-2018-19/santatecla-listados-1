@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/lesson")
-public class LessonsRest extends CheckIfCreate<Lesson>{
+public class LessonsRest extends OperationsRest<Lesson> {
 
     interface LessonDetails extends Lesson.BasicInfo,Lesson.ConceptList, Concept.BasicInfo{}
 

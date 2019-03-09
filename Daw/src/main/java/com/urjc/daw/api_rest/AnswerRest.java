@@ -3,6 +3,8 @@ package com.urjc.daw.api_rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.answer.AnswerService;
+import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class AnswerRest extends OperationsRest<Answer> {
     @Autowired
     AnswerService answerService;
 
+    @Autowired
+    ConceptService conceptService;
+
     @GetMapping(value = "/{id}")
     @JsonView(AnswerDetails.class)
     public ResponseEntity<Answer> getAnswer(@PathVariable long id) {
@@ -32,8 +37,13 @@ public class AnswerRest extends OperationsRest<Answer> {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     @JsonView(AnswerDetails.class)
-    public Answer createAnswer(@RequestBody Answer answer) {
-        answerService.addAnswer(answer);
+    public Answer createAnswer (@RequestBody Answer answer){
+        Optional<Concept> c = conceptService.findByOneId(answer.getIdConcept());
+        if (c.isPresent()) {
+            Concept concept = c.get();
+            answerService.addAnswer(answer);
+            conceptService.addConcept(concept);
+        }
         return answer;
     }
 

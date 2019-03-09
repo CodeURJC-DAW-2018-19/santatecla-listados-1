@@ -4,6 +4,7 @@ package com.urjc.daw.api_rest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
+import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.question.QuestionService;
@@ -24,6 +25,9 @@ public class QuestionRest extends OperationsRest<Question> {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    ConceptService conceptService;
+
     @GetMapping(value = "/{id}")
     @JsonView(QuestionDetails.class)
     public ResponseEntity<Question> getQuestion (@PathVariable long id) {
@@ -35,6 +39,18 @@ public class QuestionRest extends OperationsRest<Question> {
     @JsonView(QuestionDetails.class)
     public Collection<Question> getQuestions() {
         return questionService.findAll();
+    }
+
+    @PostMapping("/")
+    @JsonView(QuestionDetails.class)
+    public Question createQuestion (@RequestBody Question question){
+        Optional<Concept> c = conceptService.findByOneId(question.getIdConcept());
+        if (c.isPresent()) {
+            Concept concept = c.get();
+            questionService.addQuestion(question);
+            conceptService.addConcept(concept);
+        }
+        return question;
     }
 
     @DeleteMapping("/{id}")

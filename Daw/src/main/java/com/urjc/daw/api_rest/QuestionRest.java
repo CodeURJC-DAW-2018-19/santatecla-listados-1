@@ -17,9 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/question")
-public class QuestionRest {
+public class QuestionRest extends CheckIfCreate<Question> {
+
     interface QuestionDetails extends Question.BasicInfo,Question.AnswerList,Question.ConceptDet,Question.ItemList,
             Concept.BasicInfo, Answer.BasicInfo, Item.BasicInfo {}
+
 
     @Autowired
     QuestionService questionService;
@@ -28,10 +30,7 @@ public class QuestionRest {
     @JsonView(QuestionDetails.class)
     public ResponseEntity<Question> getQuestion (@PathVariable long id) {
         Optional<Question> question = questionService.findOne(id);
-        if(question.isPresent()){
-            return new ResponseEntity<>(question.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return checkIfExist(question);
     }
 
     @GetMapping("/")

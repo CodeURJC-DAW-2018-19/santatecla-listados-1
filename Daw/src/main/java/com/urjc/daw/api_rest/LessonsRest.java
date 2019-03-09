@@ -2,10 +2,8 @@ package com.urjc.daw.api_rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.concept.Concept;
-import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.lessons.LessonService;
-import com.urjc.daw.models.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.soap.Addressing;
-import java.util.List;
+
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/lesson")
-public class LessonsRest {
+public class LessonsRest extends CheckIfCreate<Lesson>{
 
     interface LessonDetails extends Lesson.BasicInfo,Lesson.ConceptList, Concept.BasicInfo{}
 
@@ -30,10 +27,7 @@ public class LessonsRest {
     @JsonView(LessonDetails.class)
     public ResponseEntity<Lesson> getLesson(@PathVariable long id) {
         Optional<Lesson> lesson=lessonService.findOne(id);
-        if(lesson.isPresent()){
-            return new ResponseEntity<>(lesson.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return checkIfExist(lesson);
     }
 
 

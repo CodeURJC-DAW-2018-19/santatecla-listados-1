@@ -9,6 +9,7 @@ import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +17,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/concept")
-public class ConceptRest  implements CheckIfCreate<Concept> {
-
-
-    @Override
-    public ResponseEntity<Concept> checkIfExist(Optional<Concept> t) {
-        return null;
-    }
+public class ConceptRest extends CheckIfCreate<Concept> {
 
     interface ConceptDetails extends Concept.BasicInfo,Concept.ItemList,Concept.QuestionList,
             Item.BasicInfo,Question.BasicInfo {}
-
-
+            
     @Autowired
     ConceptService conceptService;
 

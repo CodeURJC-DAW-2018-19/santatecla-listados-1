@@ -14,16 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/answer")
-public class AnswerRest implements CheckIfCreate<Answer> {
-
-    @Override
-    public ResponseEntity<Answer> checkIfExist(Optional<Answer> answer) {
-        if (answer.isPresent()) {
-            return new ResponseEntity<>(answer.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
+public class AnswerRest extends CheckIfCreate<Answer> {
     interface AnswerDetails extends Answer.BasicInfo, Answer.QuestionDet, Answer.UserDet,
             User.BasicInfo, Question.BasicInfo {
     }

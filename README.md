@@ -277,6 +277,10 @@ CONTROLLER:
 - LessonsRest has an association relationship with: Concept, Lesson and LessonService
 - UserRest has an association relationship with: User, UserService and UserComponent
 
+All @RestController inherit from class CheckIfCreate.
+
+- CheckIfCreate
+
 @ControllerAdvice
 - RestControllerExceptionHandler
 

@@ -2,21 +2,31 @@ package com.urjc.daw.api_rest;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/concept")
-public class ConceptRest {
+public class ConceptRest  implements CheckIfCreate<Concept> {
 
+
+    @Override
+    public ResponseEntity<Concept> checkIfExist(Optional<Concept> t) {
+        return null;
+    }
 
     interface ConceptDetails extends Concept.BasicInfo,Concept.ItemList,Concept.QuestionList,
             Item.BasicInfo,Question.BasicInfo {}
+
 
     @Autowired
     ConceptService conceptService;

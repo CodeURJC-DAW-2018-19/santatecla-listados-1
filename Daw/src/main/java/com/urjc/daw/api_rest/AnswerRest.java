@@ -16,7 +16,6 @@ import java.util.Optional;
 @RequestMapping("/api/answer")
 public class AnswerRest implements CheckIfCreate<Answer> {
 
-
     @Override
     public ResponseEntity<Answer> checkIfExist(Optional<Answer> answer) {
         if (answer.isPresent()) {

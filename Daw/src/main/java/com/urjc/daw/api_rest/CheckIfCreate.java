@@ -7,5 +7,5 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 public interface CheckIfCreate <T>{
-    public ResponseEntity<T> checkIfExist(Optional<Answer> answer);
+    public ResponseEntity<T> checkIfExist(Optional<T> t);
 }

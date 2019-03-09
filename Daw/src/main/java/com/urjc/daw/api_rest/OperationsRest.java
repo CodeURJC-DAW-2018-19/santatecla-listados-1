@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 public class OperationsRest<T> {
+
     public ResponseEntity<T> checkIfExist(Optional<T> t) {
         if (t.isPresent()) {
             return new ResponseEntity<>(t.get(), HttpStatus.OK);

@@ -1,5 +1,6 @@
 package com.urjc.daw.models.concept;
 
+import com.urjc.daw.models.lessons.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,4 +32,8 @@ public class ConceptService{
     }
 
     public List<Concept> findAll(){return  repository.findAll();}
+
+    public Page<Concept> findByLesson(Lesson idLesson, Pageable page) {
+        return repository.findByIdLessonEquals(idLesson,page);
+    }
 }

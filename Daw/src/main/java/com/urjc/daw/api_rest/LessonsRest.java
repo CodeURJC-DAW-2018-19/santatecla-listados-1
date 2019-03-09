@@ -38,7 +38,7 @@ public class LessonsRest extends OperationsRest<Lesson> {
     }
 
     @GetMapping(value = "/pag")
-    @JsonView(LessonDetails.class)
+   // @JsonView(LessonDetails.class)
     public Page<Lesson> getPage (Pageable page){
         return lessonService.findAll(page);
     }

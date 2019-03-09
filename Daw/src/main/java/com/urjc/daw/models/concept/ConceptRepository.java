@@ -1,6 +1,10 @@
 package com.urjc.daw.models.concept;
 
+import com.urjc.daw.models.lessons.Lesson;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
@@ -10,4 +14,6 @@ import java.util.Optional;
 
 public interface ConceptRepository extends JpaRepository<Concept, Long> {
         Optional<Concept> findByIdConcept(long IdConcept);
+
+    Page<Concept> findByIdLessonEquals(Lesson idLesson, Pageable page);
 }

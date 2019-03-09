@@ -30,7 +30,7 @@ public class SecurityApiRest extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/concept/{id}").hasAnyRole("TEACHER");;
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/concept/{id}").hasAnyRole("TEACHER","STUDENT");
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/concept/").hasAnyRole("TEACHER","STUDENT");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/concept/lesson/{idLesson}").hasAnyRole("TEACHER","STUDENT");
 		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/concept/{id}").hasAnyRole("TEACHER");
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/concept/{id}").hasAnyRole("TEACHER");
 
@@ -39,10 +39,9 @@ public class SecurityApiRest extends WebSecurityConfigurerAdapter {
 
 
 
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/item/{id}").permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/item/{id}").hasAnyRole("TEACHER");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/item/").hasAnyRole("TEACHER");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/item/{id}").hasAnyRole("TEACHER");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/items/{id}").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/items/").hasAnyRole("TEACHER");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/items/{id}").hasAnyRole("TEACHER");
 
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/answer/{id}").hasAnyRole("TEACHER", "STUDENT");
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/answer/").hasAnyRole("STUDENT");

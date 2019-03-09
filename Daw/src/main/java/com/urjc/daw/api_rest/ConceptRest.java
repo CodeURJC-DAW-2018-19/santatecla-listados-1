@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
+import com.urjc.daw.models.lessons.LessonService;
 import com.urjc.daw.models.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,8 @@ public class ConceptRest extends OperationsRest<Concept> {
             
     @Autowired
     ConceptService conceptService;
+    @Autowired
+    LessonService lessonService;
 
     @GetMapping(value ="{id}")
     @JsonView(ConceptDetails.class)
@@ -31,10 +35,11 @@ public class ConceptRest extends OperationsRest<Concept> {
         return safeDelete(concept,conceptService.repository);
     }
 
-    @GetMapping(value ="/")
-    @JsonView(ConceptDetails.class)
-    public Page<Concept> getConcepts(Pageable page){
-        return  conceptService.findAll(page);
+    @GetMapping(value ="lesson/{idLesson}")
+   // @JsonView(ConceptDetails.class)
+    public Page<Concept> getConcepts(@PathVariable long idLesson, Pageable page){
+
+        return  conceptService.findByLesson(lessonService.findOne(idLesson).get(),page);
     }
 
     @DeleteMapping(value ="{id}")

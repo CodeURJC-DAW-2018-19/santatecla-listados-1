@@ -1,5 +1,6 @@
 package com.urjc.daw.models.concept;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;

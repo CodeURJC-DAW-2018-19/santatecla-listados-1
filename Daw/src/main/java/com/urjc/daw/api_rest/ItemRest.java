@@ -34,24 +34,15 @@ public class ItemRest extends OperationsRest<Item> {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     @JsonView(ItemsDetails.class)
-    public Item createItem(@RequestBody Item item){
+    public ResponseEntity<Item> createItem(@RequestBody Item item){
         Optional<Concept> c = conceptService.findByOneId(item.getIdConcept());
         if (c.isPresent()) {
             Concept concept = c.get();
             concept.addItem(item);
             conceptService.addConcept(concept);
         }
-
-        return item;
-    }
-
-    @PutMapping("/{id}")
-    @JsonView(ItemsDetails.class)
-    public Item updateItem(@PathVariable long id, @RequestBody Item updatedItem){
-        itemService.findByOneId(id).get();
-        updatedItem.setIdItem(id);
-        itemService.addItem(updatedItem);
-        return updatedItem;
+        Optional<Item> item1=itemService.findByOneId(item.getIdItem());
+        return checkIfExist(item1);
     }
 
     @DeleteMapping("/{id}")

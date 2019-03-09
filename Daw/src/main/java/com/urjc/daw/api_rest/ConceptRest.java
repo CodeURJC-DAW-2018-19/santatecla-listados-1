@@ -2,6 +2,7 @@ package com.urjc.daw.api_rest;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.urjc.daw.files.UploadFileServiceImpl;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
@@ -13,7 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +31,8 @@ public class ConceptRest extends OperationsRest<Concept> {
     ConceptService conceptService;
     @Autowired
     LessonService lessonService;
+    @Autowired
+    UploadFileServiceImpl uploadFileService;
 
     @GetMapping(value ="{id}")
     @JsonView(ConceptDetails.class)
@@ -52,7 +58,10 @@ public class ConceptRest extends OperationsRest<Concept> {
 
     @PostMapping("/")
     @JsonView(ConceptDetails.class)
-    public Concept saveConcept(@RequestBody Concept concept){
+    public Concept saveConcept(@RequestBody Concept concept, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+        String filename = uploadFileService.copy(multipartFile);
+        String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("/uploads/").path(filename).toUriString();
+        concept.setPicture(fileUrl);
         conceptService.addConcept(concept);
         return  concept;
     }

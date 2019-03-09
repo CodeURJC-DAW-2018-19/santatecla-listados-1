@@ -22,7 +22,7 @@ public class OperationsRest<T> {
     public ResponseEntity<T> safeDelete(Optional<T> t, JpaRepository<T, Long> service) {
         if (t.isPresent()) {
             service.delete(t.get());
-            return new ResponseEntity<>(t.get(), HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

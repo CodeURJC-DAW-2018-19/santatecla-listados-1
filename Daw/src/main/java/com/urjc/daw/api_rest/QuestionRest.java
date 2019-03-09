@@ -9,6 +9,7 @@ import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.question.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,24 +42,28 @@ public class QuestionRest extends OperationsRest<Question> {
         return questionService.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("/concept/{idConcept}")
     @JsonView(QuestionDetails.class)
-    public Question createQuestion (@RequestBody Question question){
-        Optional<Concept> c = conceptService.findByOneId(question.getIdConcept());
+    public ResponseEntity<Question> createQuestion (@RequestBody Question question,@PathVariable long idConcept){
+        Optional<Concept> c = conceptService.findByOneId(idConcept);
+        ResponseEntity<Question> responseEntity;
         if (c.isPresent()) {
             Concept concept = c.get();
-            questionService.addQuestion(question);
+            question.setConcept(concept);
+            responseEntity = safeCreate(question,questionService.repository);
+            concept.addQuestion(question);
             conceptService.addConcept(concept);
+        }else{
+            responseEntity=new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return question;
+        return responseEntity;
     }
 
     @DeleteMapping("/{id}")
     @JsonView(QuestionDetails.class)
-    public Question deleteBook(@PathVariable long id) {
-        Question deletedBook = questionService.findOne(id).get();
-        questionService.delete(id);
-        return deletedBook;
+    public ResponseEntity<Question> deleteQuestion(@PathVariable long id) {
+        Optional<Question> deletedBook = questionService.findOne(id);
+        return safeDelete(deletedBook,questionService.repository);
     }
 
 }

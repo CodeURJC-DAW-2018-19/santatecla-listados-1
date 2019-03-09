@@ -167,20 +167,24 @@ VIEW
 
 All entities and all repositories have a composition relationship with DatabaseInitializer.
 
+![Diagrama model1](https://user-images.githubusercontent.com/46897050/54070688-5b272b80-4263-11e9-9d92-03e0b0146bc3.jpg)
+
+![Diagrama model2](https://user-images.githubusercontent.com/46897050/54070689-5b272b80-4263-11e9-9abc-c852b5568879.jpg)
+
 @Service
-- ItemService
-- AnswerService
+- ItemService has an association relationship with Concept
+- AnswerService has an association relationship with: Question and User
 - ConceptService
 - LessonService
 - QuestionService
 
 Repository (Interface)
 - LessonRepository 
-- QuestionRepository
-- AnswerRepository
+- QuestionRepository has an association relationship with Concept
+- AnswerRepository has an association relationship with: Question and User
 - UserRepository
 - ConceptRepository
-- ItemRepository
+- ItemRepository has an association relationship with Concept
 
 @Entity: Concept, Question, Answer, Item, User and Lesson. The relationships between them are the same as the picture of the entity diagram
 
@@ -191,14 +195,7 @@ Repository (Interface)
 
 @Configuration: CSRFHandlerConfiguration and SecurityConfiguration
 
-@Controller
-- QuestionController has an association relationship with: QuestionService, Concept, ConceptService, ItemService, Item, Question, StudentConceptView, TeacherConcept_View and addnewQuestions.
-- AnswerController has an association relationship with: Answer, AnswerService, Question, QUestionService, UserComponent and TeacherConcept_View
-- ConceptController has an association relationship with: Concept, ConceptRepository, ConceptService, ItemRepository, LessonService, QuestionRepository, AnswerRepository, UserRepository, Lesson and MainPage
-- IndexController has an association relationship with: UserRepository and login
-- ItemController has an association relationship with: Concept, ConceptService, Item, ItemRepository, ItemService, QuestionRepository, TeacherConcept_View and Items
-- LessonController has an association relationship with: Lesson, LessonService, UserComponent, MainPage and lesson
-- MainController has an association relationship with: AnswerRepository, Concept, ConceptRepository, ConceptService, ItemRepository, ItemSrvice, LessonService, Question, QuestionRepository, User, UserComponent, UserRepository, QuestionService, Answer, AnswerService, StudentConceptView, sign_in, login, TeacherConcept_View, addnewQuestion and MainPage
+![Diagrama view](https://user-images.githubusercontent.com/46897050/54070776-a55cdc80-4264-11e9-931f-b04279e526b6.jpg)
 
 Error
 - 403
@@ -222,8 +219,29 @@ Templates
 - lesson
 - addnewQuestion
 
+![Diagrama controller](https://user-images.githubusercontent.com/46897050/54070740-25367700-4264-11e9-9e92-221ad6a2545b.jpg)
+
+![Controller y Model1](https://user-images.githubusercontent.com/46897050/54070739-25367700-4264-11e9-8e01-72b23eb60fae.jpg)
+
+![Model y Controller2](https://user-images.githubusercontent.com/46897050/54070741-25367700-4264-11e9-951c-5832e270041a.jpg)
+
+![Model y Controller3](https://user-images.githubusercontent.com/46897050/54070742-25367700-4264-11e9-86e6-7f7357d0e65c.jpg)
+
+![View y Controller](https://user-images.githubusercontent.com/46897050/54070777-a55cdc80-4264-11e9-8607-7ba37f971ed8.jpg)
+
+@Controller
+- QuestionController has an association relationship with: QuestionService, Concept, ConceptService, ItemService, Item, Question, StudentConceptView, TeacherConcept_View and addnewQuestions.
+- AnswerController has an association relationship with: Answer, AnswerService, Question, QUestionService, UserComponent and TeacherConcept_View
+- ConceptController has an association relationship with: Concept, ConceptRepository, ConceptService, ItemRepository, LessonService, QuestionRepository, AnswerRepository, UserRepository, Lesson and MainPage
+- IndexController has an association relationship with: UserRepository and login
+- ItemController has an association relationship with: Concept, ConceptService, Item, ItemRepository, ItemService, QuestionRepository, TeacherConcept_View and Items
+- LessonController has an association relationship with: Lesson, LessonService, UserComponent, MainPage and lesson
+- MainController has an association relationship with: AnswerRepository, Concept, ConceptRepository, ConceptService, ItemRepository, ItemSrvice, LessonService, Question, QuestionRepository, User, UserComponent, UserRepository, QuestionService, Answer, AnswerService, StudentConceptView, sign_in, login, TeacherConcept_View, addnewQuestion and MainPage
+
 @SpringBootApplication
 - DawApplication
+
+All classes and all views have a composition relationship with DawApplication.
 
 ### Bibliography
 

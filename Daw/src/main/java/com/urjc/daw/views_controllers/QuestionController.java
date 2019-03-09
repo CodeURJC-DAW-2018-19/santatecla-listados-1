@@ -32,7 +32,7 @@ public class QuestionController {
     public ItemService itemService;
 
     @GetMapping("/deleteQuestion/{id}")
-    public String deleteConcept(Model model, @PathVariable long id) {
+    public String deleteQuestion (Model model, @PathVariable long id) {
         questionService.deleteQuestionById(id);
         return "redirect:/TeacherConcept_View";
     }

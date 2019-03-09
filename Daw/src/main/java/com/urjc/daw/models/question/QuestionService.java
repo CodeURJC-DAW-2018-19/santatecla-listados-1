@@ -18,8 +18,8 @@ public class QuestionService {
         return repository.findAll();
     }
 
-    public Optional<Question> findOne(Long idItem) {
-        return repository.findById(idItem);
+    public Optional<Question> findOne(Long idQuestion) {
+        return repository.findById(idQuestion);
     }
 
     public void addQuestion(Question question) {

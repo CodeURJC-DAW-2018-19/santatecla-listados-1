@@ -14,7 +14,7 @@ import java.util.Optional;
 public class AnswerService {
 
     @Autowired
-    private AnswerRepository repository;
+    public AnswerRepository repository;
 
     public void addAnswer(Answer answer){repository.save(answer);}
 

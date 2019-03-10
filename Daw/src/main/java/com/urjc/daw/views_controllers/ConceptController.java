@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -60,16 +62,16 @@ public class ConceptController {
     @PostMapping("/saveConcept/{id}")
     public String saveConcept(Model model, Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile) {
         if (!multipartFile.isEmpty()) {
-            String uniqueFilename = null;
+            String rootPath = "src/main/resources/static/uploads";
             try {
-                uniqueFilename = uploadFileService.copy(multipartFile);
+                byte[] bytes = multipartFile.getBytes();
+                Path path = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
+                Files.write(path, bytes);
+                concept.setPicture(multipartFile.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            concept.setPicture(uniqueFilename);
         }
-
         Lesson lesson = lessonService.findOne(id).get();
         concept.setIdLesson(lesson);
         conceptService.addConcept(concept);

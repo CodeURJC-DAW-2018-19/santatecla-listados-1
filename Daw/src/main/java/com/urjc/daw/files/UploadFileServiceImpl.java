@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadFileServiceImpl implements IUploadFileService {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final static String UPLOADS_FOLDER = "C://Temp//uploads";
+    private final static String UPLOADS_FOLDER = "src/main/resources/static/uploads";
 
     public Path getPath(String filename) {
         return Paths.get(UPLOADS_FOLDER).resolve(filename).toAbsolutePath();

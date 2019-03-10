@@ -79,14 +79,23 @@ public class ConceptRest extends OperationsRest<Concept> {
     }
 
     @RequestMapping(value = "/image/{id}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Concept> uploadsImage(@PathVariable long id, @RequestParam("file") MultipartFile file) throws IOException{
+    public ResponseEntity<Concept> uploadsImage(@PathVariable long id, @RequestParam("file") MultipartFile file){
         Concept conceptNewFile = conceptService.findByOneId(id).get();
-        File fileConcept = new File("C://Temp//uploads", file.getOriginalFilename());
-        fileConcept.createNewFile();
-        FileOutputStream fout = new FileOutputStream(fileConcept);
-        fout.write(file.getBytes());
-        fout.close();
-        conceptNewFile.setPicture(file.getOriginalFilename());
-        return new ResponseEntity<>(conceptNewFile, HttpStatus.OK);
+        if(!file.isEmpty()){
+            File fileConcept = new File("src/main/resources/static/uploads", file.getOriginalFilename());
+            try {
+                fileConcept.createNewFile();
+                FileOutputStream fout = new FileOutputStream(fileConcept);
+                fout.write(file.getBytes());
+                fout.close();
+                conceptNewFile.setPicture(file.getOriginalFilename());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return new ResponseEntity<>( conceptNewFile,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 }

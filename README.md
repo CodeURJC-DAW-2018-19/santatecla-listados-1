@@ -125,6 +125,7 @@ spring.http.multipart.max-file-size = 10MB
 spring.http.multipart.max-request-size = 10MB
 
 Once connected to the environment we had to familiarize ourselves with the tags @ Entity, @ ManyToOne .... And so we finally managed to create a DB according to our requirements.
+
 ### Entity diagram
 ![diagrama de clases bbdd](https://user-images.githubusercontent.com/46897050/53304966-bdebf080-387b-11e9-8026-2ebd933f7413.jpg)
 
@@ -247,7 +248,150 @@ All classes and all views have a composition relationship with DawApplication.
 
 ## PHASE 3
 ### API REST Documentation
- La documentación pública de cada uno de los endpoints de la API REST. Por cada tipo de recurso se deberá indicar el formato de la URL, las operaciones soportadas, el formato de la información de entrada y de salida, los códigos de estado, etc. Para los formatos de entrada (en el body) y salida se usarán ejemplos de los datos de las peticiones en JSON.
+
+All URLs begin with: https://localhost:8443
+
+#### ANSWER
+
+The format of the answer URLs is: /api/answer
+
+For each operation the format changes, words or parameters are added
+
+Operations:
+
+GET
+- Get Answer: /{id} 
+- Get Answer by User: /user/{idUser}
+- Get Answer by Question: /concept/{idConcept}
+
+POST
+- Create Answer: /{idQuestion}
+- Correct Answer 1: /sendAnswerTypeOne/{idQuestion}
+- Correct Answer 2: /sendAnswerTypeTwo/{idQuestion}/{ret}/{total}
+
+Below we can see the format of the input and output information:
+
+![Captura de pantalla 2019-03-10 a las 18 53 58](https://user-images.githubusercontent.com/46897050/54090081-b8f56980-4370-11e9-9564-0792c573f3ef.png)
+
+![Captura de pantalla 2019-03-10 a las 18 54 13](https://user-images.githubusercontent.com/46897050/54090082-b8f56980-4370-11e9-95a0-6f367ca092e1.png)
+
+![Captura de pantalla 2019-03-10 a las 18 54 31](https://user-images.githubusercontent.com/46897050/54090083-b8f56980-4370-11e9-861c-5726c0791189.png)
+
+#### CONCEPT
+
+The format of the answer URLs is: /api/concept
+
+For each operation the format changes, words or parameters are added
+
+Operations:
+
+GET
+- Get Concept: /{id} 
+- Get Concepts by Id Lesson: /lesson/{idLesson}
+
+POST
+- Create Concept: /lesson/{idLesson}. If we add to the URL: /?page=0&size=10, we get the pagination
+
+DELETE
+- Delete Concept: /{id}
+
+Below we can see the format of the input and output information:
+
+![Captura de pantalla 2019-03-10 a las 14 53 08](https://user-images.githubusercontent.com/46897050/54090493-0c69b680-4375-11e9-9956-84a382c65142.png)
+
+![Captura de pantalla 2019-03-10 a las 14 53 16](https://user-images.githubusercontent.com/46897050/54090494-0c69b680-4375-11e9-8977-583889666cb0.png)
+
+#### ITEMS
+
+The format of the answer URLs is: /api/items
+
+For each operation the format changes, words or parameters are added
+
+Operations:
+
+GET
+- Get item: /{id} 
+- Get Items by Concept: /concept/{idConcept}
+
+POST
+- Create Item: /concept/{idConcept}
+
+DELETE
+- Delete item: /{id}
+
+Below we can see the format of the input and output information:
+
+![Captura de pantalla 2019-03-10 a las 18 55 10](https://user-images.githubusercontent.com/46897050/54090543-869a3b00-4375-11e9-96d0-e1d1930bc5aa.png)
+
+![Captura de pantalla 2019-03-10 a las 18 55 29](https://user-images.githubusercontent.com/46897050/54090544-869a3b00-4375-11e9-8754-289cb9af8916.png)
+
+#### LESSON
+
+The format of the answer URLs is: /api/lesson
+
+For each operation the format changes, words or parameters are added
+
+Operations:
+
+GET
+- Show lessons: /pag. If we add to the URL: /?page=1&size=10, we get the pagination  
+- Show lesson: /{id}
+
+POST
+- Create Lesson: /
+
+DELETE
+- Delete lesson: /{id}
+
+Below we can see the format of the input and output information:
+
+![Lesson-1](https://user-images.githubusercontent.com/46897050/54090594-12ac6280-4376-11e9-8e0b-0b6526b48666.jpeg)
+
+![Lesson-2](https://user-images.githubusercontent.com/46897050/54090595-12ac6280-4376-11e9-97dd-050fdcfe108b.jpeg)
+
+#### QUESTION
+
+The format of the answer URLs is: /api/question
+
+For each operation the format changes, words or parameters are added
+
+Operations:
+
+GET 
+- Get Question: /{id}
+
+POST
+- Create Question: /concept/{idConcept}
+
+DELETE
+- Delete Question: /{id}
+
+Below we can see the format of the input and output information:
+
+![Question-1](https://user-images.githubusercontent.com/46897050/54090618-64ed8380-4376-11e9-81dc-cdcbdca93272.jpeg)
+
+#### USER
+
+The format of the answer URLs is: /api/user
+
+For each operation the format changes, words or parameters are added
+
+Operations:
+
+GET 
+- Login: /login
+- Logout: /logout
+- Get User by name: /{name}
+
+POST
+- Register: /register
+
+Below we can see the format of the input and output information:
+
+![User-1](https://user-images.githubusercontent.com/46897050/54090660-bd248580-4376-11e9-889a-5fe4ea4ea104.jpeg)
+
+![User-2](https://user-images.githubusercontent.com/46897050/54090661-bd248580-4376-11e9-86eb-3c9451d879e0.jpeg)
+
 ### Class diagram updates
 In the following image we can see the diagram of classes and templates summarized and updated:
 

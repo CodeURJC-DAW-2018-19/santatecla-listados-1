@@ -34,7 +34,7 @@ public class User {
     private String userType;
 
     @OneToMany
-    @JsonIgnore
+    @JsonView(AnswerList.class)
     private Set<Answer> setAnswer;
 
 

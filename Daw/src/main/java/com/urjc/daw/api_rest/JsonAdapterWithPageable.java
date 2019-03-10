@@ -30,7 +30,6 @@ public class JsonAdapterWithPageable implements WebMvcConfigurer {
                     throws IOException, JsonProcessingException {
 
                 ObjectMapper om = new ObjectMapper().disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
-
                 jsonGen.writeStartObject();
                 jsonGen.writeFieldName("content");
                 jsonGen.writeRawValue(

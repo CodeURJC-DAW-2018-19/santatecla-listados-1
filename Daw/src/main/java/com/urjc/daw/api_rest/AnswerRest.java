@@ -73,7 +73,7 @@ public class AnswerRest extends OperationsRest<Answer> {
     }
 
 
-    @PostMapping(path = "/sendAnswerTrue/{idQuestion}")
+    @PostMapping(path = "/sendAnswerTypeOne/{idQuestion}")
     @JsonView(AnswerDetails.class)
     public ResponseEntity<Answer> sendAnswerOne(@PathVariable long idQuestion, @RequestBody Answer answer){
         Optional<Question> option = questionService.findOne(idQuestion);
@@ -96,7 +96,7 @@ public class AnswerRest extends OperationsRest<Answer> {
         }
     }
 
-    /*@GetMapping(path = "/sendSelectedItems/{idQuestion}/{ret}/{total}")
+    @PostMapping(path = "/sendAnswerTypeTwo/{idQuestion}/{ret}/{total}")
     @JsonView(AnswerDetails.class)
     public ResponseEntity<Answer> sendItemsSelected(@PathVariable long idQuestion, @PathVariable String ret, @PathVariable String total){
 
@@ -119,7 +119,7 @@ public class AnswerRest extends OperationsRest<Answer> {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }*/
+    }
 
     @PutMapping("/{id}")
     @JsonView(AnswerDetails.class)

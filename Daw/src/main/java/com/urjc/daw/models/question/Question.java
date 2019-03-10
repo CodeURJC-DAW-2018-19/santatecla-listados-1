@@ -163,7 +163,7 @@ public class Question {
                     info = "¿Cuáles son " + idConcept.getTitle() + " ?";
                     break;
                 case 1:
-                    List<Item> itemList = (List) idConcept.getItemSet();
+                    List<Item> itemList = new ArrayList<>(idConcept.getItemSet());
                     item = (int) (Math.random() * itemList.size() - 1);
                     info = "¿" + itemList.get(item).getInfo() + " es un elemento de " + idConcept.getTitle() + " ?";
                     break;
@@ -185,7 +185,7 @@ public class Question {
                 case 3:
 
                     List<Item> selected = new ArrayList<>();
-                    List<Item> itemRandom = (List) idConcept.getItemSet() ;
+                    List<Item> itemRandom = new ArrayList<>(idConcept.getItemSet());
 
                     int numItems = (int) Math.floor(Math.random() * (5 - 3 + 1) + 3);
 

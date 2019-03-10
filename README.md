@@ -291,6 +291,7 @@ GET
 
 POST
 - Create Concept: /lesson/{idLesson}. If we add to the URL: /?page=0&size=10, we get the pagination
+- Upload image: /image/{id} to accese to image uploaded is with https://loacalhost/uploads/{filename}
 
 DELETE
 - Delete Concept: /{id}
@@ -300,6 +301,8 @@ Below we can see the format of the input and output information:
 ![Captura de pantalla 2019-03-10 a las 14 53 08](https://user-images.githubusercontent.com/46897050/54090493-0c69b680-4375-11e9-9956-84a382c65142.png)
 
 ![Captura de pantalla 2019-03-10 a las 14 53 16](https://user-images.githubusercontent.com/46897050/54090494-0c69b680-4375-11e9-8977-583889666cb0.png)
+
+
 
 #### ITEMS
 

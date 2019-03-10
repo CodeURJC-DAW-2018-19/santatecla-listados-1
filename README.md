@@ -267,19 +267,20 @@ Repository (Interface)
 @Configuration
 - MvcConfig
 - SecurityApiRest
+- JsonAdapterWithPageable
 
 CONTROLLER:
 @RestController
-- ConceptRest has an association relationship with: Concept, Question, Item and ConceptService
-- QuestionRest has an association relationship with: Concept, Question, Item, Answer and QuestionService
-- ItemRest has an association relationship with: Concept, Question, Item and ItemService
-- AnswerRest has an association relationship with: Question, Answer, User and AnswerService
+- ConceptRest has an association relationship with: Concept, Question, Item, Lesson, UploadFileServiceImpli, LessonService and ConceptService
+- QuestionRest has an association relationship with: Concept, Question, Item, Answer, ConceptService and QuestionService
+- ItemRest has an association relationship with: Concept, Question, Item, ConceptService and ItemService
+- AnswerRest has an association relationship with: Question, Answer, User, UserComponent, ConceptService, QuestionService and AnswerService
 - LessonsRest has an association relationship with: Concept, Lesson and LessonService
 - UserRest has an association relationship with: User, UserService and UserComponent
 
-All @RestController inherit from class CheckIfCreate.
+All @RestController inherit from class OperationsRest.
 
-- CheckIfCreate
+- OperationsRest
 
 @ControllerAdvice
 - RestControllerExceptionHandler

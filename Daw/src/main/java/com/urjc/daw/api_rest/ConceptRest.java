@@ -43,7 +43,7 @@ public class ConceptRest extends OperationsRest<Concept> {
     @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> getConcept(@PathVariable long id){
         Optional<Concept> concept= conceptService.findByOneId(id);
-        return safeDelete(concept,conceptService.repository);
+        return checkIfExist(concept);
     }
 
     @GetMapping(value ="/lesson/{idLesson}")

@@ -7,7 +7,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       - MYSQL_DATABASE=daw_grupo9
-      - MYSQL_ROOT_PASSWORD=1995gdo4ev
+      - MYSQL_ROOT_PASSWORD=***
       - MYSQL_USER=Grupo9
       - MYSQL_PASSWORD=URJCDAWGrupo9
     ports:

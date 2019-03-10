@@ -1,7 +1,10 @@
 #!/bin/sh
-until nc -z -v -w30 daw_grupo9 3306
+
+echo "Ready..."
+while ! nc -z -v daw_grupo9 3306
 do
-  echo "Waiting for database connection..."
-  sleep 5
+  echo "Steady..."
+  sleep 9
 done
+    echo "Go!"
 java -jar target/daw-0.0.1-SNAPSHOT.jar

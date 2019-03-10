@@ -56,7 +56,7 @@ public class UserRest  extends OperationsRest<User> {
         return safeCreate(newUser,userService.userRepository);
     }
 
-   
+
 
     @GetMapping(value = "/{name}")
     @JsonView(UserDetails.class)

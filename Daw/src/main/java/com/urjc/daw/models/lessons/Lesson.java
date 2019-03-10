@@ -13,6 +13,7 @@ public class Lesson {
 
     public interface BasicInfo{}
     public interface ConceptList{}
+
 /**             Atributos           **/
     @Id
     @Column(name="ID_LESSON")

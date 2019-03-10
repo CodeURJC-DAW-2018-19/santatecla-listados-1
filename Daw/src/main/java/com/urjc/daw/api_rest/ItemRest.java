@@ -47,9 +47,8 @@ public class ItemRest extends OperationsRest<Item> {
 
     @DeleteMapping("/{id}")
     @JsonView(ItemsDetails.class)
-    public Item deteleItem(@PathVariable long id){
-        Item deleteItem = itemService.findByOneId(id).get();
-        itemService.deleteItemById(id);
-        return deleteItem;
+    public ResponseEntity<Item> deteleItem(@PathVariable long id){
+        Optional<Item> deleteItem = itemService.findByOneId(id);
+        return safeDelete(deleteItem,itemService.repository);
     }
 }

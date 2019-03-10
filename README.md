@@ -257,6 +257,10 @@ As we can see, the classes @RestController and @ControllerAdvice have been added
 
 New classes:
 
+![Diagrama model1](https://user-images.githubusercontent.com/46897050/54085146-ca238380-433a-11e9-8adb-0a5af84f30de.jpg)
+
+![Diagrama model2](https://user-images.githubusercontent.com/46897050/54085147-ca238380-433a-11e9-8a08-1b50dfa311ad.jpg)
+
 MODEL:
 @Service
 - UploadFileServiceImpli
@@ -269,6 +273,16 @@ Repository (Interface)
 - SecurityApiRest
 - JsonAdapterWithPageable
 
+![Diagrama controller](https://user-images.githubusercontent.com/46897050/54085157-ed4e3300-433a-11e9-96d0-641cb7d12da0.jpg)
+
+All classes and all views have a composition relationship with DawApplication.
+
+![Controller y Model1](https://user-images.githubusercontent.com/46897050/54085165-07881100-433b-11e9-8319-f12a183f7d83.jpg)
+
+![Model y Controller2](https://user-images.githubusercontent.com/46897050/54085167-0820a780-433b-11e9-88e5-961027f9fee1.jpg)
+
+![Model y Controller3](https://user-images.githubusercontent.com/46897050/54085168-0820a780-433b-11e9-8b97-0fc05a4602fd.jpg)
+
 CONTROLLER:
 @RestController
 - ConceptRest has an association relationship with: Concept, Question, Item, Lesson, UploadFileServiceImpli, LessonService and ConceptService
@@ -278,20 +292,48 @@ CONTROLLER:
 - LessonsRest has an association relationship with: Concept, Lesson and LessonService
 - UserRest has an association relationship with: User, UserService and UserComponent
 
-All @RestController inherit from class OperationsRest.
+![Diagrama controller1](https://user-images.githubusercontent.com/46897050/54085166-07881100-433b-11e9-895f-8f7530ed259c.jpg)
+
+All @RestController inherit from class OperationsRest
 
 - OperationsRest
 
 @ControllerAdvice
 - RestControllerExceptionHandler
 
-All classes and all views have a composition relationship with DawApplication.
-
 ### Dockerized application execution instructions
-Instrucciones de ejecución usando el docker-compose.yml.
+First of all we're going to explain the configuration files and scripts we have.
+   -Dockerfile: File for building the app image.
+   -docker-compose.yml: Here we definied the two services that we have used, database(daw_grupo9) and app (daw).
+   -syncWithDB.sh: The funcionality of this file is sync up the app with the database.
+   -create_image.sh: This script is responsible for creating the app image, build and push to the DockerHub.
+   The database image is the mysql official image we have in DockerHub.
+
+#### RUN THE DOCKERIZED APP WITH TERMINAL
+ 1.Execute the script:
+    sh create_image.sh
+ 2.Start docker-compose:
+    docker-compose up 
+    If we want execute it in background we need to use the command:
+    docker-compose up -d (Deamon mode)
 
 ### Preparation of development environment
-Se indicarán cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación dockerizada.
+We use IntelliJ IDEA Ultimate and Docker-Desktop. When we created the configuration files (Dockerfile and docker-compose.yml), IntelliJ detected it automatically.
+
+#### RUN THE DOCKERIZED APP IN INTELLIJ
+ 1.Edit Configuration:
+   In Run / Debug we have a Docker section, here we can choose between docker, docker image and docker compose, last one is
+   the option we choose for this project.
+ 2.Settings Server Docker:
+   In this step, we have to edit some fields with the next information:
+     Server: Docker
+     Compose file: ./docker-compose.yml; 
+ 3.Run:
+   Now we can run the application as we normally do, but before check if we have selected docker-compose.yml as chosen 
+   application.
+ 
+ Thing to keep in mind:
+  If we use some script in our configuration files we have to give the corresponding permissions to IntelliJ for executing it.
 
 ### Bibliography
 

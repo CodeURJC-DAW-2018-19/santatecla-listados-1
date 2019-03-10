@@ -275,7 +275,7 @@ Below we can see the format of the input and output information:
 
 ![Captura de pantalla 2019-03-10 a las 18 54 13](https://user-images.githubusercontent.com/46897050/54090082-b8f56980-4370-11e9-95a0-6f367ca092e1.png)
 
-![Captura de pantalla 2019-03-10 a las 18 54 31](https://user-images.githubusercontent.com/46897050/54090083-b8f56980-4370-11e9-861c-5726c0791189.png)
+![Captura de pantalla 2019-03-11 a las 00 25 34](https://user-images.githubusercontent.com/32453276/54093087-12bb5b00-4394-11e9-8ed0-627e42e81d1e.JPG)
 
 #### CONCEPT
 
@@ -302,6 +302,7 @@ Below we can see the format of the input and output information:
 
 ![Captura de pantalla 2019-03-10 a las 14 53 16](https://user-images.githubusercontent.com/46897050/54090494-0c69b680-4375-11e9-8977-583889666cb0.png)
 
+![Captura de pantalla 2019-03-11 a las 00 19 16](https://user-images.githubusercontent.com/32453276/54092971-b4da4380-4392-11e9-8530-0a5aecac1f42.JPG)
 
 
 #### ITEMS

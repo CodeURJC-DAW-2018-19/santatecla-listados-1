@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -50,6 +51,16 @@ public class UserRest  extends OperationsRest<User> {
         userService.addUser(user);
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @RequestMapping("/api/logOut")
+    public ResponseEntity<Boolean> logOut(HttpSession session) {
+        if (userComponent.getLoggedUser() != null){
+            session.invalidate();
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 
     @PostMapping(value = "/")

@@ -7,12 +7,13 @@ import com.urjc.daw.models.lessons.LessonService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -58,5 +59,12 @@ public class LessonsRest extends OperationsRest<Lesson> {
     public ResponseEntity<Lesson> deteleLesson(@PathVariable long id){
         Optional<Lesson> deleteLesson = lessonService.findOne(id);
         return safeDelete(deleteLesson,lessonService.repository);
+    }
+
+    @GetMapping("/lessonSearch")
+    public String indexSearch(Model model, @RequestParam("searchText") String searchText) {
+        List<Lesson> searchLessons = lessonService.searchLessons(searchText);
+        model.addAttribute("lessons", searchLessons);
+        return "MainPage";
     }
 }

@@ -52,10 +52,8 @@ public class ConceptRest extends OperationsRest<Concept> {
 
     @DeleteMapping(value ="{id}")
     @JsonView(ConceptDetails.class)
-    public Concept deleteConcept(@PathVariable long id){
-        Concept deleteConcept = conceptService.findByOneId(id).get();
-        conceptService.deleteConceptById(id);
-        return deleteConcept;
+    public ResponseEntity<Concept> deleteConcept(@PathVariable long id){
+        return safeDelete(conceptService.findByOneId(id),conceptService.repository);
     }
 
     @PostMapping("/lesson/{idLesson}")

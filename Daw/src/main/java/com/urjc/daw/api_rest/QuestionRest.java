@@ -44,12 +44,14 @@ public class QuestionRest extends OperationsRest<Question> {
 
     @PostMapping("/concept/{idConcept}")
     @JsonView(QuestionDetails.class)
-    public ResponseEntity<Question> createQuestion (@RequestBody Question question,@PathVariable long idConcept){
+    public ResponseEntity<Question> createQuestion (@PathVariable long idConcept){
         Optional<Concept> c = conceptService.findByOneId(idConcept);
         ResponseEntity<Question> responseEntity;
         if (c.isPresent()) {
+            Question question = new Question();
             Concept concept = c.get();
             question.setConcept(concept);
+            question.randomize(idConcept);
             responseEntity = safeCreate(question,questionService.repository);
             concept.addQuestion(question);
             conceptService.addConcept(concept);

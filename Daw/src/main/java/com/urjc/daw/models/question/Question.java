@@ -5,11 +5,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.item.Item;
-import com.urjc.daw.models.lessons.Lesson;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -153,5 +151,58 @@ public class Question {
         arrayRespuestas[0]=rigth;
         arrayRespuestas[1]=wrong;
         arrayRespuestas[2]=pending;
+    }
+
+
+    public void randomize(long id){
+            int type = (int) (Math.random() * 4);
+            int item = 0;
+            String info = "";
+            switch (type) {
+                case 0:
+                    info = "¿Cuáles son " + idConcept.getTitle() + " ?";
+                    break;
+                case 1:
+                    List<Item> itemList = (List) idConcept.getItemSet();
+                    item = (int) (Math.random() * itemList.size() - 1);
+                    info = "¿" + itemList.get(item).getInfo() + " es un elemento de " + idConcept.getTitle() + " ?";
+                    break;
+                case 2:
+                    List<Item> itemsCorrect = new ArrayList<>();
+                    for (Item i: idConcept.getItemSet()) {
+                        if(i.getState()) {
+                            itemsCorrect.add(i);
+                        }
+                    }
+                    item = (int) (Math.random() * itemsCorrect.size() - 1);
+                    itemsCorrect.remove(item);
+                    String complementInfo = "";
+                    for (int i = 0; i < itemsCorrect.size(); i++) {
+                        complementInfo += itemsCorrect.get(i).getInfo() + ", ";
+                    }
+                    info = "¿Qué elemento falta en " + complementInfo + " para completar la lista de " + idConcept.getTitle() + " ?";
+                    break;
+                case 3:
+
+                    List<Item> selected = new ArrayList<>();
+                    List<Item> itemRandom = (List) idConcept.getItemSet() ;
+
+                    int numItems = (int) Math.floor(Math.random() * (5 - 3 + 1) + 3);
+
+                    String complement = "";
+                    for (int i = 0; i < numItems; i++) {
+                        item = (int) (Math.random() * itemRandom.size() - 1);
+                        selected.add(itemRandom.get(item));
+                        complement += itemRandom.get(item).getInfo() + ", ";
+                        itemRandom.remove(item);
+                    }
+                    info = "¿Qué elementos de " + complement + " no son parte de " + idConcept.getTitle() + " ?";
+                    break;
+
+            }
+            this.setInfo(info);
+            this.setType(type);
+
+
     }
 }

@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Lesson {
+public class Lesson  {
 
     public interface BasicInfo{}
     public interface ConceptList{}

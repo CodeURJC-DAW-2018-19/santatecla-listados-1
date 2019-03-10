@@ -55,9 +55,5 @@ public class UserRest  extends OperationsRest<User> {
         return user;
     }
 
-    @GetMapping(value = "/{name}")
-    public User getUser(@PathVariable String name) {
-        return userService.findUserByName(name);
-    }
 
 }

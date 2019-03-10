@@ -25,6 +25,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/answer")
 public class AnswerRest extends OperationsRest<Answer> {
+
     interface AnswerDetails extends Answer.BasicInfo, Answer.QuestionDet, Answer.UserDet,
             User.BasicInfo, Question.BasicInfo, Question.AnswerList {
     }
@@ -52,8 +53,6 @@ public class AnswerRest extends OperationsRest<Answer> {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
     }
-
-
 
     @GetMapping(value = "/user/{idUser}")
     @JsonView(AnswerDetails.class)

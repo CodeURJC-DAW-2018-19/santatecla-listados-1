@@ -453,26 +453,25 @@ First of all we're going to explain the configuration files and scripts we have.
    -create_image.sh: This script is responsible for creating the app image, build and push to the DockerHub.
    The database image is the mysql official image we have in DockerHub.
 
-#### RUN THE DOCKERIZED APP WITH TERMINAL
- 1.Execute the script:
-    sh create_image.sh
- 2.Start docker-compose:
-    docker-compose up 
+#### Run the dockerized application - Terminal
+ 1. Execute the script: sh create_image.sh
+ 
+ 2. Start docker-compose: docker-compose up 
     If we want execute it in background we need to use the command:
     docker-compose up -d (Deamon mode)
 
 ### Preparation of development environment
-We use IntelliJ IDEA Ultimate and Docker-Desktop. When we created the configuration files (Dockerfile and docker-compose.yml), IntelliJ detected it automatically.
+We use IntelliJ IDEA Ultimate and Docker-Desktop. When we created the configuration files (Dockerfile and docker-compose.yml), IntelliJ detected it automatically, we didn't have to install any plugin.
 
-#### RUN THE DOCKERIZED APP IN INTELLIJ
- 1.Edit Configuration:
+#### Run the dockerized application - IntelliJ
+ 1. Edit Configuration:
    In Run / Debug we have a Docker section, here we can choose between docker, docker image and docker compose, last one is
    the option we choose for this project.
- 2.Settings Server Docker:
+ 2. Settings Server Docker:
    In this step, we have to edit some fields with the next information:
      Server: Docker
      Compose file: ./docker-compose.yml; 
- 3.Run:
+ 3. Run:
    Now we can run the application as we normally do, but before check if we have selected docker-compose.yml as chosen 
    application.
  

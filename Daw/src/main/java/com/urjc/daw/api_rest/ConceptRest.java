@@ -36,21 +36,20 @@ public class ConceptRest extends OperationsRest<Concept> {
     @Autowired
     UploadFileServiceImpl uploadFileService;
 
-    @GetMapping(value ="{id}")
+    @GetMapping(value ="/{id}")
     @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> getConcept(@PathVariable long id){
         Optional<Concept> concept= conceptService.findByOneId(id);
         return safeDelete(concept,conceptService.repository);
     }
 
-    @GetMapping(value ="lesson/{idLesson}")
-   // @JsonView(ConceptDetails.class)
-    public Page<Concept> getConcepts(@PathVariable long idLesson, Pageable page){
-
-        return  conceptService.findByLesson(lessonService.findOne(idLesson).get(),page);
+    @GetMapping(value ="/lesson/{idLesson}")
+    @JsonView(ConceptDetails.class)
+    public Page<Concept> getConcepts(@PathVariable long idLesson,@PageableDefault(size = 10)Pageable page){
+        return conceptService.findByLesson(lessonService.findOne(idLesson).get(),page);
     }
 
-    @DeleteMapping(value ="{id}")
+    @DeleteMapping(value ="/{id}")
     @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> deleteConcept(@PathVariable long id){
         return safeDelete(conceptService.findByOneId(id),conceptService.repository);

@@ -257,6 +257,10 @@ As we can see, the classes @RestController and @ControllerAdvice have been added
 
 New classes:
 
+![Diagrama model1](https://user-images.githubusercontent.com/46897050/54085146-ca238380-433a-11e9-8adb-0a5af84f30de.jpg)
+
+![Diagrama model2](https://user-images.githubusercontent.com/46897050/54085147-ca238380-433a-11e9-8a08-1b50dfa311ad.jpg)
+
 MODEL:
 @Service
 - UploadFileServiceImpli
@@ -269,6 +273,16 @@ Repository (Interface)
 - SecurityApiRest
 - JsonAdapterWithPageable
 
+![Diagrama controller](https://user-images.githubusercontent.com/46897050/54085157-ed4e3300-433a-11e9-96d0-641cb7d12da0.jpg)
+
+All classes and all views have a composition relationship with DawApplication.
+
+![Controller y Model1](https://user-images.githubusercontent.com/46897050/54085165-07881100-433b-11e9-8319-f12a183f7d83.jpg)
+
+![Model y Controller2](https://user-images.githubusercontent.com/46897050/54085167-0820a780-433b-11e9-88e5-961027f9fee1.jpg)
+
+![Model y Controller3](https://user-images.githubusercontent.com/46897050/54085168-0820a780-433b-11e9-8b97-0fc05a4602fd.jpg)
+
 CONTROLLER:
 @RestController
 - ConceptRest has an association relationship with: Concept, Question, Item, Lesson, UploadFileServiceImpli, LessonService and ConceptService
@@ -278,14 +292,14 @@ CONTROLLER:
 - LessonsRest has an association relationship with: Concept, Lesson and LessonService
 - UserRest has an association relationship with: User, UserService and UserComponent
 
-All @RestController inherit from class OperationsRest.
+![Diagrama controller1](https://user-images.githubusercontent.com/46897050/54085166-07881100-433b-11e9-895f-8f7530ed259c.jpg)
+
+All @RestController inherit from class OperationsRest
 
 - OperationsRest
 
 @ControllerAdvice
 - RestControllerExceptionHandler
-
-All classes and all views have a composition relationship with DawApplication.
 
 ### Dockerized application execution instructions
 First of all we're going to explain the configuration files and scripts we have.

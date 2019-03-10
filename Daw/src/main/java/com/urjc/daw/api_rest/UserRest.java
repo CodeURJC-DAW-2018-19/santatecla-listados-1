@@ -25,7 +25,7 @@ public class UserRest  extends OperationsRest<User> {
     @GetMapping("/login")
     public ResponseEntity<User> login() {
         if (userComponent.getLoggedUser() != null){
-            return new ResponseEntity<>(userComponent.getLoggedUser(), HttpStatus.OK);
+            return checkIfExist(userService.findById(userComponent.getLoggedUser().getId()));
         }else{
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
@@ -35,6 +35,7 @@ public class UserRest  extends OperationsRest<User> {
     public ResponseEntity<Boolean> logout (HttpSession session){
         if (userComponent.getLoggedUser() != null){
             session.invalidate();
+            userComponent.setLoggedUser(null);
             return new ResponseEntity<>(true, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -52,22 +53,10 @@ public class UserRest  extends OperationsRest<User> {
         if((userComponent.getLoggedUser() != null || findUser != null)){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-
-        User user = new User();
-        user.setName(newUser.getName());
-        user.setPassword(newUser.getPassword());
-        userService.addUser(user);
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        return safeCreate(newUser,userService.userRepository);
     }
 
-    @PostMapping(value = "/")
-    @ResponseStatus(HttpStatus.CREATED)
-    @JsonView(UserDetails.class)
-    public User add_new_user(@RequestBody User user) {
-        userService.addUser(user);
-        return user;
-    }
+   
 
     @GetMapping(value = "/{name}")
     @JsonView(UserDetails.class)

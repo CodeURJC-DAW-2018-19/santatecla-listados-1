@@ -97,6 +97,14 @@ public class User {
         this.setAnswer = new HashSet<>();
     }
 
+    public User(String name, String password, String email){
+        this.name = name;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.email = email;
+        this.userType = "ROLE_TEACHER";
+        this.setAnswer = new HashSet<>();
+    }
+
     public void addAnswer(Answer answer) {
         this.setAnswer.add(answer);
     }

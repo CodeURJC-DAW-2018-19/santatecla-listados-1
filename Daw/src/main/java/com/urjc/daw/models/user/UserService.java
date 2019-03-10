@@ -10,7 +10,7 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    public UserRepository userRepository;
 
     public User findUserByName(String name) { return userRepository.findByName(name); }
     public void addUser(User user) { userRepository.save(user);}

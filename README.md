@@ -302,7 +302,7 @@ Below we can see the format of the input and output information:
 
 ![Captura de pantalla 2019-03-10 a las 14 53 16](https://user-images.githubusercontent.com/46897050/54090494-0c69b680-4375-11e9-8977-583889666cb0.png)
 
-![Captura de pantalla 2019-03-11 a las 00 19 16](https://user-images.githubusercontent.com/32453276/54092971-b4da4380-4392-11e9-8530-0a5aecac1f42.JPG)
+![Captura de pantalla 2019-03-11 a las 00 29 18](https://user-images.githubusercontent.com/32453276/54093146-b0af2580-4394-11e9-89ed-178f73705733.JPG)
 
 
 #### ITEMS

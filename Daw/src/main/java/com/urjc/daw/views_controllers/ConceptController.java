@@ -53,7 +53,7 @@ public class ConceptController {
     }
 
     @PostMapping("/saveConcept/{id}")
-    public String saveConcept(Model model, Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile) {
+    public String saveConcept(Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile) {
         if (!multipartFile.isEmpty()) {
             String rootPath = "src/main/resources/static/uploads";
             try {

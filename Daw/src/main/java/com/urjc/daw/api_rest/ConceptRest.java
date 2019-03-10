@@ -75,6 +75,7 @@ public class ConceptRest extends OperationsRest<Concept> {
     }
 
     @RequestMapping(value = "/image/{id}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> uploadsImage(@PathVariable long id, @RequestParam("file") MultipartFile file){
         Concept conceptNewFile = conceptService.findByOneId(id).get();
         if(!file.isEmpty()){

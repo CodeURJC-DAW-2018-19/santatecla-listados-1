@@ -5,11 +5,16 @@ import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.answer.AnswerService;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptService;
+import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.question.QuestionService;
 import com.urjc.daw.models.user.User;
 import com.urjc.daw.models.user.UserComponent;
+import com.urjc.daw.models.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -21,7 +26,10 @@ import java.util.Optional;
 @RequestMapping("/api/answer")
 public class AnswerRest extends OperationsRest<Answer> {
     interface AnswerDetails extends Answer.BasicInfo, Answer.QuestionDet, Answer.UserDet,
-            User.BasicInfo, Question.BasicInfo {
+            User.BasicInfo, Question.BasicInfo, Question.AnswerList {
+    }
+    interface ConceptDetails extends Concept.QuestionList,Answer.BasicInfo, Answer.QuestionDet, Answer.UserDet,
+            User.BasicInfo, Question.BasicInfo, Question.AnswerList {
     }
 
     @Autowired
@@ -34,12 +42,33 @@ public class AnswerRest extends OperationsRest<Answer> {
     QuestionService questionService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     UserComponent userComponent;
 
     @ModelAttribute
     public void addUserToModel(Model model) {
         boolean logged = userComponent.getLoggedUser() != null;
         model.addAttribute("logged", logged);
+    }
+
+
+
+    @GetMapping(value = "/user/{idUser}")
+    @JsonView(AnswerDetails.class)
+    public Page<Answer> getConcepts(@PathVariable long idUser,@PageableDefault(size = 10)Pageable page){
+        return answerService.getByIdUser(page,userService.findById(idUser).get());
+    }
+
+    @GetMapping(value = "/concept/{idConcept}")
+    @JsonView(ConceptDetails.class)
+    public ResponseEntity<Concept> getConcepts(@PathVariable long idConcept) {
+        Optional<Concept> concept = conceptService.findByOneId(idConcept);
+        if (concept.isPresent()) {
+            return new ResponseEntity<>(concept.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/{id}")
@@ -52,7 +81,7 @@ public class AnswerRest extends OperationsRest<Answer> {
     @PostMapping("/{idQuestion}")
     @ResponseStatus(HttpStatus.CREATED)
     @JsonView(AnswerDetails.class)
-    public ResponseEntity<Answer> saveAnswer (@RequestBody Answer answer, @PathVariable long idQuestion){
+    public ResponseEntity<Answer> saveAnswer(@RequestBody Answer answer, @PathVariable long idQuestion) {
         Optional<Question> q = questionService.findOne(idQuestion);
         ResponseEntity<Answer> responseEntity;
         if (q.isPresent()) {
@@ -62,11 +91,11 @@ public class AnswerRest extends OperationsRest<Answer> {
             answer.setCorrect(false);
             answer.setIdUser(userComponent.getLoggedUser());
             answer.setQuestion(question);
-            responseEntity = safeCreate(answer,answerService.repository);
+            responseEntity = safeCreate(answer, answerService.repository);
             //* * * *    Update question's parameters related to answer    * * * *
             question.addAnswer(answer);
             questionService.addQuestion(question);
-        }else{
+        } else {
             responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return responseEntity;
@@ -75,15 +104,15 @@ public class AnswerRest extends OperationsRest<Answer> {
 
     @PostMapping(path = "/sendAnswerTypeOne/{idQuestion}")
     @JsonView(AnswerDetails.class)
-    public ResponseEntity<Answer> sendAnswerOne(@PathVariable long idQuestion, @RequestBody Answer answer){
+    public ResponseEntity<Answer> sendAnswerOne(@PathVariable long idQuestion, @RequestBody Answer answer) {
         Optional<Question> option = questionService.findOne(idQuestion);
-        if(option.isPresent()){
+        if (option.isPresent()) {
             Question question = option.get();
             //* * * *    Correct answer    * * * *
             answer.setIdUser(userComponent.getLoggedUser());
             answer.setQuestion(question);
             answer.correctType1(answer.getInfo().equals("true"));
-            ResponseEntity<Answer> responseEntity = safeCreate(answer,answerService.repository);
+            ResponseEntity<Answer> responseEntity = safeCreate(answer, answerService.repository);
 
             //* * * *    Update question's parameters related to answer    * * * *
             question.addAnswer(answer);
@@ -91,32 +120,32 @@ public class AnswerRest extends OperationsRest<Answer> {
 
             return responseEntity;
 
-        }else{
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping(path = "/sendAnswerTypeTwo/{idQuestion}/{ret}/{total}")
     @JsonView(AnswerDetails.class)
-    public ResponseEntity<Answer> sendItemsSelected(@PathVariable long idQuestion, @PathVariable String ret, @PathVariable String total){
+    public ResponseEntity<Answer> sendItemsSelected(@PathVariable long idQuestion, @PathVariable String ret, @PathVariable String total) {
 
         Optional<Question> option = questionService.findOne(idQuestion);
 
-        if(option.isPresent()){
+        if (option.isPresent()) {
             Question question = option.get();
 
             Answer answer = new Answer(ret);
             answer.setIdUser(userComponent.getLoggedUser());
             answer.setQuestion(question);
-            answer.correctType2(ret.split("sss"),total.split("sss"));
-            ResponseEntity<Answer> responseEntity = safeCreate(answer,answerService.repository);
+            answer.correctType2(ret.split("sss"), total.split("sss"));
+            ResponseEntity<Answer> responseEntity = safeCreate(answer, answerService.repository);
 
             question.addAnswer(answer);
             questionService.addQuestion(question);
 
             return responseEntity;
 
-        }else{
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

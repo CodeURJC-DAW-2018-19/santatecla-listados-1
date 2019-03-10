@@ -32,4 +32,8 @@ public class AnswerService {
         return repository.findByCorrectAndIdUser(correct,idUser);
     }
 
+    public Page<Answer> getByIdUser(Pageable page,User idUser){
+        return repository.findAnswersByIdUserEquals(idUser,page);
+    }
+
 }

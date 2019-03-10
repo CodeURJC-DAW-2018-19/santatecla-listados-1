@@ -1,6 +1,5 @@
 package com.urjc.daw.views_controllers;
 
-import com.urjc.daw.files.UploadFileServiceImpl;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptRepository;
 import com.urjc.daw.models.concept.ConceptService;
@@ -18,10 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,9 +45,6 @@ public class ConceptController {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    UploadFileServiceImpl uploadFileService;
 
     @GetMapping("/deleteConcept/{id}")
     public String deleteConcept(Model model, @PathVariable long id) {

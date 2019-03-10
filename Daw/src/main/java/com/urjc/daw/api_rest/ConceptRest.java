@@ -2,7 +2,6 @@ package com.urjc.daw.api_rest;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.urjc.daw.files.UploadFileServiceImpl;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
@@ -18,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,8 +34,6 @@ public class ConceptRest extends OperationsRest<Concept> {
     ConceptService conceptService;
     @Autowired
     LessonService lessonService;
-    @Autowired
-    UploadFileServiceImpl uploadFileService;
 
     @GetMapping(value ="/{id}")
     @JsonView(ConceptDetails.class)

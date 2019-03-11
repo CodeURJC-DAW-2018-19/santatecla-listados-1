@@ -304,6 +304,12 @@ Below we can see the format of the input and output information:
 
 ![Captura de pantalla 2019-03-11 a las 00 29 18](https://user-images.githubusercontent.com/32453276/54093146-b0af2580-4394-11e9-89ed-178f73705733.JPG)
 
+EXAMPLE UPDATING AND SEEING IMAGE
+![imageuploads](https://user-images.githubusercontent.com/32453276/54105299-e541d200-43d2-11e9-807e-a5045f73f9e2.JPG)
+
+![SeeImage](https://user-images.githubusercontent.com/32453276/54105300-e541d200-43d2-11e9-8b4b-4ca56db3bd49.JPG)
+
+
 
 #### ITEMS
 

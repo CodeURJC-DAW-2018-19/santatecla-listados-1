@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -85,7 +86,11 @@ public class ConceptRest extends OperationsRest<Concept> {
                 FileOutputStream fout = new FileOutputStream(fileConcept);
                 fout.write(file.getBytes());
                 fout.close();
-                conceptNewFile.setPicture(file.getOriginalFilename());
+                String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .path("/uploads/")
+                        .path(file.getOriginalFilename())
+                        .toUriString();
+                conceptNewFile.setPicture(fileDownloadUri);
             } catch (IOException e) {
                 e.printStackTrace();
             }

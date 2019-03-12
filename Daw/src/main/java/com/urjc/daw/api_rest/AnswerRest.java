@@ -85,11 +85,20 @@ public class AnswerRest extends OperationsRest<Answer> {
         ResponseEntity<Answer> responseEntity;
         if (q.isPresent()) {
             Question question = q.get();
-            //* * * *    Update answer's info    * * * *
-            answer.setState("pending");
-            answer.setCorrect(false);
+
+            //* * * *    Update answer    * * * *
             answer.setIdUser(userComponent.getLoggedUser());
             answer.setQuestion(question);
+
+            if(question.getType()==1){
+                answer.correctType1(answer.getInfo().equals("true"));
+            }else if(question.getType()==3){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }else{
+                answer.setState("pending");
+                answer.setCorrect(false);
+            }
+
             responseEntity = safeCreate(answer, answerService.repository);
             //* * * *    Update question's parameters related to answer    * * * *
             question.addAnswer(answer);
@@ -101,30 +110,8 @@ public class AnswerRest extends OperationsRest<Answer> {
     }
 
 
-    @PostMapping(path = "/sendAnswerTypeOne/{idQuestion}")
-    @JsonView(AnswerDetails.class)
-    public ResponseEntity<Answer> sendAnswerOne(@PathVariable long idQuestion, @RequestBody Answer answer) {
-        Optional<Question> option = questionService.findOne(idQuestion);
-        if (option.isPresent()) {
-            Question question = option.get();
-            //* * * *    Correct answer    * * * *
-            answer.setIdUser(userComponent.getLoggedUser());
-            answer.setQuestion(question);
-            answer.correctType1(answer.getInfo().equals("true"));
-            ResponseEntity<Answer> responseEntity = safeCreate(answer, answerService.repository);
 
-            //* * * *    Update question's parameters related to answer    * * * *
-            question.addAnswer(answer);
-            questionService.addQuestion(question);
-
-            return responseEntity;
-
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PostMapping(path = "/sendAnswerTypeTwo/{idQuestion}/{ret}/{total}")
+    @PostMapping(path = "/{idQuestion}/options/{ret}/{total}")
     @JsonView(AnswerDetails.class)
     public ResponseEntity<Answer> sendItemsSelected(@PathVariable long idQuestion, @PathVariable String ret, @PathVariable String total) {
 
@@ -132,7 +119,9 @@ public class AnswerRest extends OperationsRest<Answer> {
 
         if (option.isPresent()) {
             Question question = option.get();
-
+            if(question.getType()!=3){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             Answer answer = new Answer(ret);
             answer.setIdUser(userComponent.getLoggedUser());
             answer.setQuestion(question);

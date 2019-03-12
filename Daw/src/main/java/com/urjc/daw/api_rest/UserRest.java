@@ -27,7 +27,7 @@ public class UserRest  extends OperationsRest<User> {
         if (userComponent.getLoggedUser() != null){
             return checkIfExist(userService.findById(userComponent.getLoggedUser().getId()));
         }else{
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 

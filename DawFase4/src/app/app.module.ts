@@ -15,6 +15,10 @@ import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
+/*http*/
+
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +36,8 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
     CovalentHttpModule.forRoot(),
     CovalentHighlightModule,
     CovalentMarkdownModule,
-    CovalentDynamicFormsModule
+    CovalentDynamicFormsModule,
+    HttpClientModule
   ],
   exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

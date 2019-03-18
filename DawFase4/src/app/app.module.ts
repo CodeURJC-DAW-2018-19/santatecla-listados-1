@@ -9,6 +9,11 @@ import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 
 import { AppComponent } from './app.component';
+import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
+import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
+import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -16,6 +21,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
+    CovalentBaseEchartsModule,
+    CovalentBarEchartsModule,
+    CovalentTooltipEchartsModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCheckboxModule,
     CovalentLayoutModule,
     CovalentStepsModule,
     // (optional) Additional Covalent Modules imports
@@ -24,6 +34,7 @@ import { AppComponent } from './app.component';
     CovalentMarkdownModule,
     CovalentDynamicFormsModule
   ],
+  exports: [MatButtonModule, MatCheckboxModule],
   providers: [],
   bootstrap: [AppComponent]
 })

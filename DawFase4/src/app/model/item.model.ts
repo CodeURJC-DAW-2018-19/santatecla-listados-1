@@ -1,6 +1,6 @@
 import {Lesson} from "./lesson.model";
 
-export class Concept{
+export class Item{
 
   constructor(public id:number, public title:string, public idLesson: Lesson) { }
 

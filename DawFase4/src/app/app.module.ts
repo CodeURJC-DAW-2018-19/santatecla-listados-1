@@ -23,6 +23,7 @@ import { TeacherConceptViewComponent } from './teacher-concept-view/teacher-conc
 import { StudentConceptViewComponent } from './student-concept-view/student-concept-view.component';
 import { Lesson } from './model/lesson.model';
 import { Concept } from './model/concept.model';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { Concept } from './model/concept.model';
     TeacherConceptViewComponent,
     StudentConceptViewComponent,
     Lesson,
-    Concept
+    Concept,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

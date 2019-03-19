@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { TeacherConceptViewComponent } from './teacher-concept-view/teacher-concept-view.component';
 import { StudentConceptViewComponent } from './student-concept-view/student-concept-view.component';
-import { ModelComponent } from './model/model.component';
+import { LessonModel } from './model/lesson.model';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { ModelComponent } from './model/model.component';
     MainpageComponent,
     TeacherConceptViewComponent,
     StudentConceptViewComponent,
-    ModelComponent
+    LessonModel
   ],
   imports: [
     BrowserModule,

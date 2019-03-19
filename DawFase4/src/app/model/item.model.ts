@@ -1,7 +1,7 @@
-import {Lesson} from "./lesson.model";
+import { Concept } from "./concept.model";
 
 export class Item{
 
-  constructor(public id:number, public title:string, public idLesson: Lesson) { }
+  constructor(public id:number, public title:string, public idConcept: Concept) { }
 
 }

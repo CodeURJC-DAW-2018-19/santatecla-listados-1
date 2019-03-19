@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService} from "../service/item-service";
+import { Item } from '../model/item.model';
 
 @Component({
   selector: 'app-teacher-concept-view',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeacherConceptViewComponent implements OnInit {
 
-  constructor() { }
+  private  items: Item[] = [];
+
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+  }
+
+  search(id:number | string){
+    this.itemService.getItemByConcept(id);
   }
 
 }

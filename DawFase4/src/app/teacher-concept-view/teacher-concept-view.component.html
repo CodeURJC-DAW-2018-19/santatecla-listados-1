@@ -1,3 +1,13 @@
-<p>
-  teacher-concept-view works!
-</p>
+<mat-card>
+  <mat-card-title>URL</mat-card-title>
+  <mat-card-subtitle><a href="https:urlconcepto.com">www.concepto.com</a></mat-card-subtitle>
+
+
+  <mat-card-content>
+    <mat-selection-list #items>
+      <mat-list-option *ngFor="let shoe of typesOfShoes">
+        {{shoe}}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card-content>
+</mat-card>

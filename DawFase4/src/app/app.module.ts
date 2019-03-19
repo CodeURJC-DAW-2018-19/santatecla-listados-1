@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { CovalentLayoutModule } from '@covalent/core/layout';
 import { CovalentStepsModule  } from '@covalent/core/steps';
 /* any other core modules */
@@ -12,8 +13,9 @@ import { AppComponent } from './app.component';
 import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
 import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 /*http*/
 
@@ -26,6 +28,8 @@ import { Concept } from './model/concept.model';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -43,9 +47,11 @@ import { FooterComponent } from './footer/footer.component';
     CovalentBarEchartsModule,
     CovalentTooltipEchartsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,
+    MatButtonModule,
+    MatCheckboxModule,
     CovalentLayoutModule,
     CovalentStepsModule,
+    routing,
     // (optional) Additional Covalent Modules imports
     CovalentHttpModule.forRoot(),
     CovalentHighlightModule,
@@ -53,7 +59,7 @@ import { FooterComponent } from './footer/footer.component';
     CovalentDynamicFormsModule,
     HttpClientModule
   ],
-
+  exports: [MatButtonModule, MatCheckboxModule],
   providers: [],
   bootstrap: [AppComponent]
 })

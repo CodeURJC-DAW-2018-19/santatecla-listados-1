@@ -18,22 +18,18 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 /*http*/
 
 import { HttpClientModule } from '@angular/common/http';
-import { LessonComponent } from './lesson/lesson.component';
-import { ConceptComponent } from './concept/concept.component';
-import { ItemComponent } from './item/item.component';
-import { QuestionComponent } from './question/question.component';
-import { UserComponent } from './user/user.component';
-import { AnswerComponent } from './answer/answer.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { TeacherConceptViewComponent } from './teacher-concept-view/teacher-concept-view.component';
+import { StudentConceptViewComponent } from './student-concept-view/student-concept-view.component';
+import { ModelComponent } from './model/model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LessonComponent,
-    ConceptComponent,
-    ItemComponent,
-    QuestionComponent,
-    UserComponent,
-    AnswerComponent
+    MainpageComponent,
+    TeacherConceptViewComponent,
+    StudentConceptViewComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,

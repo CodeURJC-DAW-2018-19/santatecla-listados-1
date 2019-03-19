@@ -31,8 +31,6 @@ import { LoginComponent } from './login/login.component';
     MainpageComponent,
     TeacherConceptViewComponent,
     StudentConceptViewComponent,
-    Lesson,
-    Concept,
     LoginComponent
   ],
   imports: [
@@ -51,7 +49,7 @@ import { LoginComponent } from './login/login.component';
     CovalentDynamicFormsModule,
     HttpClientModule
   ],
-  exports: [MatButtonModule, MatCheckboxModule],
+
   providers: [],
   bootstrap: [AppComponent]
 })

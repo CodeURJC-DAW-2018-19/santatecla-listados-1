@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LessonService} from '../service/lesson-service';
+import {Lesson} from '../lesson/lesson.service';
 
 @Component({
   selector: 'app-mainpage',
@@ -9,12 +10,19 @@ import {LessonService} from '../service/lesson-service';
 export class MainpageComponent implements OnInit {
 
   constructor(private lessonService: LessonService) {
-
   }
 
+
+  lessons: Lesson[];
   ngOnInit() {
-    this.lessonService.getLesson().subscribe(result => {
-      console.log(result.title);
+
+
+    this.lessonService.getLessons().subscribe(response => {
+      this.lessons = [];
+      response.forEach(element => {
+        this.lessons.push(element);
+      });
+      console.log(this.lessons);
     });
   }
 

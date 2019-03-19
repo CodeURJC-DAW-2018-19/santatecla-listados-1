@@ -10,11 +10,8 @@ export class LessonService {
 
   constructor(private http: HttpClient) {}
 
-  getLessons() {
-    //return this.lessons;
-  }
 
-  getLesson() {
-    return this.http.get<Lesson>(GET_LESSONS,{params:{size: '10',page :'0'}});
+  getLessons() {
+    return this.http.get<Lesson[]>(GET_LESSONS,{params:{size: '10',page :'0'}});
   }
 }

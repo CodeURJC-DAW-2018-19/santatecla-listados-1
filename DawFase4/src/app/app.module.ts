@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { routing } from './app.routing';
 import {UserService} from './service/user-service';
+import {LessonService} from './service/lesson-service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import {UserService} from './service/user-service';
     MatCardModule
   ],
   exports: [MatButtonModule],
-  providers: [UserService],
+  providers: [UserService,LessonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

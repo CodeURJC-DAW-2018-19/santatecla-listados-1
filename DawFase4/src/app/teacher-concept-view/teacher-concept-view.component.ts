@@ -16,8 +16,6 @@ export class TeacherConceptViewComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(id:number | string){
-    this.itemService.getItemByConcept(id);
-  }
+
 
 }

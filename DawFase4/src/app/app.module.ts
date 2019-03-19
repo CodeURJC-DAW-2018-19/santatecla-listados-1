@@ -31,6 +31,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { routing } from './app.routing';
+import {UserService} from './service/user-service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { routing } from './app.routing';
     MatCardModule
   ],
   exports: [MatButtonModule],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

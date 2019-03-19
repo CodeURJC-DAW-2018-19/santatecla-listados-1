@@ -12,11 +12,11 @@ export class LessonService {
     new Lesson(14, "API REST"),
      ];
 
-  getBooks() {
+  getLessons() {
     return this.lessons;
   }
 
-  getBook(id: number | string) {
+  getLesson(id: number | string) {
     return this.lessons.find(lesson => lesson.id === +id);
   }
 }

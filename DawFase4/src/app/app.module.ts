@@ -15,7 +15,8 @@ import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatCardModule } from '@angular/material';
 
 /*http*/
 
@@ -30,6 +31,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { routing } from './app.routing';
+import {UserService} from './service/user-service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,6 @@ import { routing } from './app.routing';
     CovalentTooltipEchartsModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule,
     CovalentLayoutModule,
     CovalentStepsModule,
     routing,
@@ -57,10 +58,15 @@ import { routing } from './app.routing';
     CovalentHighlightModule,
     CovalentMarkdownModule,
     CovalentDynamicFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    MatCardModule
   ],
-  exports: [MatButtonModule, MatCheckboxModule],
-  providers: [],
+  exports: [MatButtonModule],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

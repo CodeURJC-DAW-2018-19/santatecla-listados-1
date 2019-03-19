@@ -7,4 +7,5 @@ const appRoutes = [
   { path: 'index', component: LoginComponent},
   { path: 'teacherConceptView', component: TeacherConceptViewComponent }
 ]
+
 export const routing = RouterModule.forRoot(appRoutes);

@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import {Lesson} from "../model/lesson.model";
+import {HttpClient,HttpHeaders} from '@angular/common/http';
 
+const URL="https://localhost:8443/api/";
+const GET_LESSONS = URL+"lesson/pag"
 
 @Injectable()
 export class LessonService {
 
-  private lessons = [
-    new Lesson(11, "Angular"),
-    new Lesson(12, "TypeScript"),
-    new Lesson(13, "Router"),
-    new Lesson(14, "API REST"),
-     ];
+  constructor(private http: HttpClient) {}
 
   getLessons() {
-    return this.lessons;
+    //return this.lessons;
   }
 
-  getLesson(id: number | string) {
-    return this.lessons.find(lesson => lesson.id === +id);
+  getLesson() {
+    return this.http.get<Lesson>(GET_LESSONS,{params:{size: '10',page :'0'}});
   }
 }

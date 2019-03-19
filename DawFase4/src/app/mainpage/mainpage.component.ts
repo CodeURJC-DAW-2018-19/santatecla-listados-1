@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LessonService} from '../service/lesson-service';
 
 @Component({
   selector: 'app-mainpage',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private lessonService: LessonService) {
+
+  }
 
   ngOnInit() {
+    this.lessonService.getLesson().subscribe(result => {
+      console.log(result.title);
+    });
   }
 
 }

@@ -5,4 +5,5 @@ const appRoutes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
   { path: 'index', component: LoginComponent},
 ]
+
 export const routing = RouterModule.forRoot(appRoutes);

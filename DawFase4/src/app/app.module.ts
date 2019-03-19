@@ -24,6 +24,8 @@ import { StudentConceptViewComponent } from './student-concept-view/student-conc
 import { Lesson } from './model/lesson.model';
 import { Concept } from './model/concept.model';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { LoginComponent } from './login/login.component';
     MainpageComponent,
     TeacherConceptViewComponent,
     StudentConceptViewComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

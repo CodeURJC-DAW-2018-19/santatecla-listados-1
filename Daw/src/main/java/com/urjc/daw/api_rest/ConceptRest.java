@@ -85,14 +85,14 @@ public class ConceptRest extends OperationsRest<Concept> {
     public ResponseEntity<Concept> uploadsImage(@PathVariable long id, @RequestParam("file") MultipartFile file){
         Concept conceptNewFile = conceptService.findByOneId(id).get();
         if(!file.isEmpty()){
-            File fileConcept = new File("src/main/resources/static/uploads", file.getOriginalFilename());
+            File fileConcept = new File("upload", file.getOriginalFilename());
             try {
                 fileConcept.createNewFile();
                 FileOutputStream fout = new FileOutputStream(fileConcept);
                 fout.write(file.getBytes());
                 fout.close();
                 String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                        .path("/uploads/")
+                        .path("/upload/")
                         .path(file.getOriginalFilename())
                         .toUriString();
                 conceptNewFile.setPicture(fileDownloadUri);

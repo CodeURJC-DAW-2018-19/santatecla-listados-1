@@ -9,6 +9,8 @@ import com.urjc.daw.models.question.QuestionRepository;
 import com.urjc.daw.models.answer.AnswerRepository;
 import com.urjc.daw.models.user.UserRepository;
 import com.urjc.daw.models.lessons.Lesson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,9 @@ import java.nio.file.Paths;
 
 @Controller
 public class ConceptController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     @Autowired
     ConceptService conceptService;
 
@@ -55,11 +60,12 @@ public class ConceptController {
     @PostMapping("/saveConcept/{id}")
     public String saveConcept(Concept concept, @PathVariable long id, @RequestParam("file") MultipartFile multipartFile) {
         if (!multipartFile.isEmpty()) {
-            String rootPath = "src/main/resources/static/uploads";
+            Path rootPath = Paths.get("upload").resolve(multipartFile.getOriginalFilename());
+            Path rootAbsolutePath = rootPath.toAbsolutePath();
+            log.info("rootPath: " + rootPath);
+            log.info("rootAbsolutePath: " + rootAbsolutePath);
             try {
-                byte[] bytes = multipartFile.getBytes();
-                Path path = Paths.get(rootPath + "//" + multipartFile.getOriginalFilename());
-                Files.write(path, bytes);
+                Files.copy(multipartFile.getInputStream(), rootAbsolutePath);
                 concept.setPicture(multipartFile.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();

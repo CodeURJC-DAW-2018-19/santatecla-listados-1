@@ -20,7 +20,7 @@ export class UserService {
       headers: headersObject
     }
 
-    return this.http.get<any>("https://localhost:8443/api/user/login",httpOptions);
+    return this.http.get<any>(GET_LOGIN,httpOptions);
   }
 }
 

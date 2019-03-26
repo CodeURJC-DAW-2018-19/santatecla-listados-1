@@ -6,6 +6,11 @@
     </mat-card-title>
     <mat-divider></mat-divider>
 
+    <mat-nav-list *ngIf="loginService.isLogged">
+        <mat-list-item [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
+            {{lesson.title}}
+        </mat-list-item>
+    </mat-nav-list>
     <mat-nav-list *ngIf="!loginService.isLogged">
         <mat-list-item [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
             {{lesson.title}}

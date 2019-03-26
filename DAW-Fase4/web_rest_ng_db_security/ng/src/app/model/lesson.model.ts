@@ -1,4 +1,8 @@
 import {Concept} from "./concept.model";
-export class Lesson {
-    constructor(public id:number, public title:string, public concept:Concept[]) { }
+
+export interface Lesson {
+    id?: number;
+    title: string;
+    conceptSet:Concept[];
+
 }

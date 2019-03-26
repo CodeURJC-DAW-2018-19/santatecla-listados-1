@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Lesson, LessonService} from '../service/lesson-service';
+import {LessonService} from '../service/lesson-service';
 import {Book} from "../book.service";
 import {LoginService} from "../auth/login.service";
+import {Lesson} from "../model/lesson.model";
+import {PageLesson} from "../model/PageLesson";
 
 @Component({
     selector: 'app-mainpage',
@@ -9,7 +11,7 @@ import {LoginService} from "../auth/login.service";
     styleUrls: ['mainpage.component.css']
 })
 export class MainpageComponent implements OnInit {
-
+    page: PageLesson;
     lessons: Lesson[];
 
     constructor(private lessonService: LessonService, public loginService: LoginService) {
@@ -17,10 +19,12 @@ export class MainpageComponent implements OnInit {
 
     ngOnInit() {
         this.lessonService.getLessons().subscribe(
-            lessons => this.lessons = lessons,
+            page => this.page=page,
             error => console.log(error)
         );
-        console.log(this.lessons);
+       this.lessons=this.page.content;
+       console.log(this.page)
+
     }
 
     newLesson() {

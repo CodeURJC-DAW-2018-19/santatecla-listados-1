@@ -7,7 +7,7 @@
     <mat-divider></mat-divider>
 
     <mat-nav-list *ngIf="!loginService.isLogged">
-        <mat-list-item [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
+        <mat-list-item [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of page'>
             {{lesson.title}}
         </mat-list-item>
     </mat-nav-list>

@@ -1,5 +1,6 @@
-export class Concept{
-
-    constructor(public id:number, public title:string) { }
+export interface Concept{
+   idConcept?:number;
+   title:string;
+   picture:string;
 
 }

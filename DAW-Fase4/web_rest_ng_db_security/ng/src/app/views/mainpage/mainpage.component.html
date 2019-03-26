@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <span flex>Temas</span>
+        </div>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{lesson.title}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
+            {{concept.title}}
+        </p>
+        <button mat-fab *ngIf="loginService.isLogged" (click)="newConcept()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-expansion-panel>
+</mat-card>
+<button mat-fab *ngIf="loginService.isLogged" (click)="openAddLessonDialog()">
+    <mat-icon>add</mat-icon>
+</button>
+
+<ng-template #addLessonDialog let-dialogRef="dialogRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+           Nuevo tema
+        </h2>
+        <mat-dialog-content flex>
+            <div class="container">
+                <div class="logo">Create a new account!</div>
+                <div class="register-item">
+                    <form #myform="ngForm" class="form form-register">
+
+                        <mat-form-field>
+                            <label style="display: none;" class="Lesson" for="register-title"><span class="hidden">Title</span></label>
+                            <input matInput name="title" id="register-title"  placeholder="title" ngModel required>
+                        </mat-form-field>
+                        
+                    </form>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="register(myform)">Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
+
+</ng-template>

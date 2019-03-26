@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <span flex>Temas</span>
+        </div>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{lesson.title}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
+            {{concept.title}}
+        </p>
+        <button mat-fab  *ngIf="loginService.isLogged"  (click)="newConcept()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-expansion-panel>
+
+    <button mat-fab  *ngIf="loginService.isLogged"  (click)="newLesson()">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-card>

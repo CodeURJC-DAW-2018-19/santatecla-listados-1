@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ItemService } from "../../"
+import { ItemService} from "../service/item-service";
+import { Item } from '../model/item.model';
 import {LoginService} from "../auth/login.service";
 import {PageItems} from "../model/page-items";
 import { ActivatedRoute, Router } from '@angular/router';
-import {ItemService} from "../../service/item-service";
-import {Item} from "../../model/item.model";
+
 
 @Component({
     selector: 'app-teacher-concept-view',

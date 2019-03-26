@@ -17,9 +17,10 @@ export class MainpageComponent implements OnInit {
 
     ngOnInit() {
         this.lessonService.getLessons().subscribe(
-            books => this.lessons = books,
+            lessons => this.lessons = lessons,
             error => console.log(error)
         );
+        console.log(this.lessons);
     }
 
     newLesson() {

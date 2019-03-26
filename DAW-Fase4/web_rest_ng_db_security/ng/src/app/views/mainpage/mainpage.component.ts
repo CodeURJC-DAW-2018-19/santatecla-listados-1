@@ -23,6 +23,7 @@ export class MainpageComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.lessonAdd = { title: '', conceptSet: [] }
         this.lessonService.getLessons().subscribe(
             (res : any)=>{
                 this.page=res;
@@ -55,9 +56,8 @@ export class MainpageComponent implements OnInit {
             },
             error => console.log(error)
         );
+
     }
-
-
 
 
 

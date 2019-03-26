@@ -35,9 +35,10 @@ export class LessonService {
         });
 
         return this.http
-                .post<Lesson>(GET_LESSON, body, { headers })
+                .post<Lesson>(CREATE_LESSONS, body, { headers })
                 .pipe(catchError((error) => this.handleError(error)));
     }
+
 
 
     private handleError(error: any) {
@@ -46,7 +47,7 @@ export class LessonService {
     }
 
     public getLesson(id: number) {
-        return this.http.get(GET_LESSON+"/"+id, {withCredentials: true})
+        return this.http.get(GET_LESSON + id, {withCredentials: true})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

@@ -37,8 +37,13 @@
                     <form #myform="ngForm" class="form form-register">
 
                         <mat-form-field>
-                            <label style="display: none;" class="Lesson" for="register-title"><span class="hidden">Title</span></label>
-                            <input matInput name="title" id="register-title"  placeholder="title" ngModel required>
+                            <input
+                                    matInput
+                                    [(ngModel)]="lessonAdd.title"
+                                    placeholder="Title"
+                                    name="title"
+                                    required
+                            />
                         </mat-form-field>
                         
                     </form>

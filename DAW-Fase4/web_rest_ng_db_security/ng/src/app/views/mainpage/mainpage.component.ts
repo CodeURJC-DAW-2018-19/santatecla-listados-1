@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {LessonService} from '../service/lesson-service';
-import {Book} from "../book.service";
-import {LoginService} from "../auth/login.service";
-import {Lesson} from "../model/lesson.model";
-import {PageLesson} from "../model/PageLesson";
+import {LessonService} from '../../service/lesson-service';
+import {Book} from "../../book.service";
+import {LoginService} from "../../auth/login.service";
+import {Lesson} from "../../model/lesson.model";
+import {PageLesson} from "../../model/PageLesson";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-mainpage',
@@ -14,7 +15,7 @@ export class MainpageComponent implements OnInit {
     page: PageLesson;
     lessons: Lesson[];
 
-    constructor(private lessonService: LessonService, public loginService: LoginService) {
+    constructor(private router: Router,private lessonService: LessonService, public loginService: LoginService) {
     }
 
     ngOnInit() {
@@ -31,10 +32,10 @@ export class MainpageComponent implements OnInit {
     }
 
     newLesson() {
-
+        this.router.navigate(['/lesson/new']);
     }
 
     newConcept() {
-        
+        this.router.navigate(['/concept/new']);
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemService} from "../service/item-service";
-import { Item } from '../model/item.model';
+import { ItemService} from "../../service/item-service";
+import { Item } from '../../model/item.model';
 
 @Component({
     selector: 'app-teacher-concept-view',

@@ -62,18 +62,20 @@ import { BookFormComponent } from './book-form.component';
 
 import {LoginComponent} from "./login.component";
 import { routing } from './app.routing';
-import { MainpageComponent } from './mainpage/mainpage.component';
-import { TeacherConceptViewComponent } from './teacher-concept-view/teacher-concept-view.component';
-import { StudentConceptViewComponent } from './student-concept-view/student-concept-view.component';
+import { MainpageComponent } from './views/mainpage/mainpage.component';
+import { TeacherConceptViewComponent } from './views/teacher-concept-view/teacher-concept-view.component';
+import { StudentConceptViewComponent } from './views/student-concept-view/student-concept-view.component';
 import { Lesson } from './model/lesson.model';
 import { Concept } from './model/concept.model';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './views/header/header.component';
+import { FooterComponent } from './views/footer/footer.component';
 
 import {UserService} from './service/user-service';
 import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
+import {LessonAddFormComponent} from './views/lesson-add-form/lesson-add-form.component';
+import {ConceptService} from "./service/concept-service";
 
 @NgModule({
     declarations: [AppComponent,
@@ -85,7 +87,8 @@ import {LoginService} from "./auth/login.service";
         TeacherConceptViewComponent,
         StudentConceptViewComponent,
         HeaderComponent,
-        FooterComponent],
+        FooterComponent,
+        LessonAddFormComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -139,7 +142,7 @@ import {LoginService} from "./auth/login.service";
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService]
+    providers: [BookService, LoginService, UserService, LessonService,ConceptService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

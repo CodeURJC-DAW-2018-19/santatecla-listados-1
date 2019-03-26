@@ -6,16 +6,18 @@
     </mat-card-title>
     <mat-divider></mat-divider>
 
-    <mat-nav-list *ngIf="loginService.isLogged">
-        <mat-list-item [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
-            {{lesson.title}}
-        </mat-list-item>
-    </mat-nav-list>
-    <mat-nav-list *ngIf="!loginService.isLogged">
-        <mat-list-item [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
-            {{lesson.title}}
-        </mat-list-item>
-    </mat-nav-list>
+
+    <mat-expansion-panel [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{lesson.title}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
+            {{concept.title}}
+        </p>
+
+    </mat-expansion-panel>
 
     <button mat-fab  *ngIf="loginService.isLogged"  (click)="newLesson()">
         <mat-icon>add</mat-icon>

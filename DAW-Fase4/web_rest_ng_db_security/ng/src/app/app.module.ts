@@ -5,6 +5,8 @@ import { JsonpModule, HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material/icon';
 
+import {MatExpansionModule} from '@angular/material/expansion';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
@@ -115,6 +117,7 @@ import {LoginService} from "./auth/login.service";
         MatNativeDateModule,
         MatSliderModule,
         MatAutocompleteModule,
+        MatExpansionModule,
         /** Covalent Modules */
         CovalentCommonModule,
         CovalentLayoutModule,

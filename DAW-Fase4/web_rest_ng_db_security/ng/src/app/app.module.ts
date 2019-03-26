@@ -74,7 +74,6 @@ import {UserService} from './service/user-service';
 import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
-import {LessonAddFormComponent} from './views/lesson-add-form/lesson-add-form.component';
 import {ConceptService} from "./service/concept-service";
 
 @NgModule({
@@ -87,8 +86,7 @@ import {ConceptService} from "./service/concept-service";
         TeacherConceptViewComponent,
         StudentConceptViewComponent,
         HeaderComponent,
-        FooterComponent,
-        LessonAddFormComponent],
+        FooterComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {LessonService} from '../../service/lesson-service';
-import {Book} from "../../book.service";
 import {LoginService} from "../../auth/login.service";
 import {Lesson} from "../../model/lesson.model";
 import {PageLesson} from "../../model/PageLesson";
 import {Router} from "@angular/router";
+import {MatDialog, MatDialogRef} from "@angular/material";
 
 @Component({
     selector: 'app-mainpage',
@@ -15,7 +15,10 @@ export class MainpageComponent implements OnInit {
     page: PageLesson;
     lessons: Lesson[];
 
-    constructor(private router: Router,private lessonService: LessonService, public loginService: LoginService) {
+    @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
+    dialogRef: MatDialogRef<any, any>;
+
+    constructor(public dialog: MatDialog,private router: Router,private lessonService: LessonService, public loginService: LoginService) {
     }
 
     ngOnInit() {
@@ -31,6 +34,13 @@ export class MainpageComponent implements OnInit {
 
     }
 
+
+    openAddLessonDialog() {
+        this.dialogRef = this.dialog.open(this.addLessonDialog, {
+            width: '50%',
+            height: '50%',
+        });
+    }
     newLesson() {
         this.router.navigate(['/lesson/new']);
     }

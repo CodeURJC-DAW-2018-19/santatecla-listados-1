@@ -16,12 +16,37 @@
         <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
             {{concept.title}}
         </p>
-        <button mat-fab  *ngIf="loginService.isLogged"  (click)="newConcept()">
+        <button mat-fab *ngIf="loginService.isLogged" (click)="newConcept()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
 
-    <button mat-fab  *ngIf="loginService.isLogged"  (click)="newLesson()">
+    <button mat-fab *ngIf="loginService.isLogged" (click)="openAddLessonDialog()">
         <mat-icon>add</mat-icon>
     </button>
 </mat-card>
+
+<ng-template #addLessonDialog let-dialogRef="dialogRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+           Nuevo tema
+        </h2>
+        <mat-dialog-content flex>
+            <form #addLessonForm="ngForm">
+                <div>
+                    <mat-form-field flex>
+                        <input matInput placeholder="Titulo del tema">
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Close</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="saveLesson()">Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
+
+</ng-template>

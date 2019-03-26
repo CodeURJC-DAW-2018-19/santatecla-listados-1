@@ -28,7 +28,6 @@ export class LessonService {
     }
 
     saveLesson(lesson: Lesson) {
-
         const body = JSON.stringify(lesson);
         const httpOptions = {
             headers: new HttpHeaders({

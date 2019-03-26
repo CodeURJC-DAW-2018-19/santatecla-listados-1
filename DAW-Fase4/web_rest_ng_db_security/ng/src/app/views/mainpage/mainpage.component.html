@@ -20,11 +20,10 @@
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
-
-    <button mat-fab *ngIf="loginService.isLogged" (click)="openAddLessonDialog()">
-        <mat-icon>add</mat-icon>
-    </button>
 </mat-card>
+<button mat-fab *ngIf="loginService.isLogged" (click)="openAddLessonDialog()">
+    <mat-icon>add</mat-icon>
+</button>
 
 <ng-template #addLessonDialog let-dialogRef="dialogRef">
     <div layout="column" layout-fill>
@@ -32,19 +31,25 @@
            Nuevo tema
         </h2>
         <mat-dialog-content flex>
-            <form #addLessonForm="ngForm">
-                <div>
-                    <mat-form-field flex>
-                        <input matInput placeholder="Titulo del tema">
-                    </mat-form-field>
+            <div class="container">
+                <div class="logo">Create a new account!</div>
+                <div class="register-item">
+                    <form #myform="ngForm" class="form form-register">
+
+                        <mat-form-field>
+                            <label style="display: none;" class="Lesson" for="register-title"><span class="hidden">Title</span></label>
+                            <input matInput name="title" id="register-title"  placeholder="title" ngModel required>
+                        </mat-form-field>
+                        
+                    </form>
                 </div>
-            </form>
+            </div>
         </mat-dialog-content>
         <mat-divider></mat-divider>
         <mat-dialog-actions align="end">
-            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Close</button>
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
             <button type="button" mat-button color="accent" class="text-upper"
-                    (click)="saveLesson()">Guardar
+                    (click)="register(myform)">Guardar
             </button>
         </mat-dialog-actions>
     </div>

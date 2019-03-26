@@ -14,6 +14,7 @@ import {MatDialog, MatDialogRef} from "@angular/material";
 export class MainpageComponent implements OnInit {
     page: PageLesson;
     lessons: Lesson[];
+    lessonAdd: Lesson;
 
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -41,8 +42,20 @@ export class MainpageComponent implements OnInit {
             height: '50%',
         });
     }
-    newLesson() {
-        this.router.navigate(['/lesson/new']);
+
+    register(form) {
+        console.log(form.value);
+    }
+    newLesson(lesson:Lesson) {
+        console.log(lesson);
+        this.lessonService.saveLesson(this.lessonAdd).subscribe(
+            (res : any)=>{
+                this.page=res;
+                this.lessons=(this.page.content);
+                console.log(this.lessons);
+            },
+            error => console.log(error)
+        );
     }
 
     newConcept() {

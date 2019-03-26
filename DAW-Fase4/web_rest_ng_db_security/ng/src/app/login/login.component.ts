@@ -24,7 +24,11 @@ export class LoginComponent {
         console.log(u);
         this.dialogRef.close();
       },
-      error => alert('Invalid user or password')
+      error => {
+        //alert('Invalid user or password');
+        console.log('error: '+error);
+        this.dialogRef.close();
+      }
     );
   }
 

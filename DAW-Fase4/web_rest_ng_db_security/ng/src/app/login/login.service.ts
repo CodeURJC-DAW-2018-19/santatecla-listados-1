@@ -3,12 +3,12 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import { map } from 'rxjs/operators'
 
 
-const URL = '/api/user';
+const URL = 'api/user';
 
 export interface User {
     id?: number;
     name: string;
-    roles: string[];
+    userType: string[];
 }
 
 @Injectable()
@@ -44,7 +44,7 @@ export class LoginService {
     private processLogInResponse(response) {
         this.isLogged = true;
         this.user = response.json();
-        this.isAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
+        this.isAdmin = this.user.userType.indexOf('ROLE_TEACHER') !== -1;
     }
 
     logIn(user: string, pass: string) {
@@ -62,6 +62,7 @@ export class LoginService {
 
         return this.http.get(URL + '/login', options).pipe(map(
             response => {
+                console.log("loggggged")
                 this.processLogInResponse(response);
                 return this.user;
             }

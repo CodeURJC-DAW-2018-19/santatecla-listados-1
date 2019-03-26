@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Book, BookService } from './book.service';
 
-import { LoginService } from '../login/login.service';
+import { LoginService } from './login/login.service';
 
 @Component({
     template: `

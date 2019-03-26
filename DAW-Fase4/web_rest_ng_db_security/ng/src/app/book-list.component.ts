@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 import { Book, BookService } from './book.service';
 
-import { LoginService } from '../login/login.service';
+import { LoginService } from './login/login.service';
 
 @Component({
-  templateUrl: 'book/book-list.component.html'
+  templateUrl: 'book-list.component.html'
 })
 export class BookListComponent implements OnInit {
 

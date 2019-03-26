@@ -13,12 +13,12 @@ const DELETE_LESSONS = "api/lesson/"
 @Injectable()
 export class LessonService {
 
-    constructor(private http: Http) {}
+    constructor(private http: HttpClient) {}
 
     getLessons() {
         return this.http.get(GET_LESSONS, { withCredentials: true })
             .pipe(
-                map(response => response.json()),
+                map(response => response),
                 catchError(error => this.handleError(error))
             );
     }

@@ -74,12 +74,9 @@ import {UserService} from './service/user-service';
 import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
-<<<<<<< HEAD
-=======
 import {ItemService} from "./service/item-service";
 import {Item} from "./model/item.model";
 import {ConceptService} from "./service/concept-service";
->>>>>>> parent of 952f0ab... Revert "Merge branch 'master' of https://github.com/CodeURJC-DAW-2018-19/santatecla-listados-1"
 
 @NgModule({
     declarations: [AppComponent,
@@ -145,11 +142,7 @@ import {ConceptService} from "./service/concept-service";
         routing
     ],
     bootstrap: [AppComponent],
-<<<<<<< HEAD
-    providers: [BookService, LoginService, UserService, LessonService]
-=======
-    providers: [BookService, LoginService, UserService, LessonService, ItemService,ConceptService]
->>>>>>> parent of 952f0ab... Revert "Merge branch 'master' of https://github.com/CodeURJC-DAW-2018-19/santatecla-listados-1"
+    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD:DAW-Fase4/web_rest_ng_db_security/ng/src/app/teacher-concept-view/teacher-concept-view.component.ts
-import { ItemService} from "../service/item-service";
-import { Item } from '../model/item.model';
-=======
-import {ItemService } from "../../"
-import {LoginService} from "../auth/login.service";
-import {PageItems} from "../model/page-items";
+import {ItemService } from "../../service/item-service"
+import {LoginService} from "../../auth/login.service";
+import {PageItems} from "../../model/page.item";
 import { ActivatedRoute, Router } from '@angular/router';
-import {ItemService} from "../../service/item-service";
 import {Item} from "../../model/item.model";
->>>>>>> parent of 952f0ab... Revert "Merge branch 'master' of https://github.com/CodeURJC-DAW-2018-19/santatecla-listados-1":DAW-Fase4/web_rest_ng_db_security/ng/src/app/views/teacher-concept-view/teacher-concept-view.component.ts
-
 @Component({
     selector: 'app-teacher-concept-view',
     templateUrl: './teacher-concept-view.component.html',
@@ -18,11 +11,23 @@ import {Item} from "../../model/item.model";
 })
 export class TeacherConceptViewComponent implements OnInit {
 
-    private  items: Item[] = [];
+    private items: Item[] = [];
+    private page: PageItems;
 
-    constructor(private itemService: ItemService) { }
-
+    constructor(private itemService: ItemService,
+                public loginService: LoginService,
+                private router: Router,
+                public activatedRoute: ActivatedRoute,) {
+    }
     ngOnInit() {
+        const id = this.activatedRoute.snapshot.params['id'];
+        this.itemService.getItems(id).subscribe(
+            (res : any)=>{
+                this.page=res;
+                this.items=this.page.content;
+            },
+            error => console.log(error)
+        );
     }
 
 

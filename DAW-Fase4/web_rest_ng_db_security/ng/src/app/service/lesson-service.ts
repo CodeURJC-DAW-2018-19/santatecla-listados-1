@@ -27,20 +27,16 @@ export class LessonService {
             );
     }
 
-    saveLesson(lesson: Lesson) {
+    saveLesson(lesson: Lesson):Observable<Lesson> {
         const body = JSON.stringify(lesson);
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'my-auth-token'
-            })
-        };
-        return this.http.post(CREATE_LESSONS, body, httpOptions)
-            .pipe(
-                map(response => response),
-                catchError(error => this.handleError(error))
-            );
 
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+
+        return this.http
+                .post<Lesson>(GET_LESSON, body, { headers })
+                .pipe(catchError((error) => this.handleError(error)));
     }
 
 
@@ -49,7 +45,7 @@ export class LessonService {
         return Observable.throw('Server error (' + error.status + '): ' + error.text());
     }
 
-    public getBook(id: number) {
+    public getLesson(id: number) {
         return this.http.get(GET_LESSON+"/"+id, {withCredentials: true})
             .pipe(
                 map(response => response),

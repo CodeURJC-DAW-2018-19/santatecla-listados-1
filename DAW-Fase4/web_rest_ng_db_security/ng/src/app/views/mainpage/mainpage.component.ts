@@ -46,8 +46,7 @@ export class MainpageComponent implements OnInit {
     register(form) {
         console.log(form.value);
     }
-    newLesson(lesson:Lesson) {
-        console.log(lesson);
+   newLesson() {
         this.lessonService.saveLesson(this.lessonAdd).subscribe(
             (res : any)=>{
                 this.page=res;
@@ -57,6 +56,10 @@ export class MainpageComponent implements OnInit {
             error => console.log(error)
         );
     }
+
+
+
+
 
     newConcept() {
         this.router.navigate(['/concept/new']);

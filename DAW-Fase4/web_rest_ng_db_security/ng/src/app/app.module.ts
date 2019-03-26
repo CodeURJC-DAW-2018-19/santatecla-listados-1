@@ -65,8 +65,6 @@ import { routing } from './app.routing';
 import { MainpageComponent } from './views/mainpage/mainpage.component';
 import { TeacherConceptViewComponent } from './views/teacher-concept-view/teacher-concept-view.component';
 import { StudentConceptViewComponent } from './views/student-concept-view/student-concept-view.component';
-import { Lesson } from './model/lesson.model';
-import { Concept } from './model/concept.model';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 
@@ -75,8 +73,8 @@ import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
 import {ItemService} from "./service/item-service";
-import {Item} from "./model/item.model";
 import {ConceptService} from "./service/concept-service";
+
 
 @NgModule({
     declarations: [AppComponent,
@@ -88,7 +86,7 @@ import {ConceptService} from "./service/concept-service";
         TeacherConceptViewComponent,
         StudentConceptViewComponent,
         HeaderComponent,
-        FooterComponent],
+        FooterComponent,],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

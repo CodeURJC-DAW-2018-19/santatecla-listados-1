@@ -13,7 +13,7 @@ export class ItemService {
     constructor(private http: HttpClient) {}
 
     getItems(id: number | string) {
-        return this.http.get(GET_ITEMS + id + "?pag", { withCredentials: true })
+        return this.http.get(GET_ITEMS + id , { withCredentials: true })
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

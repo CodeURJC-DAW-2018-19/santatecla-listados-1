@@ -55,12 +55,10 @@ import {
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookService } from './book.service';
-import { LoginService } from './login/login.service';
-import { BookDetailComponent } from './book-detail.component';
 import { BookListComponent } from './book-list.component';
 import { BookFormComponent } from './book-form.component';
 
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from "./login.component";
 import { routing } from './app.routing';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { TeacherConceptViewComponent } from './teacher-concept-view/teacher-concept-view.component';
@@ -72,6 +70,8 @@ import { FooterComponent } from './footer/footer.component';
 
 import {UserService} from './service/user-service';
 import {LessonService} from './service/lesson-service';
+import {BookDetailComponent} from "./book-detail.component";
+import {LoginService} from "./auth/login.service";
 
 @NgModule({
     declarations: [AppComponent,

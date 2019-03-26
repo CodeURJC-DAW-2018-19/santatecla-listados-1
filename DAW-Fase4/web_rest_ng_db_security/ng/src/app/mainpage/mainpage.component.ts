@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Lesson, LessonService} from '../service/lesson-service';
 import {Book} from "../book.service";
-import {LoginService} from "../login/login.service";
+import {LoginService} from "../auth/login.service";
 
 @Component({
     selector: 'app-mainpage',

@@ -74,8 +74,6 @@ import {UserService} from './service/user-service';
 import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
-import {ItemService} from "./service/item-service";
-import {Item} from "./model/item.model";
 
 @NgModule({
     declarations: [AppComponent,
@@ -141,7 +139,7 @@ import {Item} from "./model/item.model";
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService, ItemService]
+    providers: [BookService, LoginService, UserService, LessonService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

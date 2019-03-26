@@ -1,18 +1,10 @@
-<mat-card>
-    <mat-card-title>
-        <div layout="row" layout-align="start center">
-            <span flex>ÍTEMS</span>
-        </div>
-    </mat-card-title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-    <mat-divider></mat-divider>
-
-    <mat-card *ngFor='let item of items'>
-        <mat-card-title>
-                <p>{{item.title}}</p>
-        </mat-card-title>
-    </mat-card>
-    <button mat-fab  *ngIf="loginService.isLogged"  (click)="newConcept()">
-        <mat-icon>add</mat-icon>
-    </button>
-</mat-card>
+</body>
+</html>

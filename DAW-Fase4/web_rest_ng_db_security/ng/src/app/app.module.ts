@@ -54,12 +54,12 @@ import {
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BookService } from './book.service';
-import { LoginService } from './login.service';
-import { BookDetailComponent } from './book-detail.component';
-import { BookListComponent } from './book-list.component';
-import { BookFormComponent } from './book-form.component';
-import { LoginComponent } from './login.component';
+import { BookService } from './book/book.service';
+import { LoginService } from './login/login.service';
+import { BookDetailComponent } from './book/book-detail.component';
+import { BookListComponent } from './book/book-list.component';
+import { BookFormComponent } from './book/book-form.component';
+import { LoginComponent } from './login/login.component';
 import { routing } from './app.routing';
 
 @NgModule({

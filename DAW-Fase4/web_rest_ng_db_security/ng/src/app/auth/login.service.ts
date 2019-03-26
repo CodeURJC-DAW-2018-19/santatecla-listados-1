@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-const URL = '/api';
+const URL = 'api/user';
 
 export interface User {
     id?: number;
     name: string;
-    roles: string[];
+    userType: string[];
     authdata: string;
 }
 
@@ -36,9 +36,8 @@ export class LoginService {
             'X-Requested-With': 'XMLHttpRequest',
         });
 
-        return this.http.get<User>('/api/logIn', { headers })
+        return this.http.get<User>('api/user/login', { headers })
             .pipe(map(user => {
-
                 if (user) {
                     this.setCurrentUser(user);
                     user.authdata = auth;
@@ -51,7 +50,7 @@ export class LoginService {
 
     logOut() {
 
-        return this.http.get(URL + '/logOut').pipe(
+        return this.http.get(URL + '/logout').pipe(
             map(response => {
                 this.removeCurrentUser();
                 return response;
@@ -62,7 +61,7 @@ export class LoginService {
     private setCurrentUser(user: User) {
         this.isLogged = true;
         this.user = user;
-        this.isAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
+        this.isAdmin = this.user.userType.indexOf('ROLE_TEACHER') !== -1;
     }
 
     removeCurrentUser() {

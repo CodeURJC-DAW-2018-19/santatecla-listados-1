@@ -10,6 +10,9 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
+
+
+
 import {
     MatButtonModule,
     MatListModule,
@@ -55,14 +58,34 @@ import {
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookService } from './book.service';
-import { LoginService } from './login.service';
+import { LoginService } from './login/login.service';
 import { BookDetailComponent } from './book-detail.component';
 import { BookListComponent } from './book-list.component';
 import { BookFormComponent } from './book-form.component';
-import { LoginComponent } from './login.component';
+import { LoginComponent } from './login/login.component';
 import { routing } from './app.routing';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { TeacherConceptViewComponent } from './teacher-concept-view/teacher-concept-view.component';
+import { StudentConceptViewComponent } from './student-concept-view/student-concept-view.component';
+import { Lesson } from './model/lesson.model';
+import { Concept } from './model/concept.model';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
+import {UserService} from './service/user-service';
+import {LessonService} from './service/lesson-service';
 
 @NgModule({
+    declarations: [AppComponent,
+        BookDetailComponent,
+        BookListComponent,
+        BookFormComponent,
+        LoginComponent,
+        MainpageComponent,
+        TeacherConceptViewComponent,
+        StudentConceptViewComponent,
+        HeaderComponent,
+        FooterComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -114,9 +137,8 @@ import { routing } from './app.routing';
         HttpModule, //Remove when migrated to HttpClient
         routing
     ],
-    declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService]
+    providers: [BookService, LoginService, UserService, LessonService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

@@ -11,7 +11,7 @@ const appRoutes = [
   { path: 'concept/:id', component: TeacherConceptViewComponent },
   { path: 'book/:id', component: BookDetailComponent },
   { path: 'book/edit/:id', component: BookFormComponent },
-  { path: '', redirectTo: 'books', pathMatch: 'full' }
+  { path: '', redirectTo: 'mainPage', pathMatch: 'full' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

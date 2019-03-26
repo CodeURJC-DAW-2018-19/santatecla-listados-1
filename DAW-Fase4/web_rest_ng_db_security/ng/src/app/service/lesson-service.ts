@@ -5,8 +5,8 @@ import {Headers, Http, RequestOptions} from "@angular/http";
 import {Concept} from "../model/concept.model";
 import {Observable} from "rxjs";
 
-const GET_LESSONS = "lesson/pag"
-const DELETE_LESSONS = "lesson/"
+const GET_LESSONS = "api/lesson/pag"
+const DELETE_LESSONS = "api/lesson/"
 
 export interface Lesson {
     id?: number;

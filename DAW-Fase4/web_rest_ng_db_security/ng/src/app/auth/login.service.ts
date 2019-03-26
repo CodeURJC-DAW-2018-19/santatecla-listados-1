@@ -36,7 +36,7 @@ export class LoginService {
             'X-Requested-With': 'XMLHttpRequest',
         });
 
-        return this.http.get<User>('api/user/login', { headers })
+        return this.http.get<User>(URL+'/login', { headers })
             .pipe(map(user => {
                 if (user) {
                     this.setCurrentUser(user);

@@ -5,8 +5,8 @@ import {LoginService} from "../auth/login.service";
 
 @Component({
     selector: 'app-mainpage',
-    templateUrl: './mainpage.component.html',
-    styleUrls: ['./mainpage.component.css']
+    templateUrl: 'mainpage.component.html',
+    styleUrls: ['mainpage.component.css']
 })
 export class MainpageComponent implements OnInit {
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/web-db-security/src/main/main.iml" filepath="$PROJECT_DIR$/web-db-security/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web_rest_db_security/src/main/main1.iml" filepath="$PROJECT_DIR$/web_rest_db_security/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web_rest_ng_db_security/src/main/main2.iml" filepath="$PROJECT_DIR$/web_rest_ng_db_security/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-images/src/main/main3.iml" filepath="$PROJECT_DIR$/web-images/src/main/main3.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { BookListComponent } from './book-list.component';
-import { BookDetailComponent } from './book-detail.component';
-import { BookFormComponent } from './book-form.component';
+import { BookListComponent } from './book/book-list.component';
+import { BookDetailComponent } from './book/book-detail.component';
+import { BookFormComponent } from './book/book-form.component';
 
 const appRoutes = [
   { path: 'books', component: BookListComponent, useAsDefault: true },

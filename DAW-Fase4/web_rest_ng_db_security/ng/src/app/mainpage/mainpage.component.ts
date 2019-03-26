@@ -33,4 +33,8 @@ export class MainpageComponent implements OnInit {
     newLesson() {
 
     }
+
+    newConcept() {
+        
+    }
 }

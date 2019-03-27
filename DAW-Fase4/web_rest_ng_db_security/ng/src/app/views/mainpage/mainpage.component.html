@@ -25,6 +25,10 @@
     <mat-icon>add</mat-icon>
 </button>
 
+<button align="end" mat-fab *ngIf="loginService.isLogged" (click)="openDiagramDialog()">
+    <mat-icon>add</mat-icon>
+</button>
+
 <ng-template #addLessonDialog let-dialogRef="dialogRef">
     <div layout="column" layout-fill>
         <h2 mat-dialog-title>
@@ -53,6 +57,38 @@
         <mat-divider></mat-divider>
         <mat-dialog-actions align="end">
             <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="newLesson()">Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
+
+</ng-template>
+
+<ng-template #DiagramDialog let-dialogRef="DiagramRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+            Gráfica
+        </h2>
+        <mat-dialog-content flex>
+            <ngx-charts-bar-vertical
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [gradient]="gradient"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="DiagramRef.close()">Cerrar</button>
             <button type="button" mat-button color="accent" class="text-upper"
                     (click)="newLesson()">Guardar
             </button>

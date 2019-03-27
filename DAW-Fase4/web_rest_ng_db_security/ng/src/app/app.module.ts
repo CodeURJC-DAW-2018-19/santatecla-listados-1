@@ -54,6 +54,8 @@ import {
     CovalentMessageModule,
 } from '@covalent/core';
 
+
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookService } from './book.service';
@@ -75,6 +77,9 @@ import {LoginService} from "./auth/login.service";
 import {ItemService} from "./service/item-service";
 import {ConceptService} from "./service/concept-service";
 
+import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
+import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
+import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 
 @NgModule({
     declarations: [AppComponent,
@@ -135,7 +140,9 @@ import {ConceptService} from "./service/concept-service";
         CovalentMessageModule,
         /** Additional **/
         NgxChartsModule,
-
+        CovalentBaseEchartsModule,
+        CovalentBarEchartsModule,
+        CovalentTooltipEchartsModule,
         HttpModule, //Remove when migrated to HttpClient
         routing
     ],

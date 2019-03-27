@@ -5,6 +5,7 @@ import {Lesson} from "../../model/lesson.model";
 import {PageLesson} from "../../model/PageLesson";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material";
+import { single } from './data';
 
 @Component({
     selector: 'app-mainpage',
@@ -16,10 +17,34 @@ export class MainpageComponent implements OnInit {
     lessons: Lesson[];
     lessonAdd: Lesson;
 
+    single: any[];
+    multi: any[];
+
+    view: any[] = [700, 400];
+
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Country';
+    showYAxisLabel = true;
+    yAxisLabel = 'Population';
+
+    colorScheme = {
+        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    };
+
+
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
 
-    constructor(public dialog: MatDialog,private router: Router,private lessonService: LessonService, public loginService: LoginService) {
+    @ViewChild('DiagramDialog') DiagramDialog: TemplateRef<any>;
+    DiagramRef: MatDialogRef<any, any>;
+
+    constructor(public dialog: MatDialog,public dialog2: MatDialog,private router: Router,private lessonService: LessonService, public loginService: LoginService) {
+        Object.assign(this, { single })
     }
 
     ngOnInit() {
@@ -39,6 +64,13 @@ export class MainpageComponent implements OnInit {
 
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {
+            width: '50%',
+            height: '50%',
+        });
+    }
+
+    openDiagramDialog() {
+        this.DiagramRef = this.dialog2.open(this.DiagramDialog, {
             width: '50%',
             height: '50%',
         });

@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 
 import {
     MatButtonModule,
+    MatCheckboxModule,
     MatListModule,
     MatIconModule,
     MatCardModule,
@@ -102,6 +103,7 @@ import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
         /** Material Modules */
         MatButtonModule,
         MatListModule,
+        MatCheckboxModule,
         MatIconModule,
         MatCardModule,
         MatMenuModule,

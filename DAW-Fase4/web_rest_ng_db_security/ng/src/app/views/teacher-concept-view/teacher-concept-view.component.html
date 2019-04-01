@@ -6,10 +6,26 @@
     </mat-card-title>
     <mat-divider></mat-divider>
 
-    <mat-nav-list>
-            <p *ngFor='let item of items'>Item : {{item.info}}</p>
-    </mat-nav-list>
+    <mat-list *ngFor='let item of items'>
+            <mat-list-item>
+                <h3> {{item.info}} </h3>
+                <mat-divider [vertical]= true ></mat-divider>
+                <mat-radio-group name="{{item.id}}">
+                    <mat-radio-button value="1" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
+                    <mat-radio-button value="2" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
+                </mat-radio-group>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+    </mat-list>
     <button mat-fab  *ngIf="loginService.isLogged">
         <mat-icon>add</mat-icon>
     </button>
+</mat-card>
+
+<mat-card>
+   <mat-card-title>
+       <div layout="row" layout-align="start center">
+           <span flex>RESPUESTAS</span>
+       </div>
+   </mat-card-title>
 </mat-card>

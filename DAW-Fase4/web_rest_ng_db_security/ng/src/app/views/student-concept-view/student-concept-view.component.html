@@ -13,7 +13,7 @@
 
     <P></P>
 
-    <button mat-raised-button color="primary" (click)='openDiagramDialog()'>Diagramas</button>
+    <button mat-raised-button color="primary" (click)='openDiagramDialog()'><mat-icon>signal_cellular_alt</mat-icon>Diagramas</button>
     <button mat-raised-button color="primary" (click)='openQuestionDialog()'>Generar Pregunta</button>
 
     <ng-template #diagramDialog let-dialogRef="dialogRef">
@@ -22,13 +22,23 @@
                 Diagrama
             </h2>
             <mat-dialog-content flex>
-                <form #diagramForm="ngForm">
-                </form>
-
+                <ngx-charts-bar-vertical
+                        [view]="view"
+                        [scheme]="colorScheme"
+                        [results]="single"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
             </mat-dialog-content>
             <mat-divider></mat-divider>
             <mat-dialog-actions align="end">
-                <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Close</button>
+                <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
             </mat-dialog-actions>
         </div>
     </ng-template>

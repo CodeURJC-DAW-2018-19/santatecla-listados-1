@@ -14,7 +14,7 @@
         "@angular/platform-browser": "7.2.9",
         "@angular/platform-browser-dynamic": "7.2.9",
         "@angular/router": "7.2.9",
-        "@covalent/core": "2.0.1",
+        "@covalent/core": "^2.0.1",
         "@covalent/echarts": "^2.0.0",
         "@swimlane/ngx-charts": "10.0.0",
         "core-js": "2.6.5",

@@ -1,6 +1,8 @@
 
-export class Item{
+export interface Item{
 
-    constructor(public id:number, public title:string, public idConcept: number) { }
+    id?:number;
+    info:string;
+    idConcept: number;
 
 }

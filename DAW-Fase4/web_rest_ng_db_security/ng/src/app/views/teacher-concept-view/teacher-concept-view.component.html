@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<mat-card>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <span flex>ÍTEMS</span>
+        </div>
+    </mat-card-title>
+    <mat-divider></mat-divider>
 
-</body>
-</html>
+    <mat-nav-list>
+            <p *ngFor='let item of items'>Item : {{item.info}}</p>
+    </mat-nav-list>
+    <button mat-fab  *ngIf="loginService.isLogged">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-card>

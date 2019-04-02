@@ -6,12 +6,14 @@ import {PageLesson} from "../../model/PageLesson";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material";
 import { single } from './data';
+import { multi } from './data';
 
 @Component({
     selector: 'app-mainpage',
     templateUrl: 'mainpage.component.html',
     styleUrls: ['mainpage.component.css']
 })
+
 export class MainpageComponent implements OnInit {
     page: PageLesson;
     lessons: Lesson[];
@@ -28,9 +30,9 @@ export class MainpageComponent implements OnInit {
     gradient = false;
     showLegend = true;
     showXAxisLabel = true;
-    xAxisLabel = 'Country';
+    xAxisLabel = 'Temas';
     showYAxisLabel = true;
-    yAxisLabel = 'Population';
+    yAxisLabel = 'Numero de preguntas';
 
     colorScheme = {
         domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -44,7 +46,7 @@ export class MainpageComponent implements OnInit {
     DiagramRef: MatDialogRef<any, any>;
 
     constructor(public dialog: MatDialog,public dialog2: MatDialog,private router: Router,private lessonService: LessonService, public loginService: LoginService) {
-        Object.assign(this, { single })
+        Object.assign(this, {single})
     }
 
     ngOnInit() {
@@ -71,14 +73,15 @@ export class MainpageComponent implements OnInit {
 
     openDiagramDialog() {
         this.DiagramRef = this.dialog2.open(this.DiagramDialog, {
-            width: '50%',
-            height: '50%',
+            width: '75%',
+            height: '75%',
         });
     }
 
     register(form) {
         console.log(form.value);
     }
+
    newLesson() {
         this.lessonService.saveLesson(this.lessonAdd).subscribe(
             (res : any)=>{

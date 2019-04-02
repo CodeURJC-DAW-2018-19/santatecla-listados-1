@@ -2,8 +2,9 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material";
 import { single } from './data-student-diagram';
 import {Question} from "../../model/question.model";
-import {PageQuestion} from "../../model/page.question";
 import {QuestionService} from "../../service/question-service";
+import {Answer} from "../../model/answer.model";
+import {AnswerService} from "../../service/answer-service";
 
 @Component({
     selector: 'app-student-concept-view',
@@ -13,7 +14,7 @@ import {QuestionService} from "../../service/question-service";
 export class StudentConceptViewComponent implements OnInit {
 
     private question: Question [];
-    private page: PageQuestion;
+    private answer: Answer [];
 
     single: any[];
 

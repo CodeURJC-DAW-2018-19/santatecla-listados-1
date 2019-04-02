@@ -72,6 +72,7 @@ import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 
 import {UserService} from './service/user-service';
+import {QuestionService} from "./service/question-service";
 import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
@@ -151,7 +152,7 @@ import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService]
+    providers: [BookService, LoginService, UserService, LessonService, ItemService, ConceptService, QuestionService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

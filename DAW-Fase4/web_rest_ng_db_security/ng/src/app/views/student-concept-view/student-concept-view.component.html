@@ -5,6 +5,12 @@
 
     <fieldset>
         <legend><h4>CORREGIDAS</h4></legend>
+        <mat-list *ngFor=' let questions of question'>
+            <mat-list-item>
+                <p> {{questions.info}} </p>
+                <mat-divider [vertical]= true ></mat-divider>
+            </mat-list-item>
+        </mat-list>
     </fieldset>
 
     <fieldset>

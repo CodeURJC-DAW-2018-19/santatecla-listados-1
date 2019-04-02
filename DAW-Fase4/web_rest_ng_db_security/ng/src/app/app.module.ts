@@ -78,9 +78,10 @@ import {LoginService} from "./auth/login.service";
 import {ItemService} from "./service/item-service";
 import {ConceptService} from "./service/concept-service";
 
+import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
 import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
-import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
+import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
 
 @NgModule({
     declarations: [AppComponent,
@@ -145,6 +146,7 @@ import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
         CovalentBaseEchartsModule,
         CovalentBarEchartsModule,
         CovalentTooltipEchartsModule,
+        CovalentToolboxEchartsModule,
         HttpModule, //Remove when migrated to HttpClient
         routing
     ],

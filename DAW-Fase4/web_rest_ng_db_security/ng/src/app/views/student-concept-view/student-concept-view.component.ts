@@ -13,8 +13,8 @@ import {AnswerService} from "../../service/answer-service";
 })
 export class StudentConceptViewComponent implements OnInit {
 
-    private question: Question [];
-    private answer: Answer [];
+    public question: Question [];
+    public answer: Answer [];
 
     single: any[];
 

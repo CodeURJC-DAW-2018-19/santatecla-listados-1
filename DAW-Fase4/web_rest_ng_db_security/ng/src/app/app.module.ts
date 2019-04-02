@@ -85,6 +85,11 @@ import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
 import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
 import {AnswerService} from "./service/answer-service";
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ErrorInterceptor } from './auth/error.interceptor';
+import { BasicAuthInterceptor } from './auth/auth.interceptor';
+
 @NgModule({
     declarations: [AppComponent,
         BookDetailComponent,
@@ -153,7 +158,11 @@ import {AnswerService} from "./service/answer-service";
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService, ItemService, ConceptService, QuestionService,AnswerService]
+    providers: [BookService, LoginService, UserService, LessonService, ItemService, ConceptService, QuestionService,AnswerService,
+        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        { provide: LocationStrategy, useClass: HashLocationStrategy }   
+    ]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

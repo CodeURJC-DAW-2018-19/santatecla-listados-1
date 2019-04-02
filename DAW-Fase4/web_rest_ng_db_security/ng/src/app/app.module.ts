@@ -83,6 +83,7 @@ import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
 import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
 import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
+import {AnswerService} from "./service/answer-service";
 
 @NgModule({
     declarations: [AppComponent,
@@ -152,7 +153,7 @@ import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService, ItemService, ConceptService, QuestionService]
+    providers: [BookService, LoginService, UserService, LessonService, ItemService, ConceptService, QuestionService,AnswerService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

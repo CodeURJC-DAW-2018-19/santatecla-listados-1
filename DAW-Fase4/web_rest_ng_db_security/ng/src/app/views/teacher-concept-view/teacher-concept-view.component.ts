@@ -4,7 +4,9 @@ import {LoginService} from "../../auth/login.service";
 import {PageItems} from "../../model/page.item";
 import { ActivatedRoute, Router } from '@angular/router';
 import {Item} from "../../model/item.model";
-import {Question} from "../../model/question.model";
+import {AnswerService} from "../../service/answer-service";
+import {Answer} from "../../model/answer.model";
+
 @Component({
     selector: 'app-teacher-concept-view',
     templateUrl: './teacher-concept-view.component.html',
@@ -14,11 +16,12 @@ export class TeacherConceptViewComponent implements OnInit {
 
     private items: Item[] = [];
     private page: PageItems;
-    private questions: Question[] = [];
+    private answers: Answer[] = [];
 
     constructor(private itemService: ItemService,
                 public loginService: LoginService,
                 private router: Router,
+                private answerService: AnswerService,
                 public activatedRoute: ActivatedRoute,) {
     }
     ngOnInit() {
@@ -29,6 +32,14 @@ export class TeacherConceptViewComponent implements OnInit {
                 this.items=this.page.content;
             },
             error => console.log(error)
+        );
+
+        this.answerService.getAnswersByConcept(id).subscribe(
+            (res : any) =>{
+                console.log(res);
+                this.answers=res;
+            },
+            error1 => console.log(error1)
         );
     }
 

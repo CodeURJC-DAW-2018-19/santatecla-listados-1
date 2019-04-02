@@ -18,6 +18,7 @@
         "@covalent/echarts": "^2.0.0",
         "@swimlane/ngx-charts": "10.0.0",
         "core-js": "2.6.5",
+        "covalent": "^0.2.1",
         "d3": "4.10.2",
         "d3-array": "1.2.1",
         "d3-brush": "1.0.6",

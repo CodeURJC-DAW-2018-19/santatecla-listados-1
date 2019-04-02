@@ -6,11 +6,11 @@
     </mat-card-title>
     <mat-divider></mat-divider>
 
-    <mat-list *ngFor='let item of items'>
+    <mat-list *ngFor='let item of items' layout="row">
             <mat-list-item>
-                <h3> {{item.info}} </h3>
+                <h3 flex> {{item.info}} </h3>
                 <mat-divider [vertical]= true ></mat-divider>
-                <mat-radio-group name="{{item.id}}">
+                <mat-radio-group name="{{item.id}}" flex>
                     <mat-radio-button value="1" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
                     <mat-radio-button value="2" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
                 </mat-radio-group>

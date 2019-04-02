@@ -4,6 +4,7 @@ import {LoginService} from "../../auth/login.service";
 import {PageItems} from "../../model/page.item";
 import { ActivatedRoute, Router } from '@angular/router';
 import {Item} from "../../model/item.model";
+import {Question} from "../../model/question.model";
 @Component({
     selector: 'app-teacher-concept-view',
     templateUrl: './teacher-concept-view.component.html',
@@ -13,6 +14,7 @@ export class TeacherConceptViewComponent implements OnInit {
 
     private items: Item[] = [];
     private page: PageItems;
+    private questions: Question[] = [];
 
     constructor(private itemService: ItemService,
                 public loginService: LoginService,

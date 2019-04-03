@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Item} from "../../model/item.model";
 import {AnswerService} from "../../service/answer-service";
 import {Answer} from "../../model/answer.model";
+import {Question} from "../../model/question.model";
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -41,6 +42,11 @@ export class TeacherConceptViewComponent implements OnInit {
             },
             error1 => console.log(error1)
         );
+    }
+
+    correctMan(id: number, info:boolean){
+        console.log(id);
+       this.answerService.correctManually(id,info).subscribe();
     }
 
 

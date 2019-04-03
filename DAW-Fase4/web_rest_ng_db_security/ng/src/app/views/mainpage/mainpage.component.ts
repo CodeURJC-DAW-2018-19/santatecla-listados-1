@@ -66,7 +66,6 @@ export class MainpageComponent implements OnInit {
 
     }
 
-
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {
             width: '50%',

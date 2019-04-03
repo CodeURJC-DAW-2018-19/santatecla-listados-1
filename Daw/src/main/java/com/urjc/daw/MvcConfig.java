@@ -10,10 +10,6 @@ import java.nio.file.Paths;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/new").setViewName("");
-    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -21,5 +17,9 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/upload/**")
                 .addResourceLocations(resourcePath);
 
+    }
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry){
+        registry.addViewController("/new/").setViewName("forward:/new/index.html");
     }
 }

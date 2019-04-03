@@ -5,10 +5,38 @@
 
     <fieldset>
         <legend><h4>CORREGIDAS</h4></legend>
+        <mat-list *ngFor=' let answers of answer'>
+            <mat-list *ngIf = 'answers.state != "pending"'>
+
+                <mat-list *ngIf = 'answers.state == "correct"'>
+                    <mat-icon>done</mat-icon>
+                </mat-list>
+                <mat-list *ngIf = 'answers.state == "incorrect"'>
+                    <mat-icon>clear</mat-icon>
+                </mat-list>
+            </mat-list>
+        </mat-list>
+        <mat-list *ngFor=' let questions of question'>
+            <mat-list-item>
+                <p> {{questions.info}} </p>
+                <mat-divider [vertical]= true ></mat-divider>
+            </mat-list-item>
+        </mat-list>
     </fieldset>
 
     <fieldset>
         <legend><h4>PENDIENTES DE CORREGIR</h4></legend>
+        <mat-list *ngFor=' let answers of answer'>
+            <mat-list *ngIf = 'answers.state == "pending"'>
+                
+            </mat-list>
+        </mat-list>
+        <mat-list *ngFor=' let questions of question'>
+            <mat-list-item>
+                <p> {{questions.info}} </p>
+                <mat-divider [vertical]= true ></mat-divider>
+            </mat-list-item>
+        </mat-list>
     </fieldset>
 
     <P></P>

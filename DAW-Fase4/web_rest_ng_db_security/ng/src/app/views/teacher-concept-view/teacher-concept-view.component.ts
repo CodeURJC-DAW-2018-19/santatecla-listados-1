@@ -14,14 +14,14 @@ import {Answer} from "../../model/answer.model";
 })
 export class TeacherConceptViewComponent implements OnInit {
 
-    private items: Item[] = [];
-    private page: PageItems;
-    private answers: Answer[] = [];
+    public items: Item[] = [];
+    public page: PageItems;
+    public answers: Answer[] = [];
 
     constructor(private itemService: ItemService,
                 public loginService: LoginService,
-                private router: Router,
-                private answerService: AnswerService,
+                public router: Router,
+                public answerService: AnswerService,
                 public activatedRoute: ActivatedRoute,) {
     }
     ngOnInit() {

@@ -13,8 +13,8 @@ export class AnswerService {
     constructor(private http: HttpClient) {
     }
 
-    getAnswer() {
-        return this.http.get(GET_ANSWER, {withCredentials: true})
+    getAnswer(id:number) {
+        return this.http.get(GET_ANSWER_BY_CONCEPT + id, {withCredentials: true})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))
@@ -24,10 +24,6 @@ export class AnswerService {
     private handleError(error: any) {
         console.error(error);
         return Observable.throw('Server error (' + error.status + '): ' + error.text());
-    }
-
-    private isCorrect(){
-
     }
 
     getAnswersByConcept(id: number){

@@ -132,6 +132,10 @@ public class Question {
         }
     }
 
+    public Set<Answer> getAnswer(){
+        return this.setAnswer;
+    }
+
     public void addItem(Item item){this.setItem.add(item);}
 
     public void metrics(){

@@ -20,6 +20,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -60,7 +63,7 @@ public class AnswerRest extends OperationsRest<Answer> {
         return answerService.getByIdUser(page,userService.findById(idUser).get());
     }
 
-    @GetMapping(value = "/concept/{idConcept}")
+    /*@GetMapping(value = "/concept/{idConcept}")
     @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> getConcepts(@PathVariable long idConcept) {
         Optional<Concept> concept = conceptService.findByOneId(idConcept);
@@ -68,6 +71,21 @@ public class AnswerRest extends OperationsRest<Answer> {
             return new ResponseEntity<>(concept.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }*/
+
+    @GetMapping(value = "/concept/{idConcept}")
+    @JsonView(QuestionRest.QuestionDetails.class)
+    public ResponseEntity<List<Answer>> getAnswersByConcept(@PathVariable long idConcept, @PageableDefault Pageable page){
+        List<Answer> list = new ArrayList<>();
+        Optional<Concept> optional = conceptService.findByOneId(idConcept);
+        if(optional.isPresent()){
+            for (Question q:optional.get().getSetQuestion()) {
+                list.addAll(q.getAnswer());
+            }
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping(value = "/{id}")

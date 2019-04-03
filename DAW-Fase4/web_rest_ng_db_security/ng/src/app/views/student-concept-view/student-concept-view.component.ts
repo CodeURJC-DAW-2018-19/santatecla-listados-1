@@ -1,6 +1,10 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material";
 import { single } from './data-student-diagram';
+import {Question} from "../../model/question.model";
+import {QuestionService} from "../../service/question-service";
+import {Answer} from "../../model/answer.model";
+import {AnswerService} from "../../service/answer-service";
 
 @Component({
     selector: 'app-student-concept-view',
@@ -8,6 +12,9 @@ import { single } from './data-student-diagram';
     styleUrls: ['./student-concept-view.component.css']
 })
 export class StudentConceptViewComponent implements OnInit {
+
+    public question: Question [];
+    public answer: Answer [];
 
     single: any[];
 
@@ -34,11 +41,19 @@ export class StudentConceptViewComponent implements OnInit {
 
 
 
-    constructor(public dialog: MatDialog) {
+    constructor(public dialog: MatDialog, private questionService: QuestionService) {
         Object.assign(this, { single })
     }
 
     ngOnInit() {
+        this.questionService.getQuestions().subscribe(
+            (res : any)=>{
+                console.log(res);
+                this.question=(res);
+                console.log(this.question);
+            },
+            error => console.log(error)
+        );
     }
     openDiagramDialog() {
         this.dialogRef = this.dialog.open(this.diagramDialog, {

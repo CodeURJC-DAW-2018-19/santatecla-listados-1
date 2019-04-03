@@ -72,6 +72,7 @@ import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 
 import {UserService} from './service/user-service';
+import {QuestionService} from "./service/question-service";
 import {LessonService} from './service/lesson-service';
 import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
@@ -82,9 +83,18 @@ import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
 import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
 import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
+<<<<<<< HEAD
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {BasicAuthInterceptor} from "./auth/auth.interceptor";
 import {ErrorInterceptor} from "./auth/error.interceptor";
+=======
+import {AnswerService} from "./service/answer-service";
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ErrorInterceptor } from './auth/error.interceptor';
+import { BasicAuthInterceptor } from './auth/auth.interceptor';
+>>>>>>> d486a7fb1ec8fcec866b2019b2dff1df7ea4294b
 
 @NgModule({
     declarations: [AppComponent,
@@ -154,11 +164,19 @@ import {ErrorInterceptor} from "./auth/error.interceptor";
         routing
     ],
     bootstrap: [AppComponent],
+<<<<<<< HEAD
     providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService,
         {provide: LocationStrategy,useClass:HashLocationStrategy},
         {provide: HTTP_INTERCEPTORS,useClass: BasicAuthInterceptor,multi:true},
         {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
         ]
+=======
+    providers: [BookService, LoginService, UserService, LessonService, ItemService, ConceptService, QuestionService,AnswerService,
+        { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        { provide: LocationStrategy, useClass: HashLocationStrategy }   
+    ]
+>>>>>>> d486a7fb1ec8fcec866b2019b2dff1df7ea4294b
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

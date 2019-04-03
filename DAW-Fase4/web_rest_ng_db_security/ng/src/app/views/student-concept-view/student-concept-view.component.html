@@ -6,14 +6,11 @@
     <fieldset>
         <legend><h4>CORREGIDAS</h4></legend>
         <mat-list *ngFor=' let answers of answer'>
-            <mat-list *ngIf = 'answers.state != "pending"'>
-
-                <mat-list *ngIf = 'answers.state == "correct"'>
-                    <mat-icon>done</mat-icon>
-                </mat-list>
-                <mat-list *ngIf = 'answers.state == "incorrect"'>
-                    <mat-icon>clear</mat-icon>
-                </mat-list>
+            <mat-list *ngIf = 'answers.state == "right"'>
+                <p> {{answers.info}} <mat-icon>done</mat-icon> </p>
+            </mat-list>
+            <mat-list *ngIf = 'answers.state == "wrong"'>
+                <p> {{answers.info}} <mat-icon>clear</mat-icon> </p>
             </mat-list>
         </mat-list>
         <mat-list *ngFor=' let questions of question'>
@@ -28,7 +25,7 @@
         <legend><h4>PENDIENTES DE CORREGIR</h4></legend>
         <mat-list *ngFor=' let answers of answer'>
             <mat-list *ngIf = 'answers.state == "pending"'>
-                
+                <p> {{answers.info}} </p>
             </mat-list>
         </mat-list>
         <mat-list *ngFor=' let questions of question'>

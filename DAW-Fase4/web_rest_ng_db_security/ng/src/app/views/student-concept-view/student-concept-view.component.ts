@@ -5,6 +5,7 @@ import {Question} from "../../model/question.model";
 import {QuestionService} from "../../service/question-service";
 import {Answer} from "../../model/answer.model";
 import {AnswerService} from "../../service/answer-service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-student-concept-view',
@@ -41,19 +42,27 @@ export class StudentConceptViewComponent implements OnInit {
 
 
 
-    constructor(public dialog: MatDialog, private questionService: QuestionService) {
+    constructor(public dialog: MatDialog, public questionService: QuestionService, public answerService: AnswerService, public activatedRoute: ActivatedRoute) {
         Object.assign(this, { single })
     }
 
     ngOnInit() {
-        this.questionService.getQuestions().subscribe(
+        const id = this.activatedRoute.snapshot.params['id'];
+        /*this.questionService.getQuestions().subscribe(
             (res : any)=>{
                 console.log(res);
                 this.question=(res);
                 console.log(this.question);
             },
             error => console.log(error)
-        );
+        );*/
+        this.answerService.getAnswer(id).subscribe(
+            (res : any) =>{
+                console.log(res);
+                this.answer=res;
+            },
+            error => console.log(error)
+        )
     }
     openDiagramDialog() {
         this.dialogRef = this.dialog.open(this.diagramDialog, {

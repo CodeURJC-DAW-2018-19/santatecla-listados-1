@@ -87,6 +87,7 @@ import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './auth/error.interceptor';
 import { BasicAuthInterceptor } from './auth/auth.interceptor';
+import {AnswerService} from "./service/answer-service";
 
 @NgModule({
     declarations: [AppComponent,
@@ -156,7 +157,7 @@ import { BasicAuthInterceptor } from './auth/auth.interceptor';
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService,
+    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService,QuestionService,AnswerService,
         {provide: LocationStrategy,useClass:HashLocationStrategy},
         {provide: HTTP_INTERCEPTORS,useClass: BasicAuthInterceptor,multi:true},
         {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}

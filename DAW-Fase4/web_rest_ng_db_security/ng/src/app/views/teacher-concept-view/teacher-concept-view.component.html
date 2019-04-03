@@ -28,15 +28,4 @@
            <span flex>RESPUESTAS</span>
        </div>
    </mat-card-title>
-    <mat-list *ngFor='let answer of answers' layout="row">
-        <mat-list-item *ngIf="!answer.correct">
-            <h3 flex> {{answer.info}} </h3>
-            <mat-divider [vertical]= true ></mat-divider>
-            <mat-radio-group name="{{answer.id}}" flex>
-                <mat-radio-button value="1">Correcto</mat-radio-button>
-                <mat-radio-button value="2">Incorrecto</mat-radio-button>
-            </mat-radio-group>
-            <mat-divider></mat-divider>
-        </mat-list-item>
-    </mat-list>
 </mat-card>

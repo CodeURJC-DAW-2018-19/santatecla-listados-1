@@ -18,7 +18,6 @@ export class MainpageComponent implements OnInit {
     page: PageLesson;
     lessons: Lesson[];
     lessonAdd: Lesson;
-    lessonsTitle: string[];
 
     single: any[];
     multi: any[];
@@ -56,8 +55,6 @@ export class MainpageComponent implements OnInit {
             (res : any)=>{
                 this.page=res;
                 this.lessons=(this.page.content);
-                this.lessonsTitle=[];
-                this.lessons.forEach(value => this.lessonsTitle.push(value.title));
                 console.log(this.lessons);
             },
             error => console.log(error)

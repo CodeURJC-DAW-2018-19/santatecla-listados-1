@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule, HttpModule } from '@angular/http';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material/icon';
 
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -82,9 +82,6 @@ import { CovalentBarEchartsModule } from '@covalent/echarts/bar';
 import { CovalentBaseEchartsModule } from '@covalent/echarts/base';
 import { CovalentTooltipEchartsModule } from '@covalent/echarts/tooltip';
 import { CovalentToolboxEchartsModule } from '@covalent/echarts/toolbox';
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {BasicAuthInterceptor} from "./auth/auth.interceptor";
-import {ErrorInterceptor} from "./auth/error.interceptor";
 
 @NgModule({
     declarations: [AppComponent,
@@ -154,11 +151,7 @@ import {ErrorInterceptor} from "./auth/error.interceptor";
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService,
-        {provide: LocationStrategy,useClass:HashLocationStrategy},
-        {provide: HTTP_INTERCEPTORS,useClass: BasicAuthInterceptor,multi:true},
-        {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
-        ]
+    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

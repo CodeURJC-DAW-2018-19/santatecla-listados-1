@@ -93,17 +93,14 @@
                         </thead>
                         <tbody>
                         <ng-container
-                                *ngFor="let lesson of lessons; let i = index">
+                                *ngFor="let item of ['Electronics', 'Toys', 'Grocery', 'Appliances', 'Automotive', 'Sports']; let i = index">
                             <tr td-data-table-row>
-                                <td td-data-table-cell>{{lesson.title}}</td>
+                                <td td-data-table-cell>{{item}}</td>
                                 <td td-data-table-cell *ngIf="[150, 130, 150, 120, 150, 120] as firstSeries">
                                     {{firstSeries[i]}}
                                 </td>
                                 <td td-data-table-cell *ngIf="[80, 122, 80, 120, 80, 120] as secondSeries">
                                     {{secondSeries[i]}}
-                                </td>
-                                <td td-data-table-cell *ngIf="[80, 122, 80, 120, 80, 120] as thirdSeries">
-                                    {{thirdSeries[i]}}
                                 </td>
                             </tr>
                         </ng-container>
@@ -111,7 +108,7 @@
                     </table>
                 </ng-template>
             </td-chart-toolbox>
-            <td-chart-tooltip [trigger]="'lesson'"
+            <td-chart-tooltip [trigger]="'item'"
                               [textStyle]="{ color: '#818181' }"
                               [backgroundColor]="'#ffffff'">
                 <ng-template let-params let-ticket="ticket" tdTooltipFormatter>
@@ -130,7 +127,7 @@
             <td-chart-x-axis [show]="true"
                              [position]="'bottom'"
                              [type]="'category'"
-                             [data]="lessonsTitle"
+                             [data]="['Electronics', 'Toys', 'Grocery', 'Appliances', 'Automotive', 'Sports']"
                              [boundaryGap]="true">
             </td-chart-x-axis>
             <td-chart-y-axis [show]="true"

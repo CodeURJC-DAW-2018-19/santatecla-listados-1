@@ -36,12 +36,16 @@ public class LessonsRest extends OperationsRest<Lesson> {
     @JsonView(LessonDetails.class)
     public ResponseEntity<Lesson> getLesson(@PathVariable long id) {
         Optional<Lesson> lesson=lessonService.findOne(id);
+        lesson.get().reloadAnswers();
         return checkIfExist(lesson);
     }
 
     @GetMapping(value = "/pag")
     @JsonView(LessonDetails.class)
     public Page<Lesson> getPage (Pageable page){
+        for (Lesson lesson:lessonService.findAll(page)) {
+            lesson.reloadAnswers();
+        }
         return lessonService.findAll(page);
     }
 
@@ -67,4 +71,6 @@ public class LessonsRest extends OperationsRest<Lesson> {
         model.addAttribute("lessons", searchLessons);
         return "MainPage";
     }
+
+
 }

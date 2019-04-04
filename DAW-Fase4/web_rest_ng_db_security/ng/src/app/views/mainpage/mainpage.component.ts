@@ -17,9 +17,10 @@ import {multi} from './data';
 export class MainpageComponent implements OnInit {
     page: PageLesson;
     lessons: Lesson[];
+    stats: number[][];
     lessonAdd: Lesson;
     lessonsTitle: string[];
-    numberPag : number;
+    numberPag: number;
 
 
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
@@ -33,18 +34,25 @@ export class MainpageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.numberPag=0;
-        this.lessonAdd = {title: '', conceptSet: []}
+        this.numberPag = 0;
+        this.stats=[[],[],[]];
+        this.lessonAdd = {title: '', conceptSet: [], answerPending: 0, answerIncorrect: 0, answerCorrect: 0}
         this.lessonService.getLessons(0, this.numberPag).subscribe(
             (res: any) => {
                 this.page = res;
                 this.lessons = (this.page.content);
                 this.lessonsTitle = [];
-                this.lessons.forEach(value => this.lessonsTitle.push(value.title));
-                console.log(this.lessons);
+                this.lessons.forEach((value, index) => {
+                        this.lessonsTitle.push(value.title)
+                        this.stats[0].push(value.answerCorrect);
+                        this.stats[1].push(value.answerPending);
+                        this.stats[2].push(value.answerIncorrect);
+                    }
+                );
             },
             error => console.log(error)
         );
+
         //console.log(this.lessons);
 
     }
@@ -64,6 +72,7 @@ export class MainpageComponent implements OnInit {
             error => console.log(error)
         );
     }
+
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {
             width: '50%',

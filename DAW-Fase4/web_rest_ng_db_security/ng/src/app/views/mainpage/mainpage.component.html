@@ -12,21 +12,27 @@
             <mat-panel-title>
                 {{lesson.title}}
             </mat-panel-title>
+            <mat-panel-description *ngIf="!loginService.getRolUserLoged()">
+                {{lesson.answerCorrect}}:{{lesson.answerPending}}:{{lesson.answerIncorrect}}
+                :{{lesson.answerCorrect + lesson.answerIncorrect + lesson.answerPending}}
+            </mat-panel-description>
+            <mat-panel-description  [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()">
+                <a class="material-icons" data-toggle="modal"
+                   style="float: right; cursor: pointer">delete</a>
+            </mat-panel-description>
         </mat-expansion-panel-header>
-        <div *ngIf="loginService.getRolUserLoged()">
-            <ng-template #thenBlock>
-                <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
-                   [routerLink]="['/teacherConceptView/:id', concept.idConcept]">
-                    {{concept.title}}
-                </a>
-            </ng-template>
-
-            <ng-template #elseBlock>
-                <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
-                   [routerLink]="['/studentConceptView/:id', concept.idConcept]">
-                    {{concept.title}}
-                </a>
-            </ng-template>
+        <ng-container *ngIf="loginService.getRolUserLoged()">
+            <a [ngStyle]="{'cursor':'pointer'}"
+               *ngFor='let concept of lesson.conceptSet'
+               [routerLink]="['/teacherConceptView/', concept.idConcept]">
+                {{concept.title}}<br>
+            </a>
+        </ng-container>
+        <div *ngIf="!loginService.getRolUserLoged()">
+            <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
+               [routerLink]="['/studentConceptView/', concept.idConcept]">
+                {{concept.title}}<br>
+            </a>
         </div>
         <button mat-fab *ngIf="loginService.getRolUserLoged()" (click)="newConcept()">
             <mat-icon>add</mat-icon>
@@ -90,7 +96,7 @@
                     [show]="true"
                     [right]="30"
                     [top]="10"
-                    [feature]="{dataView: {readOnly: true, title: 'View Data', lang: ['Data View', 'Turn Off', 'Refresh']},
+                    [feature]="{dataView: {readOnly: true, title: 'View Data', lang: ['Datos temas', 'Turn Off', 'Refresh']},
                           dataZoom: {title: {zoom: 'Zoom', back: 'Back'}},
                           magicType: {type: ['line', 'bar', 'stack', 'tiled'],
                                       title: {line: 'Line', bar: 'Bar', stack: 'Stack', tiled: 'Tiled'}},
@@ -99,9 +105,10 @@
                     <table td-data-table>
                         <thead>
                         <tr td-data-table-column-row>
-                            <th td-data-table-column>Category</th>
-                            <th td-data-table-column>Yesterday</th>
-                            <th td-data-table-column>Today</th>
+                            <th td-data-table-column>Titulo</th>
+                            <th td-data-table-column>Correctas</th>
+                            <th td-data-table-column>Incorrectos</th>
+                            <th td-data-table-column>Pendientes</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -109,14 +116,14 @@
                                 *ngFor="let lesson of lessons; let i = index">
                             <tr td-data-table-row>
                                 <td td-data-table-cell>{{lesson.title}}</td>
-                                <td td-data-table-cell *ngIf="[150, 130, 150, 120, 150, 120] as firstSeries">
-                                    {{firstSeries[i]}}
+                                <td td-data-table-cell >
+                                    {{lesson.answerCorrect}}
                                 </td>
-                                <td td-data-table-cell *ngIf="[80, 122, 80, 120, 80, 120] as secondSeries">
-                                    {{secondSeries[i]}}
+                                <td td-data-table-cell>
+                                    {{lesson.answerIncorrect}}
                                 </td>
-                                <td td-data-table-cell *ngIf="[80, 122, 80, 120, 80, 120] as thirdSeries">
-                                    {{thirdSeries[i]}}
+                                <td td-data-table-cell >
+                                    {{lesson.answerPending}}
                                 </td>
                             </tr>
                         </ng-container>
@@ -148,32 +155,29 @@
             </td-chart-x-axis>
             <td-chart-y-axis [show]="true"
                              [type]="'value'"
-                             [position]="'right'"
-                             [max]="300"
+                             [position]="'left'"
+                             [max]="10"
                              [splitLine]="{ lineStyle: { type: 'dotted' }}">
             </td-chart-y-axis>
             <td-chart-series td-bar
-                             [data]="[150, 130, 150, 120, 150, 120]"
+                             [data]="stats[0]"
                              [name]="'Correctas'"
-                             [color]="'#F2724B'">
+                             [color]="'#00b686'">
             </td-chart-series>
             <td-chart-series td-bar
-                             [data]="[80, 122, 80, 120, 80, 120]"
+                             [data]="stats[1]"
                              [name]="'Sin responder'"
-                             [color]="'#3A4950'">
+                             [color]="'#757575'">
             </td-chart-series>
             <td-chart-series td-bar
-                             [data]="[80, 122, 80, 120, 80, 120]"
+                             [data]="stats[2]"
                              [name]="'Incorrectas'"
-                             [color]="'#3A4950'">
+                             [color]="'#ff3d00'">
             </td-chart-series>
         </td-chart>
         <mat-divider></mat-divider>
         <mat-dialog-actions align="end">
             <button type="button" mat-button class="text-upper" (click)="DiagramRef.close()">Cerrar</button>
-            <button type="button" mat-button color="accent" class="text-upper"
-                    (click)="newLesson()">Guardar
-            </button>
         </mat-dialog-actions>
     </div>
 

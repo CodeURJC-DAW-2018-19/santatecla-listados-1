@@ -29,6 +29,16 @@ public class Lesson  {
     @JsonView(ConceptList.class)
     private Set<Concept> conceptSet;
 
+    @JsonView(BasicInfo.class)
+    private Integer answerCorrect;
+
+    @JsonView(BasicInfo.class)
+    private Integer answerPending;
+
+    @JsonView(BasicInfo.class)
+    private Integer answerIncorrect;
+
+
 /******************************************/
 
 
@@ -38,6 +48,16 @@ public class Lesson  {
     public Lesson(String title) {
         this.title = title;
         conceptSet=new HashSet<>();
+        answerCorrect=getAnswerCorrectOfConcepts();
+        answerPending=getAnswerPendingOfConcepts();
+        answerIncorrect=getAnswerIncorrectOfConcepts();
+
+    }
+
+    public void reloadAnswers(){
+        answerCorrect=getAnswerCorrectOfConcepts();
+        answerPending=getAnswerPendingOfConcepts();
+        answerIncorrect=getAnswerIncorrectOfConcepts();
     }
     /******************************************/
 

@@ -88,6 +88,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './auth/error.interceptor';
 import { BasicAuthInterceptor } from './auth/auth.interceptor';
 import {AnswerService} from "./service/answer-service";
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
     declarations: [AppComponent,
@@ -115,6 +116,7 @@ import {AnswerService} from "./service/answer-service";
         MatCardModule,
         MatMenuModule,
         MatInputModule,
+        MatPaginatorModule,
         MatSelectModule,
         MatButtonToggleModule,
         MatSlideToggleModule,

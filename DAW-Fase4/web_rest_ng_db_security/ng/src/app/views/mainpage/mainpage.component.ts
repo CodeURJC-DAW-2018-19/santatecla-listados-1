@@ -5,8 +5,8 @@ import {Lesson} from "../../model/lesson.model";
 import {PageLesson} from "../../model/PageLesson";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material";
-import { single } from './data';
-import { multi } from './data';
+import {single} from './data';
+import {multi} from './data';
 
 @Component({
     selector: 'app-mainpage',
@@ -19,25 +19,7 @@ export class MainpageComponent implements OnInit {
     lessons: Lesson[];
     lessonAdd: Lesson;
     lessonsTitle: string[];
-
-    single: any[];
-    multi: any[];
-
-    view: any[] = [700, 400];
-
-    // options
-    showXAxis = true;
-    showYAxis = true;
-    gradient = false;
-    showLegend = true;
-    showXAxisLabel = true;
-    xAxisLabel = 'Temas';
-    showYAxisLabel = true;
-    yAxisLabel = 'Numero de preguntas';
-
-    colorScheme = {
-        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-    };
+    numberPag : number;
 
 
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
@@ -46,17 +28,18 @@ export class MainpageComponent implements OnInit {
     @ViewChild('DiagramDialog') DiagramDialog: TemplateRef<any>;
     DiagramRef: MatDialogRef<any, any>;
 
-    constructor(public dialog: MatDialog,public dialog2: MatDialog,private router: Router,private lessonService: LessonService, public loginService: LoginService) {
+    constructor(public dialog: MatDialog, public dialog2: MatDialog, private router: Router, private lessonService: LessonService, public loginService: LoginService) {
         Object.assign(this, {single})
     }
 
     ngOnInit() {
-        this.lessonAdd = { title: '', conceptSet: [] }
-        this.lessonService.getLessons().subscribe(
-            (res : any)=>{
-                this.page=res;
-                this.lessons=(this.page.content);
-                this.lessonsTitle=[];
+        this.numberPag=0;
+        this.lessonAdd = {title: '', conceptSet: []}
+        this.lessonService.getLessons(0, this.numberPag).subscribe(
+            (res: any) => {
+                this.page = res;
+                this.lessons = (this.page.content);
+                this.lessonsTitle = [];
                 this.lessons.forEach(value => this.lessonsTitle.push(value.title));
                 console.log(this.lessons);
             },
@@ -66,6 +49,21 @@ export class MainpageComponent implements OnInit {
 
     }
 
+    reloadPagination() {
+        this.numberPag++;
+        this.lessonService.getLessons(10, this.numberPag).subscribe(
+            (res: any) => {
+                this.page = res;
+                this.page.content.forEach((value, index) =>
+                    this.lessons.push(value));
+
+                this.lessonsTitle = [];
+                this.lessons.forEach(value => this.lessonsTitle.push(value.title));
+                console.log(this.lessons);
+            },
+            error => console.log(error)
+        );
+    }
 
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {
@@ -85,18 +83,17 @@ export class MainpageComponent implements OnInit {
         console.log(form.value);
     }
 
-   newLesson() {
+    newLesson() {
         this.lessonService.saveLesson(this.lessonAdd).subscribe(
-            (res : any)=>{
-                this.page=res;
-                this.lessons=(this.page.content);
+            (res: any) => {
+                this.page = res;
+                this.lessons = (this.page.content);
                 console.log(this.lessons);
             },
             error => console.log(error)
         );
 
     }
-
 
 
     newConcept() {

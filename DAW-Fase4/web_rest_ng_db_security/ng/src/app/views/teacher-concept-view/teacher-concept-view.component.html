@@ -17,10 +17,12 @@
                 <mat-divider></mat-divider>
             </mat-list-item>
     </mat-list>
-    <button mat-fab  *ngIf="loginService.isLogged">
-        <mat-icon>add</mat-icon>
-    </button>
 </mat-card>
+
+
+<button mat-mini-fab  *ngIf="loginService.isLogged" (click)="openAddDialog()">
+    <mat-icon>add</mat-icon>
+</button>
 
 <mat-card>
    <mat-card-title>
@@ -40,3 +42,33 @@
         </mat-list-item>
     </mat-list>
 </mat-card>
+
+
+<ng-template #addItemDialog let-dialogRef="dialogRef">
+    <h3>Añadir Item</h3>
+    <mat-dialog-content flex>
+        <div class="container">
+            <div class="register-item">
+                <form #formItem="ngForm" class="form form-register">
+                    <mat-form-field>
+                        <input
+                                matInput
+                                [(ngModel)]="itemNew.info"
+                                placeholder="Info"
+                                name="info"
+                                required
+                        />
+                    </mat-form-field>
+                    <mat-checkbox (click)="itemNew.state=true" >Correcto</mat-checkbox>
+                    <mat-checkbox (click)="itemNew.state=false" >Incorrecto</mat-checkbox>
+                </form>
+            </div>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-raised-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" (click)="addItem()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+    </mat-dialog-content>
+
+</ng-template>
+

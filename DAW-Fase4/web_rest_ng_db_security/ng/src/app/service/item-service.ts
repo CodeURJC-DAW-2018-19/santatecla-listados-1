@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {Item} from "../model/item.model";
 
 const GET_ITEMS="api/items/concept/";
 
@@ -26,4 +27,18 @@ export class ItemService {
         return Observable.throw('Server error (' + error.status + '): ' + error.text());
     }
 
+
+    addItem(item: Item, id:number):Observable<Item> {
+        const body = JSON.stringify(item);
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+        return this.http.post<Item>(GET_ITEMS + id, body, {headers})
+            .pipe(
+                map(response => response),
+                catchError(error => this.handleError(error))
+            );
+
+    }
 }

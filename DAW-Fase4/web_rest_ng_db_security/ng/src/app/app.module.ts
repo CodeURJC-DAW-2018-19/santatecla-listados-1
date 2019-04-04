@@ -120,6 +120,7 @@ import {AnswerService} from "./service/answer-service";
         MatSlideToggleModule,
         MatProgressSpinnerModule,
         MatDialogModule,
+        MatIconModule,
         MatSnackBarModule,
         MatToolbarModule,
         MatTabsModule,

@@ -3,7 +3,7 @@ export interface Item{
 
     id?:number;
     info:string;
-    idConcept: number;
+    idConcept?: number;
     state: boolean;
 
 }

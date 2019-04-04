@@ -4,15 +4,15 @@
     <mat-divider></mat-divider>
 
     <fieldset>
-        <legend><h4>CORREGIDAS</h4></legend>
+        <legend><h3>CORREGIDAS</h3></legend>
         <mat-list *ngFor=' let answers of answer'>
             <mat-list *ngIf = 'answers.state == "right"'>
-                <p> {{answers.statement}} </p>
+                <h4><p> {{answers.statement}} </p></h4>
                 <p> {{answers.info}} <mat-icon>done</mat-icon> </p>
                 <mat-divider></mat-divider>
             </mat-list>
             <mat-list *ngIf = 'answers.state == "wrong"'>
-                <p> {{answers.statement}} </p>
+                <h4><p> {{answers.statement}} </p></h4>
                 <p> {{answers.info}} <mat-icon>clear</mat-icon> </p>
                 <mat-divider></mat-divider>
             </mat-list>
@@ -21,10 +21,10 @@
     </fieldset>
 
     <fieldset>
-        <legend><h4>PENDIENTES DE CORREGIR</h4></legend>
+        <legend><h3>PENDIENTES DE CORREGIR</h3></legend>
         <mat-list *ngFor=' let answers of answer'>
             <mat-list *ngIf = 'answers.state == "pending"'>
-                <p> {{answers.statement}} </p>
+                <h4><p> {{answers.statement}} </p></h4>
                 <p> {{answers.info}} </p>
                 <mat-divider></mat-divider>
             </mat-list>

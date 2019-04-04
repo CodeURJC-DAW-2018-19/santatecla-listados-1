@@ -298,8 +298,10 @@ public class DatabaseInitializer {
 
 
         Question question1 = new Question(1, "¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
+        Question question2 = new Question(1, "¿Requisitos es un elemento de las disciplinas del software?");
+        Question question3 = new Question(1, "¿Análisis es un elemento de las disciplinas del software");
 
-        //questionRepository.save(question1);
+
         Answer answer1 = new Answer("Respuesta cerrada");
         Answer answer2 = new Answer("Respuesta cerrada");
         Answer answer3 = new Answer("Respuesta cerrada");
@@ -318,18 +320,24 @@ public class DatabaseInitializer {
         answer3.setIdUser(ac);
 
         question1.addAnswer(answer1);
-        question1.addAnswer(answer2);
-        question1.addAnswer(answer3);
+        question2.addAnswer(answer2);
+        question3.addAnswer(answer3);
 
         question1.setConcept(concept2);
+        question2.setConcept(concept2);
+        question3.setConcept(concept2);
 
         questionRepository.save(question1);
+        questionRepository.save(question2);
+        questionRepository.save(question3);
 
         concept2.addQuestion(question1);
+        concept2.addQuestion(question2);
+        concept2.addQuestion(question3);
 
         answer1.setQuestion(question1);
-        answer2.setQuestion(question1);
-        answer3.setQuestion(question1);
+        answer2.setQuestion(question2);
+        answer3.setQuestion(question3);
 
 
         answerRepository.save(answer1);

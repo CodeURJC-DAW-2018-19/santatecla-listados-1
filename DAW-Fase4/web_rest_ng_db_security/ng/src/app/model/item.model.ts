@@ -1,6 +1,6 @@
 
 export interface Item{
-    id?:number;
+    idItem?:number;
     info:string;
     idConcept?: number;
     state: boolean;

@@ -1,12 +1,13 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {ItemService } from "../../service/item-service"
+import {ItemService} from "../../service/item-service"
 import {LoginService} from "../../auth/login.service";
 import {PageItems} from "../../model/page.item";
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Item} from "../../model/item.model";
 import {AnswerService} from "../../service/answer-service";
 import {Answer} from "../../model/answer.model";
 import {MatDialog, MatDialogRef} from "@angular/material";
+import {TdDialogService} from '@covalent/core';
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -31,39 +32,62 @@ export class TeacherConceptViewComponent implements OnInit {
                 public router: Router,
                 public answerService: AnswerService,
                 public activatedRoute: ActivatedRoute,
-                public dialog:MatDialog,
-                public alert:MatDialog) {
-        this.itemNew= {info:"",state:false};
+                public dialog: MatDialog,
+                public alert: MatDialog,
+                private _dialogService: TdDialogService) {
+        this.itemNew = {info: "", state: false};
     }
+
     ngOnInit() {
         const id = this.activatedRoute.snapshot.params['id'];
         this.itemService.getItems(id).subscribe(
-            (res : any)=>{
-                this.page=res;
-                this.items=this.page.content;
+            (res: any) => {
+                this.page = res;
+                this.items = this.page.content;
             },
             error => console.log(error)
         );
 
         this.answerService.getAnswersByConcept(id).subscribe(
-            (res : any) =>{
+            (res: any) => {
                 console.log(res);
-                this.answers=res;
+                this.answers = res;
             },
             error1 => console.log(error1)
         );
     }
 
-    correctMan(id: number, info:boolean){
+    correctMan(id: number, info: boolean) {
         console.log(id);
-       this.answerService.correctManually(id,info).subscribe();
+        this.answerService.correctManually(id, info).subscribe();
     }
 
-    addItem(){
+    addItem() {
         const id = this.activatedRoute.snapshot.params['id'];
-        this.itemService.addItem(this.itemNew,id).subscribe();
+        this.itemService.addItem(this.itemNew, id).subscribe();
         this.items.push(this.itemNew);
+        this.itemNew = {info: "", state: false};
         this.dialog.closeAll();
+    }
+
+    deleteItem(id: number) {
+        this._dialogService.openConfirm({
+            message: '¿Estás seguro de que desea eliminarlo?',
+            title: 'Confirmarción',
+            width: '500px',
+            height: '175px'
+        }).afterClosed().subscribe((accept: boolean) => {
+            if (accept) {
+                this.itemService.deleteItem(id).subscribe();
+                let i=0;
+                this.items.forEach((value,index) => {
+                    if (value.idItem == id) {
+                        i=index;
+                    }
+                });
+                 this.items.splice(i,1);
+            }
+        });
     }
 
     openAddDialog() {
@@ -73,8 +97,8 @@ export class TeacherConceptViewComponent implements OnInit {
         });
     }
 
-    openAlertDialog(){
-        this.dialogAlert = this.alert.open(this.alertDialog,{
+    openAlertDialog() {
+        this.dialogAlert = this.alert.open(this.alertDialog, {
             width: '50%',
             height: '50%',
         });

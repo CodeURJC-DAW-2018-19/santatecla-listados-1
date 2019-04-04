@@ -3,8 +3,10 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {Item} from "../model/item.model";
+import {canReportError} from "rxjs/internal/util/canReportError";
 
 const GET_ITEMS="api/items/concept/";
+const URL_BASE="api/items/"
 
 
 @Injectable()
@@ -40,5 +42,12 @@ export class ItemService {
                 catchError(error => this.handleError(error))
             );
 
+    }
+
+    deleteItem(id:number){
+        return this.http.delete<Item>(URL_BASE +  id)
+            .pipe(
+                catchError(err => this.handleError(err))
+            );
     }
 }

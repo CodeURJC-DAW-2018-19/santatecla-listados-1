@@ -10,12 +10,12 @@
             <mat-list-item>
                 <h4 flex> {{item.info}} </h4>
                 <mat-divider [vertical]= true ></mat-divider>
-                <mat-radio-group name="{{item.id}}" flex>
-                    <mat-radio-button value="1" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
+                <mat-radio-group name="{{item.idItem}}" flex>
+                    <mat-radio-button value="3" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
                     &nbsp;
-                    <mat-radio-button value="2" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
+                    <mat-radio-button value="4" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
                 </mat-radio-group>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="deleteItem(item.idItem)">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <mat-divider></mat-divider>
@@ -77,31 +77,5 @@
 
 </ng-template>
 
-<ng-template #alertDialog let-dialogRef="dialogAlert">
-    <h3>Añadir Item</h3>
-    <mat-dialog-content flex>
-        <div class="container">
-            <div class="register-item">
-                <form #formItem="ngForm" class="form form-register">
-                    <mat-form-field>
-                        <input
-                                matInput
-                                [(ngModel)]="itemNew.info"
-                                placeholder="Info"
-                                name="info"
-                                required
-                        />
-                    </mat-form-field>
-                    <mat-checkbox (click)="itemNew.state=true" >Correcto</mat-checkbox>
-                    <mat-checkbox (click)="itemNew.state=false" >Incorrecto</mat-checkbox>
-                </form>
-            </div>
-            <mat-dialog-actions align="end">
-                <button type="button" mat-raised-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
-                <button mat-raised-button class="text-upper" type="button" (click)="addItem()"> Guardar </button>
-            </mat-dialog-actions>
-        </div>
-    </mat-dialog-content>
 
-</ng-template>
 

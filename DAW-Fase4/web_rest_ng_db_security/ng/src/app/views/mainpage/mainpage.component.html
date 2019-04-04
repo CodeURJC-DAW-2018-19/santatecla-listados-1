@@ -13,19 +13,32 @@
                 {{lesson.title}}
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
-            {{concept.title}}
-        </p>
-        <button mat-fab *ngIf="loginService.isLogged" (click)="newConcept()">
+        <div *ngIf="loginService.getRolUserLoged()">
+            <ng-template #thenBlock>
+                <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
+                   [routerLink]="['/teacherConceptView/:id', concept.idConcept]">
+                    {{concept.title}}
+                </a>
+            </ng-template>
+
+            <ng-template #elseBlock>
+                <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
+                   [routerLink]="['/studentConceptView/:id', concept.idConcept]">
+                    {{concept.title}}
+                </a>
+            </ng-template>
+        </div>
+        <button mat-fab *ngIf="loginService.getRolUserLoged()" (click)="newConcept()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
+    <button (click)="reloadPagination()">CARGAR MAS</button>
 </mat-card>
-<button mat-fab *ngIf="loginService.isLogged" (click)="openAddLessonDialog()">
+<button mat-fab *ngIf="loginService.getRolUserLoged()" (click)="openAddLessonDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
-<button align="end" mat-fab *ngIf="loginService.isLogged" (click)="openDiagramDialog()">
+<button align="end" mat-fab *ngIf="loginService.getRolUserLoged()" (click)="openDiagramDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
@@ -111,7 +124,7 @@
                     </table>
                 </ng-template>
             </td-chart-toolbox>
-            <td-chart-tooltip [trigger]="'lesson'"
+            <td-chart-tooltip [trigger]="'item'"
                               [textStyle]="{ color: '#818181' }"
                               [backgroundColor]="'#ffffff'">
                 <ng-template let-params let-ticket="ticket" tdTooltipFormatter>
@@ -141,13 +154,17 @@
             </td-chart-y-axis>
             <td-chart-series td-bar
                              [data]="[150, 130, 150, 120, 150, 120]"
-                             [name]="'Today'"
+                             [name]="'Correctas'"
                              [color]="'#F2724B'">
             </td-chart-series>
             <td-chart-series td-bar
                              [data]="[80, 122, 80, 120, 80, 120]"
-                             [name]="'Yesterday'"
-                             [markLine]="{ data: [{ name: 'Average', value: 30, xAxis: 1, yAxis: 30 }] }"
+                             [name]="'Sin responder'"
+                             [color]="'#3A4950'">
+            </td-chart-series>
+            <td-chart-series td-bar
+                             [data]="[80, 122, 80, 120, 80, 120]"
+                             [name]="'Incorrectas'"
                              [color]="'#3A4950'">
             </td-chart-series>
         </td-chart>

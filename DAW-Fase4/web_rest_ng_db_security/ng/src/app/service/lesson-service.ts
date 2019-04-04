@@ -19,8 +19,8 @@ export class LessonService {
     constructor(private http: HttpClient) {
     }
 
-    getLessons() {
-        return this.http.get(GET_LESSONS, {withCredentials: true})
+    getLessons(pagSize:number,indexPag:number) {
+        return this.http.get(GET_LESSONS+"?page="+indexPag+"&size="+pagSize, {withCredentials: true})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

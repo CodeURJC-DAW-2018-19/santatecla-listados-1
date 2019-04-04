@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 const URL = 'api/user';
 
@@ -36,7 +36,7 @@ export class LoginService {
             'X-Requested-With': 'XMLHttpRequest',
         });
 
-        return this.http.get<User>(URL+'/login', { headers })
+        return this.http.get<User>(URL + '/login', {headers})
             .pipe(map(user => {
                 if (user) {
                     this.setCurrentUser(user);
@@ -67,5 +67,9 @@ export class LoginService {
         localStorage.removeItem('currentUser');
         this.isLogged = false;
         this.isAdmin = false;
+    }
+
+    getRolUserLoged() {
+        return this.isAdmin;
     }
 }

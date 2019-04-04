@@ -16,7 +16,7 @@
                 {{lesson.answerCorrect}}:{{lesson.answerPending}}:{{lesson.answerIncorrect}}
                 :{{lesson.answerCorrect + lesson.answerIncorrect + lesson.answerPending}}
             </mat-panel-description>
-            <mat-panel-description [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()">
+            <mat-panel-description [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()==2">
                 <a class="material-icons" data-toggle="modal"
                    style="float: right; cursor: pointer">delete</a>
             </mat-panel-description>
@@ -31,11 +31,18 @@
                        style="float: right; cursor: pointer; margin-top: -40px">delete</a>
             </div>
         </ng-container>
+        <ng-container *ngIf="loginService.getRolUserLoged()==1">
+            <div class="row" *ngFor='let concept of lesson.conceptSet'>
+                <a [ngStyle]="{'cursor':'pointer'}"
+                   [routerLink]="['/studentConceptView/', concept.idConcept]">
+                    {{concept.title}} </a>
+                <pre></pre>
+            </div>
+        </ng-container>
         <div *ngIf="loginService.getRolUserLoged()==0">
-            <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
-               [routerLink]="['/studentConceptView/', concept.idConcept]">
+            <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
                 {{concept.title}}<br>
-            </a>
+            </p>
         </div>
         <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="newConcept()">
             <mat-icon>add</mat-icon>

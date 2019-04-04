@@ -20,10 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/answer")
@@ -125,6 +122,21 @@ public class AnswerRest extends OperationsRest<Answer> {
             responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return responseEntity;
+    }
+
+
+    @PutMapping(path = "/{idQuestion}/{correction}")
+    @JsonView(AnswerDetails.class)
+    public ResponseEntity<Answer> correctionTeacher(@PathVariable long idQuestion, @PathVariable boolean correction){
+        Optional<Question> option = questionService.findOne(idQuestion);
+        if(option.isPresent()){
+            Answer ans = new ArrayList<>(option.get().getAnswer()).get(0);
+            ans.correctionTeacher(correction);
+            answerService.addAnswer(ans);
+            return new ResponseEntity<Answer>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<Answer>(HttpStatus.NOT_FOUND);
+        }
     }
 
 

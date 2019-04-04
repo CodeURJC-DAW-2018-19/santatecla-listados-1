@@ -298,17 +298,24 @@ public class DatabaseInitializer {
 
         Answer answer1 = new Answer("Respuesta cerrada");
         Answer answer2 = new Answer("Respuesta cerrada");
+        Answer answer3 = new Answer("Respuesta cerrada");
 
         Question question1 = new Question(1, "¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
 
+        answer1.setState("wrong");
+        answer3.setState("right");
+
         ac.addAnswer(answer1);
         ac.addAnswer(answer2);
+        ac.addAnswer(answer3);
 
         answer1.setIdUser(ac);
         answer2.setIdUser(ac);
+        answer3.setIdUser(ac);
 
         question1.addAnswer(answer1);
         question1.addAnswer(answer2);
+        question1.addAnswer(answer3);
 
         question1.setConcept(concept2);
 
@@ -318,10 +325,12 @@ public class DatabaseInitializer {
 
         answer1.setQuestion(question1);
         answer2.setQuestion(question1);
+        answer3.setQuestion(question1);
 
 
         answerRepository.save(answer1);
         answerRepository.save(answer2);
+        answerRepository.save(answer3);
 
         userRepository.save(ac);
 

@@ -34,7 +34,7 @@ public class Answer {
     private User idUser;
 
     @ManyToOne
-    @JsonView(QuestionDet.class)
+    @JsonView(BasicInfo.class)
     private Question idQuestion;
 
     @Column
@@ -124,6 +124,14 @@ public class Answer {
         idQuestion.metrics();
     }
 
+    public void correctionTeacher(boolean b){
+        correct=true;
+        if(b){
+            state="right";
+        }else{
+            state="wrong";
+        }
+    }
 
     public void correctType1(boolean ans){
         this.setCorrect(true);

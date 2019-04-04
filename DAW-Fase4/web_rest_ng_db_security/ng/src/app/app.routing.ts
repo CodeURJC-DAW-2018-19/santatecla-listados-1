@@ -12,7 +12,7 @@ const appRoutes = [
   { path: 'book/:id', component: BookDetailComponent },
   { path: 'book/edit/:id', component: BookFormComponent },
   { path: '', redirectTo: 'mainPage', pathMatch: 'full' },
-  { path: 'studentConceptView', component: StudentConceptViewComponent},
+  { path: 'studentConceptView/:id', component: StudentConceptViewComponent},
   { path: 'teacherConceptView/:id' , component: TeacherConceptViewComponent}
 ];
 

@@ -48,14 +48,13 @@ export class StudentConceptViewComponent implements OnInit {
 
     ngOnInit() {
         const id = this.activatedRoute.snapshot.params['id'];
-        /*this.questionService.getQuestions().subscribe(
+        this.questionService.getQuestions().subscribe(
             (res : any)=>{
                 console.log(res);
                 this.question=(res);
-                console.log(this.question);
             },
             error => console.log(error)
-        );*/
+        );
         this.answerService.getAnswer(id).subscribe(
             (res : any) =>{
                 console.log(res);

@@ -10,5 +10,6 @@ export interface Answer{
     state: string;
     idQuestion: Question;
     correct: boolean;
+    statement: string;
 
 }

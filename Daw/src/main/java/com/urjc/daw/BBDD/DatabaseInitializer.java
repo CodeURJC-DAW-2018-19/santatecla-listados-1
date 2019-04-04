@@ -296,11 +296,15 @@ public class DatabaseInitializer {
         itemRepository.save(item24);
 
 
+
+        Question question1 = new Question(1, "¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
+
+        //questionRepository.save(question1);
         Answer answer1 = new Answer("Respuesta cerrada");
         Answer answer2 = new Answer("Respuesta cerrada");
         Answer answer3 = new Answer("Respuesta cerrada");
 
-        Question question1 = new Question(1, "¿Qué elemento falta en la lista análisis, programación, pruebas y diseño para completar las disciplinas del software?");
+
 
         answer1.setState("wrong");
         answer3.setState("right");

@@ -40,6 +40,10 @@ public class Answer {
     @Column
     @JsonView(BasicInfo.class)
     private boolean correct;
+
+    @Column
+    @JsonView(BasicInfo.class)
+    private String statement;
 /**         CONSTRUCTOR         **/
 
     public Answer(String info){
@@ -88,7 +92,10 @@ public class Answer {
     }
 
     public void setQuestion(Question idQuestion) {
+
         this.idQuestion = idQuestion;
+
+        this.statement=getQuestionInfo();
     }
 
     @Override

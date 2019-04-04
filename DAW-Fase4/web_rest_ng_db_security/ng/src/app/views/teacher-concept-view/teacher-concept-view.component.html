@@ -10,7 +10,7 @@
             <mat-list-item>
                 <h3 flex> {{item.info}} </h3>
                 <mat-divider [vertical]= true ></mat-divider>
-                <mat-radio-group name="{{item.id}}" flex>
+                <mat-radio-group id="{{item.id}}" flex>
                     <mat-radio-button value="1" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
                     <mat-radio-button value="2" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
                 </mat-radio-group>
@@ -34,9 +34,9 @@
         <mat-list-item *ngIf="!answer.correct">
             <h3 flex> {{answer.info}} </h3>
             <mat-divider [vertical]= true ></mat-divider>
-            <mat-radio-group name="{{answer.id}}" flex>
-                <mat-radio-button name="1" (click)="correctMan(answer.idQuestion,true)">Correcto</mat-radio-button>
-                <mat-radio-button name="2" (click)="correctMan(answer.idQuestion,false)">Incorrecto</mat-radio-button>
+            <mat-radio-group id="{{answer.id}}" flex>
+                <mat-radio-button value="1" (click)="correctMan(answer.idQuestion,true)">Correcto</mat-radio-button>
+                <mat-radio-button value="2" (click)="correctMan(answer.idQuestion,false)">Incorrecto</mat-radio-button>
             </mat-radio-group>
             <mat-divider></mat-divider>
         </mat-list-item>

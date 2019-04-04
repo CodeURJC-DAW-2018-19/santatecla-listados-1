@@ -16,17 +16,20 @@
                 {{lesson.answerCorrect}}:{{lesson.answerPending}}:{{lesson.answerIncorrect}}
                 :{{lesson.answerCorrect + lesson.answerIncorrect + lesson.answerPending}}
             </mat-panel-description>
-            <mat-panel-description  [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()">
+            <mat-panel-description [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()">
                 <a class="material-icons" data-toggle="modal"
                    style="float: right; cursor: pointer">delete</a>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-container *ngIf="loginService.getRolUserLoged()">
-            <a [ngStyle]="{'cursor':'pointer'}"
-               *ngFor='let concept of lesson.conceptSet'
-               [routerLink]="['/teacherConceptView/', concept.idConcept]">
-                {{concept.title}}<br>
-            </a>
+            <div class="row" *ngFor='let concept of lesson.conceptSet'>
+                <a [ngStyle]="{'cursor':'pointer'}"
+                   [routerLink]="['/teacherConceptView/', concept.idConcept]">
+                    {{concept.title}} </a>
+                    <pre></pre>
+                    <a class="material-icons"
+                       style="float: right; cursor: pointer; margin-top: -40px">delete</a>
+            </div>
         </ng-container>
         <div *ngIf="!loginService.getRolUserLoged()">
             <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
@@ -116,13 +119,13 @@
                                 *ngFor="let lesson of lessons; let i = index">
                             <tr td-data-table-row>
                                 <td td-data-table-cell>{{lesson.title}}</td>
-                                <td td-data-table-cell >
+                                <td td-data-table-cell>
                                     {{lesson.answerCorrect}}
                                 </td>
                                 <td td-data-table-cell>
                                     {{lesson.answerIncorrect}}
                                 </td>
-                                <td td-data-table-cell >
+                                <td td-data-table-cell>
                                     {{lesson.answerPending}}
                                 </td>
                             </tr>

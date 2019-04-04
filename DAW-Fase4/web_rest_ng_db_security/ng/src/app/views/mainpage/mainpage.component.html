@@ -44,7 +44,7 @@
                 {{concept.title}}<br>
             </p>
         </div>
-        <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="newConcept()">
+        <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>

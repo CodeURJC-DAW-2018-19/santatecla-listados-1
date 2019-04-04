@@ -89,6 +89,7 @@ import { ErrorInterceptor } from './auth/error.interceptor';
 import { BasicAuthInterceptor } from './auth/auth.interceptor';
 import {AnswerService} from "./service/answer-service";
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { UploadingFilesComponent } from './views/uploading-files/uploading-files.component';
 
 @NgModule({
     declarations: [AppComponent,
@@ -100,7 +101,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         TeacherConceptViewComponent,
         StudentConceptViewComponent,
         HeaderComponent,
-        FooterComponent,],
+        FooterComponent,
+        UploadingFilesComponent,],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

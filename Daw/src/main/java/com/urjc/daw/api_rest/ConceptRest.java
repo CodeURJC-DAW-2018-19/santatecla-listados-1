@@ -8,24 +8,28 @@ import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.lessons.LessonService;
 import com.urjc.daw.models.question.Question;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.core.io.Resource;
 
-import java.awt.*;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 @RestController
 @RequestMapping("api/concept")
@@ -39,7 +43,7 @@ public class ConceptRest extends OperationsRest<Concept> {
     @Autowired
     LessonService lessonService;
 
-
+    private final Logger log = LoggerFactory.getLogger(ConceptRest.class);
 
     @GetMapping(value ="/{id}")
     @JsonView(ConceptDetails.class)
@@ -80,29 +84,57 @@ public class ConceptRest extends OperationsRest<Concept> {
         }
     }
 
-    @RequestMapping(value = "/image/{id}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload")
     @JsonView(ConceptDetails.class)
-    public ResponseEntity<Concept> uploadsImage(@PathVariable long id, @RequestParam("file") MultipartFile file){
+    public ResponseEntity<?> uploadsImage(@RequestParam long id, @RequestParam("file") MultipartFile file){
+        Map<String, Object> response = new HashMap<>();
         Concept conceptNewFile = conceptService.findByOneId(id).get();
         if(!file.isEmpty()){
-            File fileConcept = new File("upload", file.getOriginalFilename());
+            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            Path filePath = Paths.get("upload").resolve(fileName).toAbsolutePath();
+            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/upload/").path(fileName).toUriString();
+            log.info(filePath.toString());
             try {
-                fileConcept.createNewFile();
-                FileOutputStream fout = new FileOutputStream(fileConcept);
-                fout.write(file.getBytes());
-                fout.close();
-                String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                        .path("/upload/")
-                        .path(file.getOriginalFilename())
-                        .toUriString();
-                conceptNewFile.setPicture(fileDownloadUri);
+                Files.copy(file.getInputStream(), filePath);
             } catch (IOException e) {
-                e.printStackTrace();
+                response.put("mensaje", "Error al subir la imagen: " + fileName);
+                response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
-            return new ResponseEntity<>( conceptNewFile,HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            String oldName = conceptNewFile.getPicture();
+            if(oldName != null && oldName.length() > 0){
+                Path oldFileLocation = Paths.get("upload").resolve(oldName).toAbsolutePath();
+                File oldFile = oldFileLocation.toFile();
+                if(oldFile.exists() && oldFile.canRead()){
+                    oldFile.delete();
+                }
+            }
+
+            conceptNewFile.setPicture(fileDownloadUri);
+            conceptService.addConcept(conceptNewFile);
+            response.put("concept", conceptNewFile);
+            response.put("mensaje", "Has subido correctamente la imagen: " + fileName);
+        }
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/upload/img/{fileName:.+}")
+    public ResponseEntity<Resource> seeFile(@PathVariable String fileName ){
+        Path filePath = Paths.get("upload").resolve(fileName).toAbsolutePath();
+        log.info(filePath.toString());
+        Resource resource = null;
+        try {
+            resource = new UrlResource(filePath.toUri());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
 
+        if(!resource.exists() && !resource.isReadable()){
+            throw new RuntimeException("Can load image" + fileName);
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; fileName=\"" + resource.getFilename() + "\"");
+        return new ResponseEntity<Resource>(resource,headers, HttpStatus.OK);
     }
 }

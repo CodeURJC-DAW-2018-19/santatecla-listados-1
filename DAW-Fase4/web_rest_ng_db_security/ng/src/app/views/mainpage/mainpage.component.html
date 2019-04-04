@@ -12,39 +12,49 @@
             <mat-panel-title>
                 {{lesson.title}}
             </mat-panel-title>
-            <mat-panel-description *ngIf="!loginService.getRolUserLoged()">
+            <mat-panel-description *ngIf="loginService.getRolUserLoged()==1">
                 {{lesson.answerCorrect}}:{{lesson.answerPending}}:{{lesson.answerIncorrect}}
                 :{{lesson.answerCorrect + lesson.answerIncorrect + lesson.answerPending}}
             </mat-panel-description>
-            <mat-panel-description  [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()">
+            <mat-panel-description [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()==2">
                 <a class="material-icons" data-toggle="modal"
                    style="float: right; cursor: pointer">delete</a>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <ng-container *ngIf="loginService.getRolUserLoged()">
-            <a [ngStyle]="{'cursor':'pointer'}"
-               *ngFor='let concept of lesson.conceptSet'
-               [routerLink]="['/teacherConceptView/', concept.idConcept]">
-                {{concept.title}}<br>
-            </a>
+        <ng-container *ngIf="loginService.getRolUserLoged()==2">
+            <div class="row" *ngFor='let concept of lesson.conceptSet'>
+                <a [ngStyle]="{'cursor':'pointer'}"
+                   [routerLink]="['/teacherConceptView/', concept.idConcept]">
+                    {{concept.title}} </a>
+                    <pre></pre>
+                    <a class="material-icons"
+                       style="float: right; cursor: pointer; margin-top: -40px">delete</a>
+            </div>
         </ng-container>
-        <div *ngIf="!loginService.getRolUserLoged()">
-            <a [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'
-               [routerLink]="['/studentConceptView/', concept.idConcept]">
+        <ng-container *ngIf="loginService.getRolUserLoged()==1">
+            <div class="row" *ngFor='let concept of lesson.conceptSet'>
+                <a [ngStyle]="{'cursor':'pointer'}"
+                   [routerLink]="['/studentConceptView/', concept.idConcept]">
+                    {{concept.title}} </a>
+                <pre></pre>
+            </div>
+        </ng-container>
+        <div *ngIf="loginService.getRolUserLoged()==0">
+            <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
                 {{concept.title}}<br>
-            </a>
+            </p>
         </div>
-        <button mat-fab *ngIf="loginService.getRolUserLoged()" (click)="newConcept()">
+        <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="newConcept()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
     <button (click)="reloadPagination()">CARGAR MAS</button>
 </mat-card>
-<button mat-fab *ngIf="loginService.getRolUserLoged()" (click)="openAddLessonDialog()">
+<button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
-<button align="end" mat-fab *ngIf="loginService.getRolUserLoged()" (click)="openDiagramDialog()">
+<button align="end" mat-fab *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1" (click)="openDiagramDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
@@ -116,13 +126,13 @@
                                 *ngFor="let lesson of lessons; let i = index">
                             <tr td-data-table-row>
                                 <td td-data-table-cell>{{lesson.title}}</td>
-                                <td td-data-table-cell >
+                                <td td-data-table-cell>
                                     {{lesson.answerCorrect}}
                                 </td>
                                 <td td-data-table-cell>
                                     {{lesson.answerIncorrect}}
                                 </td>
-                                <td td-data-table-cell >
+                                <td td-data-table-cell>
                                     {{lesson.answerPending}}
                                 </td>
                             </tr>

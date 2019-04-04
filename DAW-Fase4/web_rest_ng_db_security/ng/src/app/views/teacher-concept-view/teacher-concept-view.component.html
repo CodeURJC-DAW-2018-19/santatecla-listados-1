@@ -8,12 +8,16 @@
 
     <mat-list *ngFor='let item of items' layout="row">
             <mat-list-item>
-                <h3 flex> {{item.info}} </h3>
+                <h4 flex> {{item.info}} </h4>
                 <mat-divider [vertical]= true ></mat-divider>
                 <mat-radio-group name="{{item.id}}" flex>
                     <mat-radio-button value="1" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
+                    &nbsp;
                     <mat-radio-button value="2" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
                 </mat-radio-group>
+                <button mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
                 <mat-divider></mat-divider>
             </mat-list-item>
     </mat-list>
@@ -36,6 +40,7 @@
             <mat-divider [vertical]= true ></mat-divider>
             <mat-radio-group name="{{answer.id}}" flex>
                 <mat-radio-button name="1" (click)="correctMan(answer.idQuestion,true)">Correcto</mat-radio-button>
+                &nbsp;
                 <mat-radio-button name="2" (click)="correctMan(answer.idQuestion,false)">Incorrecto</mat-radio-button>
             </mat-radio-group>
             <mat-divider></mat-divider>
@@ -45,6 +50,34 @@
 
 
 <ng-template #addItemDialog let-dialogRef="dialogRef">
+    <h3>Añadir Item</h3>
+    <mat-dialog-content flex>
+        <div class="container">
+            <div class="register-item">
+                <form #formItem="ngForm" class="form form-register">
+                    <mat-form-field>
+                        <input
+                                matInput
+                                [(ngModel)]="itemNew.info"
+                                placeholder="Info"
+                                name="info"
+                                required
+                        />
+                    </mat-form-field>
+                    <mat-checkbox (click)="itemNew.state=true" >Correcto</mat-checkbox>
+                    <mat-checkbox (click)="itemNew.state=false" >Incorrecto</mat-checkbox>
+                </form>
+            </div>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-raised-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" (click)="addItem()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+    </mat-dialog-content>
+
+</ng-template>
+
+<ng-template #alertDialog let-dialogRef="dialogAlert">
     <h3>Añadir Item</h3>
     <mat-dialog-content flex>
         <div class="container">

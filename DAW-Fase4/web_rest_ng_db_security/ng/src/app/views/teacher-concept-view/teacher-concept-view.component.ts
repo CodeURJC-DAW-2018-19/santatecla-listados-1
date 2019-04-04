@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Item} from "../../model/item.model";
 import {AnswerService} from "../../service/answer-service";
 import {Answer} from "../../model/answer.model";
-import {Question} from "../../model/question.model";
 import {MatDialog, MatDialogRef} from "@angular/material";
 
 @Component({
@@ -20,16 +19,21 @@ export class TeacherConceptViewComponent implements OnInit {
     public page: PageItems;
     public answers: Answer[] = [];
     public itemNew: Item;
+
     @ViewChild('addItemDialog') addItemDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
+
+    @ViewChild('alertDialog') alertDialog: TemplateRef<any>;
+    dialogAlert: MatDialogRef<any, any>;
 
     constructor(private itemService: ItemService,
                 public loginService: LoginService,
                 public router: Router,
                 public answerService: AnswerService,
                 public activatedRoute: ActivatedRoute,
-                public dialog:MatDialog) {
-        this.itemNew= {info:"jiji",state:false};
+                public dialog:MatDialog,
+                public alert:MatDialog) {
+        this.itemNew= {info:"",state:false};
     }
     ngOnInit() {
         const id = this.activatedRoute.snapshot.params['id'];
@@ -64,6 +68,13 @@ export class TeacherConceptViewComponent implements OnInit {
 
     openAddDialog() {
         this.dialogRef = this.dialog.open(this.addItemDialog, {
+            width: '50%',
+            height: '50%',
+        });
+    }
+
+    openAlertDialog(){
+        this.dialogAlert = this.alert.open(this.alertDialog,{
             width: '50%',
             height: '50%',
         });

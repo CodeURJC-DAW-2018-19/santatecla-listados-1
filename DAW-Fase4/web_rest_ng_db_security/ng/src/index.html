@@ -1,11 +1,27 @@
 <html>
-  <head>
+<head>
     <title>Angular App</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-  </head>
-  <body>
-  <base href="/">
-<my-app><mat-spinner></mat-spinner></my-app>
-  </body>
+    <style>
+        mat-toolbar {
+            background-color: #7e57c2 !important;
+        }
+
+
+        .mat-radio-checked .mat-radio-outer-circle {
+            border-color: #b085f5 !important;
+        }
+
+        .mat-fab, .mat-mini-fab,.mat-radio-inner-circle {
+            background-color: #b085f5 !important;
+        }
+    </style>
+</head>
+<body>
+<base href="/">
+<my-app>
+    <mat-spinner></mat-spinner>
+</my-app>
+</body>
 </html>

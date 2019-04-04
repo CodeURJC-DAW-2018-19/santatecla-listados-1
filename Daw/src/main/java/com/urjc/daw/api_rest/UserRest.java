@@ -23,6 +23,7 @@ public class UserRest  extends OperationsRest<User> {
     interface UserDetails extends User.BasicInfo,User.AnswerList, Answer.BasicInfo {}
 
     @GetMapping("/login")
+    @JsonView(UserDetails.class)
     public ResponseEntity<User> login() {
         if (userComponent.getLoggedUser() != null){
             return checkIfExist(userService.findById(userComponent.getLoggedUser().getId()));

@@ -16,6 +16,7 @@ export class LoginService {
 
     isLogged = false;
     isAdmin = false;
+    isUser = false;
     user: User;
     auth: string;
 
@@ -61,6 +62,7 @@ export class LoginService {
         this.isLogged = true;
         this.user = user;
         this.isAdmin = this.user.userType.indexOf('ROLE_TEACHER') !== -1;
+        this.isUser = this.user.userType.indexOf('ROLE_STUDENT') !== -1;
     }
 
     removeCurrentUser() {
@@ -70,6 +72,11 @@ export class LoginService {
     }
 
     getRolUserLoged() {
-        return this.isAdmin;
+        if (this.isAdmin)
+            return 2;
+        else if (this.isUser)
+            return 1;
+        else
+            return 0;
     }
 }

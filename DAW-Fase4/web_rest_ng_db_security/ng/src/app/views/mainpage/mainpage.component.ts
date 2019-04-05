@@ -14,6 +14,7 @@ import {Concept} from "../../model/concept.model";
 import {PageItems} from "../../model/page.item";
 import {Item} from "../../model/item.model";
 import {Question} from "../../model/question.model";
+import {TdDialogService} from "@covalent/core";
 
 @Component({
     selector: 'app-mainpage',
@@ -37,6 +38,7 @@ export class MainpageComponent implements OnInit {
     picture: string[];
     question: Question;
 
+
     pageItem: PageItems;
     items: Item[];
     itemAdd: Item;
@@ -53,12 +55,8 @@ export class MainpageComponent implements OnInit {
     @ViewChild('addConceptDialog') addConceptDialog: TemplateRef<any>;
     dialogRefConcept: MatDialogRef<any, any>;
 
-    @ViewChild('addItemDialog') addItemDialog: TemplateRef<any>;
-    dialogRefItem: MatDialogRef<any, any>;
 
-
-
-    constructor(public dialog: MatDialog, public dialog2: MatDialog, private router: Router, private lessonService: LessonService, public loginService: LoginService, private conceptService: ConceptService, private itemService: ItemService) {
+    constructor(public dialog: MatDialog, public dialog2: MatDialog, private router: Router, private lessonService: LessonService, public loginService: LoginService, private conceptService: ConceptService, private itemService: ItemService, private _dialogService: TdDialogService) {
         Object.assign(this, {single})
     }
 
@@ -239,5 +237,45 @@ export class MainpageComponent implements OnInit {
             },
             error => console.log(error)
         );
+    }
+
+    deleteLesson(id: number) {
+        this._dialogService.openConfirm({
+            message: '¿Estás seguro de que desea eliminarlo?',
+            title: 'Confirmarción',
+            width: '500px',
+            height: '175px'
+        }).afterClosed().subscribe((accept: boolean) => {
+            if (accept) {
+                this.lessonService.deleteLesson(id).subscribe();
+                let i=0;
+                this.items.forEach((value,index) => {
+                    if (value.idItem == id) {
+                        i=index;
+                    }
+                });
+                this.items.splice(i,1);
+            }
+        });
+    }
+
+    deleteConcept(id: number) {
+        this._dialogService.openConfirm({
+            message: '¿Estás seguro de que desea eliminarlo?',
+            title: 'Confirmarción',
+            width: '500px',
+            height: '175px'
+        }).afterClosed().subscribe((accept: boolean) => {
+            if (accept) {
+                this.conceptService.deleteConcepts(id).subscribe();
+                let i=0;
+                this.items.forEach((value,index) => {
+                    if (value.idItem == id) {
+                        i=index;
+                    }
+                });
+                this.items.splice(i,1);
+            }
+        });
     }
 }

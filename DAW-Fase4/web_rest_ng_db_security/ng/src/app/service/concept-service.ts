@@ -9,7 +9,6 @@ const GET_CONCEPTS = "api/concept/pag";
 const GET_CONCEPT = "api/concept/";
 const DELETE_CONCEPTS = "api/concept/";
 const CREATE_CONCEPTS = "api/concept/";
-const URL_BASE="api/concept/"
 
 @Injectable()
 export class ConceptService {
@@ -54,7 +53,7 @@ export class ConceptService {
     }
 
     deleteConcepts(id:number){
-        return this.http.delete<Concept>(URL_BASE +  id)
+        return this.http.delete<Concept>(DELETE_CONCEPTS +  id)
             .pipe(
                 catchError(err => this.handleError(err))
             );

@@ -12,7 +12,6 @@ const GET_LESSONS = "api/lesson/pag";
 const GET_LESSON = "api/lesson/";
 const DELETE_LESSONS = "api/lesson/";
 const CREATE_LESSONS = "api/lesson/";
-const URL_BASE="api/lesson/"
 
 @Injectable()
 export class LessonService {
@@ -57,7 +56,7 @@ export class LessonService {
     }
 
     deleteLesson(id:number){
-        return this.http.delete<Lesson>(URL_BASE +  id)
+        return this.http.delete<Lesson>(DELETE_LESSONS +  id)
             .pipe(
                 catchError(err => this.handleError(err))
             );

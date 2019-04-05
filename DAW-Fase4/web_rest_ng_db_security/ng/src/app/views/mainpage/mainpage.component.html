@@ -44,11 +44,14 @@
                 {{concept.title}}<br>
             </p>
         </div>
+
+        <button (click)="reloadConcepts()">CARGAR MAS</button>
+        
         <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
-    <button (click)="reloadPagination()">CARGAR MAS</button>
+    <button (click)="reloadLessons()">CARGAR MAS</button>
 </mat-card>
 <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
     <mat-icon>add</mat-icon>
@@ -65,7 +68,7 @@
         </h2>
         <mat-dialog-content flex>
             <div class="container">
-                <div class="logo">Create a new account!</div>
+                <div class="logo">Añade un nuevo tema</div>
                 <div class="register-item">
                     <form #myform="ngForm" class="form form-register">
 
@@ -92,6 +95,76 @@
         </mat-dialog-actions>
     </div>
 
+</ng-template>
+
+<ng-template #addConceptDialog let-dialogRef="dialogRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+            Nuevo concepto
+        </h2>
+        <mat-dialog-content flex>
+            <div class="container">
+                <div class="logo">Añade un nuevo concepto</div>
+                <div class="register-item">
+                    <form #myform="ngForm" class="form form-register">
+
+                        <mat-form-field>
+                            <input
+                                    matInput
+                                    [(ngModel)]="conceptAdd.title"
+                                    placeholder="Title"
+                                    name="title"
+                                    required
+                            />
+                        </mat-form-field>
+
+                    </form>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="newConcept()">Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
+</ng-template>
+
+<ng-template #addItemDialog let-dialogRef="dialogRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+            Nuevo item
+        </h2>
+        <mat-dialog-content flex>
+            <div class="container">
+                <div class="logo">Añade un nuevo item</div>
+                <div class="register-item">
+                    <form #myform="ngForm" class="form form-register">
+
+                        <mat-form-field>
+                            <input
+                                    matInput
+                                    [(ngModel)]="itemAdd.info"
+                                    placeholder="Info"
+                                    name="info"
+                                    required
+                            />
+                        </mat-form-field>
+
+                    </form>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="newItem()">Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
 </ng-template>
 
 <ng-template #DiagramDialog let-dialogRef="DiagramRef">
@@ -136,6 +209,8 @@
                                     {{lesson.answerPending}}
                                 </td>
                             </tr>
+                            <button (click)="reloadPagination()">CARGAR MAS</button>
+
                         </ng-container>
                         </tbody>
                     </table>
@@ -190,5 +265,4 @@
             <button type="button" mat-button class="text-upper" (click)="DiagramRef.close()">Cerrar</button>
         </mat-dialog-actions>
     </div>
-
 </ng-template>

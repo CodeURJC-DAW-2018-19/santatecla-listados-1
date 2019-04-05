@@ -8,6 +8,8 @@ import {AnswerService} from "../../service/answer-service";
 import {Answer} from "../../model/answer.model";
 import {MatDialog, MatDialogRef} from "@angular/material";
 import {TdDialogService} from '@covalent/core';
+import {LessonService} from "../../service/lesson-service";
+import {ConceptService} from "../../service/concept-service";
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -34,7 +36,9 @@ export class TeacherConceptViewComponent implements OnInit {
                 public activatedRoute: ActivatedRoute,
                 public dialog: MatDialog,
                 public alert: MatDialog,
-                private _dialogService: TdDialogService) {
+                private _dialogService: TdDialogService,
+                private lessonService: LessonService,
+                private conceptService: ConceptService) {
         this.itemNew = {info: "", state: false};
     }
 
@@ -86,6 +90,46 @@ export class TeacherConceptViewComponent implements OnInit {
                     }
                 });
                  this.items.splice(i,1);
+            }
+        });
+    }
+
+    deleteLesson(id: number) {
+        this._dialogService.openConfirm({
+            message: '¿Estás seguro de que desea eliminarlo?',
+            title: 'Confirmarción',
+            width: '500px',
+            height: '175px'
+        }).afterClosed().subscribe((accept: boolean) => {
+            if (accept) {
+                this.lessonService.deleteLesson(id).subscribe();
+                let i=0;
+                this.items.forEach((value,index) => {
+                    if (value.idItem == id) {
+                        i=index;
+                    }
+                });
+                this.items.splice(i,1);
+            }
+        });
+    }
+
+    deleteConcept(id: number) {
+        this._dialogService.openConfirm({
+            message: '¿Estás seguro de que desea eliminarlo?',
+            title: 'Confirmarción',
+            width: '500px',
+            height: '175px'
+        }).afterClosed().subscribe((accept: boolean) => {
+            if (accept) {
+                this.conceptService.deleteConcepts(id).subscribe();
+                let i=0;
+                this.items.forEach((value,index) => {
+                    if (value.idItem == id) {
+                        i=index;
+                    }
+                });
+                this.items.splice(i,1);
             }
         });
     }

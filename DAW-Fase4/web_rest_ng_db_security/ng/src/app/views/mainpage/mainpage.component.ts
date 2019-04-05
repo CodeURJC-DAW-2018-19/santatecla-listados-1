@@ -13,6 +13,7 @@ import {PageConcept} from "../../model/page.concept";
 import {Concept} from "../../model/concept.model";
 import {PageItems} from "../../model/page.item";
 import {Item} from "../../model/item.model";
+import {Question} from "../../model/question.model";
 
 @Component({
     selector: 'app-mainpage',
@@ -34,6 +35,7 @@ export class MainpageComponent implements OnInit {
     conceptAdd: Concept;
     conceptsTitle: string[];
     picture: string[];
+    question: Question;
 
     pageItem: PageItems;
     items: Item[];
@@ -72,12 +74,12 @@ export class MainpageComponent implements OnInit {
 
     }
 
-    reloadPagination() {
+    /*reloadPagination() {
         this.numberPag++;
         this.reloadLessons();
         this.reloadConcepts();
         this.reloadItems();
-    }
+    }*/
 
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {
@@ -143,6 +145,7 @@ export class MainpageComponent implements OnInit {
     }
 
     reloadLessons(){
+        this.numberPag++;
         this.lessonService.getLessonsByPage(10, this.numberPag).subscribe(
             (res: any) => {
                 this.pageLesson = res;
@@ -169,7 +172,7 @@ export class MainpageComponent implements OnInit {
     }
 
     conceptPagination(){
-        this.conceptAdd = {title: '', setQuestion: [], picture: ''}
+        this.conceptAdd = {title: '', setQuestion: this.question, picture: ''}
         this.conceptService.getConceptsByPage(0, this.numberPag).subscribe(
             (res: any) => {
                 this.pageConcept = res;
@@ -186,6 +189,7 @@ export class MainpageComponent implements OnInit {
     }
 
     reloadConcepts(){
+        this.numberPag++;
         this.conceptService.getConceptsByPage(10, this.numberPag).subscribe(
             (res: any) => {
                 this.pageConcept = res;
@@ -229,6 +233,7 @@ export class MainpageComponent implements OnInit {
     }
 
     reloadItems(){
+        this.numberPag++;
         this.itemService.getItemsByPage(10, this.numberPag).subscribe(
             (res: any) => {
                 this.pageItem = res;

@@ -117,6 +117,7 @@ public class AnswerRest extends OperationsRest<Answer> {
             responseEntity = safeCreate(answer, answerService.repository);
             //* * * *    Update question's parameters related to answer    * * * *
             question.addAnswer(answer);
+            question.metrics();
             questionService.addQuestion(question);
         } else {
             responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -133,6 +134,8 @@ public class AnswerRest extends OperationsRest<Answer> {
             Answer ans = new ArrayList<>(option.get().getAnswer()).get(0);
             ans.correctionTeacher(correction);
             answerService.addAnswer(ans);
+            option.get().metrics();
+            questionService.addQuestion(option.get());
             return new ResponseEntity<Answer>(HttpStatus.OK);
         }else{
             return new ResponseEntity<Answer>(HttpStatus.NOT_FOUND);
@@ -159,6 +162,7 @@ public class AnswerRest extends OperationsRest<Answer> {
             ResponseEntity<Answer> responseEntity = safeCreate(answer, answerService.repository);
 
             question.addAnswer(answer);
+            question.metrics();
             questionService.addQuestion(question);
 
             return responseEntity;

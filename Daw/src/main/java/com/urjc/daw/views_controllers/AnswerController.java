@@ -39,7 +39,7 @@ public class AnswerController {
     public String updateTrue(Model model, @PathVariable long idAnswer, @PathVariable long idConcept) {
         Optional<Answer> ans = answerService.findOne(idAnswer);
         ans.get().setState("right");
-        ans.get().correct();
+        ans.get().correction();
         answerService.addAnswer(ans.get());
         questionService.addQuestion(ans.get().accesToQuestion());
         return "/TeacherConceptView/{idConcept}";
@@ -50,7 +50,7 @@ public class AnswerController {
     public String updateFalse(Model model, @PathVariable long idAnswer, @PathVariable long idConcept) {
         Optional<Answer> ans = answerService.findOne(idAnswer);
         ans.get().setState("wrong");
-        ans.get().correct();
+        ans.get().correction();
         answerService.addAnswer(ans.get());
         questionService.addQuestion(ans.get().accesToQuestion());
         return "/TeacherConceptView/{idConcept}";

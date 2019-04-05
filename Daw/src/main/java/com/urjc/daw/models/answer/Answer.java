@@ -126,7 +126,7 @@ public class Answer {
     }
 
 
-    public void correct(){
+    public void correction(){
         this.correct=true;
         idQuestion.metrics();
     }

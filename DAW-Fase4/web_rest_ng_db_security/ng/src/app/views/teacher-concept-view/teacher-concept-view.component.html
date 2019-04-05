@@ -35,7 +35,7 @@
        </div>
    </mat-card-title>
     <mat-list *ngFor='let answer of answers' layout="row">
-        <mat-list-item *ngIf="!answer.correct">
+        <mat-list-item *ngIf="answer.state==='pending'">
             <h3 flex> {{answer.info}} </h3>
             <mat-divider [vertical]= true ></mat-divider>
             <mat-radio-group id="{{answer.id}}" flex>
@@ -63,8 +63,8 @@
                                 required
                         />
                     </mat-form-field>
-                    <mat-checkbox (click)="itemNew.state=true" >Correcto</mat-checkbox>
-                    <mat-checkbox (click)="itemNew.state=false" >Incorrecto</mat-checkbox>
+                    <mat-checkbox (change)="itemNew.state=true" >Correcto</mat-checkbox>
+                    <mat-checkbox (change)="itemNew.state=false" >Incorrecto</mat-checkbox>
                 </form>
             </div>
             <mat-dialog-actions align="end">

@@ -79,26 +79,26 @@ public class DatabaseInitializer {
         Lesson lesson20 = new Lesson("TEMA 20");
 
 
-        Concept concept1 = new Concept("Introducción", 1, "mundo.png");
+        Concept concept1 = new Concept("Introducción", 1, "ima.png");
         Concept concept2 = new Concept("Las disciplinas del software", 2, "mundo.png");
-        Concept concept3 = new Concept("Los patrones de diseño creacionales", 3, "mundo.png");
-        Concept concept4 = new Concept("Maquetación: HTML y CSSo", 4, "mundo.png");
-        Concept concept5 = new Concept("JavaScript", 5, "mundo.png");
-        Concept concept6 = new Concept("APIs REST", 6, "mundo.png");
+        Concept concept3 = new Concept("Los patrones de diseño creacionales", 3, "php.png");
+        Concept concept4 = new Concept("Maquetación: HTML y CSSo", 4, "ima.png");
+        Concept concept5 = new Concept("JavaScript", 5, "foto.png");
+        Concept concept6 = new Concept("APIs REST", 6, "php.png");
         Concept concept7 = new Concept("Desarrollo web con Java y Spring", 7, "mundo.png");
-        Concept concept8 = new Concept("Seguridad", 8, "mundo.png");
+        Concept concept8 = new Concept("Seguridad", 8, "ima.png");
         Concept concept9 = new Concept("Testing", 9, "mundo.png");
-        Concept concept10 = new Concept("Encriptar", 10, "mundo.png");
-        Concept concept11 = new Concept("APIs REST con Spring", 11, "mundo.png");
-        Concept concept12 = new Concept("Bases de datos con Spring", 12, "mundo.png");
+        Concept concept10 = new Concept("Encriptar", 10, "foto.png");
+        Concept concept11 = new Concept("APIs REST con Spring", 11, "php.png");
+        Concept concept12 = new Concept("Bases de datos con Spring", 12, "ima.png");
         Concept concept13 = new Concept("Seguridad con Spring", 13, "mundo.png");
-        Concept concept14 = new Concept("Despliegue con Spring", 14, "mundo.png");
-        Concept concept15 = new Concept("Virtualización, cloud computing y contenedores", 15, "mundo.png");
-        Concept concept16 = new Concept("Docker", 16, "mundo.png");
-        Concept concept17 = new Concept("Introducción a Angular: TypeScript y Herramientas", 17, "mundo.png");
-        Concept concept18 = new Concept("Componentes en Angular", 18, "mundo.png");
+        Concept concept14 = new Concept("Despliegue con Spring", 14, "php.png");
+        Concept concept15 = new Concept("Virtualización, cloud computing y contenedores", 15, "foto.png");
+        Concept concept16 = new Concept("Docker", 16, "ima.png");
+        Concept concept17 = new Concept("Introducción a Angular: TypeScript y Herramientas", 17, "php.png");
+        Concept concept18 = new Concept("Componentes en Angular", 18, "foto.png");
         Concept concept19 = new Concept("REST y Servicios en Angular", 19, "mundo.png");
-        Concept concept20 = new Concept("Router en Angular", 20, "mundo.png");
+        Concept concept20 = new Concept("Router en Angular", 20, "ima.png");
 
 
         Item item1 = new Item("Requisitos", true);

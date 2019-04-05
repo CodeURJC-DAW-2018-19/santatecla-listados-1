@@ -92,7 +92,6 @@ public class ConceptRest extends OperationsRest<Concept> {
         if(!file.isEmpty()){
             String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
             Path filePath = Paths.get("upload").resolve(fileName).toAbsolutePath();
-            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/upload/").path(fileName).toUriString();
             log.info(filePath.toString());
             try {
                 Files.copy(file.getInputStream(), filePath);
@@ -111,7 +110,7 @@ public class ConceptRest extends OperationsRest<Concept> {
                 }
             }
 
-            conceptNewFile.setPicture(fileDownloadUri);
+            conceptNewFile.setPicture(fileName);
             conceptService.addConcept(conceptNewFile);
             response.put("concept", conceptNewFile);
             response.put("mensaje", "Has subido correctamente la imagen: " + fileName);

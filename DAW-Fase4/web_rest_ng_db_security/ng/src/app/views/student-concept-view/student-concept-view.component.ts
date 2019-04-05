@@ -21,7 +21,6 @@ export class StudentConceptViewComponent implements OnInit {
     public answer: Answer [];
     public idConcept:number;
     single: any[];
-    concept: Concept;
     answerAdd: Answer;
     id: number;
 
@@ -45,7 +44,7 @@ export class StudentConceptViewComponent implements OnInit {
 
     @ViewChild('questionDialog') questionDialog: TemplateRef<any>;
     questionRef: MatDialogRef<any, any>;
-
+    concept: Concept;
 
 
     constructor(public dialog: MatDialog,

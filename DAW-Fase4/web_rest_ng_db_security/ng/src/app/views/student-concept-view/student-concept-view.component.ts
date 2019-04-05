@@ -7,6 +7,8 @@ import {Answer} from "../../model/answer.model";
 import {AnswerService} from "../../service/answer-service";
 import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../auth/login.service";
+import { ConceptService } from 'src/app/service/concept-service';
+import { Concept } from 'src/app/model/concept.model';
 
 @Component({
     selector: 'app-student-concept-view',
@@ -19,6 +21,7 @@ export class StudentConceptViewComponent implements OnInit {
     public answer: Answer [];
     public idConcept:number;
     single: any[];
+    concept: Concept;
 
     view: any[] = [700, 400];
 
@@ -43,7 +46,7 @@ export class StudentConceptViewComponent implements OnInit {
 
 
 
-    constructor(public dialog: MatDialog, public loginService: LoginService, public answerService: AnswerService, public activatedRoute: ActivatedRoute) {
+    constructor(public dialog: MatDialog, public loginService: LoginService, public answerService: AnswerService, public activatedRoute: ActivatedRoute, public conceptService: ConceptService) {
         Object.assign(this, { single })
     }
 
@@ -56,6 +59,14 @@ export class StudentConceptViewComponent implements OnInit {
             },
             error => console.log(error)
         )
+
+        this.conceptService.getConcepts(this.idConcept).subscribe(
+            (res: any)=> {
+                this.concept = res;
+            },
+            error2 => console.log(error2)
+        )
+
     }
 
     openDiagramDialog() {

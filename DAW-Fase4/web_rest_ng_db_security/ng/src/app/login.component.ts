@@ -14,10 +14,8 @@ export class LoginComponent {
     @ViewChild('signinDialog') signinDialog: TemplateRef<any>;
     dialogSign: MatDialogRef<any,any>;
 
-    public userNew:User;
 
     constructor(public dialog: MatDialog, public router: Router, public loginService: LoginService, public dialogS:MatDialog) {
-        this.userNew = {name:"", password:"",email:""};
     }
 
     logIn(event: any, user: string, pass: string) {
@@ -56,12 +54,5 @@ export class LoginComponent {
         this.dialogRef.close();
     }
 
-    signIn(){
-        this.loginService.signIn(this.userNew).subscribe(
-            (u) =>{
-                this.dialogSign.close();
-            },
-            error1 => console.log('Invalidad data'),
-        );
-    }
+    
 }

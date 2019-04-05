@@ -38,9 +38,7 @@ export class TeacherConceptViewComponent implements OnInit {
                 public activatedRoute: ActivatedRoute,
                 public dialog: MatDialog,
                 public alert: MatDialog,
-                private _dialogService: TdDialogService,
-                private lessonService: LessonService,
-                private conceptService: ConceptService) {
+                private _dialogService: TdDialogService) {
         this.itemNew = {info: "", state: false};
     }
 
@@ -92,46 +90,6 @@ export class TeacherConceptViewComponent implements OnInit {
                     }
                 });
                  this.items.splice(i,1);
-            }
-        });
-    }
-
-    deleteLesson(id: number) {
-        this._dialogService.openConfirm({
-            message: '¿Estás seguro de que desea eliminarlo?',
-            title: 'Confirmarción',
-            width: '500px',
-            height: '175px'
-        }).afterClosed().subscribe((accept: boolean) => {
-            if (accept) {
-                this.lessonService.deleteLesson(id).subscribe();
-                let i=0;
-                this.items.forEach((value,index) => {
-                    if (value.idItem == id) {
-                        i=index;
-                    }
-                });
-                this.items.splice(i,1);
-            }
-        });
-    }
-
-    deleteConcept(id: number) {
-        this._dialogService.openConfirm({
-            message: '¿Estás seguro de que desea eliminarlo?',
-            title: 'Confirmarción',
-            width: '500px',
-            height: '175px'
-        }).afterClosed().subscribe((accept: boolean) => {
-            if (accept) {
-                this.conceptService.deleteConcepts(id).subscribe();
-                let i=0;
-                this.items.forEach((value,index) => {
-                    if (value.idItem == id) {
-                        i=index;
-                    }
-                });
-                this.items.splice(i,1);
             }
         });
     }

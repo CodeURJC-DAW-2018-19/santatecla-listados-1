@@ -8,6 +8,7 @@ import com.urjc.daw.models.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
@@ -54,6 +55,8 @@ public class UserRest  extends OperationsRest<User> {
         if((userComponent.getLoggedUser() != null || findUser != null)){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+        newUser.setUserType("ROLE_STUDENT");
+        newUser.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
         return safeCreate(newUser,userService.userRepository);
     }
 

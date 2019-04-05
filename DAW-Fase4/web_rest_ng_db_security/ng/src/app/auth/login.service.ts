@@ -1,14 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
+import {Observable} from "rxjs";
+import {Answer} from "../model/answer.model";
 
 const URL = 'api/user';
 
 export interface User {
     id?: number;
     name: string;
-    userType: string[];
-    authdata: string;
+    userType?: string[];
+    password: string;
+    email?: string;
+    answer?: Answer[];
 }
 
 @Injectable()
@@ -18,7 +22,7 @@ export class LoginService {
     isAdmin = false;
     isUser = false;
     user: User;
-    auth: string;
+    password: string;
 
     constructor(private http: HttpClient) {
         let user = JSON.parse(localStorage.getItem('currentUser'));
@@ -41,7 +45,7 @@ export class LoginService {
             .pipe(map(user => {
                 if (user) {
                     this.setCurrentUser(user);
-                    user.authdata = auth;
+                    user.password = auth;
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
 
@@ -56,6 +60,18 @@ export class LoginService {
                 return response;
             }),
         );
+    }
+
+    signIn(u: User): Observable<User>{
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+        const body = JSON.stringify(u);
+        return this.http.post<User>(URL + '/register',body,{headers})
+            .pipe(
+                map(response => response),
+                catchError(error => this.handleError(error))
+            );
     }
 
     private setCurrentUser(user: User) {
@@ -78,5 +94,10 @@ export class LoginService {
             return 1;
         else
             return 0;
+    }
+
+    private handleError(error: any) {
+        console.error(error);
+        return Observable.throw('Server error (' + error.status + '): ' + error.text());
     }
 }

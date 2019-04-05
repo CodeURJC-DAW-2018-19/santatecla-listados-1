@@ -46,7 +46,7 @@
         </div>
 
         <button (click)="reloadConcepts()">CARGAR MAS</button>
-        
+
         <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
             <mat-icon>add</mat-icon>
         </button>
@@ -127,41 +127,6 @@
             <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
             <button type="button" mat-button color="accent" class="text-upper"
                     (click)="newConcept()">Guardar
-            </button>
-        </mat-dialog-actions>
-    </div>
-</ng-template>
-
-<ng-template #addItemDialog let-dialogRef="dialogRef">
-    <div layout="column" layout-fill>
-        <h2 mat-dialog-title>
-            Nuevo item
-        </h2>
-        <mat-dialog-content flex>
-            <div class="container">
-                <div class="logo">Añade un nuevo item</div>
-                <div class="register-item">
-                    <form #myform="ngForm" class="form form-register">
-
-                        <mat-form-field>
-                            <input
-                                    matInput
-                                    [(ngModel)]="itemAdd.info"
-                                    placeholder="Info"
-                                    name="info"
-                                    required
-                            />
-                        </mat-form-field>
-
-                    </form>
-                </div>
-            </div>
-        </mat-dialog-content>
-        <mat-divider></mat-divider>
-        <mat-dialog-actions align="end">
-            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
-            <button type="button" mat-button color="accent" class="text-upper"
-                    (click)="newItem()">Guardar
             </button>
         </mat-dialog-actions>
     </div>

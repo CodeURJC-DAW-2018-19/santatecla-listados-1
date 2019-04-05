@@ -95,13 +95,6 @@ export class MainpageComponent implements OnInit {
         });
     }
 
-    openAddItemDialog() {
-        this.dialogRefItem = this.dialog.open(this.addItemDialog, {
-            width: '50%',
-            height: '50%',
-        });
-    }
-
     openDiagramDialog() {
         this.DiagramRef = this.dialog2.open(this.DiagramDialog, {
             width: '75%',

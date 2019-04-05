@@ -42,11 +42,11 @@ public class DatabaseInitializer {
     public void init() {
 
         User mg = new User("micael", "micael", "m.gallego@urjc.es", "ROLE_TEACHER");
-        User aa = new User("Ana Álvarez", "12345", "a.alvarezo.2016@alumnos.urjc.es", "ROLE_STUDENT");
-        User hm = new User("Héctor Mediero", "12345", "h.mediero.2016@alumnos.urjc.es", "ROLE_STUDENT");
+        User aa = new User("ana", "ana", "a.alvarezo.2016@alumnos.urjc.es", "ROLE_STUDENT");
+        User hm = new User("hector", "hector", "h.mediero.2016@alumnos.urjc.es", "ROLE_STUDENT");
         User ac = new User("aitana", "aitana", "a.cerezo.2016@alumnos.urjc.es", "ROLE_STUDENT");
-        User sc = new User("Sandra Cañadas", "12345", "s.canadas.2016@alumnos.urjc.es", "ROLE_STUDENT");
-        User eb = new User("Ernesto Baltasar", "12345", "e.baltasar.2016@alumnos.urjc.es", "ROLE_STUDENT");
+        User sc = new User("sandra", "sandra", "s.canadas.2016@alumnos.urjc.es", "ROLE_STUDENT");
+        User eb = new User("ernesto", "ernesto", "e.baltasar.2016@alumnos.urjc.es", "ROLE_STUDENT");
 
         userRepository.save(mg);
         userRepository.save(aa);
@@ -310,6 +310,8 @@ public class DatabaseInitializer {
 
         answer1.setState("wrong");
         answer3.setState("right");
+        answer1.setCorrect(true);
+        answer3.setCorrect(true);
 
         ac.addAnswer(answer1);
         ac.addAnswer(answer2);

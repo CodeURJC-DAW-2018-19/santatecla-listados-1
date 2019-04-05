@@ -1,5 +1,6 @@
 package com.urjc.daw.models.answer;
 
+import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,7 @@ public class AnswerService {
     public Page<Answer> getByIdUser(Pageable page,User idUser){
         return repository.findAnswersByIdUserEquals(idUser,page);
     }
+
+
 
 }

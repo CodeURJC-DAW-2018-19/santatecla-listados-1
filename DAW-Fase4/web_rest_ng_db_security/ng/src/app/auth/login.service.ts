@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 const URL = 'api/user';
 
 export interface User {
-    id?: number;
+    idUser: number;
     name: string;
     userType: string[];
     authdata: string;
@@ -14,6 +14,7 @@ export interface User {
 @Injectable()
 export class LoginService {
 
+    idUser :number;
     isLogged = false;
     isAdmin = false;
     isUser = false;
@@ -27,6 +28,8 @@ export class LoginService {
             this.setCurrentUser(user);
         }
     }
+
+
 
     logIn(user: string, pass: string) {
 

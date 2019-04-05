@@ -1,5 +1,6 @@
 package com.urjc.daw.models.answer;
 
+import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
 import com.urjc.daw.models.user.User;
@@ -22,6 +23,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     List<Answer> findByCorrectAndIdUser(Boolean correct, User idUser);
 
     Page<Answer> findAnswersByIdUserEquals(User idUser, Pageable page);
+
 
 
 }

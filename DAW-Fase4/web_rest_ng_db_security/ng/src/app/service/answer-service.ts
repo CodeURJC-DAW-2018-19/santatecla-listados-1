@@ -2,8 +2,12 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {UserService} from "./user-service";
+import {LoginService} from "../auth/login.service";
 
-const GET_ANSWER = "api/answer/";
+
+const GET_ANSWER_BY_USER="/api/answer/user";
+const GET_ANSWER = "api/answer/user/";
 const GET_ANSWER_BY_CONCEPT = "api/answer/concept/";
 
 
@@ -42,6 +46,14 @@ export class AnswerService {
         });
 
         return this.http.put<any>(GET_ANSWER + id + "/" + info,{headers})
+            .pipe(
+                map(response => response),
+                catchError(error => this.handleError(error))
+            );
+    }
+
+    getAnswerByUser(idUser:number,idConcept:number){
+        return this.http.get(GET_ANSWER_BY_USER+"/"+idUser+"/"+idConcept, {withCredentials:true})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

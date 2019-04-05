@@ -33,8 +33,8 @@
 
     <P></P>
 
-    <button mat-raised-button color="primary" (click)='openDiagramDialog()'>Diagramas</button>
-    <button mat-raised-button color="primary" (click)='openQuestionDialog()'>Generar Pregunta</button>
+    <button mat-raised-button style="background-color: #b085f5; !important; color: azure;"  (click)='openDiagramDialog()'>Diagramas</button>
+    <button mat-raised-button style="background-color: #b085f5; !important; color: azure;" (click)='openQuestionDialog()'>Generar Pregunta</button>
 
     <ng-template #diagramDialog let-dialogRef="dialogRef">
         <div layout="column" layout-fill>
@@ -58,7 +58,7 @@
             </mat-dialog-content>
             <mat-divider></mat-divider>
             <mat-dialog-actions align="end">
-                <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
             </mat-dialog-actions>
         </div>
     </ng-template>
@@ -75,7 +75,7 @@
             </mat-dialog-content>
             <mat-divider></mat-divider>
             <mat-dialog-actions align="end">
-                <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Close</button>
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
             </mat-dialog-actions>
         </div>
     </ng-template>

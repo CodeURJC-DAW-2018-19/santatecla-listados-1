@@ -8,6 +8,9 @@ import {AnswerService} from "../../service/answer-service";
 import {Answer} from "../../model/answer.model";
 import {MatDialog, MatDialogRef} from "@angular/material";
 import {TdDialogService} from '@covalent/core';
+import {LessonService} from "../../service/lesson-service";
+import {ConceptService} from "../../service/concept-service";
+import {MainpageComponent} from "../mainpage/mainpage.component";
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -110,6 +113,38 @@ export class TeacherConceptViewComponent implements OnInit {
             width: '50%',
             height: '50%',
         });
+    }
+
+    itemPagination(){
+     /*   this.itemService.getItemsByPage(0, this.numberPag).subscribe(
+            (res: any) => {
+                this.pageItem = res;
+                this.items = (this.pageItem.content);
+                this.itemsInfo = [];
+                this.items.forEach((value, index) => {
+                        this.itemsInfo.push(value.info)
+                        this.state = true;
+                    }
+                );
+            },
+            error => console.log(error)
+        );*/
+    }
+
+    reloadItems(){
+      /*  this.numberPag++;
+        this.itemService.getItemsByPage(10, this.numberPag).subscribe(
+            (res: any) => {
+                this.pageItem = res;
+                this.pageItem.content.forEach((value, index) =>
+                    this.items.push(value));
+
+                this.itemsInfo = [];
+                this.items.forEach(value => this.itemsInfo.push(value.info));
+                console.log(this.items);
+            },
+            error => console.log(error)
+        );*/
     }
 
 }

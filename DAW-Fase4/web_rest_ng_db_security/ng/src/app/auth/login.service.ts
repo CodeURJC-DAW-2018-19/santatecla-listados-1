@@ -14,7 +14,7 @@ export interface User {
 @Injectable()
 export class LoginService {
 
-    idUser :number;
+    idUser: number;
     isLogged = false;
     isAdmin = false;
     isUser = false;
@@ -28,7 +28,6 @@ export class LoginService {
             this.setCurrentUser(user);
         }
     }
-
 
 
     logIn(user: string, pass: string) {
@@ -72,6 +71,7 @@ export class LoginService {
         localStorage.removeItem('currentUser');
         this.isLogged = false;
         this.isAdmin = false;
+        this.isUser = false;
     }
 
     getRolUserLoged() {

@@ -18,7 +18,7 @@
             </mat-panel-description>
             <mat-panel-description [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()==2">
                 <a class="material-icons" data-toggle="modal"
-                   style="float: right; cursor: pointer" (click)="deleteLesson(id)">delete</a>
+                   style="float: right; cursor: pointer" (click)="deleteLesson(lesson.id)">delete</a>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-container *ngIf="loginService.getRolUserLoged()==2">
@@ -28,7 +28,7 @@
                     {{concept.title}} </a>
                     <pre></pre>
                     <a class="material-icons"
-                       style="float: right; cursor: pointer; margin-top: -40px" (click)="deleteConcept(id)">delete</a>
+                       style="float: right; cursor: pointer; margin-top: -40px" (click)="deleteConcept(concept.idConcept)">delete</a>
             </div>
         </ng-container>
         <ng-container *ngIf="loginService.getRolUserLoged()==1">

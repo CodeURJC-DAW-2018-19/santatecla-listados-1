@@ -39,13 +39,6 @@ export class MainpageComponent implements OnInit {
     question: Question;
 
 
-    pageItem: PageItems;
-    items: Item[];
-    itemAdd: Item;
-    itemsInfo: string[];
-    state: boolean;
-
-
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
 
@@ -65,7 +58,6 @@ export class MainpageComponent implements OnInit {
         this.stats=[[],[],[]];
         this.lessonPagination();
         this.conceptPagination();
-        this.itemPagination();
 
 
         //console.log(this.lessons);
@@ -195,49 +187,6 @@ export class MainpageComponent implements OnInit {
         );
     }
 
-    newItem() {
-        this.itemService.addItem(this.itemAdd, this.id).subscribe(
-            (res: any) => {
-                this.pageItem = res;
-                this.items = (this.pageItem.content);
-                console.log(this.items);
-            },
-            error1 => console.log(error1)
-        );
-    }
-
-    itemPagination(){
-        this.itemAdd = {info: '', state: this.state}
-        this.itemService.getItemsByPage(0, this.numberPag).subscribe(
-            (res: any) => {
-                this.pageItem = res;
-                this.items = (this.pageItem.content);
-                this.itemsInfo = [];
-                this.items.forEach((value, index) => {
-                        this.itemsInfo.push(value.info)
-                        this.state = true;
-                    }
-                );
-            },
-            error => console.log(error)
-        );
-    }
-
-    reloadItems(){
-        this.numberPag++;
-        this.itemService.getItemsByPage(10, this.numberPag).subscribe(
-            (res: any) => {
-                this.pageItem = res;
-                this.pageItem.content.forEach((value, index) =>
-                    this.items.push(value));
-
-                this.itemsInfo = [];
-                this.items.forEach(value => this.itemsInfo.push(value.info));
-                console.log(this.items);
-            },
-            error => console.log(error)
-        );
-    }
 
     deleteLesson(id: number) {
         this._dialogService.openConfirm({
@@ -249,12 +198,12 @@ export class MainpageComponent implements OnInit {
             if (accept) {
                 this.lessonService.deleteLesson(id).subscribe();
                 let i=0;
-                this.items.forEach((value,index) => {
-                    if (value.idItem == id) {
+                this.lessons.forEach((value,index) => {
+                    if (value.id == id) {
                         i=index;
                     }
                 });
-                this.items.splice(i,1);
+                this.lessons.splice(i,1);
             }
         });
     }
@@ -269,12 +218,12 @@ export class MainpageComponent implements OnInit {
             if (accept) {
                 this.conceptService.deleteConcepts(id).subscribe();
                 let i=0;
-                this.items.forEach((value,index) => {
-                    if (value.idItem == id) {
+                this.concepts.forEach((value,index) => {
+                    if (value.idConcept == id) {
                         i=index;
                     }
                 });
-                this.items.splice(i,1);
+                this.concepts.splice(i,1);
             }
         });
     }

@@ -11,7 +11,7 @@ import {Concept} from "../model/concept.model";
 const GET_ANSWER_BY_USER="/api/answer/user";
 const GET_ANSWER = "api/answer/user/";
 const GET_ANSWER_BY_CONCEPT = "api/answer/concept/";
-const ADD_ANSWER = "api/answer/"
+const ADD_ANSWER = "api/answer/";
 
 
 @Injectable()
@@ -69,6 +69,7 @@ export class AnswerService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
         });
+
         return this.http.post<Answer>(ADD_ANSWER + id, body, {headers})
             .pipe(
                 map(response => response),

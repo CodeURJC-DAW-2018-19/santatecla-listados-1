@@ -57,7 +57,7 @@ export class LessonService {
     }
 
     deleteLesson(id:number){
-        return this.http.delete<Item>(URL_BASE +  id)
+        return this.http.delete<Lesson>(URL_BASE +  id)
             .pipe(
                 catchError(err => this.handleError(err))
             );

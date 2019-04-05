@@ -10,6 +10,7 @@ import {MatDialog, MatDialogRef} from "@angular/material";
 import {TdDialogService} from '@covalent/core';
 import {LessonService} from "../../service/lesson-service";
 import {ConceptService} from "../../service/concept-service";
+import {MainpageComponent} from "../mainpage/mainpage.component";
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -22,6 +23,7 @@ export class TeacherConceptViewComponent implements OnInit {
     public page: PageItems;
     public answers: Answer[] = [];
     public itemNew: Item;
+    private reload: MainpageComponent;
 
     @ViewChild('addItemDialog') addItemDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -146,6 +148,10 @@ export class TeacherConceptViewComponent implements OnInit {
             width: '50%',
             height: '50%',
         });
+    }
+
+    reloadItems() {
+        this.reload.reloadItems();
     }
 
 }

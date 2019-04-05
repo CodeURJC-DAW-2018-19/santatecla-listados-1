@@ -90,7 +90,7 @@
         <mat-dialog-actions align="end">
             <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
             <button type="button" mat-button color="accent" class="text-upper"
-                    (click)="newLesson()">Guardar
+                    (click)="newLesson()")>Guardar
             </button>
         </mat-dialog-actions>
     </div>
@@ -174,7 +174,7 @@
                                     {{lesson.answerPending}}
                                 </td>
                             </tr>
-                            <button (click)="reloadPagination()">CARGAR MAS</button>
+                            <button (click)="reloadLessons()">CARGAR MAS</button>
 
                         </ng-container>
                         </tbody>

@@ -54,7 +54,7 @@ export class ConceptService {
     }
 
     deleteConcepts(id:number){
-        return this.http.delete<Item>(URL_BASE +  id)
+        return this.http.delete<Concept>(URL_BASE +  id)
             .pipe(
                 catchError(err => this.handleError(err))
             );

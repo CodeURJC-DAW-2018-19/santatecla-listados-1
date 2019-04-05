@@ -60,6 +60,28 @@ public class AnswerRest extends OperationsRest<Answer> {
         return answerService.getByIdUser(page,userService.findById(idUser).get());
     }
 
+    @GetMapping(value = "/user/{idUser}/{idConcept}")
+    @JsonView(AnswerDetails.class)
+    public ResponseEntity<List<Answer>> getConcepts(@PathVariable long idUser,@PathVariable long idConcept){
+        List<Answer> list = new ArrayList<>();
+        List<Answer> aux = new ArrayList<>();
+        Optional<Concept> optional = conceptService.findByOneId(idConcept);
+        if(optional.isPresent()){
+            for (Question q:optional.get().getSetQuestion()) {
+                list.addAll(q.getAnswer());
+            }
+            for (Answer ans: list) {
+                if(ans.getIdUser()==idUser){
+                    aux.add(ans);
+                }
+            }
+            return new ResponseEntity<>(aux, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
     /*@GetMapping(value = "/concept/{idConcept}")
     @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> getConcepts(@PathVariable long idConcept) {

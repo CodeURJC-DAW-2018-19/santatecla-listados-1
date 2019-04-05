@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Concept } from "../model/concept.model";
-import {catchError, map} from "rxjs/operators";
+import {catchError, map, switchAll} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {Item} from "../model/item.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -12,6 +12,7 @@ const CREATE_CONCEPTS = "api/concept/";
 
 @Injectable()
 export class ConceptService {
+    private urlEndPoint: string = 'https://localhost:8443/api/concept';
 
     constructor(private http: HttpClient) {}
 
@@ -57,5 +58,15 @@ export class ConceptService {
             .pipe(
                 catchError(err => this.handleError(err))
             );
+    }
+
+    uploadFile(file:File, id): Observable<Concept>{
+        let formData = new FormData();
+        formData.append("file", file);
+        formData.append("id", id);
+        return this.http.post(`${this.urlEndPoint}/upload/`, formData).pipe(
+            map( (Response: any) => Response.concept as Concept),
+            
+        );
     }
 }

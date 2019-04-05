@@ -7,7 +7,7 @@ import {Answer} from "../model/answer.model";
 const URL = 'api/user';
 
 export interface User {
-    id?: number;
+    idUser: number;
     name: string;
     userType?: string[];
     password: string;
@@ -18,6 +18,7 @@ export interface User {
 @Injectable()
 export class LoginService {
 
+    idUser: number;
     isLogged = false;
     isAdmin = false;
     isUser = false;
@@ -31,6 +32,7 @@ export class LoginService {
             this.setCurrentUser(user);
         }
     }
+
 
     logIn(user: string, pass: string) {
 
@@ -85,6 +87,7 @@ export class LoginService {
         localStorage.removeItem('currentUser');
         this.isLogged = false;
         this.isAdmin = false;
+        this.isUser = false;
     }
 
     getRolUserLoged() {

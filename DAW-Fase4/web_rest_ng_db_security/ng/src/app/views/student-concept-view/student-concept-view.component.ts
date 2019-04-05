@@ -6,6 +6,9 @@ import {QuestionService} from "../../service/question-service";
 import {Answer} from "../../model/answer.model";
 import {AnswerService} from "../../service/answer-service";
 import {ActivatedRoute} from "@angular/router";
+import {LoginService} from "../../auth/login.service";
+import { ConceptService } from 'src/app/service/concept-service';
+import { Concept } from 'src/app/model/concept.model';
 
 @Component({
     selector: 'app-student-concept-view',
@@ -16,8 +19,9 @@ export class StudentConceptViewComponent implements OnInit {
 
     public question: Question [];
     public answer: Answer [];
-
+    public idConcept:number;
     single: any[];
+    concept: Concept;
 
     view: any[] = [700, 400];
 
@@ -42,27 +46,29 @@ export class StudentConceptViewComponent implements OnInit {
 
 
 
-    constructor(public dialog: MatDialog, public questionService: QuestionService, public answerService: AnswerService, public activatedRoute: ActivatedRoute) {
+    constructor(public dialog: MatDialog, public loginService: LoginService, public answerService: AnswerService, public activatedRoute: ActivatedRoute, public conceptService: ConceptService) {
         Object.assign(this, { single })
     }
 
     ngOnInit() {
-        const id = this.activatedRoute.snapshot.params['id'];
-        this.questionService.getQuestions().subscribe(
-            (res : any)=>{
-                console.log(res);
-                this.question=(res);
-            },
-            error => console.log(error)
-        );
-        this.answerService.getAnswer(id).subscribe(
+        this.idConcept = this.activatedRoute.snapshot.params['id'];
+        this.answerService.getAnswerByUser(this.loginService.user.idUser,this.idConcept).subscribe(
             (res : any) =>{
                 console.log(res);
                 this.answer=res;
             },
             error => console.log(error)
         )
+
+        this.conceptService.getConcepts(this.idConcept).subscribe(
+            (res: any)=> {
+                this.concept = res;
+            },
+            error2 => console.log(error2)
+        )
+
     }
+
     openDiagramDialog() {
         this.dialogRef = this.dialog.open(this.diagramDialog, {
             width: '50%',

@@ -9,10 +9,8 @@ const URL = 'api/user';
 export interface User {
     idUser?: number;
     name: string;
-    userType?: string[];
-    password: string;
-    email?: string;
-    answer?: Answer[];
+    userType: string[];
+    authdata: string;
 }
 
 @Injectable()
@@ -23,7 +21,7 @@ export class LoginService {
     isAdmin = false;
     isUser = false;
     user: User;
-    password: string;
+    auth: string;
 
     constructor(private http: HttpClient) {
         let user = JSON.parse(localStorage.getItem('currentUser'));
@@ -47,7 +45,7 @@ export class LoginService {
             .pipe(map(user => {
                 if (user) {
                     this.setCurrentUser(user);
-                    user.password = auth;
+                    user.authdata = auth;
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
 
@@ -64,17 +62,6 @@ export class LoginService {
         );
     }
 
-    signIn(u: User): Observable<User>{
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-        });
-        const body = JSON.stringify(u);
-        return this.http.post<User>(URL + '/register',body,{headers})
-            .pipe(
-                map(response => response),
-                catchError(error => this.handleError(error))
-            );
-    }
 
     private setCurrentUser(user: User) {
         this.isLogged = true;
@@ -99,8 +86,5 @@ export class LoginService {
             return 0;
     }
 
-    private handleError(error: any) {
-        console.error(error);
-        return Observable.throw('Server error (' + error.status + '): ' + error.text());
-    }
+
 }

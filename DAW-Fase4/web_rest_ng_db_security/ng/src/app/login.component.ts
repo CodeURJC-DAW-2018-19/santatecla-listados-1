@@ -1,7 +1,8 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import {LoginService, User} from './auth/login.service';
+import {LoginService} from './auth/login.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { User } from './model/user.model';
 
 @Component({
     selector: 'login',
@@ -14,8 +15,10 @@ export class LoginComponent {
     @ViewChild('signinDialog') signinDialog: TemplateRef<any>;
     dialogSign: MatDialogRef<any,any>;
 
+    userNew: User;
 
     constructor(public dialog: MatDialog, public router: Router, public loginService: LoginService, public dialogS:MatDialog) {
+        this.userNew = {name:"", password:"",email:""};
     }
 
     logIn(event: any, user: string, pass: string) {
@@ -54,5 +57,14 @@ export class LoginComponent {
         this.dialogRef.close();
     }
 
-    
+    signIn(){
+        this.loginService.signIn(this.userNew).subscribe(
+            (u) =>{
+                this.dialogSign.close();
+            },
+            error1 => console.log('Invalidad data'),
+        );
+    }
+
+
 }

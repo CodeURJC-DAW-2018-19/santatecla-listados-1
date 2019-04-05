@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Observable} from "rxjs";
-import {Answer} from "../model/answer.model";
+import {User} from "../model/user.model"
 
 const URL = 'api/user';
 
@@ -84,6 +84,23 @@ export class LoginService {
             return 1;
         else
             return 0;
+    }
+
+    signIn(u: User): Observable<User>{
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+        const body = JSON.stringify(u);
+        return this.http.post<any>(URL + '/register',body,{headers})
+            .pipe(
+                map(response => response),
+                catchError(error => this.handleError(error))
+            );
+    }
+
+    private handleError(error: any) {
+        console.error(error);
+        return Observable.throw('Server error (' + error.status + '): ' + error.text());
     }
 
 

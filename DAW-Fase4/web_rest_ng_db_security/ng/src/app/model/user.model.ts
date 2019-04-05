@@ -1,5 +1,12 @@
-export class User {
+import {Answer} from "./answer.model";
 
-    constructor(public id: number, public name:string, public email:string , public password:string, public role:string){}
+export interface User {
+
+    id?: number,
+    name:string,
+    email:string ,
+    password:string,
+    role?:string,
+    setAnswer?: Answer[],
 
 }

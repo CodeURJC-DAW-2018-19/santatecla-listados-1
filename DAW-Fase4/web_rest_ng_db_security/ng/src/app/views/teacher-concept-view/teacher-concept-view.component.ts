@@ -11,6 +11,7 @@ import {TdDialogService} from '@covalent/core';
 import {LessonService} from "../../service/lesson-service";
 import {ConceptService} from "../../service/concept-service";
 import {MainpageComponent} from "../mainpage/mainpage.component";
+import { Concept } from 'src/app/model/concept.model';
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -29,10 +30,13 @@ export class TeacherConceptViewComponent implements OnInit {
 
     @ViewChild('alertDialog') alertDialog: TemplateRef<any>;
     dialogAlert: MatDialogRef<any, any>;
+    concept: Concept;
+    
 
     constructor(private itemService: ItemService,
                 public loginService: LoginService,
                 public router: Router,
+                public conceptService: ConceptService,
                 public answerService: AnswerService,
                 public activatedRoute: ActivatedRoute,
                 public dialog: MatDialog,
@@ -58,6 +62,13 @@ export class TeacherConceptViewComponent implements OnInit {
             },
             error1 => console.log(error1)
         );
+
+        this.conceptService.getConcepts(id).subscribe(
+            (res: any)=> {
+                this.concept = res;
+            },
+            error2 => console.log(error2)
+        )
     }
 
     correctMan(id: number, info: boolean) {

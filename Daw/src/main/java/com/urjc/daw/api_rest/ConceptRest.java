@@ -122,7 +122,7 @@ public class ConceptRest extends OperationsRest<Concept> {
     @GetMapping("/upload/img/{fileName:.+}")
     public ResponseEntity<Resource> seeFile(@PathVariable String fileName ){
         Path filePath = Paths.get("upload").resolve(fileName).toAbsolutePath();
-        log.info(filePath.toString());
+        log.info(filePath.toString());  
         Resource resource = null;
         try {
             resource = new UrlResource(filePath.toUri());

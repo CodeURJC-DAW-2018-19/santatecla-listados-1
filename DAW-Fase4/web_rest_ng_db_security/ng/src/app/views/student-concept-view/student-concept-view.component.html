@@ -74,16 +74,27 @@
             <h2 mat-dialog-title>
                 Pregunta
             </h2>
+
             <mat-dialog-content flex>
                 <form #questionForm="ngForm">
+                    <mat-form-field>
+                        <input
+                                matInput
+                                [(ngModel)]="answerAdd.info"
+                                placeholder="Respuesta"
+                                name="info"
+                                required
+                        />
+                    </mat-form-field>
                 </form>
-
             </mat-dialog-content>
             <mat-divider></mat-divider>
             <mat-dialog-actions align="end">
                 <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" style="background-color: #b085f5; !important; color: azure;" (click)="newAnswer()"> Guardar </button>
             </mat-dialog-actions>
         </div>
     </ng-template>
 
 </mat-card>
+

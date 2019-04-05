@@ -6,10 +6,10 @@ export interface Answer{
 
     id?:number;
     info:string;
-    idUser: User ;
+    idUser?: User ;
     state: string;
-    idQuestion: Question;
+    idQuestion?: Question;
     correct: boolean;
-    statement: string;
+    statement?: string;
 
 }

@@ -4,11 +4,14 @@ import {catchError, map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {UserService} from "./user-service";
 import {LoginService} from "../auth/login.service";
+import {Answer} from "../model/answer.model";
+import {Concept} from "../model/concept.model";
 
 
 const GET_ANSWER_BY_USER="/api/answer/user";
 const GET_ANSWER = "api/answer/user/";
 const GET_ANSWER_BY_CONCEPT = "api/answer/concept/";
+const ADD_ANSWER = "api/answer/"
 
 
 @Injectable()
@@ -58,6 +61,20 @@ export class AnswerService {
                 map(response => response),
                 catchError(error => this.handleError(error))
             );
+    }
+
+    addAnswer(answer: Answer, id:number):Observable<Answer> {
+        const body = JSON.stringify(answer);
+
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+        return this.http.post<Answer>(ADD_ANSWER + id, body, {headers})
+            .pipe(
+                map(response => response),
+                catchError(error => this.handleError(error))
+            );
+
     }
 }
 

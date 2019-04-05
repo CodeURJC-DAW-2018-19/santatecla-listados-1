@@ -22,6 +22,8 @@ export class StudentConceptViewComponent implements OnInit {
     public idConcept:number;
     single: any[];
     concept: Concept;
+    answerAdd: Answer;
+    id: number;
 
     view: any[] = [700, 400];
 
@@ -46,8 +48,13 @@ export class StudentConceptViewComponent implements OnInit {
 
 
 
-    constructor(public dialog: MatDialog, public loginService: LoginService, public answerService: AnswerService, public activatedRoute: ActivatedRoute, public conceptService: ConceptService) {
-        Object.assign(this, { single })
+    constructor(public dialog: MatDialog,
+                public loginService: LoginService,
+                public answerService: AnswerService,
+                public activatedRoute: ActivatedRoute,
+                public conceptService: ConceptService) {
+        Object.assign(this, { single });
+        this.answerAdd = {info: "", state: "pending", correct: false};
     }
 
     ngOnInit() {
@@ -68,6 +75,20 @@ export class StudentConceptViewComponent implements OnInit {
         )
 
     }
+
+    createQuestion() {
+
+    }
+
+    newAnswer() {
+        const id = this.activatedRoute.snapshot.params['id'];
+        this.answerService.addAnswer(this.answerAdd, id).subscribe();
+        this.answer.push(this.answerAdd);
+        this.answerAdd = {info: "", state: "pending", correct: false};
+        this.dialog.closeAll();
+    }
+
+
 
     openDiagramDialog() {
         this.dialogRef = this.dialog.open(this.diagramDialog, {

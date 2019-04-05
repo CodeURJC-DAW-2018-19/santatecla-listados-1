@@ -7,7 +7,7 @@ import {Answer} from "../model/answer.model";
 const URL = 'api/user';
 
 export interface User {
-    idUser: number;
+    idUser?: number;
     name: string;
     userType?: string[];
     password: string;

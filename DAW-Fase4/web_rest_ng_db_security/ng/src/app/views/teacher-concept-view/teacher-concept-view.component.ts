@@ -23,7 +23,6 @@ export class TeacherConceptViewComponent implements OnInit {
     public page: PageItems;
     public answers: Answer[] = [];
     public itemNew: Item;
-    private reload: MainpageComponent;
 
     @ViewChild('addItemDialog') addItemDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -108,8 +107,36 @@ export class TeacherConceptViewComponent implements OnInit {
         });
     }
 
-    reloadItems() {
-        this.reload.reloadItems();
+    itemPagination(){
+     /*   this.itemService.getItemsByPage(0, this.numberPag).subscribe(
+            (res: any) => {
+                this.pageItem = res;
+                this.items = (this.pageItem.content);
+                this.itemsInfo = [];
+                this.items.forEach((value, index) => {
+                        this.itemsInfo.push(value.info)
+                        this.state = true;
+                    }
+                );
+            },
+            error => console.log(error)
+        );*/
+    }
+
+    reloadItems(){
+      /*  this.numberPag++;
+        this.itemService.getItemsByPage(10, this.numberPag).subscribe(
+            (res: any) => {
+                this.pageItem = res;
+                this.pageItem.content.forEach((value, index) =>
+                    this.items.push(value));
+
+                this.itemsInfo = [];
+                this.items.forEach(value => this.itemsInfo.push(value.info));
+                console.log(this.items);
+            },
+            error => console.log(error)
+        );*/
     }
 
 }

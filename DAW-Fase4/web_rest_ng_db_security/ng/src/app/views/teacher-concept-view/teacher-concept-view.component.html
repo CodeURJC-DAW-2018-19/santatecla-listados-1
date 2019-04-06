@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>
         <div layout="row" layout-align="start center">
-            <img src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
+            <img *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
         </div>
         <div layout="row" layout-align="start center">
             <span flex>ÍTEMS</span>

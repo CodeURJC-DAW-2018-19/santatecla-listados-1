@@ -8,6 +8,7 @@ import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.lessons.LessonService;
 import com.urjc.daw.models.question.Question;
+import com.urjc.daw.models.user.UserComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,12 +38,15 @@ import java.util.*;
 public class ConceptRest extends OperationsRest<Concept> {
 
     interface ConceptDetails extends Concept.BasicInfo,Concept.ItemList,Concept.QuestionList,
-            Item.BasicInfo,Question.BasicInfo {}
-            
+            Item.BasicInfo,Question.BasicInfo {};
+
     @Autowired
     ConceptService conceptService;
     @Autowired
     LessonService lessonService;
+
+    @Autowired
+    UserComponent userComponent;
 
     private final Logger log = LoggerFactory.getLogger(ConceptRest.class);
 

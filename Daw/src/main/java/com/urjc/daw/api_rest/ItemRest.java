@@ -6,12 +6,15 @@ import com.urjc.daw.models.concept.ConceptService;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.item.ItemService;
 import com.urjc.daw.models.question.Question;
+import com.urjc.daw.models.user.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
@@ -37,8 +40,13 @@ public class ItemRest extends OperationsRest<Item> {
 
     @GetMapping(value ="/concept/{idConcept}")
     @JsonView(ConceptRest.ConceptDetails.class)
-    public Page<Item> getConcepts(@PathVariable long idConcept, @PageableDefault(size = 10) Pageable page){
+    /*public Page<Item> getConcepts(@PathVariable long idConcept, @PageableDefault(size = 10) Pageable page){
         return itemService.findItemByIdConcept(page,conceptService.findByOneId(idConcept).get());
+    }*/
+
+    public Page<Item> getItems (@PageableDefault(size = 10) Pageable page) {
+        Page<Item> items = itemService.findAll(page);
+        return items;
     }
 
     @PostMapping("/concept/{idConcept}")

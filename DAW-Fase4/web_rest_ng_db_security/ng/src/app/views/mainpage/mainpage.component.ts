@@ -38,6 +38,13 @@ export class MainpageComponent implements OnInit {
     picture: string[];
     question: Question;
 
+    pageItem: PageItems;
+    items: Item[];
+    itemAdd: Item;
+    itemInfo: string[];
+    state: boolean;
+
+
 
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -58,18 +65,11 @@ export class MainpageComponent implements OnInit {
         this.stats=[[],[],[]];
         this.lessonPagination();
         this.conceptPagination();
-
+        this.itemPagination();
 
         //console.log(this.lessons);
 
     }
-
-    /*reloadPagination() {
-        this.numberPag++;
-        this.reloadLessons();
-        this.reloadConcepts();
-        this.reloadItems();
-    }*/
 
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {
@@ -185,6 +185,38 @@ export class MainpageComponent implements OnInit {
             },
             error => console.log(error)
         );
+    }
+
+    itemPagination(){
+           this.itemService.getItemsByPage(0, this.numberPag).subscribe(
+               (res: any) => {
+                   this.pageItem = res;
+                   this.items = (this.pageItem.content);
+                   this.itemInfo = [];
+                   this.items.forEach((value, index) => {
+                           this.itemInfo.push(value.info)
+                           this.state = true;
+                       }
+                   );
+               },
+               error => console.log(error)
+           );
+    }
+
+    reloadItems(){
+          this.numberPag++;
+          this.itemService.getItemsByPage(10, this.numberPag).subscribe(
+              (res: any) => {
+                  this.pageItem = res;
+                  this.pageItem.content.forEach((value, index) =>
+                      this.items.push(value));
+
+                  this.itemInfo = [];
+                  this.items.forEach(value => this.itemInfo.push(value.info));
+                  console.log(this.items);
+              },
+              error => console.log(error)
+          );
     }
 
 

@@ -2,7 +2,6 @@ package com.urjc.daw.models.question;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.sun.tools.javac.jvm.Items;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.item.Item;

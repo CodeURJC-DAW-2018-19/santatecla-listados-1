@@ -100,11 +100,10 @@
     </ng-template>
 
     <ng-template #questionDialog let-dialogRef="dialogRef">
-        <div layout="column" layout-fill>
+        <div layout="column" layout-fill *ngIf="random.type==0 || random.type==2">
             <h2 mat-dialog-title>
-                Pregunta
+                {{random.info}}
             </h2>
-
             <mat-dialog-content flex>
                 <form #questionForm="ngForm">
                     <mat-form-field>
@@ -117,6 +116,41 @@
                         />
                     </mat-form-field>
                 </form>
+            </mat-dialog-content>
+            <mat-divider></mat-divider>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" style="background-color: #b085f5; !important; color: azure;" (click)="newAnswer()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+
+        <div layout="column" layout-fill *ngIf="random.type==1">
+            <h2 mat-dialog-title>
+                {{random.info}}
+            </h2>
+            <mat-dialog-content flex>
+                <mat-radio-group id="{{random.idQuestion}}" flex>
+                    <mat-radio-button value="1">Correcto</mat-radio-button>
+                    <mat-radio-button value="2">Incorrecto</mat-radio-button>
+                </mat-radio-group>
+            </mat-dialog-content>
+            <mat-divider></mat-divider>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" style="background-color: #b085f5; !important; color: azure;" (click)="newAnswer()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+
+        <div layout="column" layout-fill *ngIf="random.type==3">
+            <h2 mat-dialog-title>
+                {{random.info}}
+            </h2>
+            <mat-dialog-content flex>
+                <mat-list *ngFor='let i of random.opt' layout="row">
+                    <mat-list-item>
+                        <p>{{i.info}}</p>
+                    </mat-list-item>
+                </mat-list>
             </mat-dialog-content>
             <mat-divider></mat-divider>
             <mat-dialog-actions align="end">

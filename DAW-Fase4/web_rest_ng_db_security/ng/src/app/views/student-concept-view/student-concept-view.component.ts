@@ -30,6 +30,7 @@ export class StudentConceptViewComponent implements OnInit {
     pageConcept: PageConcept;
     conceptsTitle: string[];
     picture: string[];
+    random: Question;
 
     view: any[] = [700, 400];
 
@@ -58,9 +59,11 @@ export class StudentConceptViewComponent implements OnInit {
                 public loginService: LoginService,
                 public answerService: AnswerService,
                 public activatedRoute: ActivatedRoute,
-                public conceptService: ConceptService) {
+                public conceptService: ConceptService,
+                public questionService: QuestionService) {
         Object.assign(this, { single });
         this.answerAdd = {info: "", state: "pending", correct: false};
+        this.random = {info:""}
     }
 
     ngOnInit() {
@@ -86,7 +89,12 @@ export class StudentConceptViewComponent implements OnInit {
     }
 
     createQuestion() {
-
+        this.questionService.createQuestion(this.idConcept).subscribe(
+            (res : any) =>{
+                this.random=res;
+            },
+            error1 => console.log(error1)
+        );
     }
 
     newAnswer() {
@@ -107,6 +115,7 @@ export class StudentConceptViewComponent implements OnInit {
     }
 
     openQuestionDialog() {
+        this.createQuestion();
         this.dialogRef = this.dialog.open(this.questionDialog, {
             width: '50%',
             height: '50%',

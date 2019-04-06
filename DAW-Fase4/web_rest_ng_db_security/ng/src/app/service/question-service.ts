@@ -8,7 +8,7 @@ import {Concept} from "../model/concept.model";
 import {Answer} from "../model/answer.model";
 
 const GET_QUESTION = "api/question/";
-const CREATE_QUESTION = "api/question/concept"
+const CREATE_QUESTION = "api/question/concept/";
 
 
 @Injectable()
@@ -30,13 +30,12 @@ export class QuestionService {
         return Observable.throw('Server error (' + error.status + '): ' + error.text());
     }
 
-    createQuestion(question: Question, idConcept: Concept): Observable<Question> {
-        const body = JSON.stringify(question);
+    createQuestion(idConcept: number): Observable<Question> {
 
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
         });
-        return this.http.post<Question>(CREATE_QUESTION + idConcept, body, {headers})
+        return this.http.post<Question>(CREATE_QUESTION + idConcept,null, {headers})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

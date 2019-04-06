@@ -2,6 +2,7 @@ package com.urjc.daw.models.question;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sun.tools.javac.jvm.Items;
 import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.concept.Concept;
 import com.urjc.daw.models.item.Item;
@@ -36,6 +37,11 @@ public class Question {
     @JsonView(AnswerList.class)
     private Set<Answer> setAnswer;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @Column
+    @JsonView(BasicInfo.class)
+    private Set<Item> opt;
+
     @Column
     private int [] arrayRespuestas={0,0,0};
 
@@ -49,6 +55,7 @@ public class Question {
 
 
 
+
 /**         CONSTRUCTOR         **/
     public Question(){}
 
@@ -57,6 +64,7 @@ public class Question {
         this.type=type;
         this.setAnswer=new HashSet<>();
         this.setItem= new HashSet<>();
+        this.opt=new HashSet<>();
         metrics();
     }
 
@@ -201,6 +209,7 @@ public class Question {
                         itemRandom.remove(item);
                     }
                     info = "¿Qué elementos de " + complement + " no son parte de " + idConcept.getTitle() + " ?";
+                    this.opt=new HashSet<>(selected);
                     break;
 
             }

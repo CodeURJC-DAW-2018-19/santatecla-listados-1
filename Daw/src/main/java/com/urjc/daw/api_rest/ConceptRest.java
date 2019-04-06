@@ -35,6 +35,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("api/concept")
+@CrossOrigin(origins = { "http://localhost:8080" })
 public class ConceptRest extends OperationsRest<Concept> {
 
     interface ConceptDetails extends Concept.BasicInfo,Concept.ItemList,Concept.QuestionList,

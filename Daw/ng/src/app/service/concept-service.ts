@@ -62,13 +62,15 @@ export class ConceptService {
             );
     }
 
-    uploadFile(file:File, id): Observable<Concept>{
+    uploadFile(file:File, id): Observable<HttpEvent<{}>>{
         let formData = new FormData();
         formData.append("file", file);
         formData.append("id", id);
-        return this.http.post(`${this.urlEndPoint}/upload/`, formData).pipe(
-            map( (Response: any) => Response.concept as Concept),
-            
-        );
+
+        const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
+        reportProgress: true
+        });
+        
+        return this.http.request(req);
     }
 }

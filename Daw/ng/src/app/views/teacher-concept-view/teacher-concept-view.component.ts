@@ -173,14 +173,27 @@ export class TeacherConceptViewComponent implements OnInit {
 
     selectPicture(event){
         this.selectedFile = event.target.files[0];
+        this.progres = 0;
         console.log(this.selectedFile);
+        if(this.selectedFile.type.indexOf('image') < 0){
+            this.selectedFile = null;
+        }
     }
 
     uploadPicture(){
-        this.conceptService.uploadFile(this.selectedFile, this.concept.idConcept)
-        .subscribe(concept => {
-            this.concept = concept;
-        });
+        if(!this.selectedFile){
+            console.log;
+        }else{
+            this.conceptService.uploadFile(this.selectedFile, this.concept.idConcept)
+                .subscribe(event =>{
+                if (event.type === HttpEventType.UploadProgress) {
+                    this.progres = Math.round((event.loaded / event.total) * 100);
+              } else if (event.type === HttpEventType.Response) {
+                    let response: any = event.body;
+                    this.concept = response.concept as Concept;
+                  }
+            });
+        }
     }
 }
 

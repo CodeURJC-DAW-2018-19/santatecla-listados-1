@@ -494,5 +494,91 @@ We use IntelliJ IDEA Ultimate and Docker-Desktop. When we created the configurat
 ### Preparation of development environment
  Se añadirá a las instrucciones cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación SPA con Angular.
 ### Class diagram and templates
- Reflejará las clases y templates del código Angular. El diagrama deberá diferenciar claramente qué elementos son componentes y cómo se relacionan entre sí (relaciones padre-hijo). También se deberán incluir los servicios y el resto de clases auxiliares.
+In the following image we can see the diagram of classes and templates:
+
+![Diagrama de clases y templates angular](https://user-images.githubusercontent.com/46897050/55675516-19ba8800-58c4-11e9-95eb-62377e37f0c0.jpg)
+
+We use the MVC architecture patter( Model-View-Controller).
+
+MODEL:
+
+Colour - Green
+- answer.model.ts
+- concept.model.ts
+- item.model.ts
+- lesson.model.ts
+- page.concept.ts
+- page.item.ts
+- page.lesson.ts
+- question.model.ts
+- user.model.ts
+
+Colour - Yellow
+- answer-service.ts
+- concept-service.ts
+- item-service.ts
+- lesson-service.ts
+- question-service.ts
+- user-service.ts
+
+Colour - Pink
+- error.interceptor.ts
+
+
+CONTROLLER
+
+Colour - Blue
+- mainpage.component.ts
+- student-concept-view.component.ts
+- teacher-concept-view.component.ts
+- app.component.ts
+- login.component.ts
+- app.routing.ts
+- app.module.ts
+
+
+VIEW
+
+Colour - Purple
+- mainpage.component.html
+- student-concept-view.component.html
+- teacher-concept-view.component.html
+- app.component.html
+- index.html
+- login.component.html
+
+
+RELATIONS
+- answer.model.ts has an association relationship with: user.model.ts and question.model.ts
+- user.model.ts has an association relationship with: answer.model.ts
+- question.model.ts has an association relationship with: concept.model.ts and answer.model.ts
+- page.lesson.ts has an association relationship with: lesson.model.ts
+- lesson.model.ts has an association relationship with: concept.model.ts
+- concept.model.ts has an association relationship with: question.model.ts 
+- page.concept.ts has an association relationship with: concept.model.ts
+- item.model.ts 
+- page.item.ts has an association relationship with: item.model.ts
+- item-service.ts has an association relationship with: item.model.ts
+- answer-service.ts has an association relationship with: answer.model.ts
+- concept-service.ts has an association relationship with: concept.model.ts
+- lesson-service.ts has an association relationship with: lesson.model.ts
+- question-service.ts has an association relationship with: question.model.ts
+- login.service.ts has an association relationship with: user.model.ts
+- user-service.ts 
+- config.service.ts
+- login.component.html
+- app.component.html
+- mainpage.component.html
+- teacher-concept-view.component.html
+- student-concept-view.component.html
+- login.component.ts has an association relationship with: login.service.ts and user.model.ts
+- app.component.ts 
+- mainpage.component.ts has an association relationship with: concept.model.ts, concept-service.ts, page.concept.ts, item-service.ts, lesson.model.ts, question.model.ts, item.model.ts, page.item.ts, login.service.ts
+- teacher-concept-view.component.ts has an association relationship with: page.item.ts, item.model.ts, item-service.ts, login.service.ts, answer.model.ts, answer-service.ts and concept-service.ts
+- student-concept-view.component.ts has an association relationship with: login.service.ts, question-service.ts, question.model.ts, answer.model.ts, answer-service.ts, concept-service.ts, concept.model.ts and page.concept.ts
+- app.module.ts has an association relationship with: all component and service
+- app.routing.ts has an association relationship with: teacher-concept-view.component.ts, student-concept-view.component.ts, mainpage.component.ts, mainpage.component.html, teacher-concept-view.component.html and student-concept-view.component.html
+- error.interceptor has an association relationship with: login.service.ts
+
+
 ### Bibliography

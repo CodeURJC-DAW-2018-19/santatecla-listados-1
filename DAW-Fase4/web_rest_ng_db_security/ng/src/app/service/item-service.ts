@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {Item} from "../model/item.model";
 import {canReportError} from "rxjs/internal/util/canReportError";
 
-const GET_ITEMS = "api/items/concept/pag"
+const GET_ITEMS = "api/items/concept/{idConcept}/pag"
 const GET_ITEM="api/items/concept/";
 const URL_BASE="api/items/"
 

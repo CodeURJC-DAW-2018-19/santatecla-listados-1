@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {Item} from "../model/item.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
-const GET_CONCEPTS = "api/concept/pag";
+const GET_CONCEPTS = "api/concept/lesson/{idLesson}/pag";
 const GET_CONCEPT = "api/concept/";
 const DELETE_CONCEPTS = "api/concept/";
 const CREATE_CONCEPTS = "api/concept/";

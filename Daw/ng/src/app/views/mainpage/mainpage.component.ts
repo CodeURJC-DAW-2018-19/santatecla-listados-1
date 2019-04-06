@@ -202,10 +202,12 @@ export class MainpageComponent implements OnInit {
             if (accept) {
                 this.conceptService.deleteConcepts(id).subscribe();
                 let i=0;
-                this.concepts.forEach((value,index) => {
-                    if (value.idConcept == id) {
-                        i=index;
-                    }
+                this.lessons.forEach((value,index) => {
+                    value.conceptSet.forEach((value,index) => {
+                        if (value.idConcept == id) {
+                            i=index;
+                        }
+                    })
                 });
                 this.concepts.splice(i,1);
             }

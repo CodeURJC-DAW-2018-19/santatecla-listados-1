@@ -45,20 +45,21 @@
             </p>
         </div>
 
-        <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
-            <mat-icon>add</mat-icon>
+        <button mat-flat-button *ngIf="loginService.getRolUserLoged()==2"
+                (click)="openAddConceptDialog()">
+          Añadir concepto
         </button>
     </mat-expansion-panel>
 </mat-card>
-<button mat-flat-button style="background-color: #b085f5;color:white" (click)="reloadLessons()">Cargar más temas
+<button mat-flat-button  (click)="reloadLessons()">Cargar más temas
 </button>
 <br>
-<button mat-flat-button style="background-color: #b085f5;color:white;margin-top: 10px"
+<button mat-flat-button style="margin-top: 10px"
         *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
     Añadir tema
 </button>
 
-<button mat-flat-button style="background-color: #b085f5;color:white;float:right;margin-top: 10px"
+<button mat-flat-button style="float:right;margin-top: 10px"
         *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1"
         (click)="openDiagramDialog()">
     Mostrar Diagramas

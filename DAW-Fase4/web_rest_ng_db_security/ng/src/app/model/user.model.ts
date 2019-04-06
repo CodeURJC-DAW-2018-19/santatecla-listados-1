@@ -1,6 +1,6 @@
 import {Answer} from "./answer.model";
 
-export interface User {
+export interface UserRest {
 
     id?: number,
     name:string,

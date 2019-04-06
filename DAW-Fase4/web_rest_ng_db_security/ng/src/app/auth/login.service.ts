@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Observable} from "rxjs";
-import {User} from "../model/user.model"
+import {UserRest} from "../model/user.model"
 
 const URL = 'api/user';
 
@@ -86,7 +86,7 @@ export class LoginService {
             return 0;
     }
 
-    signIn(u: User): Observable<User>{
+    signIn(u: UserRest): Observable<UserRest>{
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
         });

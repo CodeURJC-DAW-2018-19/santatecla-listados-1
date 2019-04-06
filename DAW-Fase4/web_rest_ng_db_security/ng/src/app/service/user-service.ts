@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from '../model/user.model';
+import {UserRest } from '../model/user.model';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 
 const URL="https://localhost:8443/api/";

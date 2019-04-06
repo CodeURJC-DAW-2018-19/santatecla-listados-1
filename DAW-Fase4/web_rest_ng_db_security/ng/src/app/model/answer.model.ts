@@ -1,12 +1,12 @@
 
-import {User} from "./user.model";
+import {UserRest} from "./user.model";
 import {Question} from "./question.model";
 
 export interface Answer{
 
     id?:number;
     info:string;
-    idUser?: User ;
+    idUser?: UserRest ;
     state: string;
     idQuestion?: Question;
     correct: boolean;

@@ -5,8 +5,6 @@ import {Headers, Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
 import {PageLesson} from "../model/page.lesson";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Book} from "../book.service";
-import {Item} from "../model/item.model";
 
 const GET_LESSONS = "api/lesson/pag";
 const GET_LESSON = "api/lesson/";

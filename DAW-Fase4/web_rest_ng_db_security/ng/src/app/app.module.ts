@@ -59,22 +59,16 @@ import {
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BookService } from './book.service';
-import { BookListComponent } from './book-list.component';
-import { BookFormComponent } from './book-form.component';
 
 import {LoginComponent} from "./login.component";
 import { routing } from './app.routing';
 import { MainpageComponent } from './views/mainpage/mainpage.component';
 import { TeacherConceptViewComponent } from './views/teacher-concept-view/teacher-concept-view.component';
 import { StudentConceptViewComponent } from './views/student-concept-view/student-concept-view.component';
-import { HeaderComponent } from './views/header/header.component';
-import { FooterComponent } from './views/footer/footer.component';
 
 import {UserService} from './service/user-service';
 import {QuestionService} from "./service/question-service";
 import {LessonService} from './service/lesson-service';
-import {BookDetailComponent} from "./book-detail.component";
 import {LoginService} from "./auth/login.service";
 import {ItemService} from "./service/item-service";
 import {ConceptService} from "./service/concept-service";
@@ -92,15 +86,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
     declarations: [AppComponent,
-        BookDetailComponent,
-        BookListComponent,
-        BookFormComponent,
         LoginComponent,
         MainpageComponent,
         TeacherConceptViewComponent,
-        StudentConceptViewComponent,
-        HeaderComponent,
-        FooterComponent,],
+        StudentConceptViewComponent,],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -160,7 +149,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         routing
     ],
     bootstrap: [AppComponent],
-    providers: [BookService, LoginService, UserService, LessonService,ItemService,ConceptService,QuestionService,AnswerService,
+    providers: [LoginService, UserService, LessonService,ItemService,ConceptService,QuestionService,AnswerService,
         {provide: LocationStrategy,useClass:HashLocationStrategy},
         {provide: HTTP_INTERCEPTORS,useClass: BasicAuthInterceptor,multi:true},
         {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}

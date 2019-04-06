@@ -46,29 +46,30 @@ export class TeacherConceptViewComponent implements OnInit {
     }
 
     ngOnInit() {
-        const id = this.activatedRoute.snapshot.params['id'];
-        this.itemService.getItems(id).subscribe(
-            (res: any) => {
-                this.page = res;
-                this.items = this.page.content;
-            },
-            error => console.log(error)
-        );
+            const id = this.activatedRoute.snapshot.params['id'];
+            this.itemService.getItems(id).subscribe(
+                (res: any) => {
+                    this.page = res;
+                    this.items = this.page.content;
+                },
+                error => console.log(error)
+            );
 
-        this.answerService.getAnswersByConcept(id).subscribe(
-            (res: any) => {
-                console.log(res);
-                this.answers = res;
-            },
-            error1 => console.log(error1)
-        );
+            this.answerService.getAnswersByConcept(id).subscribe(
+                (res: any) => {
+                    console.log(res);
+                    this.answers = res;
+                },
+                error1 => console.log(error1)
+            );
 
-        this.conceptService.getConcepts(id).subscribe(
-            (res: any)=> {
-                this.concept = res;
-            },
-            error2 => console.log(error2)
-        )
+            this.conceptService.getConcepts(id).subscribe(
+                (res: any) => {
+                    this.concept = res;
+                },
+                error2 => console.log(error2)
+            )
+
     }
 
     correctMan(id: number, info: boolean) {

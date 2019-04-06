@@ -1,6 +1,5 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material";
-import { single } from './data-student-diagram';
 import {Question} from "../../model/question.model";
 import {QuestionService} from "../../service/question-service";
 import {Answer} from "../../model/answer.model";
@@ -49,7 +48,6 @@ export class StudentConceptViewComponent implements OnInit {
                 public activatedRoute: ActivatedRoute,
                 public conceptService: ConceptService,
                 public questionService: QuestionService) {
-        Object.assign(this, { single });
         this.answerAdd = {info: "", state: "pending", correct: false};
         this.random = {info:""}
     }

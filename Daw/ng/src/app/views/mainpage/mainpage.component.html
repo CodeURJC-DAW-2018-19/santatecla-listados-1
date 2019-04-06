@@ -26,9 +26,9 @@
                 <a [ngStyle]="{'cursor':'pointer'}"
                    [routerLink]="['/teacherConceptView/', concept.idConcept]">
                     {{concept.title}} </a>
-                    <pre></pre>
-                    <a class="material-icons"
-                       style="float: right; cursor: pointer; margin-top: -40px" (click)="deleteConcept(concept.idConcept)">delete</a>
+                <pre></pre>
+                <a class="material-icons"
+                   style="float: right; cursor: pointer; margin-top: -40px" (click)="deleteConcept(concept.idConcept)">delete</a>
             </div>
         </ng-container>
         <ng-container *ngIf="loginService.getRolUserLoged()==1">
@@ -45,20 +45,23 @@
             </p>
         </div>
 
-        <button (click)="reloadConcepts()">CARGAR MAS</button>
-
         <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
-    <button (click)="reloadLessons()">CARGAR MAS</button>
 </mat-card>
-<button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
-    <mat-icon>add</mat-icon>
+<button mat-flat-button style="background-color: #b085f5;color:white" (click)="reloadLessons()">Cargar más temas
+</button>
+<br>
+<button mat-flat-button style="background-color: #b085f5;color:white;margin-top: 10px"
+        *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
+    Añadir tema
 </button>
 
-<button align="end" mat-fab *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1" (click)="openDiagramDialog()">
-    <mat-icon>add</mat-icon>
+<button mat-flat-button style="background-color: #b085f5;color:white;float:right;margin-top: 10px"
+        *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1"
+        (click)="openDiagramDialog()">
+    Mostrar Diagramas
 </button>
 
 <ng-template #addLessonDialog let-dialogRef="dialogRef">
@@ -71,7 +74,6 @@
                 <div class="logo">Añade un nuevo tema</div>
                 <div class="register-item">
                     <form #myform="ngForm" class="form form-register">
-
                         <mat-form-field>
                             <input
                                     matInput
@@ -89,7 +91,7 @@
         <mat-dialog-actions align="end">
             <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
             <button type="button" mat-button color="accent" class="text-upper"
-                    (click)="newLesson()")>Guardar
+                    (click)="newLesson()" )>Guardar
             </button>
         </mat-dialog-actions>
     </div>
@@ -117,10 +119,11 @@
                             />
                         </mat-form-field>
                         <div class="input-group">
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                                  <label class="custom-file-label" for="inputGroupFile04"></label>
-                                </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile04"
+                                       aria-describedby="inputGroupFileAddon04">
+                                <label class="custom-file-label" for="inputGroupFile04"></label>
+                            </div>
                         </div>
                     </form>
                 </div>

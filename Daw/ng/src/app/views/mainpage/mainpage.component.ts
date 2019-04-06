@@ -5,14 +5,10 @@ import {Lesson} from "../../model/lesson.model";
 import {PageLesson} from "../../model/page.lesson";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogRef} from "@angular/material";
-import {single} from './data';
-import {multi} from './data';
 import {ConceptService} from "../../service/concept-service";
 import {ItemService} from "../../service/item-service";
 import {PageConcept} from "../../model/page.concept";
 import {Concept} from "../../model/concept.model";
-import {PageItems} from "../../model/page.item";
-import {Item} from "../../model/item.model";
 import {Question} from "../../model/question.model";
 import {TdDialogService} from "@covalent/core";
 
@@ -50,26 +46,14 @@ export class MainpageComponent implements OnInit {
 
 
     constructor(public dialog: MatDialog, public dialog2: MatDialog, private router: Router, private lessonService: LessonService, public loginService: LoginService, private conceptService: ConceptService, private itemService: ItemService, private _dialogService: TdDialogService) {
-        Object.assign(this, {single})
     }
 
     ngOnInit() {
         this.numberPag = 0;
         this.stats=[[],[],[]];
         this.lessonPagination();
-        this.conceptPagination();
-
-
-        //console.log(this.lessons);
-
     }
 
-    /*reloadPagination() {
-        this.numberPag++;
-        this.reloadLessons();
-        this.reloadConcepts();
-        this.reloadItems();
-    }*/
 
     openAddLessonDialog() {
         this.dialogRef = this.dialog.open(this.addLessonDialog, {

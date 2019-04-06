@@ -1,0 +1,164 @@
+<mat-card>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <img *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
+        </div>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <h2><mat-card-title><b>CONCEPTO</b></mat-card-title></h2>
+
+    <mat-divider></mat-divider>
+
+    <fieldset>
+        <legend><h3>CORREGIDAS</h3></legend>
+        <mat-list *ngFor=' let answers of answer'>
+            <mat-list *ngIf = 'answers.state == "right"'>
+                <h4><p> {{answers.statement}} </p></h4>
+                <p> {{answers.info}} <mat-icon>done</mat-icon> </p>
+                <mat-divider></mat-divider>
+            </mat-list>
+            <mat-list *ngIf = 'answers.state == "wrong"'>
+                <h4><p> {{answers.statement}} </p></h4>
+                <p> {{answers.info}} <mat-icon>clear</mat-icon> </p>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-list>
+
+    </fieldset>
+
+    <fieldset>
+        <legend><h3>PENDIENTES DE CORREGIR</h3></legend>
+        <mat-list *ngFor=' let answers of answer'>
+            <mat-list *ngIf = 'answers.state == "pending"'>
+                <h4><p> {{answers.statement}} </p></h4>
+                <p> {{answers.info}} </p>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-list>
+    </fieldset>
+
+    <P></P>
+
+    <button mat-raised-button style="background-color: #b085f5; !important; color: azure;"  (click)='openDiagramDialog()'>Diagramas</button>
+    <button mat-raised-button style="background-color: #b085f5; !important; color: azure;" (click)='openQuestionDialog()'>Generar Pregunta</button>
+
+    <ng-template #diagramDialog let-dialogRef="dialogRef">
+        <div layout="column" layout-fill>
+            <h2 mat-dialog-title>
+                Diagrama
+            </h2>
+            <td-chart [style.height.px]="300">
+                <td-chart-tooltip [trigger]="'item'"
+                                  [textStyle]="{ color: '#818181' }"
+                                  [backgroundColor]="'#ffffff'">
+                    <ng-template let-params let-ticket="ticket" tdTooltipFormatter>
+                        <ng-container *ngIf="params">
+                            <div layout="row" layout-align="start center">
+                                <mat-icon>
+                                    <span [style.color]="params.color">answer</span>
+                                </mat-icon>
+                                <span class="mat-caption pad-left-sm">
+                                    {{params.seriesName + ': ' + params.value}}
+                                </span>
+                            </div>
+                        </ng-container>
+                    </ng-template>
+                </td-chart-tooltip>
+                <td-chart-x-axis [show]="true"
+                                 [position]="'bottom'"
+                                 [type]="'category'"
+                                 [data]=""
+                                 [boundaryGap]="true">
+                </td-chart-x-axis>
+                <td-chart-y-axis [show]="true"
+                                 [type]="'value'"
+                                 [position]="'left'"
+                                 [max]="10"
+                                 [splitLine]="{ lineStyle: { type: 'dotted' }}">
+                </td-chart-y-axis>
+                <td-chart-series td-bar
+                                 [data]="stats[0]"
+                                 [name]="'Correctas'"
+                                 [color]="'#00b686'">
+                </td-chart-series>
+                <td-chart-series td-bar
+                                 [data]="stats[1]"
+                                 [name]="'Sin responder'"
+                                 [color]="'#757575'">
+                </td-chart-series>
+                <td-chart-series td-bar
+                                 [data]="stats[2]"
+                                 [name]="'Incorrectas'"
+                                 [color]="'#ff3d00'">
+                </td-chart-series>
+            </td-chart>
+            <mat-divider></mat-divider>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+            </mat-dialog-actions>
+        </div>
+    </ng-template>
+
+    <ng-template #questionDialog let-dialogRef="dialogRef">
+        <div layout="column" layout-fill *ngIf="random.type==0 || random.type==2">
+            <h2 mat-dialog-title>
+                {{random.info}}
+            </h2>
+            <mat-dialog-content flex>
+                <form #questionForm="ngForm">
+                    <mat-form-field>
+                        <input
+                                matInput
+                                [(ngModel)]="answerAdd.info"
+                                placeholder="Respuesta"
+                                name="info"
+                                required
+                        />
+                    </mat-form-field>
+                </form>
+            </mat-dialog-content>
+            <mat-divider></mat-divider>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" style="background-color: #b085f5; !important; color: azure;" (click)="newAnswer()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+
+        <div layout="column" layout-fill *ngIf="random.type==1">
+            <h2 mat-dialog-title>
+                {{random.info}}
+            </h2>
+            <mat-dialog-content flex>
+                <mat-radio-group id="{{random.idQuestion}}" flex>
+                    <mat-radio-button value="1">Correcto</mat-radio-button>
+                    <mat-radio-button value="2">Incorrecto</mat-radio-button>
+                </mat-radio-group>
+            </mat-dialog-content>
+            <mat-divider></mat-divider>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" style="background-color: #b085f5; !important; color: azure;" (click)="newAnswer()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+
+        <div layout="column" layout-fill *ngIf="random.type==3">
+            <h2 mat-dialog-title>
+                {{random.info}}
+            </h2>
+            <mat-dialog-content flex>
+                <mat-list *ngFor='let i of random.opt' layout="row">
+                    <mat-list-item>
+                        <p>{{i.info}}</p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-dialog-content>
+            <mat-divider></mat-divider>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button class="text-upper" style="background-color: #b085f5; !important; color: azure;" (click)="dialogRef.close()">Cerrar</button>
+                <button mat-raised-button class="text-upper" type="button" style="background-color: #b085f5; !important; color: azure;" (click)="newAnswer()"> Guardar </button>
+            </mat-dialog-actions>
+        </div>
+    </ng-template>
+
+</mat-card>
+

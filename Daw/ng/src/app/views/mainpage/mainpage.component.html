@@ -1,0 +1,237 @@
+<mat-card>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <span flex>Temas</span>
+        </div>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel [ngStyle]="{'cursor':'auto'}" *ngFor='let lesson of lessons'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{lesson.title}}
+            </mat-panel-title>
+            <mat-panel-description *ngIf="loginService.getRolUserLoged()==1">
+                {{lesson.answerCorrect}}:{{lesson.answerPending}}:{{lesson.answerIncorrect}}
+                :{{lesson.answerCorrect + lesson.answerIncorrect + lesson.answerPending}}
+            </mat-panel-description>
+            <mat-panel-description [ngStyle]="{'cursor':'pointer'}" *ngIf="loginService.getRolUserLoged()==2">
+                <a class="material-icons" data-toggle="modal"
+                   style="float: right; cursor: pointer" (click)="deleteLesson(lesson.id)">delete</a>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-container *ngIf="loginService.getRolUserLoged()==2">
+            <div class="row" *ngFor='let concept of lesson.conceptSet'>
+                <a [ngStyle]="{'cursor':'pointer'}"
+                   [routerLink]="['/teacherConceptView/', concept.idConcept]">
+                    {{concept.title}} </a>
+                    <pre></pre>
+                    <a class="material-icons"
+                       style="float: right; cursor: pointer; margin-top: -40px" (click)="deleteConcept(concept.idConcept)">delete</a>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="loginService.getRolUserLoged()==1">
+            <div class="row" *ngFor='let concept of lesson.conceptSet'>
+                <a [ngStyle]="{'cursor':'pointer'}"
+                   [routerLink]="['/studentConceptView/', concept.idConcept]">
+                    {{concept.title}} </a>
+                <pre></pre>
+            </div>
+        </ng-container>
+        <div *ngIf="loginService.getRolUserLoged()==0">
+            <p [ngStyle]="{'cursor':'auto'}" *ngFor='let concept of lesson.conceptSet'>
+                {{concept.title}}<br>
+            </p>
+        </div>
+
+        <button (click)="reloadConcepts()">CARGAR MAS</button>
+
+        <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-expansion-panel>
+    <button (click)="reloadLessons()">CARGAR MAS</button>
+</mat-card>
+<button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
+    <mat-icon>add</mat-icon>
+</button>
+
+<button align="end" mat-fab *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1" (click)="openDiagramDialog()">
+    <mat-icon>add</mat-icon>
+</button>
+
+<ng-template #addLessonDialog let-dialogRef="dialogRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+            Nuevo tema
+        </h2>
+        <mat-dialog-content flex>
+            <div class="container">
+                <div class="logo">Añade un nuevo tema</div>
+                <div class="register-item">
+                    <form #myform="ngForm" class="form form-register">
+
+                        <mat-form-field>
+                            <input
+                                    matInput
+                                    [(ngModel)]="lessonAdd.title"
+                                    placeholder="Title"
+                                    name="title"
+                                    required
+                            />
+                        </mat-form-field>
+                    </form>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="newLesson()")>Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
+
+</ng-template>
+
+<ng-template #addConceptDialog let-dialogRef="dialogRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+            Nuevo concepto
+        </h2>
+        <mat-dialog-content flex>
+            <div class="container">
+                <div class="logo">Añade un nuevo concepto</div>
+                <div class="register-item">
+                    <form #myform="ngForm" class="form form-register">
+
+                        <mat-form-field>
+                            <input
+                                    matInput
+                                    [(ngModel)]="conceptAdd.title"
+                                    placeholder="Title"
+                                    name="title"
+                                    required
+                            />
+                        </mat-form-field>
+                        <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                  <label class="custom-file-label" for="inputGroupFile04"></label>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button type="button" mat-button color="accent" class="text-upper"
+                    (click)="newConcept()">Guardar
+            </button>
+        </mat-dialog-actions>
+    </div>
+</ng-template>
+
+<ng-template #DiagramDialog let-dialogRef="DiagramRef">
+    <div layout="column" layout-fill>
+        <h2 mat-dialog-title>
+            Gráfica
+        </h2>
+
+
+        <td-chart [style.height.px]="300">
+            <td-chart-toolbox
+                    [show]="true"
+                    [right]="30"
+                    [top]="10"
+                    [feature]="{dataView: {readOnly: true, title: 'View Data', lang: ['Datos temas', 'Turn Off', 'Refresh']},
+                          dataZoom: {title: {zoom: 'Zoom', back: 'Back'}},
+                          magicType: {type: ['line', 'bar', 'stack', 'tiled'],
+                                      title: {line: 'Line', bar: 'Bar', stack: 'Stack', tiled: 'Tiled'}},
+                          restore: {title: 'Restore'}}">
+                <ng-template tdViewDataFormatter>
+                    <table td-data-table>
+                        <thead>
+                        <tr td-data-table-column-row>
+                            <th td-data-table-column>Titulo</th>
+                            <th td-data-table-column>Correctas</th>
+                            <th td-data-table-column>Incorrectos</th>
+                            <th td-data-table-column>Pendientes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ng-container
+                                *ngFor="let lesson of lessons; let i = index">
+                            <tr td-data-table-row>
+                                <td td-data-table-cell>{{lesson.title}}</td>
+                                <td td-data-table-cell>
+                                    {{lesson.answerCorrect}}
+                                </td>
+                                <td td-data-table-cell>
+                                    {{lesson.answerIncorrect}}
+                                </td>
+                                <td td-data-table-cell>
+                                    {{lesson.answerPending}}
+                                </td>
+                            </tr>
+                            <button (click)="reloadLessons()">CARGAR MAS</button>
+
+                        </ng-container>
+                        </tbody>
+                    </table>
+                </ng-template>
+            </td-chart-toolbox>
+            <td-chart-tooltip [trigger]="'item'"
+                              [textStyle]="{ color: '#818181' }"
+                              [backgroundColor]="'#ffffff'">
+                <ng-template let-params let-ticket="ticket" tdTooltipFormatter>
+                    <ng-container *ngIf="params">
+                        <div layout="row" layout-align="start center">
+                            <mat-icon>
+                                <span [style.color]="params.color">answer</span>
+                            </mat-icon>
+                            <span class="mat-caption pad-left-sm">
+            {{params.seriesName + ': ' + params.value}}
+          </span>
+                        </div>
+                    </ng-container>
+                </ng-template>
+            </td-chart-tooltip>
+            <td-chart-x-axis [show]="true"
+                             [position]="'bottom'"
+                             [type]="'category'"
+                             [data]="lessonsTitle"
+                             [boundaryGap]="true">
+            </td-chart-x-axis>
+            <td-chart-y-axis [show]="true"
+                             [type]="'value'"
+                             [position]="'left'"
+                             [max]="10"
+                             [splitLine]="{ lineStyle: { type: 'dotted' }}">
+            </td-chart-y-axis>
+            <td-chart-series td-bar
+                             [data]="stats[0]"
+                             [name]="'Correctas'"
+                             [color]="'#00b686'">
+            </td-chart-series>
+            <td-chart-series td-bar
+                             [data]="stats[1]"
+                             [name]="'Sin responder'"
+                             [color]="'#757575'">
+            </td-chart-series>
+            <td-chart-series td-bar
+                             [data]="stats[2]"
+                             [name]="'Incorrectas'"
+                             [color]="'#ff3d00'">
+            </td-chart-series>
+        </td-chart>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button class="text-upper" (click)="DiagramRef.close()">Cerrar</button>
+        </mat-dialog-actions>
+    </div>
+</ng-template>

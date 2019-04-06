@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../auth/login.service";
 import { ConceptService } from 'src/app/service/concept-service';
 import { Concept } from 'src/app/model/concept.model';
+import {PageConcept} from "../../model/page.concept";
 
 @Component({
     selector: 'app-student-concept-view',
@@ -23,6 +24,12 @@ export class StudentConceptViewComponent implements OnInit {
     single: any[];
     answerAdd: Answer;
     id: number;
+    stats: number[][];
+    concepts: Concept[];
+    numberPag: number;
+    pageConcept: PageConcept;
+    conceptsTitle: string[];
+    picture: string[];
 
     view: any[] = [700, 400];
 
@@ -72,6 +79,9 @@ export class StudentConceptViewComponent implements OnInit {
             },
             error2 => console.log(error2)
         )
+        this.stats=[[],[],[]];
+        this.conceptPagination();
+        this.reloadConcepts();
 
     }
 
@@ -102,5 +112,41 @@ export class StudentConceptViewComponent implements OnInit {
             height: '50%',
         });
     }
+
+    conceptPagination(){
+        this.conceptService.getConceptsByPage(0, this.numberPag).subscribe(
+            (res: any) => {
+                this.pageConcept = res;
+                this.concepts = (this.pageConcept.content);
+                this.conceptsTitle = [];
+                this.concepts.forEach((value, index) => {
+                        this.conceptsTitle.push(value.title)
+                        this.picture.push(value.picture)
+                        this.stats[0].push(value.answerCorrect);
+                        this.stats[1].push(value.answerPending);
+                        this.stats[2].push(value.answerIncorrect);
+                    }
+                );
+            },
+            error => console.log(error)
+        );
+    }
+
+    reloadConcepts(){
+        this.numberPag++;
+        this.conceptService.getConceptsByPage(10, this.numberPag).subscribe(
+            (res: any) => {
+                this.pageConcept = res;
+                this.pageConcept.content.forEach((value, index) =>
+                    this.concepts.push(value));
+
+                this.conceptsTitle = [];
+                this.concepts.forEach(value => this.conceptsTitle.push(value.title));
+                console.log(this.concepts);
+            },
+            error => console.log(error)
+        );
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.urjc.daw.models.concept;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.urjc.daw.models.answer.Answer;
 import com.urjc.daw.models.item.Item;
 import com.urjc.daw.models.lessons.Lesson;
 import com.urjc.daw.models.question.Question;
@@ -46,6 +47,15 @@ public class Concept {
     @JsonView(BasicInfo.class)
     private String picture;
 
+    @JsonView(BasicInfo.class)
+    private Integer answerCorrect;
+
+    @JsonView(BasicInfo.class)
+    private Integer answerIncorrect;
+
+    @JsonView(BasicInfo.class)
+    private Integer answerPending;
+
 /**********************************/
 
 
@@ -72,6 +82,15 @@ public class Concept {
         this.itemSet=new HashSet<>();
         this.setQuestion=new HashSet<>();
         this.picture = pictures;
+        answerCorrect=getAnswerCorrect();
+        answerIncorrect=getAnswerIncorrect();
+        answerPending=getAnswerPending();
+    }
+
+    public void reloadAnswers(){
+        answerCorrect=getAnswerCorrect();
+        answerPending=getAnswerPending();
+        answerIncorrect=getAnswerIncorrect();
     }
 /**********************************/
 
@@ -87,6 +106,30 @@ public class Concept {
 
     public long getIdLesson() {
         return idLesson.getIdLesson();
+    }
+
+    public int getAnswerCorrect(){
+        int dev=0;
+        for (Question question : setQuestion) {
+                dev+=question.getAnswerCorrect();
+        }
+        return dev;
+    }
+
+    public int getAnswerIncorrect(){
+        int dev=0;
+        for (Question question : setQuestion) {
+               dev+=question.getAnswerIncorrect();
+        }
+        return dev;
+    }
+
+    public int getAnswerPending(){
+        int dev=0;
+        for (Question question : setQuestion) {
+                dev+=question.getAnswerPending();
+        }
+        return dev;
     }
 
 

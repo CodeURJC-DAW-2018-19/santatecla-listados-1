@@ -49,12 +49,16 @@ public class ConceptRest extends OperationsRest<Concept> {
     @JsonView(ConceptDetails.class)
     public ResponseEntity<Concept> getConcept(@PathVariable long id){
         Optional<Concept> concept= conceptService.findByOneId(id);
+        concept.get().reloadAnswers();
         return checkIfExist(concept);
     }
 
     @GetMapping(value ="/lesson/{idLesson}")
     @JsonView(ConceptDetails.class)
     public Page<Concept> getConcepts(@PathVariable long idLesson,@PageableDefault(size = 10)Pageable page){
+        for (Concept concept: conceptService.findAll(page)){
+            concept.reloadAnswers();
+        }
         return conceptService.findByLesson(lessonService.findOne(idLesson).get(),page);
     }
 

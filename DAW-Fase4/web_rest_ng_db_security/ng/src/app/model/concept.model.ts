@@ -6,4 +6,9 @@ export interface Concept{
    picture:string;
    setQuestion:Question;
 
+   answerCorrect?:number;
+   answerIncorrect?:number;
+   answerPending?:number;
+
+
 }

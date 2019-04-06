@@ -3,6 +3,15 @@
         <div layout="row" layout-align="start center">
             <img *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
         </div>
+        <div class="input-group">
+            <div class="custom-file">
+              <input (change)="selectPicture($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+              <label class="custom-file-label" for="inputGroupFile04"></label>
+            </div>
+            <div class="input-group-append">
+              <button (click)="uploadPicture()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">upload</button>
+            </div>
+          </div>
         <div layout="row" layout-align="start center">
             <span flex>ÍTEMS</span>
         </div>

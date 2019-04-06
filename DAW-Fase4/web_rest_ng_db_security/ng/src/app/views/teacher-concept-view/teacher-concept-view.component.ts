@@ -24,13 +24,14 @@ export class TeacherConceptViewComponent implements OnInit {
     public page: PageItems;
     public answers: Answer[] = [];
     public itemNew: Item;
+    concept: Concept;
+    private selectedFile: File;
 
     @ViewChild('addItemDialog') addItemDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
 
     @ViewChild('alertDialog') alertDialog: TemplateRef<any>;
     dialogAlert: MatDialogRef<any, any>;
-    concept: Concept;
     
 
     constructor(private itemService: ItemService,
@@ -69,6 +70,17 @@ export class TeacherConceptViewComponent implements OnInit {
                 },
                 error2 => console.log(error2)
             )
+
+            this.activatedRoute.paramMap.subscribe(
+                (params: any) =>{
+                    let id: number = +params.get('id');
+                if(id){
+                    this.conceptService.getConcepts(id).subscribe(
+                        (concept: any) => {
+                            this.concept = concept;
+                    });
+                }
+            });
 
     }
 
@@ -159,5 +171,16 @@ export class TeacherConceptViewComponent implements OnInit {
         );*/
     }
 
+    selectPicture(event){
+        this.selectedFile = event.target.files[0];
+        console.log(this.selectedFile);
+    }
+
+    uploadPicture(){
+        this.conceptService.uploadFile(this.selectedFile, this.concept.idConcept)
+        .subscribe(concept => {
+            this.concept = concept;
+        });
+    }
 }
 

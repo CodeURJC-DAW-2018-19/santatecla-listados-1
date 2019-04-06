@@ -12,6 +12,7 @@ import {LessonService} from "../../service/lesson-service";
 import {ConceptService} from "../../service/concept-service";
 import {MainpageComponent} from "../mainpage/mainpage.component";
 import { Concept } from 'src/app/model/concept.model';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
     selector: 'app-teacher-concept-view',
@@ -32,6 +33,7 @@ export class TeacherConceptViewComponent implements OnInit {
 
     @ViewChild('alertDialog') alertDialog: TemplateRef<any>;
     dialogAlert: MatDialogRef<any, any>;
+    progres: number = 0;
     
 
     constructor(private itemService: ItemService,

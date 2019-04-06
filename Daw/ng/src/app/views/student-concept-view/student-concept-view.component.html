@@ -48,6 +48,44 @@
                 Diagrama
             </h2>
             <td-chart [style.height.px]="300">
+                <td-chart-toolbox
+                        [show]="true"
+                        [right]="30"
+                        [top]="10"
+                        [feature]="{dataView: {readOnly: true, title: 'View Data', lang: ['Datos temas', 'Turn Off', 'Refresh']},
+                          dataZoom: {title: {zoom: 'Zoom', back: 'Back'}},
+                          magicType: {type: ['line', 'bar', 'stack', 'tiled'],
+                                      title: {line: 'Line', bar: 'Bar', stack: 'Stack', tiled: 'Tiled'}},
+                          restore: {title: 'Restore'}}">
+                    <ng-template tdViewDataFormatter>
+                        <table td-data-table>
+                            <thead>
+                            <tr td-data-table-column-row>
+                                <th td-data-table-column>Titulo</th>
+                                <th td-data-table-column>Correctas</th>
+                                <th td-data-table-column>Incorrectos</th>
+                                <th td-data-table-column>Pendientes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <ng-container>
+                                <tr td-data-table-row>
+                                    <td td-data-table-cell>{{concept.title}}</td>
+                                    <td td-data-table-cell>
+                                        {{concept.answerCorrect}}
+                                    </td>
+                                    <td td-data-table-cell>
+                                        {{concept.answerIncorrect}}
+                                    </td>
+                                    <td td-data-table-cell>
+                                        {{concept.answerPending}}
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            </tbody>
+                        </table>
+                    </ng-template>
+                </td-chart-toolbox>
                 <td-chart-tooltip [trigger]="'item'"
                                   [textStyle]="{ color: '#818181' }"
                                   [backgroundColor]="'#ffffff'">
@@ -58,8 +96,8 @@
                                     <span [style.color]="params.color">answer</span>
                                 </mat-icon>
                                 <span class="mat-caption pad-left-sm">
-                                    {{params.seriesName + ': ' + params.value}}
-                                </span>
+            {{params.seriesName + ': ' + params.value}}
+          </span>
                             </div>
                         </ng-container>
                     </ng-template>
@@ -67,7 +105,7 @@
                 <td-chart-x-axis [show]="true"
                                  [position]="'bottom'"
                                  [type]="'category'"
-                                 [data]=""
+                                 [data]="[concept.title]"
                                  [boundaryGap]="true">
                 </td-chart-x-axis>
                 <td-chart-y-axis [show]="true"
@@ -77,17 +115,17 @@
                                  [splitLine]="{ lineStyle: { type: 'dotted' }}">
                 </td-chart-y-axis>
                 <td-chart-series td-bar
-                                 [data]="stats[0]"
+                                 [data]="[concept.answerCorrect]"
                                  [name]="'Correctas'"
                                  [color]="'#00b686'">
                 </td-chart-series>
                 <td-chart-series td-bar
-                                 [data]="stats[1]"
+                                 [data]="[concept.answerPending]"
                                  [name]="'Sin responder'"
                                  [color]="'#757575'">
                 </td-chart-series>
                 <td-chart-series td-bar
-                                 [data]="stats[2]"
+                                 [data]="[concept.answerIncorrect]"
                                  [name]="'Incorrectas'"
                                  [color]="'#ff3d00'">
                 </td-chart-series>

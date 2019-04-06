@@ -34,18 +34,6 @@ export class StudentConceptViewComponent implements OnInit {
 
     view: any[] = [700, 400];
 
-    // options
-    showXAxis = true;
-    showYAxis = true;
-    gradient = false;
-    showLegend = true;
-    showXAxisLabel = true;
-    xAxisLabel = 'Concepto';
-    showYAxisLabel = true;
-
-    colorScheme = {
-        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-    };
 
     @ViewChild('diagramDialog') diagramDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -139,6 +127,7 @@ export class StudentConceptViewComponent implements OnInit {
             },
             error => console.log(error)
         );
+        console.log(this.stats);
     }
 
     reloadConcepts(){

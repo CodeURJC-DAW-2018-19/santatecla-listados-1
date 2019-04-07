@@ -3,16 +3,11 @@
 
     <td-layout-nav [toolbarTitle]="(media.registerQuery('gt-xs') | async) ? 'Aula Virtual' : ''" navigationRoute="/">
 
-        <div td-toolbar-content layout="row" layout-align="start center" flex>
-            <span flex *ngIf="!searchBox.searchVisible"></span>
-            <td-search-box hide-xs flex #searchBox
-                [ngClass]="{ 'push-left push-right mat-whiteframe-z1 bgc-white tc-black': searchBox.searchVisible }"
-                placeholder="search"></td-search-box>
+        <div td-toolbar-content layout="row" layout-align="end center" flex>
             <login></login>
         </div>
 
         <div flex layout-gt-sm="row" tdMediaToggle="gt-xs" layout-wrap [mediaClasses]="['push-sm']">
-
             <div flex-gt-sm="100">
                 <router-outlet></router-outlet>
             </div>

@@ -2,6 +2,8 @@
     <mat-card-title>
         <div layout="row" layout-align="start center">
             <span flex>Temas</span>
+            <td-search-box  flex="" placeholder="Busca algún tema" (search)="findLesson($event)" >
+            </td-search-box>
         </div>
     </mat-card-title>
 
@@ -47,11 +49,11 @@
 
         <button mat-flat-button *ngIf="loginService.getRolUserLoged()==2"
                 (click)="openAddConceptDialog()">
-          Añadir concepto
+            Añadir concepto
         </button>
     </mat-expansion-panel>
 </mat-card>
-<button mat-flat-button  (click)="reloadLessons()">Cargar más temas
+<button mat-flat-button (click)="reloadLessons()">Cargar más temas
 </button>
 <br>
 <button mat-flat-button style="margin-top: 10px"

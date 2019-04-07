@@ -21,6 +21,7 @@ import {TdDialogService} from "@covalent/core";
 export class MainpageComponent implements OnInit {
     pageLesson: PageLesson;
     lessons: Lesson[];
+    lessonsSearch: Lesson[];
     stats: number[][];
     lessonAdd: Lesson;
     lessonsTitle: string[];
@@ -50,7 +51,8 @@ export class MainpageComponent implements OnInit {
 
     ngOnInit() {
         this.numberPag = 0;
-        this.stats=[[],[],[]];
+        this.stats = [[], [], []];
+        this.lessonsSearch = [];
         this.lessonPagination();
     }
 
@@ -62,7 +64,7 @@ export class MainpageComponent implements OnInit {
         });
     }
 
-    openAddConceptDialog(){
+    openAddConceptDialog() {
         this.dialogRefConcept = this.dialog.open(this.addConceptDialog, {
             width: '50%',
             height: '50%',
@@ -94,7 +96,7 @@ export class MainpageComponent implements OnInit {
 
     }
 
-    lessonPagination(){
+    lessonPagination() {
         this.lessonAdd = {title: '', conceptSet: [], answerPending: 0, answerIncorrect: 0, answerCorrect: 0}
         this.lessonService.getLessonsByPage(0, this.numberPag).subscribe(
             (res: any) => {
@@ -113,7 +115,7 @@ export class MainpageComponent implements OnInit {
         );
     }
 
-    reloadLessons(){
+    reloadLessons() {
         this.numberPag++;
         this.lessonService.getLessonsByPage(10, this.numberPag).subscribe(
             (res: any) => {
@@ -129,6 +131,22 @@ export class MainpageComponent implements OnInit {
         );
     }
 
+    findLesson(title: string) {
+        this.lessonsSearch = [];
+        if (title == "") {
+            this.lessonPagination();
+        } else {
+            this.lessons.forEach((value, index) => {
+                if (value.title.indexOf(title) != -1) {
+                    this.lessonsSearch.push(value);
+                }
+            });
+            if (this.lessonsSearch.length > 0)
+                this.lessons = this.lessonsSearch;
+        }
+
+    }
+
     newConcept() {
         this.conceptService.addConcepts(this.conceptAdd, this.id).subscribe(
             (res: any) => {
@@ -140,7 +158,7 @@ export class MainpageComponent implements OnInit {
         );
     }
 
-    conceptPagination(){
+    conceptPagination() {
         this.conceptAdd = {title: '', setQuestion: this.question, picture: ''}
         this.conceptService.getConceptsByPage(0, this.numberPag).subscribe(
             (res: any) => {
@@ -157,7 +175,7 @@ export class MainpageComponent implements OnInit {
         );
     }
 
-    reloadConcepts(){
+    reloadConcepts() {
         this.numberPag++;
         this.conceptService.getConceptsByPage(10, this.numberPag).subscribe(
             (res: any) => {
@@ -183,13 +201,13 @@ export class MainpageComponent implements OnInit {
         }).afterClosed().subscribe((accept: boolean) => {
             if (accept) {
                 this.lessonService.deleteLesson(id).subscribe();
-                let i=0;
-                this.lessons.forEach((value,index) => {
+                let i = 0;
+                this.lessons.forEach((value, index) => {
                     if (value.id == id) {
-                        i=index;
+                        i = index;
                     }
                 });
-                this.lessons.splice(i,1);
+                this.lessons.splice(i, 1);
             }
         });
     }
@@ -203,12 +221,12 @@ export class MainpageComponent implements OnInit {
         }).afterClosed().subscribe((accept: boolean) => {
             if (accept) {
                 this.conceptService.deleteConcepts(id).subscribe();
-                let i=0;
-                this.lessons.forEach((value,index) => {
-                    value.conceptSet.forEach((c,index) => {
+                let i = 0;
+                this.lessons.forEach((value, index) => {
+                    value.conceptSet.forEach((c, index) => {
                         if (c.idConcept == id) {
-                            i=index;
-                            value.conceptSet.splice(i,1);
+                            i = index;
+                            value.conceptSet.splice(i, 1);
                         }
                     });
                 });

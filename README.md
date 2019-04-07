@@ -504,6 +504,15 @@ Once we had the application ready, we added it to the spring project, so that it
 
 After this a folder called dist is created inside ng and within dist the my-app folder, the files that are generated in this folder after the build must be moved to the project folder Daw/src/main/resources/static/new. Once we have this done we start spring, to see the angular application we open our browser and we put https://localhost:8443/new/.
 
+Run with Docker:
+For the dockerized execution we have made a script with the following steps:
+1.We build and start the docker container with nodejs, through its console, in it we execute the commands build and install.
+2.Once we have the files of the build, we copy them in the folder src / resources / static / new /.
+3.Then we made through a container with maven and alpine the construction of the jar of our application.
+
+Finally we execute the command "docker-compose up" to execute the application linked to the database with its corresponding synchronization.
+Once the application has been started, we can access the traditional application through the URL https://localhost:8080/ and the angular application through the URL https://localhost:8080/new/.
+
 ### Class diagram and templates
 In the following image we can see the diagram of classes and templates:
 

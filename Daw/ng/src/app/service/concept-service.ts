@@ -10,7 +10,7 @@ const BASE_URL= environment.baseUrl;
 const GET_CONCEPTS = BASE_URL + "/concept/pag";
 const GET_CONCEPT = BASE_URL + "/concept/";
 const DELETE_CONCEPTS = BASE_URL + "/concept/";
-const CREATE_CONCEPTS = BASE_URL + "/concept/";
+const CREATE_CONCEPTS = BASE_URL + "/concept/lesson/";
 
 @Injectable()
 export class ConceptService {
@@ -47,7 +47,7 @@ export class ConceptService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
         });
-        return this.http.post<Concept>(GET_CONCEPTS + id, body, {headers})
+        return this.http.post<Concept>(CREATE_CONCEPTS + id, body, {headers})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

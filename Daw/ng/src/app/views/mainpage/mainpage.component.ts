@@ -27,6 +27,7 @@ export class MainpageComponent implements OnInit {
     lessonsTitle: string[];
     numberPag: number;
     id: number;
+    idLessonACrear: number;
 
     pageConcept: PageConcept;
     concepts: Concept[];
@@ -53,6 +54,7 @@ export class MainpageComponent implements OnInit {
         this.numberPag = 0;
         this.stats = [[], [], []];
         this.lessonsSearch = [];
+        this.conceptAdd={title: '', picture: '', setQuestion: this.question, answerIncorrect: 0, answerCorrect: 0,answerPending: 0};
         this.lessonPagination();
     }
 
@@ -64,7 +66,8 @@ export class MainpageComponent implements OnInit {
         });
     }
 
-    openAddConceptDialog() {
+    openAddConceptDialog(id:number) {
+        this.idLessonACrear=id;
         this.dialogRefConcept = this.dialog.open(this.addConceptDialog, {
             width: '50%',
             height: '50%',
@@ -148,46 +151,13 @@ export class MainpageComponent implements OnInit {
     }
 
     newConcept() {
-        this.conceptService.addConcepts(this.conceptAdd, this.id).subscribe(
+        this.conceptService.addConcepts(this.conceptAdd, this.idLessonACrear).subscribe(
             (res: any) => {
                 this.pageConcept = res;
                 this.concepts = (this.pageConcept.content);
                 console.log(this.concepts);
             },
             error1 => console.log(error1)
-        );
-    }
-
-    conceptPagination() {
-        this.conceptAdd = {title: '', setQuestion: this.question, picture: ''}
-        this.conceptService.getConceptsByPage(0, this.numberPag).subscribe(
-            (res: any) => {
-                this.pageConcept = res;
-                this.concepts = (this.pageConcept.content);
-                this.conceptsTitle = [];
-                this.concepts.forEach((value, index) => {
-                        this.conceptsTitle.push(value.title)
-                        this.picture.push(value.picture)
-                    }
-                );
-            },
-            error => console.log(error)
-        );
-    }
-
-    reloadConcepts() {
-        this.numberPag++;
-        this.conceptService.getConceptsByPage(10, this.numberPag).subscribe(
-            (res: any) => {
-                this.pageConcept = res;
-                this.pageConcept.content.forEach((value, index) =>
-                    this.concepts.push(value));
-
-                this.conceptsTitle = [];
-                this.concepts.forEach(value => this.conceptsTitle.push(value.title));
-                console.log(this.concepts);
-            },
-            error => console.log(error)
         );
     }
 

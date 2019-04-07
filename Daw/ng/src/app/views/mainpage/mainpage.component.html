@@ -47,8 +47,8 @@
             </p>
         </div>
 
-        <button mat-flat-button *ngIf="loginService.getRolUserLoged()==2"
-                (click)="openAddConceptDialog()">
+        <button  mat-flat-button *ngIf="loginService.getRolUserLoged()==2"
+                (click)="openAddConceptDialog(lesson.id)">
             Añadir concepto
         </button>
     </mat-expansion-panel>

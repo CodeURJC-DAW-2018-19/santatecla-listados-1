@@ -492,7 +492,18 @@ We use IntelliJ IDEA Ultimate and Docker-Desktop. When we created the configurat
 
 ## PHASE 4
 ### Preparation of development environment
- Se añadirá a las instrucciones cómo instalar y configurar el entorno de desarrollo para poder compilar y ejecutar la aplicación SPA con Angular.
+
+Before starting download Node.js (JavaScript runtime).
+
+We start with an existing angular application, from the main menu we import the project and then we install the dependencies, for this, we write in the terminal 'npm install'.
+
+Run:
+To execute our application we follow the following steps: Run - Edit configurations ... - + - npm. In package.json we look for where that file is and in Scripts we put 'start', we give Apply and OK and then run, we wait for it to compile and we can open our browser with http://localhost:4200/. In order to see all the data in our database, we have to execute the spring project and then the angular one, because each one was in a project.
+
+Once we had the application ready, we added it to the spring project, so that it works we have to compile it in a different way. Let's go to the intellij IDEA terminal, write 'cd ng' and then 'npm install'. To execute our application we follow the following steps: Run - Edit configurations ... - + - npm. In package.json we look for where that file is and in Scripts we put 'build', we give Apply and OK and then run, we wait for it to compile.
+
+After this a folder called dist is created inside ng and within dist the my-app folder, the files that are generated in this folder after the build must be moved to the project folder Daw/src/main/resources/static/new. Once we have this done we start spring, to see the angular application we open our browser and we put https://localhost:8443/new/.
+
 ### Class diagram and templates
 In the following image we can see the diagram of classes and templates:
 

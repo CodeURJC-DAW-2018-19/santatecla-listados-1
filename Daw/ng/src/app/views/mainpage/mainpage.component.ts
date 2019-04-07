@@ -136,7 +136,7 @@ export class MainpageComponent implements OnInit {
         if (title == "") {
             this.lessonPagination();
         } else {
-            this.lessons.forEach((value, index) => {
+            this.lessons.forEach((value) => {
                 if (value.title.indexOf(title) != -1) {
                     this.lessonsSearch.push(value);
                 }

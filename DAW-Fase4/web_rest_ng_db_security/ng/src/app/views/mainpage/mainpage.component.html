@@ -45,19 +45,19 @@
             </p>
         </div>
 
-        <button (click)="reloadConcepts()">CARGAR MAS</button>
+        <button mat-raised-button color="primary" (click)="reloadConcepts()">CARGAR MAS</button>
 
-        <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
+        <button mat-raised-button color="primary" mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddConceptDialog()">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel>
-    <button (click)="reloadLessons()">CARGAR MAS</button>
+    <button mat-raised-button color="primary" (click)="reloadLessons()">CARGAR MAS</button>
 </mat-card>
 <button mat-fab *ngIf="loginService.getRolUserLoged()==2" (click)="openAddLessonDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
-<button align="end" mat-fab *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1" (click)="openDiagramDialog()">
+<button mat-raised-button color="primary" align="end" mat-fab *ngIf="loginService.getRolUserLoged()==2 || loginService.getRolUserLoged()==1" (click)="openDiagramDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
@@ -87,8 +87,8 @@
         </mat-dialog-content>
         <mat-divider></mat-divider>
         <mat-dialog-actions align="end">
-            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
-            <button type="button" mat-button color="accent" class="text-upper"
+            <button mat-raised-button color="primary" type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button mat-raised-button color="primary" type="button" mat-button color="accent" class="text-upper"
                     (click)="newLesson()")>Guardar
             </button>
         </mat-dialog-actions>
@@ -122,8 +122,8 @@
         </mat-dialog-content>
         <mat-divider></mat-divider>
         <mat-dialog-actions align="end">
-            <button type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
-            <button type="button" mat-button color="accent" class="text-upper"
+            <button mat-raised-button color="primary" type="button" mat-button class="text-upper" (click)="dialogRef.close()">Cerrar</button>
+            <button mat-raised-button color="primary" type="button" mat-button color="accent" class="text-upper"
                     (click)="newConcept()">Guardar
             </button>
         </mat-dialog-actions>
@@ -172,7 +172,7 @@
                                     {{lesson.answerPending}}
                                 </td>
                             </tr>
-                            <button (click)="reloadLessons()">CARGAR MAS</button>
+                            <button mat-raised-button color="primary" (click)="reloadLessons()">CARGAR MAS</button>
 
                         </ng-container>
                         </tbody>
@@ -225,7 +225,7 @@
         </td-chart>
         <mat-divider></mat-divider>
         <mat-dialog-actions align="end">
-            <button type="button" mat-button class="text-upper" (click)="DiagramRef.close()">Cerrar</button>
+            <button mat-raised-button color="primary" type="button" mat-button class="text-upper" (click)="DiagramRef.close()">Cerrar</button>
         </mat-dialog-actions>
     </div>
 </ng-template>

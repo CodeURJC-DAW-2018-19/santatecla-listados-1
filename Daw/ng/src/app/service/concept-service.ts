@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Concept } from "../model/concept.model";
 import {catchError, map, switchAll} from "rxjs/operators";
 import {Observable} from "rxjs";
-import {Item} from "../model/item.model";
 import {HttpClient, HttpHeaders, HttpEvent, HttpRequest} from "@angular/common/http";
 import { environment } from "../../environments/environment";
 

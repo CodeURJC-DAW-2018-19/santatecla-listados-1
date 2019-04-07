@@ -27,7 +27,7 @@ export class MainpageComponent implements OnInit {
     lessonsTitle: string[];
     numberPag: number;
     id: number;
-    idLessonACrear: number;
+    idLessonToCreateConcept: number;
 
     pageConcept: PageConcept;
     concepts: Concept[];
@@ -35,7 +35,6 @@ export class MainpageComponent implements OnInit {
     picture: string[];
     question: Question;
 
-    questionEmpty: Question;
 
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -67,7 +66,7 @@ export class MainpageComponent implements OnInit {
     }
 
     openAddConceptDialog(id:number) {
-        this.idLessonACrear=id;
+        this.idLessonToCreateConcept=id;
         this.dialogRefConcept = this.dialog.open(this.addConceptDialog, {
             width: '50%',
             height: '50%',
@@ -150,19 +149,6 @@ export class MainpageComponent implements OnInit {
 
     }
 
-    newConcept() {
-        this.conceptService.addConcepts(this.conceptAdd, this.idLessonACrear).subscribe(
-            (res: any) => {
-                this.pageConcept = res;
-                this.concepts = (this.pageConcept.content);
-                console.log(this.concepts);
-            },
-            error1 => console.log(error1)
-        );
-        this.lessonPagination();
-    }
-
-
     deleteLesson(id: number) {
         this._dialogService.openConfirm({
             message: '¿Estás seguro de que desea eliminarlo?',
@@ -181,6 +167,19 @@ export class MainpageComponent implements OnInit {
                 this.lessons.splice(i, 1);
             }
         });
+    }
+
+    newConcept() {
+        this.conceptService.addConcepts(this.conceptAdd, this.idLessonToCreateConcept).subscribe(
+            (res: any) => {
+                this.pageConcept = res;
+                this.concepts = (this.pageConcept.content);
+                console.log(this.concepts);
+            },
+            error1 => console.log(error1)
+        );
+        this.dialog.closeAll();
+        this.lessonPagination();
     }
 
     deleteConcept(id: number) {

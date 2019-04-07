@@ -3,7 +3,6 @@ import {Lesson} from "../model/lesson.model";
 import {catchError, map} from "rxjs/operators";
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
-import {PageLesson} from "../model/page.lesson";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import { environment } from "../../environments/environment";

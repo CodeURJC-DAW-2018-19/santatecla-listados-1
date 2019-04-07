@@ -203,13 +203,13 @@ export class MainpageComponent implements OnInit {
                 this.conceptService.deleteConcepts(id).subscribe();
                 let i=0;
                 this.lessons.forEach((value,index) => {
-                    value.conceptSet.forEach((value,index) => {
-                        if (value.idConcept == id) {
+                    value.conceptSet.forEach((c,index) => {
+                        if (c.idConcept == id) {
                             i=index;
+                            value.conceptSet.splice(i,1);
                         }
-                    })
+                    });
                 });
-                this.concepts.splice(i,1);
             }
         });
     }

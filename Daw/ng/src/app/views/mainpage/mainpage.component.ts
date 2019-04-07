@@ -54,7 +54,7 @@ export class MainpageComponent implements OnInit {
         this.numberPag = 0;
         this.stats = [[], [], []];
         this.lessonsSearch = [];
-        this.conceptAdd={title: '', picture: '', setQuestion: this.questionEmpty , answerIncorrect: 0, answerCorrect: 0,answerPending: 0};
+        this.conceptAdd={title: '', picture: '', setQuestion: this.question , answerIncorrect: 0, answerCorrect: 0,answerPending: 0};
         this.lessonPagination();
     }
 
@@ -159,6 +159,7 @@ export class MainpageComponent implements OnInit {
             },
             error1 => console.log(error1)
         );
+        this.lessonPagination();
     }
 
 

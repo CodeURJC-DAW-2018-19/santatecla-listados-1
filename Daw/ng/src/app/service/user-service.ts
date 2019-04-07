@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserRest } from '../model/user.model';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 
-const URL="https://localhost:8443/api/";
+const URL="https://localhost:8080/api/";
 const GET_LOGIN = URL+"user/login";
 
 @Injectable()

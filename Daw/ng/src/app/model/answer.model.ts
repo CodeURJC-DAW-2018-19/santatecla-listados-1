@@ -4,7 +4,7 @@ import {Question} from "./question.model";
 
 export interface Answer{
 
-    id?:number;
+    idAnswer?:number;
     info:string;
     idUser?: UserRest ;
     state: string;

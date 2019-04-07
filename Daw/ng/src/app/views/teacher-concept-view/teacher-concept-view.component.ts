@@ -91,11 +91,12 @@ export class TeacherConceptViewComponent implements OnInit {
         let i=0;
         this.answerService.correctManually(id, info).subscribe();
         this.answers.forEach((value,index) => {
-            if (value.id == id) {
+            if (value.idAnswer == id) {
                 i=index;
+                this.answers.splice(i,1);
+                this.answers.push();
             }
         });
-        this.answers.splice(i,1);
 
     }
 

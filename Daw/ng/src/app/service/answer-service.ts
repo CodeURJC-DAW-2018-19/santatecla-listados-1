@@ -15,7 +15,7 @@ const BASE_URL=environment.baseUrl;
 const GET_ANSWER_BY_USER=BASE_URL + "/answer/user";
 const GET_ANSWER = BASE_URL + "/answer/user/";
 const GET_ANSWER_BY_CONCEPT = BASE_URL + "/answer/concept/";
-const ADD_ANSWER =  BASE_URL + "answer/";
+const ADD_ANSWER =  BASE_URL + "/answer/";
 
 
 @Injectable()
@@ -52,7 +52,7 @@ export class AnswerService {
             'Content-Type': 'application/json',
         });
 
-        return this.http.put<any>(GET_ANSWER + id + "/" + info,{headers})
+        return this.http.put<any>(ADD_ANSWER + id + "/" + info,"",{headers})
             .pipe(
                 map(response => response),
                 catchError(error => this.handleError(error))

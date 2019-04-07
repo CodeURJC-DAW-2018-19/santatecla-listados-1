@@ -4,6 +4,7 @@
             <img *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
         </div>
         <div class="input-group">
+                <span flex>CAMBIAR IMAGEN</span>
             <div class="custom-file">
               <input (change)="selectPicture($event)" type="file" id="inputGroupFile04">
               <label class="custom-file-label" for="inputGroupFile04"></label>

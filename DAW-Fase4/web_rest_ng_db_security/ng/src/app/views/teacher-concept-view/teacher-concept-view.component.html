@@ -1,59 +1,72 @@
 <mat-card>
+
     <mat-card-title>
         <div layout="row" layout-align="start center">
-            <img *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
+            <span flex>ÍTEMS</span>
+        </div>
+    </mat-card-title>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <img mat-card-image *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}"
+                alt="{{concept.picture}}">
+        </div>
+        <div layout="row" layout-align="start center">
+            <span flex>
+                <h5>CHANGE IMAGE</h5>
+            </span>
         </div>
         <div class="input-group">
             <div class="custom-file">
-              <input (change)="selectPicture($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-              <label class="custom-file-label" for="inputGroupFile04"></label>
+                <input (change)="selectPicture($event)" type="file" class="custom-file-input" id="inputGroupFile04"
+                    aria-describedby="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04"></label>
             </div>
             <div class="input-group-append">
-              <button (click)="uploadPicture()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">upload</button>
+                <button mat-raised-button color="primary" (click)="uploadPicture()" type="button"
+                    id="inputGroupFileAddon04">upload</button>
             </div>
-          </div>
-        <div layout="row" layout-align="start center">
-            <span flex>ÍTEMS</span>
         </div>
     </mat-card-title>
     <mat-divider></mat-divider>
 
     <mat-list *ngFor='let item of items' layout="row">
-            <mat-list-item>
-                <h4 flex> {{item.info}} </h4>
-                <mat-divider [vertical]= true ></mat-divider>
-                <mat-radio-group name="{{item.idItem}}" flex>
-                    <mat-radio-button value="3" checked = "{{item.state}}" disabled="{{!item.state}}">Correcto</mat-radio-button>
-                    &nbsp;
-                    <mat-radio-button value="4" disabled = "{{item.state}}" checked = "{{!item.state}}">Incorrecto</mat-radio-button>
-                </mat-radio-group>
-                <button mat-icon-button (click)="deleteItem(item.idItem)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <mat-divider></mat-divider>
-            </mat-list-item>
+        <mat-list-item>
+            <h4 flex> {{item.info}} </h4>
+            <mat-divider [vertical]=true></mat-divider>
+            <mat-radio-group name="{{item.idItem}}" flex>
+                <mat-radio-button value="3" checked="{{item.state}}" disabled="{{!item.state}}">Correcto
+                </mat-radio-button>
+                &nbsp;
+                <mat-radio-button value="4" disabled="{{item.state}}" checked="{{!item.state}}">Incorrecto
+                </mat-radio-button>
+            </mat-radio-group>
+            <button mat-icon-button (click)="deleteItem(item.idItem)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <mat-divider></mat-divider>
+        </mat-list-item>
     </mat-list>
     <mat-divider></mat-divider>
 
-    <button (click)="reloadItem()">CARGAR MAS</button>
+    <button mat-raised-button color="primary" (click)="reloadItem()">CARGAR MAS</button>
 
 </mat-card>
 
 
-<button mat-mini-fab  *ngIf="loginService.isLogged" (click)="openAddDialog()">
+<button mat-mini-fab *ngIf="loginService.isLogged" (click)="openAddDialog()">
     <mat-icon>add</mat-icon>
 </button>
 
 <mat-card>
-   <mat-card-title>
-       <div layout="row" layout-align="start center">
-           <span flex>RESPUESTAS</span>
-       </div>
-   </mat-card-title>
+    <mat-card-title>
+        <div layout="row" layout-align="start center">
+            <span flex>RESPUESTAS</span>
+        </div>
+    </mat-card-title>
     <mat-list *ngFor='let answer of answers' layout="row">
         <mat-list-item *ngIf="answer.state==='pending'">
             <h3 flex> {{answer.info}} </h3>
-            <mat-divider [vertical]= true ></mat-divider>
+            <mat-divider [vertical]=true></mat-divider>
             <mat-radio-group id="{{answer.id}}" flex>
                 <mat-radio-button value="1" (click)="correctMan(answer.idQuestion,true)">Correcto</mat-radio-button>
                 <mat-radio-button value="2" (click)="correctMan(answer.idQuestion,false)">Incorrecto</mat-radio-button>
@@ -72,16 +85,10 @@
             <div class="register-item">
                 <form #formItem="ngForm" class="form form-register">
                     <mat-form-field>
-                        <input
-                                matInput
-                                [(ngModel)]="itemNew.info"
-                                placeholder="Info"
-                                name="info"
-                                required
-                        />
+                        <input matInput [(ngModel)]="itemNew.info" placeholder="Info" name="info" required />
                     </mat-form-field>
-                    <mat-checkbox (change)="itemNew.state=true" >Correcto</mat-checkbox>
-                    <mat-checkbox (change)="itemNew.state=false" >Incorrecto</mat-checkbox>
+                    <mat-checkbox (change)="itemNew.state=true">Correcto</mat-checkbox>
+                    <mat-checkbox (change)="itemNew.state=false">Incorrecto</mat-checkbox>
                 </form>
             </div>
             <mat-dialog-actions align="end">
@@ -92,6 +99,3 @@
     </mat-dialog-content>
 
 </ng-template>
-
-
-

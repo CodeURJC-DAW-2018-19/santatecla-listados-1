@@ -18,6 +18,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations(resourcePath);
 
     }
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/new/").setViewName("forward:/new/index.html");

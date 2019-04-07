@@ -3,7 +3,8 @@ import { Concept } from "../model/concept.model";
 import {catchError, map, switchAll} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {Item} from "../model/item.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpRequest, HttpEvent} from "@angular/common/http";
+import { Router } from '@angular/router';
 
 const GET_CONCEPTS = "api/concept/lesson/{idLesson}/pag";
 const GET_CONCEPT = "api/concept/";
@@ -14,7 +15,9 @@ const CREATE_CONCEPTS = "api/concept/";
 export class ConceptService {
     private urlEndPoint: string = 'https://localhost:8443/api/concept';
 
-    constructor(private http: HttpClient) {}
+    private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    constructor(private http: HttpClient, private router: Router) {}
 
     getConceptsByPage(pagSize:number,indexPag:number) {
         return this.http.get(GET_CONCEPTS+"?page="+indexPag+"&size="+pagSize, {withCredentials: true})
@@ -47,10 +50,9 @@ export class ConceptService {
         });
         return this.http.post<Concept>(GET_CONCEPTS + id, body, {headers})
             .pipe(
-                map(response => response),
+                map((response: any) => response.concept as Concept),
                 catchError(error => this.handleError(error))
             );
-
     }
 
     deleteConcepts(id:number){

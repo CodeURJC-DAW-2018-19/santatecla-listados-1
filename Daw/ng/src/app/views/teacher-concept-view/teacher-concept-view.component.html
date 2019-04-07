@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>
         <div layout="row" layout-align="start center">
-            <img *ngIf="concept" src="https://localhost:8443/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
+            <img *ngIf="concept" src="https://localhost:8080/api/concept/upload/img/{{concept.picture}}" alt="{{concept.picture}}">
         </div>
         <div class="input-group">
                 <span flex>CAMBIAR IMAGEN</span>
@@ -35,7 +35,6 @@
             </mat-list-item>
     </mat-list>
     <mat-divider></mat-divider>
-    <button (click)="reloadItems()">CARGAR MAS</button>
 </mat-card>
 
 <button mat-flat-button  *ngIf="loginService.isLogged" (click)="openAddDialog()">

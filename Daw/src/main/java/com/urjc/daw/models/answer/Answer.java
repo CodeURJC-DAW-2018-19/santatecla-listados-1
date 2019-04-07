@@ -153,6 +153,8 @@ public class Answer {
         if(itemQuestion!=null){
             if(itemQuestion.getState()==ans) {
                 this.setState("right");
+            }else{
+                this.setState("wrong");
             }
         }else{
             this.setState("wrong");

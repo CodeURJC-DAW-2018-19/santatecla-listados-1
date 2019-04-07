@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiEndpoint: 'https://miapi.com'
+    baseUrl: 'http://localhost:8080/'
 }; 

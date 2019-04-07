@@ -178,8 +178,8 @@ export class MainpageComponent implements OnInit {
             },
             error1 => console.log(error1)
         );
-        this.dialog.closeAll();
         this.lessonPagination();
+        this.dialogRefConcept.close();
     }
 
     deleteConcept(id: number) {

@@ -40,7 +40,7 @@
     },
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --port 8080 --proxy-config proxy.conf.json",
+        "start": "ng serve --proxy-config proxy.conf.json",
         "build": "ng build --base-href /new/ --prod",
         "test": "ng test",
         "lint": "ng lint",

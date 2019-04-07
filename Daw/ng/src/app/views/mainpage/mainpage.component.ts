@@ -89,6 +89,8 @@ export class MainpageComponent implements OnInit {
             },
             error => console.log(error)
         );
+        this.dialog.closeAll();
+        this.lessonPagination();
 
     }
 

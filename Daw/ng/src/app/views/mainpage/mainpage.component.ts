@@ -32,10 +32,10 @@ export class MainpageComponent implements OnInit {
     pageConcept: PageConcept;
     concepts: Concept[];
     conceptAdd: Concept;
-    conceptsTitle: string[];
     picture: string[];
     question: Question;
 
+    questionEmpty: Question;
 
     @ViewChild('addLessonDialog') addLessonDialog: TemplateRef<any>;
     dialogRef: MatDialogRef<any, any>;
@@ -54,7 +54,7 @@ export class MainpageComponent implements OnInit {
         this.numberPag = 0;
         this.stats = [[], [], []];
         this.lessonsSearch = [];
-        this.conceptAdd={title: '', picture: '', setQuestion: this.question, answerIncorrect: 0, answerCorrect: 0,answerPending: 0};
+        this.conceptAdd={title: '', picture: '', setQuestion: this.questionEmpty , answerIncorrect: 0, answerCorrect: 0,answerPending: 0};
         this.lessonPagination();
     }
 

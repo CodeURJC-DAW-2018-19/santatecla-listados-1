@@ -49,6 +49,9 @@ export class TeacherConceptViewComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(this.loginService.getRolUserLoged()!=2){
+            this.router.navigate(['mainPage']);
+        }else {
             const id = this.activatedRoute.snapshot.params['id'];
             this.itemService.getItems(id).subscribe(
                 (res: any) => {
@@ -74,15 +77,16 @@ export class TeacherConceptViewComponent implements OnInit {
             )
 
             this.activatedRoute.paramMap.subscribe(
-                (params: any) =>{
+                (params: any) => {
                     let id: number = +params.get('id');
-                if(id){
-                    this.conceptService.getConcepts(id).subscribe(
-                        (concept: any) => {
-                            this.concept = concept;
-                    });
-                }
-            });
+                    if (id) {
+                        this.conceptService.getConcepts(id).subscribe(
+                            (concept: any) => {
+                                this.concept = concept;
+                            });
+                    }
+                });
+        }
 
     }
 

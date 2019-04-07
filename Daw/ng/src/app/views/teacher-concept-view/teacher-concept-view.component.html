@@ -38,10 +38,10 @@
     <button (click)="reloadItems()">CARGAR MAS</button>
 </mat-card>
 
-
-<button mat-mini-fab  *ngIf="loginService.isLogged" (click)="openAddDialog()">
-    <mat-icon>add</mat-icon>
+<button mat-flat-button  *ngIf="loginService.isLogged" (click)="openAddDialog()">
+    Añadir ítem
 </button>
+
 
 <mat-card>
    <mat-card-title>

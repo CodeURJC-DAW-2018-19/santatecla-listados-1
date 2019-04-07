@@ -81,5 +81,17 @@ export class AnswerService {
             );
 
     }
+
+    correctionSpecial(opt: string, total: string, id:number): Observable<Answer> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+
+        return this.http.post<Answer>(ADD_ANSWER + id+'/options/'+opt+'/'+total, "", {headers})
+            .pipe(
+                map(response => response),
+                catchError(error => this.handleError(error))
+            );
+    }
 }
 

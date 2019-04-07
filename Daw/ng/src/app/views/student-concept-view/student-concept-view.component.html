@@ -168,8 +168,8 @@
             </h2>
             <mat-dialog-content flex>
                 <mat-radio-group id="{{random.idQuestion}}" flex>
-                    <mat-radio-button value="1">Correcto</mat-radio-button>
-                    <mat-radio-button value="2">Incorrecto</mat-radio-button>
+                    <mat-radio-button value="1" (change)="answerAdd.info=true">Correcto</mat-radio-button>
+                    <mat-radio-button value="2" (change)="answerAdd.info=false">Incorrecto</mat-radio-button>
                 </mat-radio-group>
             </mat-dialog-content>
             <mat-divider></mat-divider>
@@ -186,7 +186,7 @@
             <mat-dialog-content flex>
                 <mat-list *ngFor='let i of random.opt' layout="row">
                     <mat-list-item>
-                        <p>{{i.info}}</p>
+                        <mat-checkbox (change)="optionsChoosen.push(i.info)" >{{i.info}}</mat-checkbox>
                     </mat-list-item>
                 </mat-list>
             </mat-dialog-content>

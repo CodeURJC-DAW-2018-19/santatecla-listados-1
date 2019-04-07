@@ -9,6 +9,7 @@ import {LoginService} from "../../auth/login.service";
 import { ConceptService } from 'src/app/service/concept-service';
 import { Concept } from 'src/app/model/concept.model';
 import {PageConcept} from "../../model/page.concept";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-student-concept-view',
@@ -30,6 +31,8 @@ export class StudentConceptViewComponent implements OnInit {
     conceptsTitle: string[];
     picture: string[];
     random: Question;
+    optionsChoosen:string[];
+
 
     view: any[] = [700, 400];
 
@@ -49,7 +52,8 @@ export class StudentConceptViewComponent implements OnInit {
                 public conceptService: ConceptService,
                 public questionService: QuestionService) {
         this.answerAdd = {info: "", state: "pending", correct: false};
-        this.random = {info:""}
+        this.random = {info:""};
+        this.optionsChoosen = [];
     }
 
     ngOnInit() {
@@ -84,9 +88,32 @@ export class StudentConceptViewComponent implements OnInit {
     }
 
     newAnswer() {
-        const id = this.activatedRoute.snapshot.params['id'];
-        this.answerService.addAnswer(this.answerAdd, id).subscribe();
+        //const id = this.activatedRoute.snapshot.params['id'];
+        const id = this.random.idQuestion;
+        this.answerAdd.statement=this.random.info;
         this.answer.push(this.answerAdd);
+        if(this.random.type==3){
+            let opt: string;
+            let total: string;
+            this.optionsChoosen.forEach((value,index) =>{
+                if(index==0){
+                    opt=value;
+                }else{
+                    opt = opt + 'sss' + value;
+                }
+            });
+            this.random.opt.forEach(value => {
+                if(opt == null){
+                    total =value.info;
+                }else{
+                    total  = opt + "sss" + value.info;
+                }
+            });
+            this.answerService.correctionSpecial(opt, total, id,).subscribe();
+
+        }else{
+            this.answerService.addAnswer(this.answerAdd, id).subscribe();
+        }
         this.answerAdd = {info: "", state: "pending", correct: false};
         this.dialog.closeAll();
     }
@@ -115,8 +142,8 @@ export class StudentConceptViewComponent implements OnInit {
                 this.concepts = (this.pageConcept.content);
                 this.conceptsTitle = [];
                 this.concepts.forEach((value, index) => {
-                        this.conceptsTitle.push(value.title)
-                        this.picture.push(value.picture)
+                        this.conceptsTitle.push(value.title);
+                        this.picture.push(value.picture);
                         this.stats[0].push(value.answerCorrect);
                         this.stats[1].push(value.answerPending);
                         this.stats[2].push(value.answerIncorrect);

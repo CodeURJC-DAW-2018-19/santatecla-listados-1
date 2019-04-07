@@ -100,17 +100,7 @@ public class DatabaseInitializer {
         Concept concept19 = new Concept("REST y Servicios en Angular", 19, "mundo.png");
         Concept concept20 = new Concept("Router en Angular", 20, "ima.png");
 
-        Concept concept21 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept22 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept23 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept24 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept25 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept26 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept27 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept28 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept29 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept30 = new Concept("Para paginacion", 21, "ima.png");
-        Concept concept31 = new Concept("Para paginacion", 21, "ima.png");
+
 
 
         Item item1 = new Item("Requisitos", true);
@@ -138,17 +128,7 @@ public class DatabaseInitializer {
         Item item23 = new Item("Memento", true);
         Item item24 = new Item("Observer", true);
 
-        Item item25 = new Item("Para paginacion", true);
-        Item item26 = new Item("Para paginacion", true);
-        Item item27 = new Item("Para paginacion", true);
-        Item item28 = new Item("Para paginacion", true);
-        Item item29 = new Item("Para paginacion", true);
-        Item item30 = new Item("Para paginacion", true);
-        Item item31 = new Item("Para paginacion", true);
-        Item item32 = new Item("Para paginacion", true);
-        Item item33 = new Item("Para paginacion", true);
-        Item item34 = new Item("Para paginacion", true);
-        Item item35 = new Item("Para paginacion", true);
+
 
 
 /***************************************************************/
@@ -174,17 +154,7 @@ public class DatabaseInitializer {
         lesson5.addConcept(concept19);
         lesson5.addConcept(concept20);
 
-        lesson1.addConcept(concept21);
-        lesson1.addConcept(concept22);
-        lesson1.addConcept(concept23);
-        lesson1.addConcept(concept24);
-        lesson1.addConcept(concept25);
-        lesson1.addConcept(concept26);
-        lesson1.addConcept(concept27);
-        lesson1.addConcept(concept28);
-        lesson1.addConcept(concept29);
-        lesson1.addConcept(concept30);
-        lesson1.addConcept(concept31);
+
 
 
 
@@ -209,17 +179,7 @@ public class DatabaseInitializer {
         concept19.setIdLesson(lesson5);
         concept20.setIdLesson(lesson5);
 
-        concept21.setIdLesson(lesson1);
-        concept22.setIdLesson(lesson1);
-        concept23.setIdLesson(lesson1);
-        concept24.setIdLesson(lesson1);
-        concept25.setIdLesson(lesson1);
-        concept26.setIdLesson(lesson1);
-        concept27.setIdLesson(lesson1);
-        concept28.setIdLesson(lesson1);
-        concept29.setIdLesson(lesson1);
-        concept30.setIdLesson(lesson1);
-        concept31.setIdLesson(lesson1);
+
 
 
         concept1.addItem(item1);
@@ -247,17 +207,7 @@ public class DatabaseInitializer {
         concept4.addItem(item23);
         concept4.addItem(item24);
 
-        concept1.addItem(item25);
-        concept1.addItem(item26);
-        concept1.addItem(item27);
-        concept1.addItem(item28);
-        concept1.addItem(item29);
-        concept1.addItem(item30);
-        concept1.addItem(item31);
-        concept1.addItem(item32);
-        concept1.addItem(item33);
-        concept1.addItem(item34);
-        concept1.addItem(item35);
+
 
 
         item1.setIdConcept(concept1);
@@ -287,17 +237,7 @@ public class DatabaseInitializer {
         item24.setIdConcept(concept4);
 
 
-        item25.setIdConcept(concept1);
-        item26.setIdConcept(concept1);
-        item27.setIdConcept(concept1);
-        item28.setIdConcept(concept1);
-        item29.setIdConcept(concept1);
-        item30.setIdConcept(concept1);
-        item31.setIdConcept(concept1);
-        item32.setIdConcept(concept1);
-        item33.setIdConcept(concept1);
-        item34.setIdConcept(concept1);
-        item35.setIdConcept(concept1);
+
 
 
         lessonRepository.save(lesson1);
@@ -343,17 +283,7 @@ public class DatabaseInitializer {
         conceptRepository.save(concept19);
         conceptRepository.save(concept20);
 
-        conceptRepository.save(concept21);
-        conceptRepository.save(concept22);
-        conceptRepository.save(concept23);
-        conceptRepository.save(concept24);
-        conceptRepository.save(concept25);
-        conceptRepository.save(concept26);
-        conceptRepository.save(concept27);
-        conceptRepository.save(concept28);
-        conceptRepository.save(concept29);
-        conceptRepository.save(concept30);
-        conceptRepository.save(concept31);
+
 
 
         itemRepository.save(item1);
@@ -381,17 +311,8 @@ public class DatabaseInitializer {
         itemRepository.save(item23);
         itemRepository.save(item24);
 
-        itemRepository.save(item25);
-        itemRepository.save(item26);
-        itemRepository.save(item27);
-        itemRepository.save(item28);
-        itemRepository.save(item29);
-        itemRepository.save(item30);
-        itemRepository.save(item31);
-        itemRepository.save(item32);
-        itemRepository.save(item33);
-        itemRepository.save(item34);
-        itemRepository.save(item35);
+
+
 
 
 

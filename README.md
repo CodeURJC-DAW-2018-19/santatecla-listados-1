@@ -1,4 +1,8 @@
 # santatecla-listados-1
+
+## VIDEO
+https://www.youtube.com/watch?v=YpddcBuo2FY&feature=youtu.be
+
 ## PHASE 0
 
 ### APP Name
